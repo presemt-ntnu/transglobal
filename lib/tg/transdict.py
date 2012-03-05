@@ -1,11 +1,9 @@
-#!/usr/bin/env python
-
 """
 read dicts
 """
 
 # TODO
-# - store dict more efficient
+# - store dict more efficiently
 
 import cPickle
 import logging as log
@@ -92,7 +90,7 @@ class TransDict(dict):
     
         
     def dump(self, pkl_fname):
-        log.info("dumping translation dictionary to" + pkl_fname)
+        log.info("dumping translation dictionary to " + pkl_fname)
         with open(pkl_fname, "wb") as inf:
             cPickle.dump(self, inf)
     
@@ -139,14 +137,3 @@ class DictAdaptor:
             return self.__getitem__(key)
         except KeyError:
             return default
-            
-            
-def make_dicts():
-    dict_fname = "/Users/erwin/Projects/Presemt/svn/PRESEMT/data/Lexica/lex_DE-EN.xml"
-    transdict = TransDict.from_xml(dict_fname, reverse=True)
-    transdict.dump("dict-en-de.pkl")
-
-    
-    
-if __name__ == "__main__":
-    make_dicts()

@@ -1,0 +1,35 @@
+Software dependencies
+---------------------
+
+* networkx
+* pydot and graphviz
+* nose (for testing)
+
+
+Data dependecies
+----------------
+
+* Dictionaries in Presemt XML format in directory $TG_BASE_DIR/_local/dicts
+
+
+Setup
+-----
+
+1. Set TG_BASE_DIR to the root of the Transglobal code
+
+2. Run "source env/setup_env.sh" to setup shell environment
+
+3. Run bin/setup_local_data.py to build local data
+
+
+
+Unit testing
+------------
+
+1. Run test/setup.py to build cached data for unit testing
+
+2. Run "nosetest test"
+
+
+
+
