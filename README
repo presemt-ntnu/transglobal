@@ -2,8 +2,9 @@ Software dependencies
 ---------------------
 
 * networkx
-* pydot and graphviz
-* nose (for testing)
+* pydot and Graphviz
+* nose (only for testing)
+* TreeTagger for English, German 
 
 
 Data dependecies

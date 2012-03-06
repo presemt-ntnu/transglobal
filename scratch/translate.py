@@ -11,12 +11,11 @@ word-for-word translation
 import logging as log
 import cPickle
 
-from annot import TreeTaggerEnglish
-from transdict import TransDict, DictAdaptor
-from lookup import Lookup
-from draw import Draw
-import transdict
-
+from tg.config import config
+from tg.annot import TreeTaggerEnglish
+from tg.transdict import TransDict, DictAdaptor
+from tg.lookup import Lookup
+from tg.draw import Draw
 
 log.basicConfig(level=log.DEBUG)
 
@@ -33,8 +32,8 @@ annotator = TreeTaggerEnglish()
 graph_list = annotator(text)
 
 # lookup
-en_de_dict = DictAdaptor("../../../local/dicts/dict_en-de.pkl", 
-                         "../data/maps/en-de_posmap")
+en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
+                         config["en-de_posmap"])
 lookup = Lookup(en_de_dict)
 lookup(graph_list)
 

@@ -5,14 +5,17 @@ setup local data for testing
 """
 
 from os import getenv
+from os.path import join
 
-test_data_dir = getenv("TG_BASE_DIR") + "/test/data"
+from tg.config import config
 
-test_local_dir = getenv("TG_BASE_DIR") + "/test/_local"
+test_data_dir = join(config["TG_BASE_DIR"], "test/data")
 
-annot_graphs_en_pkl_fname = test_local_dir + "/annot_graphs_en.pkl"
-graphs_en_de_pkl_fname = test_local_dir + "/graphs_en-de.pkl"
-graphs_en_rnd_pkl_fname = test_local_dir + "/graphs_en-de_rnd.pkl"
+test_local_dir = join(config["TG_BASE_DIR"], "_local/data")
+
+annot_graphs_en_pkl_fname = join(test_local_dir, "annot_graphs_en.pkl")
+graphs_en_de_pkl_fname = join(test_local_dir, "graphs_en-de.pkl")
+graphs_en_rnd_pkl_fname = join(test_local_dir, "graphs_en-de_rnd.pkl")
 
 
 def make_graphs_en():
@@ -37,8 +40,8 @@ def make_graphs_en():
     dump(graph_list, open(annot_graphs_en_pkl_fname, "wb"))
     
     # lookup - requires pickled dictionary
-    en_de_dict = DictAdaptor(getenv("TG_BASE_DIR") + "/_local/dicts/dict_en-de.pkl", 
-                             getenv("TG_BASE_DIR") + "/data/maps/en-de_posmap")
+    en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
+                             config["en-de_posmap"])
     lookup = Lookup(en_de_dict)
     lookup(graph_list)
     log.info("writing pickled graph to " + graphs_en_de_pkl_fname)

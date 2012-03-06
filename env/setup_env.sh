@@ -1,5 +1,7 @@
 # Setup env for transglobal
 
+# Usage: "source setup_env.sh"
+
 # Default value; set other TG_BASE_DIR is your .bash or .profile
 : ${TG_BASE_DIR:="/Users/erwin/Projects/Transglobal/github/transglobal"}
 export TG_BASE_DIR
