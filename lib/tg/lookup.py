@@ -32,7 +32,7 @@ class Lookup(graphproc.GraphProces):
                 key = " ".join(source_lempos[i:j+1])
                 
                 try:
-                    translations = self.dictionary[key]
+                    translations = self._lookup(key)
                 except KeyError:
                     continue
                 
@@ -72,3 +72,6 @@ class Lookup(graphproc.GraphProces):
                                                   
                                         
                     graph.add_translation_edge(sn, tn)        
+                    
+    def _lookup(self, key):
+        return self.dictionary[key]
