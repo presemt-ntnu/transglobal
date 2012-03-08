@@ -1,10 +1,13 @@
 Software dependencies
 ---------------------
 
+* configobj
 * networkx
 * pydot and Graphviz
 * nose (only for testing)
 * TreeTagger for English, German 
+
+(all Python libs are included in the Enthought Python distribution) 
 
 
 Data dependecies

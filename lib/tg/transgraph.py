@@ -1,5 +1,7 @@
 import networkx as nx
 
+from tg.exception import TGException
+
 
 
 class TransGraph(nx.DiGraph):
@@ -8,11 +10,19 @@ class TransGraph(nx.DiGraph):
         nx.DiGraph.__init__(self, data, **attr) 
         self.source_node_prefix = "s"
         self.target_node_prefix = "t"
-        self.hyper_node_prefix = "h"
+        self.hyper_source_node_prefix = "hs"
+        self.hyper_target_node_prefix = "ht"
         self.source_node_count = 0   
         self.target_node_count = 0   
-        self.hyper_node_count = 0   
-        
+        self.hyper_source_node_count = 0   
+        self.hyper_target_node_count = 0  
+        self.source_start_node = None
+        self.delimiter = "/"
+         
+    #-------------------------------------------------------------------------
+    # source nodes
+    #-------------------------------------------------------------------------  
+    
     def add_source_node(self, **attr):
         self.source_node_count += 1
         u = "{0}{1}".format(self.source_node_prefix,
@@ -26,51 +36,33 @@ class TransGraph(nx.DiGraph):
     def set_source_start_node(self, u):
         self.source_start_node = u
     
-    def source_token_nodes(self, with_data=False):
-        return list(self.source_nodes_iter(with_data=with_data))
+    def source_nodes(self, data=False):
+        return list(self.source_nodes_iter(data=data))
         
-    def source_nodes_iter(self, with_data=False):
-        this_node = self.source_start_node
+    def source_nodes_iter(self, data=False):
+        u = self.source_start_node
         
-        while this_node:
-            for src_node, dest_node, data in self.out_edges_iter(this_node,
-                                                                 data=True):
-                if data.get("name") == "next":
-                    if with_data:
-                        yield this_node, self.node[this_node]
-                    else:
-                        yield this_node
-
-                    this_node = dest_node
-                    # assuming there is only one "next" node, ignore
-                    # remaining ougoing edges
+        while u:
+            if data:
+                yield u, self.node[u]
+            else:
+                yield u
+                
+            for u, v, d in self.out_edges_iter(u, data=True):
+                if d.get("name") == "next":
+                    u = v
+                    # assuming there is only one "next" node, ignore any
+                    # remaining outgoing edges
                     break
             else:
-                # none of the outgoing edges has name "next", so this must be
+                # none of the outgoing edges has name "next", so this was the
                 # last token
-                if with_data:
-                    yield this_node, self.node[this_node]
-                else:
-                    yield this_node
-                    
-                this_node = None
-            
-    def source_words(self):
-        return [ self.node[u]["word"] for u in self.source_nodes_iter() ]
+                return
     
-    def source_lemmas(self):
-        return [ self.node[u]["lemma"] for u in self.source_nodes_iter() ]
+    #-------------------------------------------------------------------------
+    # target nodes
+    #-------------------------------------------------------------------------  
     
-    def source_lempos(self, delimiter="/"):
-        return [ ( self.node[u]["lemma"] + delimiter + self.node[u]["tag"] )
-                 for n in self.source_nodes_iter() ]
-        
-    def source_string(self):
-        return " ".join(self.source_words())
-    
-    
-    
-
     def add_target_node(self, **attr):
         self.target_node_count += 1
         u = "{0}{1}".format(self.target_node_prefix,
@@ -81,26 +73,136 @@ class TransGraph(nx.DiGraph):
     def is_target_node(self, u):
         return u.startswith(self.target_node_prefix) 
     
-    
-    def add_hyper_node(self, nodes, is_source=True):
-        self.hyper_node_count+= 1
-        u = "{0}{1}".format(self.hyper_node_prefix,
-                            self.hyper_node_count)
+    #-------------------------------------------------------------------------
+    # hyper nodes
+    #-------------------------------------------------------------------------    
+
+
+    def add_hyper_source_node(self, nodes):
+        self.hyper_source_node_count+= 1
+        u = "{0}{1}".format(self.hyper_source_node_prefix,
+                            self.hyper_source_node_count)
         for v in nodes:
-            if is_source:
-                self.add_edge(u, v, name="part")
-            else:
-                self.add_edge(v, u, name="part")
-            
+            self.add_edge(v, u, name="part")
         return u
     
-    def is_hyper_node(self, u):
-        return u.startswith(self.hyper_node_prefix) 
+    def add_hyper_target_node(self, nodes):
+        self.hyper_target_node_count+= 1
+        u = "{0}{1}".format(self.hyper_target_node_prefix,
+                            self.hyper_target_node_count)
+        for v in nodes:
+            self.add_edge(u, v, name="part")
+        return u
     
+    def is_hyper_source_node(self, u):
+        return u.startswith(self.hyper_source_node_prefix) 
     
+    def is_hyper_target_node(self, u):
+        return u.startswith(self.hyper_target_node_prefix) 
+    
+    def source_parts_iter(self, u):
+        part_nodes = ( v for v, u, data in self.in_edges_iter(u, data=True)
+                       if data.get("name") == "part" )
+        return self.ordered_nodes_iter(part_nodes)
+    
+    def target_parts_iter(self, u):
+        part_nodes = ( v for u, v, data in self.out_edges_iter(u, data=True)
+                       if data.get("name") == "part" )
+        return self.ordered_nodes_iter(part_nodes)
+    
+    #-------------------------------------------------------------------------
+    # attributes
+    #-------------------------------------------------------------------------
+    
+    # source only
+    
+    def source_words(self):
+        return [ self.node[u]["word"] for u in self.source_nodes_iter() ]
+    
+    def source_lemmas(self):
+        return [ self.node[u]["lemma"] for u in self.source_nodes_iter() ]
+    
+    def source_lempos(self):
+        return [ ( self.node[u]["lemma"] + self.delimiter + self.node[u]["tag"] )
+                 for n in self.source_nodes_iter() ]
+        
+    def source_string(self):
+        return " ".join(self.source_words())     
+
+    # nodes
+    
+    def node_attrib(self, u, attrib):
+        if self.is_source_node(u) or self.is_target_node(u):
+            return [ self.node[u][attrib] ]
+        elif self.is_hyper_source_node(u):
+            return [ self.node[v][attrib]
+                     for v in self.source_parts_iter(u) ]
+        elif self.is_hyper_target_node(u):
+            return [ self.node[v][attrib]
+                     for v in self.target_parts_iter(u) ]
+        else:
+            raise ValueError("not a node")
+    
+    def word(self, u):
+        return self.node_attrib(u, "word")
+    
+    def lemma(self, u):
+        return self.node_attrib(u, "lemma")
+    
+    def lempos(self, u):
+        return [ "{}{}{}".format(lemma, self.delimiter, tag)
+                 for lemma, tag in zip(self.node_attrib(u, "lemma"),
+                                       self.node_attrib(u, "tag")) ]
+    
+    def string(self, u):
+        " ".join(self.node_attrib(u, "word"))
+                
+        
+    #-------------------------------------------------------------------------
+    # word order
+    #-------------------------------------------------------------------------
             
     def add_word_order_edge(self, u, v, attr_dict=None, **attr):
         self.add_edge(u, v, name="next", attr_dict=attr_dict, **attr)
+        
+    def ordered_nodes_iter(self, nodes):
+        """
+        return an iterator over nodes in order (i.e. following edges named
+        "next")
+        """
+        # find first node
+        for u in nodes:
+            if self.is_first_node(u):
+                break
+        else:
+            # should never happen
+            raise TGException("no first node among ordered nodes")
+           
+        while u:
+            yield u
+            
+            for u,v,data in self.out_edges(u, data=True): 
+                if data.get("name") == "next":
+                    # found next node
+                    u = v
+                    break
+            else:
+                # reached final node
+                return
+                
+    def is_first_node(self, u):
+        """
+        test if node is first (i.e. has predecessor with edge named "next")
+        """
+        for _, _, data in  self.in_edges_iter(u, data=True):
+            if data.get("name") == "next":
+                return False
+        return True
+    
+    #-------------------------------------------------------------------------
+    # translation
+    #-------------------------------------------------------------------------
+        
         
     def add_translation_edge(self, u, v, attr_dict=None, **attr):
         self.add_edge(u, v, name="trans", attr_dict=attr_dict, **attr)
@@ -109,8 +211,6 @@ class TransGraph(nx.DiGraph):
         return ( (u,v,data) for u,v,data in self.out_edges_iter(u, data=True)
                  if data.get("name") == "trans" )
                 
-                
-        
         
         
         

@@ -126,10 +126,3 @@ class Draw(object):
 
 
 
-if __name__ == "__main__":    
-    import cPickle    
-    log.basicConfig(level=log.INFO)
-    g0 = cPickle.load(open("g1.pkl"))
-    d = Draw(g0)
-    d.write("g0.pdf", "pdf")
-

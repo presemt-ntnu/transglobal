@@ -90,19 +90,6 @@ class TreeTaggerEnglish(Annotator):
                 prev_node = None
                 
         return graph_list
-    
-
-
-
-if __name__ == "__main__":        
-    log.basicConfig(level=log.DEBUG)
-    text = "Solutions are not the problem. I think."
-    annotator = TreeTaggerEnglish()
-    graph_list = annotator(text)
-    
-    for graph in graph_list:
-        for node, data in graph.source_nodes_iter(with_data=True):
-            print "{node}\t{word}\t{tag}\t{lemma}".format(node=node, **data)
 
     
     

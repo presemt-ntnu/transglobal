@@ -22,7 +22,7 @@ class Lookup(graphproc.GraphProces):
         source_lempos = []
         delimiter = self.dictionary.delimiter
         
-        for sn, data in graph.source_nodes_iter(with_data=True):
+        for sn, data in graph.source_nodes_iter(data=True):
             source_nodes.append(sn)
             lempos = data["lemma"] + delimiter + data["tag"]
             source_lempos.append(lempos)
@@ -39,7 +39,7 @@ class Lookup(graphproc.GraphProces):
                 if i == j:
                     sn = source_nodes[i]
                 else:
-                    sn = graph.add_hyper_node(source_nodes[i:j+1], is_source=False)
+                    sn = graph.add_hyper_source_node(source_nodes[i:j+1])
                 
                 for candidate in translations:
                     target_lempos = candidate.split()
@@ -68,7 +68,7 @@ class Lookup(graphproc.GraphProces):
                             graph.add_word_order_edge(u,v)
                             u = v
                     
-                        tn = graph.add_hyper_node(target_nodes)
+                        tn = graph.add_hyper_target_node(target_nodes)
                                                   
                                         
                     graph.add_translation_edge(sn, tn)        
