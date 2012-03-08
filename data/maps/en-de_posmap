@@ -1,39 +1,40 @@
-# Mapping from Penn Treebank tags used by TreeTagger for English
-# to tags used at the English side of the Presemt German-English dictionary
+# Mapping from Penn Treebank (PTB) tags used by TreeTagger for English to
+# tags used at the English side of the Presemt German-English dictionary. PTB
+# tags without a counterpart are left undeclared.
 
-CC	cc  # Coordinating conjunction
-CD	cd  # Cardinal number
-DT	dt  # Determiner
-#EX	# Existential there
-#FW	# Foreign word
-IN	in  # Preposition or subordinating conjunction
-JJ	jj  # Adjective
-JJR	jj  # Adjective, comparative
-JJS	jj  # Adjective, superlative
-#LS	# List item marker
-MD	md  # Modal
-NN	n   # Noun, singular or mass
-NNS	n   # Noun, plural
-NP	n   # Proper noun, singular
-NPS	n   # Proper noun, plural
-PDT	pdt # Predeterminer
-#POS	# Possessive ending
-PP	pp  # Personal pronoun
-PP$	pp$ # Possessive pronoun
-RB	adv # Adverb NOTE: "rb" does also occur, but "adv" is more frequent
-RBR	adv # Adverb, comparative
-RBS	adv # Adverb, superlative
-# RP	rp  # Particle NOTE: too noisy in lexicon
-# SYM	# Symbol NOTE: too noisy in lexicon
-TO	to  # to
-# UH	# Interjection NOTE: too noisy in lexicon
-VB	vv  # Verb, base form
-VBD	vv  # Verb, past tense
-VBG	vv  # Verb, gerund or present participle
-VBN	vv  # Verb, past participle
-VBP	vv  # Verb, non-3rd person singular present
-VBZ	vv  # Verb, 3rd person singular present
-# WDT	# Wh-determiner
-# WP	# Wh-pronoun
-# WP$	# Possessive wh-pronoun
-# WRB	# Wh-adverb
+CC    = cc        # Coordinating conjunction
+CD    = cd        # Cardinal number
+DT    = dt        # Determiner
+#EX   =           # Existential there
+#FW   =           # Foreign word
+IN    = in        # Preposition or subordinating conjunction
+JJ    = jj        # Adjective
+JJR   = jj        # Adjective, comparative
+JJS   = jj        # Adjective, superlative
+#LS   =           # List item marker
+MD    = md        # Modal
+NN    = n         # Noun, singular or mass
+NNS   = n         # Noun, plural
+NP    = n         # Proper noun, singular
+NPS   = n         # Proper noun, plural
+PDT   = pdt       # Predeterminer
+#POS  =           # Possessive ending
+PP    = pp        # Personal pronoun
+PP$   = pp$       # Possessive pronoun
+RB    = adv       # Adverb NOTE: "rb" does also occur, but "adv" is more frequent
+RBR   = adv       # Adverb, comparative
+RBS   = adv       # Adverb, superlative
+# RP  = rp        # Particle NOTE: too noisy in lexicon
+# SYM =           # Symbol NOTE: too noisy in lexicon
+TO    = to        # to
+# UH  =           # Interjection NOTE: too noisy in lexicon
+VB    = vv        # Verb, base form
+VBD   = vv        # Verb, past tense
+VBG   = vv        # Verb, gerund or present participle
+VBN   = vv        # Verb, past participle
+VBP   = vv        # Verb, non-3rd person singular present
+VBZ   = vv        # Verb, 3rd person singular present
+# WDT =           # Wh-determiner
+# WP  =           # Wh-pronoun
+# WP$ =           # Possessive wh-pronoun
+# WRB =           # Wh-adverb

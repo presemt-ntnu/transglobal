@@ -5,11 +5,10 @@ read dicts
 # TODO
 # - store dict more efficiently
 
+import configobj
 import cPickle
 import logging as log
 from xml.etree import cElementTree as et
-
-import utils
 
 
 
@@ -105,7 +104,7 @@ class DictAdaptor:
             self.dict = dictionary
             
         if isinstance(posmap, basestring):
-            self.posmap = utils.read_map(posmap)
+            self.posmap = configobj.ConfigObj(posmap)
         else:
             self.posmap = posmap
             
@@ -114,18 +113,25 @@ class DictAdaptor:
             
     def __getitem__(self, key):
         lemmas = ""
-        mapped_key = ""
+        lempos = ""
         
         for pair in key.split():
-            lemma, tag = pair.rsplit(self.delimiter, 1)
+            try:
+                lemma, tag = pair.rsplit(self.delimiter, 1)
+            except ValueError:
+                # no tag specified
+                lemma = pair
+                mapped_tag = ""
+            else:
+                # if tag can not be mapped, then mapped_tag is empty,
+                # thus lempos will never match
+                mapped_tag = self.posmap.get(tag, "")                
+                
             lemmas += lemma + " "
-            # if tag can not be mapped, then new_tag is empty,
-            # thus mapped_key will never match
-            new_tag = self.posmap.get(tag, "")
-            mapped_key += lemma + self.delimiter + new_tag + " "
+            lempos += lemma + self.delimiter + mapped_tag + " "
             
         try:
-            return self.dict[mapped_key[:-1]]
+            return self.dict[lempos[:-1]]
         except KeyError:
             # no match on tag(s),
             # try result for lemma(s) only
