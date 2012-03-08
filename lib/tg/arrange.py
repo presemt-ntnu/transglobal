@@ -10,7 +10,7 @@ class Arrange(graphproc.GraphProces):
     def _single_run(self, graph):
         target_lemmas = []
         
-        for u in graph.source_nodes_iter():
+        for u in graph.source_nodes_iter(ordered=True):
             best_score = -1
             best_lemma = ""
             

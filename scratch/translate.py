@@ -15,9 +15,11 @@ from tg.config import config
 from tg.annot import TreeTaggerEnglish
 from tg.transdict import TransDict, DictAdaptor
 from tg.lookup import Lookup
+from tg.freqscore import FreqScore
 from tg.draw import Draw
 
 log.basicConfig(level=log.DEBUG)
+log.getLogger().setLevel(log.DEBUG)
 
 text = """It may seem obvious to just create one language for everybody to 
 use. Luckily, several linguists felt the same way. They made up what we call \
@@ -36,6 +38,9 @@ en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
                          config["en-de_posmap"])
 lookup = Lookup(en_de_dict)
 lookup(graph_list)
+
+freq_score = FreqScore(config["de_lemma_counts"])
+freq_score(graph_list)
 
 # draw
 for i, graph in enumerate(graph_list):

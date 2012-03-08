@@ -22,7 +22,7 @@ class Lookup(graphproc.GraphProces):
         source_lempos = []
         delimiter = self.dictionary.delimiter
         
-        for sn, data in graph.source_nodes_iter(data=True):
+        for sn, data in graph.source_nodes_iter(data=True, ordered=True):
             source_nodes.append(sn)
             lempos = data["lemma"] + delimiter + data["tag"]
             source_lempos.append(lempos)

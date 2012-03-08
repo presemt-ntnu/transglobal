@@ -2,12 +2,19 @@
 translation scores based on frequency
 """
 
+import logging as log
 import cPickle
 
 import graphproc
 
 
-class FreqWeight(graphproc.GraphProces):
+# TODO: 
+# - no counts for multi-words
+# - how to handle weight of MWU relative to single words?
+
+
+
+class FreqScore(graphproc.GraphProces):
     """
     score translation candidates according to their frequency
     """
@@ -35,30 +42,7 @@ class FreqWeight(graphproc.GraphProces):
                     data["score"] = 0.0
                 
     def count(self, graph, v):
-        # TODO: handle hyper nodes
-        if graph.is_hyper_node(v):
-            return self.oov_count
-        
-        lemma = graph.node[v]["lemma"]
-        return self.counts_dict.get(lemma, self.oov_count)
-        
-
-
-if __name__ == "__main__":
-    import cPickle
-    
-    from draw import Draw
-    
-    graph_list = cPickle.load(open("graphs.pkl"))
-    
-    d = FreqWeight("../../data/freqs/deTenTen-lemma-count-cutoff-10.pkl")
-    
-    d(graph_list)
-    
-for i, graph in enumerate(graph_list):
-    draw = Draw(graph)
-    draw.write("g{0}-freq.pdf".format(i), format="pdf")
-
-
-# save
-cPickle.dump(graph_list, open("graphs-freq.pkl", "wb"))
+        lemma = " ".join(graph.lemma(v))
+        count = self.counts_dict.get(lemma, self.oov_count)
+        log.debug("lemma '{0}' has count {1}".format(lemma.encode("utf-8"), count))
+        return count

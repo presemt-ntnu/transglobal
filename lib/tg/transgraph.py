@@ -36,10 +36,16 @@ class TransGraph(nx.DiGraph):
     def set_source_start_node(self, u):
         self.source_start_node = u
     
-    def source_nodes(self, data=False):
-        return list(self.source_nodes_iter(data=data))
+    def source_nodes(self, data=False, ordered=False):
+        return list(self.source_nodes_iter(data=data, ordered=ordered))
         
-    def source_nodes_iter(self, data=False):
+    def source_nodes_iter(self, data=False, ordered=False):
+        if ordered:
+            return self._ordered_source_nodes_iter(data=data)
+        else:
+            return self._unordered_source_nodes_iter(data=data)
+                
+    def _ordered_source_nodes_iter(self, data=False):
         u = self.source_start_node
         
         while u:
@@ -58,6 +64,14 @@ class TransGraph(nx.DiGraph):
                 # none of the outgoing edges has name "next", so this was the
                 # last token
                 return
+            
+    def _unordered_source_nodes_iter(self, data=False):
+        if data:
+            return ( (u,d) for u, d in self.nodes_iter(data=True)
+                     if self.is_source_node(u) )
+        else:
+            return ( u for u in self.nodes_iter()
+                     if self.is_source_node(u) )
     
     #-------------------------------------------------------------------------
     # target nodes
@@ -117,14 +131,16 @@ class TransGraph(nx.DiGraph):
     # source only
     
     def source_words(self):
-        return [ self.node[u]["word"] for u in self.source_nodes_iter() ]
+        return [ d["word"] 
+                 for u,d  in self.source_nodes_iter(data=True, ordered=True) ]
     
     def source_lemmas(self):
-        return [ self.node[u]["lemma"] for u in self.source_nodes_iter() ]
+        return [ d["lemma"] 
+                 for u,d in self.source_nodes_iter(data=True, ordered=True) ]
     
     def source_lempos(self):
-        return [ ( self.node[u]["lemma"] + self.delimiter + self.node[u]["tag"] )
-                 for n in self.source_nodes_iter() ]
+        return [ ( d["lemma"] + self.delimiter + d["tag"] )
+                 for n in self.source_nodes_iter(data=True, ordered=True) ]
         
     def source_string(self):
         return " ".join(self.source_words())     
@@ -207,10 +223,6 @@ class TransGraph(nx.DiGraph):
     def add_translation_edge(self, u, v, attr_dict=None, **attr):
         self.add_edge(u, v, name="trans", attr_dict=attr_dict, **attr)
         
-    def trans_edges_iter(self, u):
-        return ( (u,v,data) for u,v,data in self.out_edges_iter(u, data=True)
-                 if data.get("name") == "trans" )
-                
-        
-        
-        
+    def trans_edges_iter(self, u=None):
+        return ( (u,v,d) for u,v,d in self.out_edges_iter(u, data=True)
+                 if d.get("name") == "trans" )

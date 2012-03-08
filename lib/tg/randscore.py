@@ -29,20 +29,4 @@ class RandProb(graphproc.GraphProces):
                 
     def count(self, graph, v):
         return random.randint(1,1000)   
-        #return 10
-
-
-if __name__ == "__main__":
-    import cPickle
-    
-    from draw import Draw
-    
-    graph_list = cPickle.load(open("graphs.pkl"))
-    g = graph_list[3]
-    
-    d = RandProb()
-    d(g)
-    
-    draw = Draw(g)
-    draw.write("g3-random.pdf", format="pdf")
 
