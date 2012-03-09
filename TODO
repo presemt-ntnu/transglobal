@@ -2,6 +2,8 @@
 - NB/DT WTD models
 - other languages
 
+- get counts for multi-words from corpus through Manatee
+
 - produce graphs for Semeval data (with head marked)
 
 - n-gram models
