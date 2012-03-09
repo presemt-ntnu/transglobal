@@ -2,9 +2,11 @@
 lookup of translation candidates in dictionary
 """
 
-import logging as log
+import logging
 
 import graphproc
+
+log = logging.getLogger(__name__)
 
 
 class Lookup(graphproc.GraphProces):
@@ -18,6 +20,9 @@ class Lookup(graphproc.GraphProces):
         self.max_n_gram_size = max_n_gram_size
         
     def _single_run(self, graph):
+        log.info("applying {0} to graph {1}".format(
+            self.__class__.__name__,
+            graph.graph["id"]))
         source_nodes = []
         source_lempos = []
         delimiter = self.dictionary.delimiter

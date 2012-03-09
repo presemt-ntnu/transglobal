@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 
-"""
-word-for-word translation 
-- with lemmatzation and POS tagging for lookup
-- with lookup of MWUs
-- translation disambiguation
-- incremental disambiguation of context vectors
-"""
-
-import logging as log
+import logging
 import cPickle
 
 from tg.config import config
@@ -17,9 +9,11 @@ from tg.transdict import TransDict, DictAdaptor
 from tg.lookup import Lookup
 from tg.freqscore import FreqScore
 from tg.draw import Draw
+from tg.arrange import Arrange
+from tg.utils import set_default_log
 
-log.basicConfig(level=log.DEBUG)
-log.getLogger().setLevel(log.DEBUG)
+set_default_log()
+
 
 text = """It may seem obvious to just create one language for everybody to 
 use. Luckily, several linguists felt the same way. They made up what we call \
@@ -39,17 +33,28 @@ en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
 lookup = Lookup(en_de_dict)
 lookup(graph_list)
 
+# frequency scoring
 freq_score = FreqScore(config["de_lemma_counts"])
 freq_score(graph_list)
 
 # draw
-for i, graph in enumerate(graph_list):
-    draw = Draw(graph)
-    draw.write("g{0}.pdf".format(i), format="pdf")
+draw = Draw()
+draw(graph_list, out_format="png")
 
 # save
 cPickle.dump(graph_list, open("graphs.pkl", "wb"))
     
+# arrange 
+arrange = Arrange()
+arrange(graph_list)
+
+# write
+for graph in graph_list:
+    print "SOURCE:", graph.source_string()
+    print "TARGET:", graph.graph["target_string"]
+    print
+
+
     
     
     

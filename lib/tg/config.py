@@ -5,13 +5,13 @@ Reads default config from $TG_BASE_DIR/env/tg-default.cfg (under version control
 overrides this with user settings from TG_BASE_DIR/env/_tg.cfg (not under version control). 
 """
 
-import logging as log
+import logging
 from os import getenv
 from os.path import join
 
 from configobj import ConfigObj
 
-#log.basicConfig(level=log.DEBUG)
+log = logging.getLogger(__name__)
 
 config = ConfigObj()
 
@@ -47,7 +47,7 @@ else:
     log.debug("applied user config from " + user_cfg_fname)
     config.interpolation = True
     
-if log.getLogger().isEnabledFor(log.DEBUG):
+if log.isEnabledFor(logging.DEBUG):
     from StringIO import StringIO
     str_buf = StringIO()
     config.write(str_buf)

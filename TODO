@@ -1,0 +1,11 @@
+- VSM WTD models
+- NB/DT WTD models
+- other languages
+
+- produce graphs for Semeval data (with head marked)
+
+- n-gram models
+- Lars' bidirectional lookup
+
+- use zc buildout?
+- disambiguation as classification with evidence from multiple sources?

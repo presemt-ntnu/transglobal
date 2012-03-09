@@ -1,7 +1,11 @@
+import logging
+
 import networkx as nx
 
 from tg.exception import TGException
 
+
+log = logging.getLogger(__name__)
 
 
 class TransGraph(nx.DiGraph):

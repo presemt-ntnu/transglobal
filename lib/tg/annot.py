@@ -2,11 +2,15 @@
 constructing linguistically annotated translation graphs
 """
 
-import logging as log
+import logging
 import subprocess
 
 import graphproc
 import transgraph
+
+
+log = logging.getLogger(__name__)
+
 
 
 class Annotator(graphproc.GraphProces):
@@ -16,6 +20,8 @@ class Annotator(graphproc.GraphProces):
     """
     
     def _single_run(self, text):
+        log.info("starting text annotation with " +
+                 self.__class__.__name__)
         return self.convert(self.annotate(text))
     
     def annotate(self, text):
@@ -67,12 +73,16 @@ class TreeTaggerEnglish(Annotator):
     
     def convert(self, tagger_out):
         graph_list = []
-        graph_count = 1
-        graph_id = "{0:03}".format(graph_count)
-        graph = transgraph.TransGraph(id=graph_id)
-        prev_node = None
+        make_new_graph = True
         
         for line in tagger_out.strip().split("\n"):
+            if make_new_graph:
+                graph_id = "{0:03}".format(len(graph_list) + 1)
+                log.info("creating graph " + graph_id)
+                graph = transgraph.TransGraph(id=graph_id)
+                make_new_graph = False
+                prev_node = None
+                
             word, tag, lemma = line.split("\t")
             new_node = graph.add_source_node(word=word, tag=tag, lemma=lemma)
             
@@ -80,14 +90,13 @@ class TreeTaggerEnglish(Annotator):
                 graph.add_word_order_edge(prev_node, new_node)
             else:
                 graph.set_source_start_node(new_node)
-                
-            prev_node = new_node
             
             if tag == self.sent_end_tag:
                 graph_list.append(graph)
-                graph_count += 1
-                graph = transgraph.TransGraph(id=graph_count)
+                make_new_graph = True
                 prev_node = None
+            else:
+                prev_node = new_node
                 
         return graph_list
 

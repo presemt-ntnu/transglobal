@@ -1,13 +1,24 @@
 """
-arrange best translations into target language expression 
+arrange best translations into target language expressions 
 """
 
+# TODO: handle hypernodes
+
+import logging
+
 import graphproc
+
+
+log = logging.getLogger(__name__)
 
 
 class Arrange(graphproc.GraphProces):
     
     def _single_run(self, graph):
+        log.info("applying {0} to graph {1}".format(
+            self.__class__.__name__,
+            graph.graph["id"]))
+        
         target_lemmas = []
         
         for u in graph.source_nodes_iter(ordered=True):
@@ -23,20 +34,8 @@ class Arrange(graphproc.GraphProces):
                     
             target_lemmas.append(best_lemma)
             
-        return " ".join(target_lemmas)
+        graph.graph["target_lemma"] = target_lemmas
+        graph.graph["target_string"] = " ".join(target_lemmas)
+        
+        
 
-
-
-if __name__ == "__main__":
-    import cPickle
-    
-    from draw import Draw
-    
-    graph_list = cPickle.load(open("graphs-freq.pkl"))    
-
-    arranger = Arrange() 
-    target_sentences = arranger(graph_list)
-    
-    print "\n".join(target_sentences).encode("utf8")
-    
-    

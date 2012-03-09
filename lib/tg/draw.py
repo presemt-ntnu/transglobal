@@ -1,8 +1,16 @@
-import logging as log
+import logging
 import pydot
 
+from tg.graphproc import GraphProces
 
-class Draw(object):
+
+log = logging.getLogger(__name__)
+
+
+                
+
+
+class DrawGV:
     """
     Draw a translation graph using Graphviz
     """
@@ -75,8 +83,9 @@ class Draw(object):
                 edge = self.trans_edge(u, v, data)
                 
             self.dot_graph.add_edge(edge)
+            
              
-    def write(self, fname, format="raw"):
+    def write(self, out_fname, out_format="raw"):
         """
         write drawing to file in any of the following formats: 
         
@@ -86,8 +95,8 @@ class Draw(object):
         'ps', 'ps2', 'svg', 'svgz', 'vml', 'vmlz', 'vrml', 'vtx', 'wbmp',
         'xdot', 'xlib'
         """
-        self.dot_graph.write(fname, format=format)
-        log.info("wrote drawing to " + fname)
+        log.info("writing drawing to " + out_fname)
+        self.dot_graph.write(out_fname, format=out_format)
     
     def source_node(self, u, data):
         return pydot.Node(str(u), 
@@ -126,3 +135,19 @@ class Draw(object):
 
 
 
+
+class Draw(GraphProces):
+    
+    def __init__(self, drawer=DrawGV):
+        self.drawer = drawer
+    
+    def _single_run(self, graph, outf_fname=None, out_format="pdf"):
+        log.info("applying {0} to graph {1}".format(
+            self.__class__.__name__,
+            graph.graph["id"]))
+        drawer = self.drawer(graph)
+        if not outf_fname:
+            out_fname = "graph-{}.{}".format(
+                graph.graph["id"],
+                out_format )
+        drawer.write(out_fname, out_format)

@@ -5,11 +5,14 @@ read dicts
 # TODO
 # - store dict more efficiently
 
-import configobj
 import cPickle
-import logging as log
+import logging
 from xml.etree import cElementTree as et
 
+import configobj
+
+
+log = logging.getLogger(__name__)
 
 
 class TransDict(dict):
@@ -104,6 +107,7 @@ class DictAdaptor:
             self.dict = dictionary
             
         if isinstance(posmap, basestring):
+            log.info("loading POS mapping from " + posmap)
             self.posmap = configobj.ConfigObj(posmap)
         else:
             self.posmap = posmap
