@@ -13,7 +13,8 @@ Software dependencies
 Data dependecies
 ----------------
 
-* Dictionaries in Presemt XML format in directory $TG_BASE_DIR/_local/dicts
+* Dictionaries in Presemt XML format in directory $TG_BASE_DIR/_data/dicts
+* Sorted lemma counts produced with Manatee in directory $TG_BASE_DIR/_data/counts
 
 
 Setup
