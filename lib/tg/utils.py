@@ -7,11 +7,10 @@ from os.path import exists, isfile, dirname
 
 def create_dirs(path):
     """
-    create directores if they do not exists yet
+    create directores if they do not exists yet;
+    path is assumed to be a path to a *file* (not a dir)
     """
-    if isfile(path):
-        path = dirname(path)
-        
+    path = dirname(path)        
     if not exists(path):
         makedirs(path)
         

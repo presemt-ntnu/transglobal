@@ -34,12 +34,12 @@ lookup = Lookup(en_de_dict)
 lookup(graph_list)
 
 # frequency scoring
-freq_score = FreqScore(config["de_lemma_counts"])
+freq_score = FreqScore(config["de_lemma_counts_pkl"])
 freq_score(graph_list)
 
 # draw
 draw = Draw()
-draw(graph_list, out_format="png")
+draw(graph_list, out_format="pdf")
 
 # save
 cPickle.dump(graph_list, open("graphs.pkl", "wb"))
