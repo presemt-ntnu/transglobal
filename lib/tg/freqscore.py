@@ -54,5 +54,5 @@ class FreqScore(graphproc.GraphProces):
     def count(self, graph, v):
         lemma = " ".join(graph.lemma(v))
         count = self.counts_dict.get(lemma, self.oov_count)
-        log.debug("lemma '{0}' has count {1}".format(lemma.encode("utf-8"), count))
+        log.debug(u"lemma '{0}' has count {1}".format(lemma, count))
         return count

@@ -12,7 +12,12 @@ from tg.draw import Draw
 from tg.arrange import Arrange
 from tg.utils import set_default_log
 
-set_default_log()
+
+# for logging to stderr in utf-8 use:
+set_default_log(level=logging.DEBUG)
+
+# for logging to stderr in ascii use:
+# set_default_log(level=logging.DEBUG, encoding="ascii", errors="replace")
 
 
 text = """It may seem obvious to just create one language for everybody to 

@@ -62,7 +62,7 @@ def mk_counts_pkl(counts_fname, pkl_fname, min_count=1):
             # remaining tokens too infrequent
             break
         
-        log.debug("Adding: {0}".format(token.encode("utf-8")))
+        log.debug("Adding: {0}".format(token))
         counts[token] = count
             
     log.info("counts dict size = {0}".format(len(counts))) 

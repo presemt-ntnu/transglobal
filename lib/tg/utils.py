@@ -1,5 +1,6 @@
 import logging
 import codecs
+import sys
 
 from os import makedirs
 from os.path import exists, isfile, dirname
@@ -15,14 +16,15 @@ def create_dirs(path):
         makedirs(path)
         
         
-def set_default_log(level=logging.INFO):
+def set_default_log(level=logging.INFO, encoding="utf-8", errors="strict"):
     """
     configure default "root" logger
     """ 
     # get root logger
     log = logging.getLogger()
-    # output to stderr
-    log_handler = logging.StreamHandler()
+    # output to wrapped stderr
+    stream = codecs.getwriter(encoding)(sys.stderr, errors=errors)
+    log_handler = logging.StreamHandler(stream)
     log_format = logging.Formatter('| %(levelname)-8s | %(name)-24s | %(message)s')
     log_handler.setFormatter(log_format)
     log.addHandler(log_handler)
