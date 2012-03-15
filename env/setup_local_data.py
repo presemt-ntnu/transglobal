@@ -10,6 +10,7 @@ from tg.config import config
 from tg.transdict import TransDict
 from tg.counts import mk_counts_pkl
 from tg.utils import create_dirs
+from tg.eval import lemmatize
 
 log.basicConfig(level = log.INFO)
 
@@ -25,4 +26,17 @@ pkl_fname = config["de_lemma_counts_pkl"]
 create_dirs(pkl_fname)
 mk_counts_pkl(config["de_lemma_counts_fname"], pkl_fname,
               int(config["min_count"]))
+
+# create lemmatized evaluation data
+lemma_ref_fname = config["de_lemma_ref_fname"]
+create_dirs(lemma_ref_fname)
+lemmatize(
+    config["de_word_ref_fname"],
+    "tree-tagger-german",
+    "latin1",
+    lemma_ref_fname)
+    
+    
+
+
 

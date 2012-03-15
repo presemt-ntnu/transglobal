@@ -50,7 +50,7 @@ class TreeTaggerEnglish(Annotator):
     def annotate(self, text):
         log.debug("TreeTagger input:\n" + text)
         
-        # convert from utf-8 to Latin1 encoding
+        # convert from unicode to Latin1 encoding
         # we may loose some data here!
         text = text.encode("latin1", "backslashreplace")
         
@@ -63,7 +63,7 @@ class TreeTaggerEnglish(Annotator):
         # send text and retrieve tagger output 
         tagger_out, tagger_err = tagger_proc.communicate(text)
         
-        # and convert back from Latin1 encoding to utf-8    
+        # and convert back from Latin1 to unicode
         tagger_out = tagger_out.decode("latin1")        
         log.debug("TreeTagger standard output:\n" + tagger_out)
         log.debug("TreeTagger standard error:\n" + tagger_err)
