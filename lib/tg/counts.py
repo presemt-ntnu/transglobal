@@ -62,11 +62,11 @@ def mk_counts_pkl(counts_fname, pkl_fname, min_count=1):
             # remaining tokens too infrequent
             break
         
-        log.debug("Adding: {0}".format(token))
+        log.debug(u"Adding: {0}".format(token))
         counts[token] = count
             
     log.info("counts dict size = {0}".format(len(counts))) 
-    log.info("saving tokens to " + pkl_fname)
+    log.info("saving counts dict to " + pkl_fname)
     with open(pkl_fname, "wb") as f:
         cPickle.dump(counts, f)
         

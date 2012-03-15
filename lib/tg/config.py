@@ -47,6 +47,10 @@ else:
     log.debug("applied user config from " + user_cfg_fname)
     config.interpolation = True
     
+# hack: it seems the interpolations within subsections gets messed up by all
+# hacks above, so reparse the whole thing once more
+config = ConfigObj(config)
+    
 if log.isEnabledFor(logging.DEBUG):
     from StringIO import StringIO
     str_buf = StringIO()

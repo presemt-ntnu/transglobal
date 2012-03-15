@@ -33,13 +33,13 @@ annotator = TreeTaggerEnglish()
 graph_list = annotator(text)
 
 # lookup
-en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
-                         config["en-de_posmap"])
+en_de_dict = DictAdaptor(config["dict"]["en-de"]["pkl_fname"],
+                         config["dict"]["en-de"]["posmap_fname"])
 lookup = Lookup(en_de_dict)
 lookup(graph_list)
 
 # frequency scoring
-freq_score = FreqScore(config["de_lemma_counts_pkl"])
+freq_score = FreqScore(config["count"]["lemma"]["de"]["pkl_fname"])
 freq_score(graph_list)
 
 # draw

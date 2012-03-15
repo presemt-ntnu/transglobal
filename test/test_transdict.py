@@ -12,7 +12,7 @@ trans_dict = None
 
 def setup_module():
     global trans_dict
-    dict_fname = config["en-de_dict_pkl"]
+    dict_fname = config["dict"]["en-de"]["pkl_fname"]
     print "loading picked dictionary from " + dict_fname
     trans_dict = TransDict.load(dict_fname) 
     
@@ -69,7 +69,7 @@ class TestDictAdaptor:
     @classmethod
     def setup_class(cls):
         cls.mapped_dict = DictAdaptor(trans_dict,
-                                      config["en-de_posmap"])
+                                      config["dict"]["en-de"]["posmap_fname"])
     
     def test_single_lemma(self):
         translations = self.mapped_dict["linguist"]

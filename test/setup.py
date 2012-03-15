@@ -66,8 +66,8 @@ def setup_en():
     dump(graph_list, open(annot_graphs_en_pkl_fname, "wb"))
     
     # lookup - requires pickled dictionary
-    en_de_dict = DictAdaptor(config["en-de_dict_pkl"],
-                             config["en-de_posmap"])
+    en_de_dict = DictAdaptor(config["dict"]["en-de"]["pkl_fname"],
+                             config["dict"]["en-de"]["posmap_fname"])
     lookup = LookupKeepKeys(en_de_dict)
     lookup(graph_list)
     log.info("writing pickled graph to " + graphs_en_de_pkl_fname)
