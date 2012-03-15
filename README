@@ -7,7 +7,9 @@ Software dependencies
 * nose (only for testing)
 * TreeTagger for English, German 
 
-(all Python libs are included in the Enthought Python distribution) 
+All Python libs are included in the Enthought Python Distribution (EPD).
+Tested with EPD 7.2 64-bit for Mac OS X.
+
 
 
 Data dependecies
