@@ -30,6 +30,28 @@ def set_default_log(level=logging.INFO, encoding="utf-8", errors="strict"):
     log.addHandler(log_handler)
     log.setLevel(level)
     return log
+
+
+def indent(elem, level=0):
+    """
+    elementree formatting: indent element and all subelements for pretty
+    printing of XML
+    """
+    # copied from Fredrik Lund 
+    # http://effbot.python-hosting.com/file/effbotlib/ElementTree.py
+    i = "\n" + level*"  "
+    
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        for e in elem:
+            indent(e, level+1)
+        if not e.tail or not e.tail.strip():
+            e.tail = i
+
+    if level and (not elem.tail or not elem.tail.strip()):
+        elem.tail = i
+
     
     
         

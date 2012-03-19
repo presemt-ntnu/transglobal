@@ -35,7 +35,7 @@ class Arrange(graphproc.GraphProces):
             target_lemmas.append(best_lemma)
             
         graph.graph["target_lemma"] = target_lemmas
-        graph.graph["target_string"] = " ".join(target_lemmas)
+        graph.graph["target_string"] = u" ".join(target_lemmas)
         
         
 

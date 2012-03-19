@@ -83,6 +83,9 @@ class TreeTaggerEnglish(Annotator):
                 make_new_graph = False
                 prev_node = None
                 
+            # fix: TreeTagger for English sometimes produces output like
+            # 'that\t\tIN\tthat',
+            line = line.replace("\t\t", "\t")                
             word, tag, lemma = line.split("\t")
             new_node = graph.add_source_node(word=word, tag=tag, lemma=lemma)
             

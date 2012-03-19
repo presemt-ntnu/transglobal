@@ -8,6 +8,8 @@ import subprocess
 import sys
 import xml.etree.ElementTree as et
 
+from tg.config import config
+
 
 log = logging.getLogger(__name__)
 
@@ -48,8 +50,10 @@ def lemmatize(in_fname, tagger_command, encoding, outf=sys.stdout):
     log.debug("TreeTagger standard output:\n" + tagger_out)
     log.debug("TreeTagger standard error:\n" + tagger_err)
 
-    # prepend char encoding declaration, otherwise xml parser assumes ascii
-    tagger_out = u'<?xml version="1.0" encoding="utf-8"?>\n' + tagger_out
+    if not tagger_out.startswith("<?xml"):
+        # prepend char encoding declaration, otherwise xml parser assumes ascii
+        tagger_out = u'<?xml version="1.0" encoding="utf-8"?>\n' + tagger_out
+
     tagger_out = tagger_out.encode("utf-8")
     
     # replace <unknown> tag, because it's invalid xml
@@ -83,4 +87,45 @@ def lemmatize(in_fname, tagger_command, encoding, outf=sys.stdout):
         getattr(outf, "name", outf)))
     tree.write(outf, encoding="utf-8", 
                xml_declaration='<?xml version="1.0" encoding="utf-8"?>\n')    
+    
+    
+    
+def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout, options=config["eval"]["mteval_opts"]):
+    """
+    simple wrapper of NIST mteval-v13a.pl script
+    """
+    command = "{0} {1} -r {2} -s {3} -t {4} {5}".format(
+        config["eval"]["perl_fname"],
+        config["eval"]["mteval_fname"],
+        ref_fname,
+        src_fname,
+        tst_fname,
+        options or "")
+        
+    # create pipe to eval script
+    log.debug("Calling evaluation script as as: " + command)
+    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+      
+    # send text and retrieve tagger output 
+    out, err = proc.communicate()    
+    
+    log.debug("mteval standard output:\n" + out)
+    
+    if err:
+        log.error("mteval standard error:\n" + err)
+    
+    if isinstance(outf, basestring):
+        outf = open(outf, "w")
+        close = True
+    else:
+        close = False
+        
+    log.info("writing mteval output to " + outf.name)
+    outf.write(out)
+    
+    if close:
+        outf.close()
+    
+    return out, err
 
