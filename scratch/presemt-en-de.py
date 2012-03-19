@@ -25,10 +25,7 @@ set_default_log(level=logging.INFO)
 
 # get text from input source
 xml_tree = et.ElementTree(file=config["eval"]["presemt"]["en-de"]["src_fname"])
-text = [seg.text.strip() for seg in  xml_tree.iter("seg")]
-text = " ".join(text)
-# swallow BOM
-text = text[1:]
+text = " ".join(seg.text.strip() for seg in  xml_tree.iter("seg"))
 
 # annotate
 annotator = TreeTaggerEnglish()
