@@ -33,6 +33,8 @@ class Lookup(graphproc.GraphProces):
             source_lempos.append(lempos)
         
         for i in range(len(source_nodes)):
+            has_translation = False
+            
             for j in range(i, min(len(source_nodes), i + self.max_n_gram_size)):
                 key = " ".join(source_lempos[i:j+1])
                 
@@ -76,7 +78,12 @@ class Lookup(graphproc.GraphProces):
                         tn = graph.add_hyper_target_node(target_nodes)
                                                   
                                         
-                    graph.add_translation_edge(sn, tn)        
+                    graph.add_translation_edge(sn, tn)
+                    has_translation = True
+            
+            if not has_translation:
+                log.warn(u"no translation found for " + source_lempos[i])
+                    
                     
     def _lookup(self, key):
         return self.dictionary[key]
