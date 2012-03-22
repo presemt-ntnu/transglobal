@@ -7,6 +7,7 @@ read dicts
 
 import cPickle
 import logging
+import sys
 from xml.etree import cElementTree as et
 
 import configobj
@@ -147,3 +148,71 @@ class DictAdaptor:
             return self.__getitem__(key)
         except KeyError:
             return default
+        
+        
+        
+#-----------------------------------------------------------------------------        
+# Utility functions
+#-----------------------------------------------------------------------------
+
+    
+def ambig_dist(trans_dict, with_lemma=True, with_lempos=True,
+               with_single_word=True, with_multi_word=True, max_trans=100,):
+    """
+    Takes a TransDict objcet and the distribution of the translation ambiguity. 
+    Returns a list where the first item represents the number of entries with
+    zero translations, the second entry the number of entries with one
+    translation, and so on until max_trans
+    """
+    # TODO: filter on certain POS tags
+    dist = (max_trans + 1) * [0]
+    
+    for entry, values in trans_dict.iteritems():
+        if trans_dict.delimiter in entry:
+            if not with_lempos:
+                continue
+        else:
+            if not with_lemma:
+                continue
+            
+        if " " in entry:
+            if not with_multi_word:
+                continue
+        else:
+            if not with_single_word:
+                continue
+            
+        dist[len(values)] += 1
+        
+    return dist
+
+
+def ambig_dist_report(dist, outf=sys.stdout):
+    """
+    Report statistics on distribution of translation ambiguity,
+    where 'dist' results from calling function 'ambig_dist'
+    """
+    total = sum(dist)
+    outf.write("total number of entries: {0}\n".format(total))
+    total_ambig = sum(dist[2:])
+    outf.write("total number of ambiguous entries: {0} ({1:.2f}%)\n".format(
+        total_ambig,
+        total_ambig/float(total) * 100)) 
+    outf.write("total number of non-ambiguous entries: {0} ({1:.2f}%)\n".format(
+        total - total_ambig,
+        (total - total_ambig)/float(total) * 100))
+    
+    # first one we look at is n + 2 = 0 + 2 = 2
+    weighted_sum = sum([(n + 2) * c 
+                        for n, c in enumerate(dist[2:])])
+    av_ambig = weighted_sum / float(total_ambig)
+    outf.write("average ambiguity (over ambiguous entries only): "
+               "{0:.2f} translations )\n\n".format(av_ambig))
+   
+    outf.write(" n:          count:        %:\n")    
+    for n, count in enumerate(dist):
+        outf.write("{0:3d}    {1:12d}    {2:6.2f}\n".format(
+            n,
+            count,
+            count/float(total) * 100))
+         

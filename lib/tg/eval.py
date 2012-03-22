@@ -83,10 +83,12 @@ def lemmatize(in_fname, tagger_command, encoding, outf=sys.stdout):
         
     tree = et.ElementTree(root_elem)  
     
-    log.info("writing lemmatized evaluation data to {0}".format(
-        getattr(outf, "name", outf)))
-    tree.write(outf, encoding="utf-8", 
-               xml_declaration='<?xml version="1.0" encoding="utf-8"?>\n')    
+    if outf:
+        log.info("writing lemmatized evaluation data to {0}".format(
+            getattr(outf, "name", outf)))
+        tree.write(outf, encoding="utf-8", 
+                   xml_declaration='<?xml version="1.0" encoding="utf-8"?>\n')
+    return tree
     
     
     
