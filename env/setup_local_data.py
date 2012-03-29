@@ -20,17 +20,19 @@ from tg.utils import create_dirs
 #-----------------------------------------------------------------------------
 
 dict_fname = config["dict"]["de-en"]["xml_fname"]
-dict_en_de = TransDict.from_xml(dict_fname)
+posmap_fname = config["dict"]["de-en"]["posmap_fname"]
+trans_dict = TransDict.from_xml(dict_fname, pos_map=posmap_fname)
 pkl_fname = config["dict"]["de-en"]["pkl_fname"]
 create_dirs(pkl_fname)
-dict_en_de.dump(pkl_fname)
+trans_dict.dump(pkl_fname)
 
 dict_fname = config["dict"]["de-en"]["xml_fname"]
+posmap_fname = config["dict"]["en-de"]["posmap_fname"]
 # use same dict but reversed
-dict_en_de = TransDict.from_xml(dict_fname, reverse=True)
+trans_dict = TransDict.from_xml(dict_fname, reverse=True, pos_map=posmap_fname)
 pkl_fname = config["dict"]["en-de"]["pkl_fname"]
 create_dirs(pkl_fname)
-dict_en_de.dump(pkl_fname)
+trans_dict.dump(pkl_fname)
 
 
 #-----------------------------------------------------------------------------

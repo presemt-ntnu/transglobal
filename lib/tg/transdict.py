@@ -2,9 +2,8 @@
 read dicts
 """
 
-# TODO
-# - store dict more efficiently
 
+import collections
 import cPickle
 import logging
 import sys
@@ -16,144 +15,197 @@ import configobj
 log = logging.getLogger(__name__)
 
 
-class TransDict(dict):
+class TransDict(object):
     """ 
     dictionary object that allows lookup of translation candidates on the
     basis of sl lemma and (optionally) POS tag
     """    
+    
+    # delimiter between lemma and POS tag in lempos string 
+    delimiter = "/"
+    
+    def __init__(self, pos_map=None):
+        self._lempos_dict = {}   
+        self._lemma_dict = {}
         
-    delimiter = "/"    
+        if isinstance(pos_map, basestring):
+            log.info("loading POS mapping from " + pos_map)
+            self.pos_map = configobj.ConfigObj(pos_map)
+        else:
+            self.pos_map = pos_map   
+
+    def lookup_lempos(self, lempos):
+        """
+        lookup lempos combination and return a pair consisting of lempos
+        string and a tuple of possible translations
+        """
+        if self.pos_map:
+            lempos = self._map_pos(lempos)
+            
+        return lempos, self._lempos_dict[lempos]
+    
+    def lookup_lemma(self, lemma):
+        """
+        lookup lemma, get the corresponding lempos entries, and return an
+        iterator over lookup for all items (see lookup_lempos)
+        """
+        return ( (lempos, self._lempos_dict[lempos])
+                 for lempos in self._lemma_dict[lemma] )
+
+    def __getitem__(self, key):
+        """
+        lookup lemma or lempos, get matching lempos entries, and return an
+        iterator over lookup for all items (see lookup_lempos)
+        """
+        try:
+            return iter([self.lookup_lempos(key)])
+        except (KeyError, ValueError):
+            # lempos not found or lempos ill-formed,
+            # fall back to lemma only
+            return self.lookup_lemma(self._strip_pos(key))
+        
+    def get(self, key, default=None):
+        try:
+            return self.__getitem__(key)
+        except KeyError:
+            return default
+    
+    def lempos_iteritems(self):
+        return self._lempos_dict.iteritems()
+    
+    def lemma_iteritems(self):
+        return ( self.lookup_lemma[lempos]
+                 for lempos in self._lemma_dict.itervalues() )
 
     @staticmethod
     def load(pkl_fname):
         log.info("loading translation dictionary from " + pkl_fname)
         return cPickle.load(open(pkl_fname))
 
-
     @classmethod
-    def from_xml(clas, dict_fname, reverse=False):
-        # need to read in the whole dict, because same lemma may have multiple
-        # entries and order is not guaranteed
+    def from_xml(cls, dict_fname, reverse=False, pos_map=None):
+        """
+        create TransDict object from parsing a lexicon in Presemt XML format
+        
+        If reverse is True, the dictionary's direction is reversed.
+        
+        Optional argument pos_map must be a configobj or other dict-like
+        object (or a config filename) defining a mapping from POS tags used
+        by the tagger to POS tags used in the lexicon.
+        """
         log.info("reading translation dictionary from " + dict_fname)
         
-        sl_lem = tl_lem = ""
-        sl_lempos = tl_lempos = ""
-        trans_dict = clas()
-        format_error = False
-        entry_id = None
+        # temporary dict mapping lempos to set of translations 
+        lempos_dict = collections.defaultdict(set)
+        # temporary dict mapping lemma to set of source lempos
+        lemma_dict = collections.defaultdict(set)        
         
         # XML parsing is somewhat fuzzy, because lexicon is likely to contain
         # format errors
-        for event, elem in et.iterparse(dict_fname):
-            if elem.tag == "slLemma":
-                # check that text is not None and contains no spaces
-                if not elem.text or len(elem.text.split()) != 1:
-                    format_error = True
-                else:
+        for event, elem in et.iterparse(dict_fname, events=("start", "end")):
+            if event == "start":
+                if  elem.tag == "entry":
+                    sl_lem = tl_lem = ""
+                    sl_lempos = tl_lempos = ""
+                    format_error = False
+            # event == "end" for all cases below
+            elif elem.tag == "slLemma":
+                if cls._is_valid(elem):
                     sl_lem += elem.text.strip() + " "
-                    sl_lempos += ( elem.text.strip() + 
-                                   clas.delimiter + 
-                                   elem.get("tag") + 
-                                   " " )
-            elif elem.tag == "tlLemma":
-                if not elem.text or len(elem.text.split()) != 1:
+                    sl_lempos += cls._lempos(elem) + " "
+                else:
                     format_error = True
-                else:
+            elif elem.tag == "tlLemma":
+                if cls._is_valid(elem):
                     tl_lem += elem.text.strip() + " "
-                    tl_lempos += ( elem.text.strip() + 
-                                   clas.delimiter + 
-                                   elem.get("tag") + 
-                                   " " )
-            elif elem.tag == "entry":
-                entry_id = elem.get("id")
-                    
-                if not format_error:
-                    sl_lem = sl_lem.rstrip()
-                    tl_lem = tl_lem.rstrip()
-                    sl_lempos = sl_lempos.rstrip()
-                    tl_lempos = tl_lempos.rstrip()
-    
-                    # store mapping from both sl lemma and sl lempos to tl lempos
-                    if not reverse:
-                        trans_dict.setdefault(sl_lem, set()).add(tl_lempos)
-                        trans_dict.setdefault(sl_lempos, set()).add(tl_lempos)
-                    else:
-                        trans_dict.setdefault(tl_lem, set()).add(sl_lempos)
-                        trans_dict.setdefault(tl_lempos, set()).add(sl_lempos)
+                    tl_lempos += cls._lempos(elem) + " "
                 else:
+                    format_error = True
+            elif elem.tag == "entry":
+                if format_error:
                     # some format error, e.g. slLemma has no text
                     log.error("skiping ill-formed lexicon entry "
-                              "with id {0}".format(entry_id))
-                    format_error = False
-    
-                sl_lem = tl_lem = ""
-                sl_lempos = tl_lempos = ""
+                              "with id {0}".format(elem.get("id")))
+                    continue
                 
+                sl_lem = sl_lem.rstrip()
+                tl_lem = tl_lem.rstrip()
+                sl_lempos = sl_lempos.rstrip()
+                tl_lempos = tl_lempos.rstrip()
+
+                if not reverse:
+                    lempos_dict[sl_lempos].add(tl_lempos)
+                    lemma_dict[sl_lem].add(sl_lempos)
+                else:
+                    lempos_dict[tl_lempos].add(sl_lempos)
+                    lemma_dict[tl_lem].add(tl_lempos)
+                
+        trans_dict = cls(pos_map=pos_map)                
+        # convert default dicts to normal dicts and
+        # convert values from sets to tuples to decrease storage space
+        trans_dict._lempos_dict = dict( (lempos, tuple(translations))
+                                        for lempos, translations in lempos_dict.iteritems() )
+        trans_dict._lemma_dict = dict( (lemma, tuple(lempos_keys))
+                                        for lemma, lempos_keys in lemma_dict.iteritems() )
+        
         return trans_dict
     
-        
     def dump(self, pkl_fname):
         log.info("dumping translation dictionary to " + pkl_fname)
         with open(pkl_fname, "wb") as inf:
             cPickle.dump(self, inf)
+            
+    # support methods
+    
+    @classmethod    
+    def _lempos(cls, elem):
+        """
+        create elempos string
+        """
+        return ( elem.text.strip() + 
+                 cls.delimiter + 
+                 elem.get("tag") ) 
+    
+    @classmethod    
+    def _is_valid(cls, elem):
+        """
+        check if format of slLemma or tlLemma element is valid
+        """
+        # text is not None? 
+        if not elem.text:
+            return False
+        # text contains no whitespacs?
+        if len(elem.text.split()) != 1:
+            return False
+        # no proper tag?
+        if elem.get("tag", "").strip() == "":
+            return False
+        return True
+            
+    def _strip_pos(self, lempos):
+        """
+        strip pos tags from lempos string
+        """
+        return " ".join( pair.rsplit(self.delimiter, 1)[0]
+                         for pair in lempos.split() )
+            
+    def _map_pos(self, lempos):
+        """
+        map all pos tags in lempos
+        """
+        mapped_lempos = ""
+        
+        # map pos tag
+        for pair in lempos.split():
+            lemma, pos = pair.rsplit(self.delimiter, 1)
+            mapped_lempos += ( lemma + 
+                               self.delimiter + 
+                               self.pos_map.get(pos, "") + 
+                               " " )
+            
+        return mapped_lempos[:-1]
     
     
-
-class DictAdaptor:
-    
-    def __init__(self, dictionary, posmap):
-        if isinstance(dictionary, basestring):
-            self.dict = TransDict.load(dictionary)
-        else:
-            self.dict = dictionary
-            
-        if isinstance(posmap, basestring):
-            log.info("loading POS mapping from " + posmap)
-            self.posmap = configobj.ConfigObj(posmap)
-        else:
-            self.posmap = posmap
-            
-        self.delimiter = self.dict.delimiter
-
-            
-    def __getitem__(self, key):
-        lemmas = ""
-        lempos = ""
-        
-        for pair in key.split():
-            try:
-                lemma, tag = pair.rsplit(self.delimiter, 1)
-            except ValueError:
-                # no tag specified
-                lemma = pair
-                mapped_tag = ""
-            else:
-                # if tag can not be mapped, then mapped_tag is empty,
-                # thus lempos will never match
-                mapped_tag = self.posmap.get(tag, "")                
-                
-            lemmas += lemma + " "
-            lempos += lemma + self.delimiter + mapped_tag + " "
-            
-        try:
-            return self.dict[lempos[:-1]]
-        except KeyError:
-            # no match on tag(s),
-            # try result for lemma(s) only
-            return self.dict[lemmas[:-1]]
-            
-            
-    def get(self, key, default):
-        try:
-            return self.__getitem__(key)
-        except KeyError:
-            return default
-        
-        
-        
-#-----------------------------------------------------------------------------        
-# Utility functions
-#-----------------------------------------------------------------------------
 
     
 def ambig_dist(trans_dict, with_lemma=True, with_lempos=True,
@@ -167,22 +219,25 @@ def ambig_dist(trans_dict, with_lemma=True, with_lempos=True,
     # TODO: filter on certain POS tags
     dist = (max_trans + 1) * [0]
     
-    for entry, values in trans_dict.iteritems():
-        if trans_dict.delimiter in entry:
-            if not with_lempos:
+    if with_lempos:
+        for entry, values in trans_dict.lempos_iteritems():
+            if " " in entry:
+                if not with_multi_word:
+                    continue
+            elif not with_single_word:
                 continue
-        else:
-            if not with_lemma:
-                continue
+                
+            dist[len(values)] += 1
             
-        if " " in entry:
-            if not with_multi_word:
+    if with_lemma:
+        for entry, values in trans_dict.lemma_iteritems():
+            if " " in entry:
+                if not with_multi_word:
+                    continue
+            elif not with_single_word:
                 continue
-        else:
-            if not with_single_word:
-                continue
-            
-        dist[len(values)] += 1
+                
+            dist[len(values)] += 1
         
     return dist
 

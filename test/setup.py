@@ -11,7 +11,7 @@ from os.path import join
 
 from tg.config import config
 from tg.annot import TreeTaggerEnglish
-from tg.transdict import TransDict, DictAdaptor
+from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.randscore import RandProb
 
@@ -36,18 +36,26 @@ class LookupKeepKeys(Lookup):
     
     def __init__(self, *args, **kwargs):
         Lookup.__init__(self, *args, **kwargs)
-        self.keys = []
+        self.used_keys = set()
         
-    def _lookup(self, key):
-        # if lookup fails, a KeyError will be raised and the key will not be
-        # added to list of keys
-        value = Lookup._lookup(self, key)
-        self.keys.append(key)
-        return value
+    def _lookup_lempos_seq(self, lempos_seq):
+        entries = Lookup._lookup_lempos_seq(self, lempos_seq)
+        # keep track of all lempos and lemma keys
+        for key, _ in entries:
+            self.used_keys.add(key)
+        return entries
     
     def get_minimal_trans_dict(self):
-        return TransDict( (key, self.dictionary[key]) 
-                          for key in self.keys )
+        for key in self.dictionary._lempos_dict.keys():
+            if key not in self.used_keys:
+                del self.dictionary._lempos_dict[key]
+                
+        for key in self.dictionary._lemma_dict.keys():
+            if key not in self.used_keys:
+                del self.dictionary._lemma_dict[key]
+            
+        return self.dictionary
+
 
 
 
@@ -66,8 +74,8 @@ def setup_en():
     dump(graph_list, open(annot_graphs_en_pkl_fname, "wb"))
     
     # lookup - requires pickled dictionary
-    en_de_dict = DictAdaptor(config["dict"]["en-de"]["pkl_fname"],
-                             config["dict"]["en-de"]["posmap_fname"])
+    pkl_fname = config["dict"]["en-de"]["pkl_fname"]
+    en_de_dict = TransDict.load(pkl_fname)
     lookup = LookupKeepKeys(en_de_dict)
     lookup(graph_list)
     log.info("writing pickled graph to " + graphs_en_de_pkl_fname)

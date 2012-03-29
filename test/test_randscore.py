@@ -20,4 +20,8 @@ class TestRandProb:
         rnd = RandProb()
         rnd(self.graph_list)
         
-    
+        
+                            
+if __name__ == "__main__":
+    import nose
+    nose.run(defaultTest=__name__)        

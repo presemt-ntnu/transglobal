@@ -23,5 +23,12 @@ def test_treetagger_english():
         for node_data in graph.node.values():
             assert node_data["word"]
             assert node_data["lemma"]
-            assert node_data["tag"]
+            assert node_data["pos"]
+            
+            
+if __name__ == "__main__":
+    import nose
+    nose.run(defaultTest=__name__)
+    
+    
     

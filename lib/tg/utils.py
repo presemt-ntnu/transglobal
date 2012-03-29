@@ -3,7 +3,7 @@ import codecs
 import sys
 
 from os import makedirs
-from os.path import exists, isfile, dirname
+from os.path import exists, dirname
 
 
 def create_dirs(path):

@@ -8,7 +8,7 @@ import xml.etree.cElementTree as et
 
 from tg.config import config
 from tg.annot import TreeTaggerGerman
-from tg.transdict import TransDict, DictAdaptor
+from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.freqscore import FreqScore
 from tg.draw import Draw
@@ -21,6 +21,9 @@ from tg.utils import set_default_log
 # for logging to stderr in utf-8 use:
 set_default_log(level=logging.INFO)
 
+#log = logging.getLogger("tg.lookup")
+#log.setLevel(logging.DEBUG)
+
 
 
 # get text from input source
@@ -32,9 +35,8 @@ annotator = TreeTaggerGerman()
 graph_list = annotator(text)
 
 # lookup
-en_de_dict = DictAdaptor(config["dict"]["de-en"]["pkl_fname"],
-                         config["dict"]["de-en"]["posmap_fname"])
-lookup = Lookup(en_de_dict)
+de_en_dict = TransDict.load(config["dict"]["de-en"]["pkl_fname"])
+lookup = Lookup(de_en_dict)
 lookup(graph_list)
 
 # frequency scoring

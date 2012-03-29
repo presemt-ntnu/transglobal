@@ -5,22 +5,8 @@ test translation dictionary
 from nose.tools import raises
 
 from tg.config import config
-from tg.transdict import TransDict, DictAdaptor
+from tg.transdict import TransDict
 
-
-trans_dict = None
-
-def setup_module():
-    global trans_dict
-    dict_fname = config["dict"]["en-de"]["pkl_fname"]
-    print "loading picked dictionary from " + dict_fname
-    trans_dict = TransDict.load(dict_fname) 
-    
-    
-def teardown_module():
-    global trans_dict
-    trans_dict = None
-    
 
 
 class TestTransdict:
@@ -29,119 +15,160 @@ class TestTransdict:
     dictionary takes along time
     """
     
-    def test_single_lemma(self):
-        translations = trans_dict["linguist"]
+    @classmethod
+    def setup_class(cls):
+        dict_fname = config["dict"]["en-de"]["pkl_fname"]
+        print "loading picked dictionary from " + dict_fname
+        cls.trans_dict = TransDict.load(dict_fname)         
+        # remove the POS mapping
+        cls.trans_dict.pos_map = None
+            
+    def test_lookup_lempos(self):
+        lempos, translations = self.trans_dict.lookup_lempos("linguist/n")
         assert len(translations) == 2
         assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
+        assert "Sprachwissenschaftler/n" in translations    
+
+    def test_lookup_lemma(self):
+        results = list(self.trans_dict.lookup_lemma("linguist"))
+        assert len(results) == 1
+        lempos, translations = results[0]
+        assert lempos == 'linguist/n'
+        assert "Linguist/n" in translations
+        assert "Sprachwissenschaftler/n" in translations 
+
+    def test_lookup_lemma_2(self):
+        results = list(self.trans_dict.lookup_lemma("walk"))
+        assert len(results) == 2
         
-    def test_single_lempos(self):
-        translations = trans_dict["linguist/n"]
-        assert len(translations) == 2
-        assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
-      
+        lempos, translations = results[0]
+        assert lempos == 'walk/n'
+        assert translations == self.trans_dict.lookup_lempos(lempos)[1]
+        
+        lempos, translations = results[1]
+        assert lempos == 'walk/vv'
+        assert translations == self.trans_dict.lookup_lempos(lempos)[1]
+        
     @raises(KeyError)  
     def test_unkown_lemma(self):
-        trans_dict["1q84"]
+        self.trans_dict.lookup_lemma("1q84")
         
     @raises(KeyError)  
     def test_unknown_pos(self):
-        trans_dict["linguist/xyz"]
+        self.trans_dict.lookup_lempos("linguist/xyz")
         
-    def test_mwu_lemma(self):
-        translations = trans_dict["kick out"]
-        assert len(translations) == 2
-        assert "hinauswerfen/v*.full" in translations
-        assert "werfen/v*.full hinaus/v*.full" in translations
-        
-    def test_mwu_lempos(self):
+    def test_lookup_lempos_mwu(self):
         # 2nd POS tag is indeed incorrect in dict
-        translations = trans_dict["kick/vv out/vv"]
+        lempos, translations = self.trans_dict.lookup_lempos("kick/vv out/vv")
         assert len(translations) == 2
         assert "hinauswerfen/v*.full" in translations
         assert "werfen/v*.full hinaus/v*.full" in translations
+        
+    def test_lookup_lemma_mwu(self):
+        results = list(self.trans_dict.lookup_lemma("kick out"))
+        assert len(results) == 1
+        lempos, translations = results[0]
+        assert lempos == "kick/vv out/vv"
+        assert translations == self.trans_dict.lookup_lempos(lempos)[1]
+        
+    def test_getitem_lempos(self):
+        assert list(self.trans_dict["linguist/n"]) == [self.trans_dict.lookup_lempos("linguist/n")]
+        
+    def test_getitem_lemma(self):
+        assert list(self.trans_dict["linguist"]) == list(self.trans_dict.lookup_lemma("linguist"))
+        
+    def test_getitem_lempos_unknown_pos(self):
+        # should backoff to lemma
+        assert list(self.trans_dict["linguist/xyz"]) == list(self.trans_dict.lookup_lemma("linguist"))
+        
+    def test_getitem_lempos_mwu_unknown_pos(self):
+        # should backoff to lemma
+        assert list(self.trans_dict["kick/xx out/yy"]) == list(self.trans_dict.lookup_lemma("kick out"))
+        
+    @raises(KeyError)  
+    def test_getitem_unkown_lemma(self):
+        self.trans_dict["1q84"]
+
         
         
     
-class TestDictAdaptor:
+class TestMappedDict:
     
     @classmethod
     def setup_class(cls):
-        cls.mapped_dict = DictAdaptor(trans_dict,
-                                      config["dict"]["en-de"]["posmap_fname"])
-    
-    def test_single_lemma(self):
-        translations = self.mapped_dict["linguist"]
-        assert len(translations) == 2
-        assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
+        dict_fname = config["dict"]["en-de"]["pkl_fname"]
+        print "loading picked dictionary from " + dict_fname
+        cls.trans_dict = TransDict.load(dict_fname)         
         
-    def test_single_lempos(self):
+    def test_lookup_lempos(self):
         # NN -> n
-        translations = self.mapped_dict["linguist/NN"]
+        lempos, translations = self.trans_dict.lookup_lempos("linguist/NN")
+        # lempos must contain mapped pos (i.e. lexicon pos)
+        assert lempos == 'linguist/n'
         assert len(translations) == 2
         assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
-        
+        assert "Sprachwissenschaftler/n" in translations    
+    
         # NP -> n
-        translations = self.mapped_dict["linguist/NP"]
+        assert ( self.trans_dict.lookup_lempos("linguist/NP") == 
+                 self.trans_dict.lookup_lempos("linguist/NN") )
+
+    def test_lookup_lemma(self):
+        results = list(self.trans_dict.lookup_lemma("linguist"))
+        assert len(results) == 1
+        lempos, translations = results[0]
+        assert lempos == 'linguist/n'
         assert len(translations) == 2
         assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
-                
+        assert "Sprachwissenschaftler/n" in translations 
+    
     @raises(KeyError)  
     def test_unkown_lemma(self):
-        self.mapped_dict["1q84"]
+        self.trans_dict.lookup_lemma("1q84")
         
-    @raises(KeyError)
-    def test_unknown_lemma_pos(self):
-        self.mapped_dict["1q84/xyz"]
-        
-    def test_unknown_pos(self):        
-        # backs off to lemma, ignoring pos
-        translations = self.mapped_dict["linguist/xyz"]
-        assert len(translations) == 2
-        assert "Linguist/n" in translations
-        assert "Sprachwissenschaftler/n" in translations
+    @raises(KeyError)  
+    def test_unknown_pos(self):
+        self.trans_dict.lookup_lempos("linguist/xyz")  
         
     def test_pos_relevancy(self):
         # NN -> n
-        translations = self.mapped_dict["rerun/NN"]
+        lempos, translations = self.trans_dict.lookup_lempos("rerun/NN")
+        assert lempos == "rerun/n"
         assert len(translations) == 3
         
         # VB -> v
-        translations = self.mapped_dict["rerun/VB"]
+        lempos, translations = self.trans_dict.lookup_lempos("rerun/VB")
+        assert lempos == "rerun/vv"
         assert len(translations) == 5
               
         # nouns and verbs combined
-        translations = self.mapped_dict["rerun"]
-        assert len(translations) == 8
+        all_translations = []
+        for lempos, translations in self.trans_dict.lookup_lemma("rerun"):
+            all_translations += translations
+        assert len(all_translations) == 8
         
-    def test_mwu_lemma(self):
-        translations = self.mapped_dict["kick out"]
+    def test_lookup_lempos_mwu(self):
+        # VB -> vv
+        # 2nd POS tag (vv) is indeed incorrect in dict
+        lempos, translations = self.trans_dict.lookup_lempos("kick/VB out/VB")
+        # lempos must contain mapped pos (i.e. lexicon pos)
+        assert lempos == "kick/vv out/vv"
         assert len(translations) == 2
         assert "hinauswerfen/v*.full" in translations
         assert "werfen/v*.full hinaus/v*.full" in translations
         
-    def test_mwu_lempos(self):
-        # VB -> vv
-        # 2nd POS tag (vv) is indeed incorrect in dict
-        translations = self.mapped_dict["kick/VB out/VB"]
+    def test_lookup_lemma_mwu(self):
+        lempos, translations = list(self.trans_dict.lookup_lemma("kick out"))[0]
         assert len(translations) == 2
         assert "hinauswerfen/v*.full" in translations
         assert "werfen/v*.full hinaus/v*.full" in translations
         
     @raises(KeyError)
-    def test_mwu_unkown_lemma(self):
-        translations = self.mapped_dict["1q84 out"]
+    def test_unkown_lemma_mwu(self):
+        self.trans_dict.lookup_lemma("1q84 out")
         
-    def test_mwu_unkown_pos(self):    
-        # backs off to lemma, ignoring pos, yielding same result (in this
-        # case)
-        translations = self.mapped_dict["kick/xyz out/xyz"]
-        assert len(translations) == 2
-        assert "hinauswerfen/v*.full" in translations
-        assert "werfen/v*.full hinaus/v*.full" in translations
         
-    
+                    
+if __name__ == "__main__":
+    import nose
+    nose.run(defaultTest=__name__)    

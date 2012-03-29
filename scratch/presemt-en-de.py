@@ -8,7 +8,7 @@ import xml.etree.cElementTree as et
 
 from tg.config import config
 from tg.annot import TreeTaggerEnglish
-from tg.transdict import TransDict, DictAdaptor
+from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.freqscore import FreqScore
 from tg.draw import Draw
@@ -32,8 +32,7 @@ annotator = TreeTaggerEnglish()
 graph_list = annotator(text)
 
 # lookup
-en_de_dict = DictAdaptor(config["dict"]["en-de"]["pkl_fname"],
-                         config["dict"]["en-de"]["posmap_fname"])
+en_de_dict = TransDict.load(config["dict"]["en-de"]["pkl_fname"])
 lookup = Lookup(en_de_dict)
 lookup(graph_list)
 

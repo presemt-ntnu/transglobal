@@ -100,18 +100,28 @@ class DrawGV:
     
     def source_node(self, u, data):
         return pydot.Node(str(u), 
-                          label=u"{}/{}".format(data["lemma"], data["tag"]).encode("utf-8"), 
+                          label=u"{}/{}\\n{}".format(
+                              data["lemma"], 
+                              data["pos"],
+                              "|".join(data.get("lex_lempos", []))).encode("utf-8"), 
                           fillcolor=self.SOURCE_COLOR,
                           **self.NODE_DEFAULTS)        
     
     def target_node(self, u, data):
         return pydot.Node(str(u), 
-                          label=u"{}/{}".format(data["lemma"], data["tag"]).encode("utf-8"), 
+                          label=u"{}/{}".format(data["lemma"], data["pos"]).encode("utf-8"), 
                           fillcolor=self.TARGET_COLOR,
                           **self.NODE_DEFAULTS)
     
     def hyper_node(self, u, data):
-        return pydot.Node(str(u), shape="point", style="bold")
+        if u.startswith("hs"):
+            return pydot.Node(
+                str(u), 
+                label=u"|".join(data.get("lex_lempos", [])).encode("utf-8"), 
+                fillcolor=self.SOURCE_COLOR,
+                **self.NODE_DEFAULTS)
+        else:
+            return pydot.Node(str(u), shape="point", style="bold")
     
     def source_next_edge(self, u, v, data):
         return pydot.Edge(str(u), str(v), color=self.SOURCE_COLOR, style="bold",

@@ -21,7 +21,7 @@ class TransGraph(nx.DiGraph):
         self.hyper_source_node_count = 0   
         self.hyper_target_node_count = 0  
         self.source_start_node = None
-        self.delimiter = "/"
+        self.delimiter = u"/"
          
     #-------------------------------------------------------------------------
     # source nodes
@@ -93,7 +93,7 @@ class TransGraph(nx.DiGraph):
     
     #-------------------------------------------------------------------------
     # hyper nodes
-    #-------------------------------------------------------------------------    
+    #-------------------------------------------------------------------------
 
 
     def add_hyper_source_node(self, nodes):
@@ -105,7 +105,7 @@ class TransGraph(nx.DiGraph):
         return u
     
     def add_hyper_target_node(self, nodes):
-        self.hyper_target_node_count+= 1
+        self.hyper_target_node_count += 1
         u = "{0}{1}".format(self.hyper_target_node_prefix,
                             self.hyper_target_node_count)
         for v in nodes:
@@ -119,12 +119,12 @@ class TransGraph(nx.DiGraph):
         return u.startswith(self.hyper_target_node_prefix) 
     
     def source_parts_iter(self, u):
-        part_nodes = ( v for v, u, data in self.in_edges_iter(u, data=True)
+        part_nodes = ( v for v, _, data in self.in_edges_iter(u, data=True)
                        if data.get("name") == "part" )
         return self.ordered_nodes_iter(part_nodes)
     
     def target_parts_iter(self, u):
-        part_nodes = ( v for u, v, data in self.out_edges_iter(u, data=True)
+        part_nodes = ( v for _, v, data in self.out_edges_iter(u, data=True)
                        if data.get("name") == "part" )
         return self.ordered_nodes_iter(part_nodes)
     
@@ -136,43 +136,56 @@ class TransGraph(nx.DiGraph):
     
     def source_words(self):
         return [ d["word"] 
-                 for u,d  in self.source_nodes_iter(data=True, ordered=True) ]
+                 for _,d  in self.source_nodes_iter(data=True, ordered=True) ]
     
     def source_lemmas(self):
         return [ d["lemma"] 
-                 for u,d in self.source_nodes_iter(data=True, ordered=True) ]
+                 for _,d in self.source_nodes_iter(data=True, ordered=True) ]
     
     def source_lempos(self):
         return [ ( d["lemma"] + self.delimiter + d["tag"] )
-                 for n in self.source_nodes_iter(data=True, ordered=True) ]
+                 for _,d in self.source_nodes_iter(data=True, ordered=True) ]
         
     def source_string(self):
         return " ".join(self.source_words())     
 
     # nodes
     
-    def node_attrib(self, u, attrib):
+    def node_attrib(self, u, attrib, as_list=False):
         if self.is_source_node(u) or self.is_target_node(u):
-            return [ self.node[u][attrib] ]
+            l = [ self.node[u][attrib] ]
         elif self.is_hyper_source_node(u):
-            return [ self.node[v][attrib]
-                     for v in self.source_parts_iter(u) ]
+            l = [ self.node[v][attrib]
+                  for v in self.source_parts_iter(u) ]
         elif self.is_hyper_target_node(u):
-            return [ self.node[v][attrib]
-                     for v in self.target_parts_iter(u) ]
+            l =  [ self.node[v][attrib]
+                   for v in self.target_parts_iter(u) ]
         else:
             raise ValueError("not a node")
+        
+        if as_list:
+            return l
+        else:
+            return " ".join(l)
     
-    def word(self, u):
-        return self.node_attrib(u, "word")
+    def word(self, u, as_list=False):
+        return self.node_attrib(u, "word", as_list=as_list)
     
-    def lemma(self, u):
-        return self.node_attrib(u, "lemma")
+    def lemma(self, u, as_list=False):
+        return self.node_attrib(u, "lemma", as_list=as_list)
     
-    def lempos(self, u):
-        return [ "{}{}{}".format(lemma, self.delimiter, tag)
-                 for lemma, tag in zip(self.node_attrib(u, "lemma"),
-                                       self.node_attrib(u, "tag")) ]
+    def pos(self, u, as_list=False):
+        return self.node_attrib(u, "pos", as_list=as_list)
+    
+    def lempos(self, u, as_list=False):
+        l =  [ self.delimiter.join(pair)
+               for pair in zip(self.node_attrib(u, "lemma", True),
+                               self.node_attrib(u, "pos", True)) ]
+        if as_list:
+            return l
+        else:
+            return " ".join(l)
+        
     
     def string(self, u):
         " ".join(self.node_attrib(u, "word"))
@@ -201,7 +214,7 @@ class TransGraph(nx.DiGraph):
         while u:
             yield u
             
-            for u,v,data in self.out_edges(u, data=True): 
+            for _,v,data in self.out_edges(u, data=True): 
                 if data.get("name") == "next":
                     # found next node
                     u = v
@@ -228,5 +241,5 @@ class TransGraph(nx.DiGraph):
         self.add_edge(u, v, name="trans", attr_dict=attr_dict, **attr)
         
     def trans_edges_iter(self, u=None):
-        return ( (u,v,d) for u,v,d in self.out_edges_iter(u, data=True)
+        return ( (u,v,d) for _,v,d in self.out_edges_iter(u, data=True)
                  if d.get("name") == "trans" )

@@ -47,8 +47,9 @@ class TreeTagger(Annotator):
     
     def __init__(self, command, encoding, sent_end_tag,
                  replace_unknown_lemma=True):
+        Annotator.__init__(self)
         self.command = command
-        self.encoding= encoding
+        self.encoding = encoding
         self.sent_end_tag = sent_end_tag
         self.replace_unknown_lemma = replace_unknown_lemma
         
@@ -62,8 +63,10 @@ class TreeTagger(Annotator):
         
         # create pipe to tagger
         log.debug("Calling TreeTagger as " + self.command)
-        tagger_proc = subprocess.Popen(self.command, shell=True,
-                                       stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+        tagger_proc = subprocess.Popen(self.command, 
+                                       shell=True,
+                                       stdin=subprocess.PIPE, 
+                                       stdout=subprocess.PIPE,
                                        stderr=subprocess.PIPE)
 
         # send text and retrieve tagger output 
@@ -91,20 +94,21 @@ class TreeTagger(Annotator):
             # fix: TreeTagger for English sometimes produces output like
             # 'that\t\tIN\tthat',
             line = line.replace("\t\t", "\t")                
-            word, tag, lemma = line.split("\t")
-            
+            word, pos, lemma = line.split("\t")
+            # TODO how to handle ambiguity in lemmatization as in er|sie|Sie   
+   
             if lemma == self.lemma_unknown and self.replace_unknown_lemma:
-                log.warn(u"lemma unknown; using word {0} instead ".format(word))
+                log.warn(u"lemma unknown;using word {0} instead".format(word))
                 lemma = word
-                        
-            new_node = graph.add_source_node(word=word, tag=tag, lemma=lemma)
+       
+            new_node = graph.add_source_node(word=word, lemma=lemma, pos=pos)
             
             if prev_node:
                 graph.add_word_order_edge(prev_node, new_node)
             else:
                 graph.set_source_start_node(new_node)
             
-            if tag == self.sent_end_tag:
+            if pos == self.sent_end_tag:
                 graph_list.append(graph)
                 make_new_graph = True
                 prev_node = None
@@ -123,7 +127,7 @@ class TreeTaggerEnglish(TreeTagger):
     def __init__(self, command="tree-tagger-english", 
                  encoding="latin1",
                  sent_end_tag="SENT",
-                 *arg, **kwargs):
+                 *args, **kwargs):
         TreeTagger.__init__(self, command, encoding, sent_end_tag, 
                             *args, **kwargs)
   
@@ -137,7 +141,7 @@ class TreeTaggerGerman(TreeTagger):
     def __init__(self, command="tree-tagger-german", 
                  encoding="latin1",
                  sent_end_tag="$.",
-                 *arg, **kwargs):
+                 *args, **kwargs):
         TreeTagger.__init__(self, command, encoding, sent_end_tag,
-                            *arg, **kwargs)
+                            *args, **kwargs)
       
