@@ -38,8 +38,9 @@ class DrawGV:
     SOURCE_COLOR = "#c2a5cf"
     TARGET_COLOR = "#abdba0"
     
-    def __init__(self, nx_graph):
-        self.dot_graph = pydot.Dot('g0', graph_type='digraph', **self.GRAPH_DEFAULTS)    
+    def __init__(self, nx_graph, score_attr="score"):
+        self.score_attr = score_attr
+        self.dot_graph = pydot.Dot('g0', graph_type='digraph', **self.GRAPH_DEFAULTS)   
         hypernodes = []
         # dot subgraph of all source nodes, which forces them on the same rank
         subgraph = pydot.Subgraph('', rank='same') 
@@ -133,8 +134,8 @@ class DrawGV:
     
     def trans_edge(self, u, v, data):
         try:
-            label = "{0:.2f}".format(data["score"])
-            penwidth = max(10 * data["score"],1)
+            label = "{0:.2f}".format(data[self.score_attr])
+            penwidth = max(10 * data[self.score_attr], 1)
         except KeyError:
             label = ""
             penwidth = 1
@@ -151,11 +152,11 @@ class Draw(GraphProces):
     def __init__(self, drawer=DrawGV):
         self.drawer = drawer
     
-    def _single_run(self, graph, outf_fname=None, out_format="pdf"):
+    def _single_run(self, graph, outf_fname=None, out_format="pdf", score_attr="score"):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
-        drawer = self.drawer(graph)
+        drawer = self.drawer(graph, score_attr=score_attr)
         if not outf_fname:
             out_fname = "graph-{}.{}".format(
                 graph.graph["id"],

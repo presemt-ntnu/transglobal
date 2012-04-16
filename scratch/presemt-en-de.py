@@ -42,10 +42,10 @@ freq_score(graph_list)
 
 # draw
 draw = Draw()
-draw(graph_list, out_format="pdf")
+draw(graph_list, out_format="pdf", score_attr="freq_score")
     
 # arrange 
-arrange = Arrange()
+arrange = Arrange(score_attr="freq_score")
 arrange(graph_list)
 
 # save

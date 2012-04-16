@@ -1,13 +1,17 @@
+- problem with sein/be in de-en dict
+- get counts for multi-words from corpus through Manatee
+- arrange using MWU
+
 - VSM WTD models
 - NB/DT WTD models
 - other languages
-
-- get counts for multi-words from corpus through Manatee
 
 - produce graphs for Semeval data (with head marked)
 
 - n-gram models
 - Lars' bidirectional lookup
+
+- determine lexical coverage & compute max scores
 
 - use zc buildout?
 - disambiguation as classification with evidence from multiple sources?

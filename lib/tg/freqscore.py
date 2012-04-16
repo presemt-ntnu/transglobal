@@ -24,9 +24,10 @@ class FreqScore(graphproc.GraphProces):
     score translation candidates according to their frequency
     """
     
-    def __init__(self, counts_pkl_fname):
+    def __init__(self, counts_pkl_fname, score_attr="freq_score"):
         log.info("reading counts from " + counts_pkl_fname)
         self.counts_dict = cPickle.load(open(counts_pkl_fname))
+        self.score_attr = score_attr
         self.oov_count = 0
     
     def _single_run(self, graph):
@@ -44,15 +45,15 @@ class FreqScore(graphproc.GraphProces):
                 edge_counts.append(count)
                 total += count
                 edge_data.append(data)
-                    
+                
             for count, data in zip(edge_counts, edge_data):
                 try:
-                    data["score"] = count / total 
+                    data[self.score_attr] = count / total 
                 except ZeroDivisionError:
-                    data["score"] = 0.0
+                    data[self.score_attr] = 0.0
                 
     def count(self, graph, v):
-        lemma = " ".join(graph.lemma(v))
+        lemma = graph.lemma(v)
         count = self.counts_dict.get(lemma, self.oov_count)
         log.debug(u"lemma '{0}' has count {1}".format(lemma, count))
         return count

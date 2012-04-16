@@ -14,6 +14,10 @@ log = logging.getLogger(__name__)
 
 class Arrange(graphproc.GraphProces):
     
+    def __init__(self, score_attr="score", *args, **kwargs):
+        graphproc.GraphProces.__init__(self, *args, **kwargs)
+        self.score_attr = score_attr
+    
     def _single_run(self, graph):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
@@ -26,7 +30,7 @@ class Arrange(graphproc.GraphProces):
             best_lemma = ""
             
             for u,v,data in graph.trans_edges_iter(u):
-                score = data.get("score", -1)
+                score = self.score(data)
                 if score > best_score:
                     best_score = score
                     # TODO: handle hypernodes
@@ -36,6 +40,11 @@ class Arrange(graphproc.GraphProces):
             
         graph.graph["target_lemma"] = target_lemmas
         graph.graph["target_string"] = u" ".join(target_lemmas)
+        
+        
+    def score(self, data):
+        return data.get(self.score_attr, -1)
+        
         
         
 
