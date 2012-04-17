@@ -6,7 +6,7 @@ convert collection of samples in gzipped matrix market format to single hdf5 fil
 """
 
 # TODO: optimal compression and chunks
-# TODO: use other data type instead of int32 ?
+
 
 
 import glob
@@ -18,10 +18,13 @@ import numpy as np
 import scipy.io
 import h5py
 
+from tg.utils import coo_matrix_to_hdf5
+
 log = logging.getLogger(__name__)
 
+
 def convert(tab_fname, samp_dir, hdf_fname, samp_fpat="de-sample-{0}.mtx.gz", mode="a",
-            max_samples=None,):
+            max_samples=None):
     hdfile = h5py.File(hdf_fname, mode)
     samp_count = 0
     
@@ -42,7 +45,7 @@ def convert(tab_fname, samp_dir, hdf_fname, samp_fpat="de-sample-{0}.mtx.gz", mo
         # only if this is the first occurrence of this sample
         if new == "1":
             # remove deWac POS tag
-            lempos, _ = target_label.rsplit("/",1)
+            lempos, _ = target_label.rsplit("/", 1)
             samp_fname = samp_dir + samp_fpat.format(samp_fid)
             
             try:
@@ -51,14 +54,13 @@ def convert(tab_fname, samp_dir, hdf_fname, samp_fpat="de-sample-{0}.mtx.gz", mo
                 log.error("no sample file " + samp_fname)
                 continue
             
-            # hdf group name can not contain forward slash
-            name = lempos.replace("/", "_")
-            
-            if name not in samples:
+            if lempos not in samples:
+                # name contains "/" as separator, which h5py interpretes as a subgroup
+                group = samples.create_group(lempos)
                 log.info("adding " + samp_fname)
-                coo_data = np.array([m.row, m.col, m.data])
-                sample = samples.create_dataset(name, data=coo_data, compression='gzip')
-                sample.attrs["shape"] = m.shape
+                # using 8-bit int to save space, assuming that no lemma will
+                # occur over 256 times in a single context
+                coo_matrix_to_hdf5(m, group, data_dtype="=i1", compression='gzip')
             else:
                 log.info("skipping " + samp_fname + " because already present")
             
@@ -76,6 +78,16 @@ if __name__ == "__main__":
     hdf_fname = "de_samples.hdf5"
     convert(tab_fname, samp_dir, hdf_fname, 
             mode="w", 
+            # max_samples=10
+            )
+    
+    # de-en
+    tab_fname = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/de/en/de-en_ambig.tab"
+    samp_dir = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/en/samples/"
+    hdf_fname = "en_samples.hdf5"
+    convert(tab_fname, samp_dir, hdf_fname, 
+            mode="w", 
+            samp_fpat="en-sample-{0}.mtx.gz"
             # max_samples=10
             )
     

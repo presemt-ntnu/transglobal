@@ -88,17 +88,18 @@ freq_score = FreqScore(config["count"]["lemma"]["de"]["pkl_fname"])
 freq_score(graph_list)
 
 
-from tg.nbscore import NBScore
 
 vocab_fname = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/de/de_vocab.pkl"
 vocab = cPickle.load(open(vocab_fname))
 
-import h5py
+from tg.classify import NaiveBayesClassifier
 
-model_hdf_fname = "en-de_nb-model.hdf5"
-model = h5py.File(model_hdf_fname, "r")
+models_fname = "en-de_nb-models.hdf5"
+classifier = NaiveBayesClassifier(models_fname)
 
-nbscorer = NBScore(vocab, model)
+from tg.nbscore import NBScore
+
+nbscorer = NBScore(vocab, classifier)
 nbscorer(graph_list)
 
 

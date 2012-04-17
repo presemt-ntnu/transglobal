@@ -7,24 +7,23 @@ import logging
 import numpy as np
 import scipy.sparse as sp
 
-import sklearn.naive_bayes as nb
+from sklearn.naive_bayes import MultinomialNB
 
-import graphproc
+from tg.graphproc import GraphProces
 
 
 log = logging.getLogger(__name__)
 
 
-class NBScore(graphproc.GraphProces):
+class NBScore(GraphProces):
     """
     add Naive Bayes classifier scores to translation candidates
     """
     
-    def __init__(self, vocab, model, score_attr="nb_score"):
+    def __init__(self, vocab, classifier, score_attr="nb_score"):
         self.vocab = vocab 
-        self.model = model
+        self.classifier = classifier
         self.score_attr = score_attr
-        self.classifier = nb.BernoulliNB()
     
     def _single_run(self, graph):
         log.info("applying {0} to graph {1}".format(
@@ -36,40 +35,31 @@ class NBScore(graphproc.GraphProces):
         sent_vec = sp.csr_matrix(lemma_vectors.sum(axis=0))
         
         for u, lemma_vec in zip(graph.source_nodes_iter(), lemma_vectors):
-            # subtract translation candidates for current source node
-            # from sentence context vector
-            context_vec = sent_vec - lemma_vec
-
             try:
                 source_lempos = " ".join(graph.node[u]["lex_lempos"])
             except KeyError:
                 # not found in lexicon, so no model available
                 continue
-
-            try:
-                model_data = self.model["/models/" + source_lempos]
-            except KeyError:
-                # no model available for lempos
+            
+            # subtract translation candidates for current source node
+            # from sentence context vector
+            context_vec = sent_vec - lemma_vec
+            lempos2score = self.classifier.score(source_lempos, context_vec)
+            
+            if not lempos2score:
+                # no model for source lempos combination
                 continue
-
-            print "***", source_lempos                
-            self.classifier.class_log_prior_ = model_data["class_log_prior"]
-            self.classifier.feature_log_prob_ = model_data["feature_log_prob"]
-            target_names = model_data["target_names"]
-            self.classifier.unique_y = np.arange(len(target_names))            
-            preds = self.classifier.predict_proba(context_vec)
-            lempos2prob = dict(zip(target_names, preds[0]))
-            print lempos2prob
             
             for u,v,data in graph.trans_edges_iter(u):
                 # TODO: handle source/target hypernodes 
                 if graph.is_target_node(v):
-                    # FIX: replace is unnecessary
-                    target_lempos = graph.lempos(v).replace("/", "_")
+                    target_lempos = graph.lempos(v)
+                    
                     try:
-                        data[self.score_attr] = lempos2prob[target_lempos]
+                        data[self.score_attr] = lempos2score[target_lempos]
                     except KeyError:
-                        # model does not predict this target lemma
+                        # model does not predict this target lemma,
+                        # (which may be different from a 0.0 score)
                         continue
                     
     def _make_matrix(self, graph):
