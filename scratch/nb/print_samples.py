@@ -5,11 +5,14 @@
 print samples
 """
 
+import codecs
+import sys
+
 import h5py
 from tg.utils import coo_matrix_from_hdf5
 
 
-def print_samples(fname, lempos=None):
+def print_samples(fname, lempos=None, outf=codecs.getwriter('utf8')(sys.stdout)):
     hdfile = h5py.File(fname, "r")
     vocab = [t.decode("utf-8") for t in hdfile["vocab"]]
     
@@ -21,15 +24,14 @@ def print_samples(fname, lempos=None):
                          for pos in hdfile["samples"][lemma] ]
     
     for lempos in lempos_list:
-        print 78 * "="
-        print lempos
-        print 78 * "="
+        outf.write(78 * "=" + "\n"+ lempos + "\n" + 78 * "=" + "\n")
         group = hdfile["samples"][lempos]
         sample_mat = coo_matrix_from_hdf5(group)
         sample_mat = sample_mat.tocsr()
         for i, row in enumerate(sample_mat):
-            print "{0:<6d}: {1}".format(
-                i, ", ".join(vocab[j] for j in row.indices))
+            outf.write(u"{0:<6d}: {1}\n".format(
+                i, ", ".join(vocab[j] for j in row.indices)))
+                
                 
 if __name__ == "__main__":
     import sys
