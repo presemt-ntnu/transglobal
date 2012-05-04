@@ -14,9 +14,9 @@ log = logging.getLogger(__name__)
 
 class Arrange(graphproc.GraphProces):
     
-    def __init__(self, score_attr="score", *args, **kwargs):
+    def __init__(self, score_attrs=["freq_score"], *args, **kwargs):
         graphproc.GraphProces.__init__(self, *args, **kwargs)
-        self.score_attr = score_attr
+        self.score_attrs = score_attrs
     
     def _single_run(self, graph):
         log.info("applying {0} to graph {1}".format(
@@ -25,18 +25,18 @@ class Arrange(graphproc.GraphProces):
         
         target_lemmas = []
         
-        for u in graph.source_nodes_iter(ordered=True):
-            best_score = -1
-            best_lemma = ""
-            
-            for u,v,data in graph.trans_edges_iter(u):
-                score = self.score(data)
-                if score > best_score:
-                    best_score = score
+        for u, data in graph.source_nodes_iter(ordered=True, data=True):
+            for score_attr in self.score_attrs:
+                try:
+                    best_node = data["best_nodes"][score_attr]
+                except KeyError:
+                    continue
+                else:
                     # TODO: handle hypernodes
-                    best_lemma = graph.node[v].get("lemma", "XXX")
-                    
-            target_lemmas.append(best_lemma)
+                    best_lemma = graph.node[best_node].get("lemma", "__UNKNOWN__")   
+                    target_lemmas.append(best_lemma)   
+                    graph.node[best_node]["best"] = True
+                    break
             
         graph.graph["target_lemma"] = target_lemmas
         graph.graph["target_string"] = u" ".join(target_lemmas)

@@ -24,8 +24,6 @@ set_default_log(level=logging.INFO)
 #log = logging.getLogger("tg.lookup")
 #log.setLevel(logging.DEBUG)
 
-
-
 # get text from input source
 xml_tree = et.ElementTree(file=config["eval"]["presemt"]["de-en"]["src_fname"])
 text = " ".join(seg.text.strip() for seg in  xml_tree.iter("seg"))
@@ -42,19 +40,19 @@ lookup(graph_list)
 # frequency scoring
 freq_score = FreqScore(config["count"]["lemma"]["en"]["pkl_fname"])
 freq_score(graph_list)
+    
+# arrange 
+arrange = Arrange(score_attrs=["freq_score"])
+arrange(graph_list)
 
 # draw
 draw = Draw()
-draw(graph_list, out_format="pdf", score_attr="freq_score")
-    
-# arrange 
-arrange = Arrange(score_attr="freq_score")
-arrange(graph_list)
+draw(graph_list, out_format="pdf", score_attrs=["freq_score"])
 
 # save
-cPickle.dump(graph_list, open("graphs.pkl", "wb"))
+cPickle.dump(graph_list, open("graphs_de-en.pkl", "wb"))
 
-# graph_list = cPickle.load(open("graphs.pkl"))
+# graph_list = cPickle.load(open("graphs_de-en.pkl"))
 
 format = TextFormat()
 format(graph_list)

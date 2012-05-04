@@ -27,12 +27,22 @@ class NaiveBayesClassifier(object):
     models_group_path = "/models"
     
     def __init__(self, models_fname):
-        self.file = h5py.File(models_fname, "r")
+        self._load_models(models_fname)
         self._init_models_group()
+        self._init_vocab()
         self._init_classifier()
         
+    def _load_models(self, models_fname):
+        log.info("loading models from " + models_fname)
+        self.file = h5py.File(models_fname, "r")
+        
+    def _init_vocab(self):
+        self.vocab = dict((lemma.decode("utf-8"),i) for i,lemma in enumerate(self.file["vocab"]))
+        log.info("loaded vocabulary ({0} terms)".format(len(self.vocab)))
+    
     def _init_models_group(self):
         self.models_group = self.file[self.models_group_path]
+        log.info("loaded {} models".format(len(self.models_group)))
     
     def _init_classifier(self):
         # Loading this pickled object requires its class (e.g. MultinomialNB)
@@ -40,6 +50,7 @@ class NaiveBayesClassifier(object):
         # _get_params() and set_params() methods from the BaseEstimator class
         pickled_str = self.models_group["classifier_pickle"].value
         self.classifier = cPickle.loads(pickled_str)
+        log.info("loaded classifier {0}".format(self.classifier))
         
     def score(self, source_lempos, context_vec):
         """
@@ -59,8 +70,9 @@ class NaiveBayesClassifier(object):
         """
         update classifier object with model data
         """
-        # this part is specifc to NB
-        self.target_names = model["target_names"]
+        # target names are stored as utf-8 encoded bytestrin (HDF cannot handle unicode strings) 
+        # so these need to be decode to unicode strings
+        self.target_names = [name.decode("utf-8") for name in model["target_names"]]
         self.classifier.unique_y = np.arange(len(self.target_names))   
         self.classifier.class_log_prior_ = model["class_log_prior_"]
         self.classifier.feature_log_prob_ = model["feature_log_prob_"]

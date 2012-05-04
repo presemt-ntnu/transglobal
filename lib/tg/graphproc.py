@@ -10,6 +10,10 @@ class GraphProces(object):
     abstract base class for TransGraph processors
     """
     
+    def __init__(self,  *args, **kwargs):
+        pass
+                 
+    
     def __call__(self, obj, *args, **kwargs):
         """
         run process with either a single obj or a list of objects 

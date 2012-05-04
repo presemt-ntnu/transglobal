@@ -143,7 +143,7 @@ class TransGraph(nx.DiGraph):
                  for _,d in self.source_nodes_iter(data=True, ordered=True) ]
     
     def source_lempos(self):
-        return [ ( d["lemma"] + self.delimiter + d["tag"] )
+        return [ ( d["lemma"] + self.delimiter + d["pos"] )
                  for _,d in self.source_nodes_iter(data=True, ordered=True) ]
         
     def source_string(self):

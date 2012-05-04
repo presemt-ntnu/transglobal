@@ -96,7 +96,7 @@ def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout, options=config["eva
     """
     simple wrapper of NIST mteval-v13a.pl script
     """
-    command = "{0} {1} -r {2} -s {3} -t {4} {5}".format(
+    command = '{0} {1} -r "{2}" -s "{3}" -t "{4}" {5}'.format(
         config["eval"]["perl_fname"],
         config["eval"]["mteval_fname"],
         ref_fname,
@@ -131,3 +131,20 @@ def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout, options=config["eva
     
     return out, err
 
+
+def get_scores(score_fname):
+    """
+    get overall NIST and BLEU scores from scores file
+    """
+    tokens = open(score_fname).readlines()[7].split()
+    return float(tokens[3]), float(tokens[7])
+
+
+def mteval_lang(lang_pair):
+    """
+    map Presemt language identifier pair to corresponding Mteval language
+    identifiers
+    """
+    mapping = {"en":"English", "de":"German"}
+    source_lang, target_lang = lang_pair.split("-")
+    return mapping[source_lang], mapping[target_lang]

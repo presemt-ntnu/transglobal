@@ -1,4 +1,6 @@
 import logging
+import os
+
 import pydot
 
 from tg.graphproc import GraphProces
@@ -32,14 +34,15 @@ class DrawGV:
         fontsize=8)
     
     EDGE_DEFAULTS = dict(
+        color="gray",
         fontname="Helvetica",
         fontsize=8)
     
     SOURCE_COLOR = "#c2a5cf"
     TARGET_COLOR = "#abdba0"
     
-    def __init__(self, nx_graph, score_attr="score"):
-        self.score_attr = score_attr
+    def __init__(self, nx_graph, score_attrs=["freq_score"]):
+        self.score_attrs = score_attrs
         self.dot_graph = pydot.Dot('g0', graph_type='digraph', **self.GRAPH_DEFAULTS)   
         hypernodes = []
         # dot subgraph of all source nodes, which forces them on the same rank
@@ -80,6 +83,8 @@ class DrawGV:
                     edge = self.source_next_edge(u, v, data)
                 else:
                     edge = self.target_next_edge(u, v, data)
+            elif data.get("name") == "part":
+                edge = self.hyper_edge(u, v, data)
             else:
                 edge = self.trans_edge(u, v, data)
                 
@@ -109,9 +114,11 @@ class DrawGV:
                           **self.NODE_DEFAULTS)        
     
     def target_node(self, u, data):
+        fillcolor="#386CB0" if data.get("best") else self.TARGET_COLOR
+        
         return pydot.Node(str(u), 
                           label=u"{}/{}".format(data["lemma"], data["pos"]).encode("utf-8"), 
-                          fillcolor=self.TARGET_COLOR,
+                          fillcolor=fillcolor,
                           **self.NODE_DEFAULTS)
     
     def hyper_node(self, u, data):
@@ -125,23 +132,32 @@ class DrawGV:
             return pydot.Node(str(u), shape="point", style="bold")
     
     def source_next_edge(self, u, v, data):
-        return pydot.Edge(str(u), str(v), color=self.SOURCE_COLOR, style="bold",
-                          **self.EDGE_DEFAULTS)
+        edge = pydot.Edge(str(u), str(v),  style="bold", **self.EDGE_DEFAULTS)
+        edge.set_color(self.SOURCE_COLOR)
+        return edge
     
     def target_next_edge(self, u, v, data):
-        return pydot.Edge(str(u), str(v), color=self.TARGET_COLOR, style="bold",
-                          **self.EDGE_DEFAULTS)
+        edge = pydot.Edge(str(u), str(v), style="bold", **self.EDGE_DEFAULTS)
+        edge.set_color(self.TARGET_COLOR)
+        return edge
+    
+    def hyper_edge(self, u, v, data):
+        return pydot.Edge(str(u), str(v), **self.EDGE_DEFAULTS)
     
     def trans_edge(self, u, v, data):
-        try:
-            label = "{0:.2f}".format(data[self.score_attr])
-            penwidth = max(10 * data[self.score_attr], 1)
-        except KeyError:
-            label = ""
-            penwidth = 1
+        label = []
+        
+        for score_attr in self.score_attrs:
+            try:
+                label.append("{0:.2f}".format(data[score_attr]))
+            except KeyError:
+                label.append("###")
+                
+        label = "; ".join(label)
+        penwidth = max(10 * data.get(self.score_attrs[0], 0), 1)
                                      
-        return pydot.Edge(str(u), str(v), color="gray", label=label,
-                          penwidth=penwidth, **self.EDGE_DEFAULTS)
+        return pydot.Edge(str(u), str(v), label=label, penwidth=penwidth,
+                          **self.EDGE_DEFAULTS)
         
 
 
@@ -152,13 +168,20 @@ class Draw(GraphProces):
     def __init__(self, drawer=DrawGV):
         self.drawer = drawer
     
-    def _single_run(self, graph, outf_fname=None, out_format="pdf", score_attr="score"):
+    def _single_run(self, graph, out_fname=None, out_format="pdf", score_attrs=["freq_score"], out_dir=""):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
-        drawer = self.drawer(graph, score_attr=score_attr)
-        if not outf_fname:
+        drawer = self.drawer(graph, score_attrs=score_attrs)
+        
+        if not out_fname:
             out_fname = "graph-{}.{}".format(
                 graph.graph["id"],
                 out_format )
+            
+        if out_dir:
+            if not os.path.exists(out_dir):
+                os.makedirs(out_dir)   
+            out_fname = os.path.join(out_dir, out_fname)
+            
         drawer.write(out_fname, out_format)

@@ -11,3 +11,4 @@ _*
 *.hdf5
 *.scores
 *.tst
+exp_*
