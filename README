@@ -6,6 +6,10 @@ Python:
 * networkx
 * pydot
 * suds (for Greek)
+* numpy
+* scipy
+* scilearn kit
+* h5py
 * nose (only for testing)
 
 Other:
