@@ -51,9 +51,9 @@ def _score_model(*args, **kwargs):
     
 def run_all():
     language_pairs = "en-de", "de-en"
-    tab_fnames = ( join(config["large_data_dir"], "corpmod/en/de/en-de_ambig.tab"),
-                   join(config["large_data_dir"], "corpmod/de/en/de-en_ambig.tab") )
-    extended_vectors = False, #True
+    tab_fnames = ( join(config["private_data_dir"], "corpmod/en/de/en-de_ambig.tab"),
+                   join(config["private_data_dir"], "corpmod/de/en/de-en_ambig.tab") )
+    extended_vectors = True, #False
     classifier_types = MultinomialNB, BernoulliNB
     alpha_values = 1.0, 0.1, 0.01, np.finfo(np.double).eps
     corpus_prior_values = False, True
@@ -121,6 +121,6 @@ set_default_log(level=logging.INFO)
 #import logging
 #logging.getLogger("tg.nbscore").setLevel(logging.DEBUG)    
 
-##prepare_graphs()
+prepare_graphs()
 
-run_all()    
+##run_all()    

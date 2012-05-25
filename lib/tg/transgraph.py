@@ -243,3 +243,31 @@ class TransGraph(nx.DiGraph):
     def trans_edges_iter(self, u=None):
         return ( (u,v,d) for _,v,d in self.out_edges_iter(u, data=True)
                  if d.get("name") == "trans" )
+    
+    def max_score(self, u, score_attr):
+        """
+        find max score
+        
+        Parameters
+        ----------
+        u: str
+            Source node identifier
+        score_attr: str
+            Name of edge attribute containing the score.
+            
+        Returns
+        -------
+        t: tuple (score, node) or None
+            A tuple t of a numerical score and target node identifier.
+            If the score attribute is not found on any of the 
+            translation edges, then score is None and a arbitrary target 
+            node is chosen. If the there are no translation edges, then
+            both score and node are None.
+        """
+        scores = [ (d.get(score_attr), v) 
+                   for _, v, d in self.trans_edges_iter(u) ]
+        return max(scores + [(None, None)])
+
+        
+        
+        

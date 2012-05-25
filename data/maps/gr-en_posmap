@@ -1,0 +1,23 @@
+# Mapping from Parole tags used by ILSP NLP tagger for Greek to
+# tags used at the Greek side of the Presemt Greek-English dictionary. 
+# Tags without a counterpart are left unmapped (meaning that the tag 
+# is ignored during matching).
+# Matching for Greek only takes place on the first part of the tag. 
+
+# At =          # Article
+Aj = aj         # Adjective
+NoCm = nocm     # Common noun
+NoPr = nopr     # Proper noun
+Nm = nm         # Numeral
+# Pn =          # Pronoun
+Vb = vb         # Verb
+Ad = ad         # Adverb
+AsPp = aspp     # Preposition & Article
+# Pt =          # Particle
+# Rg =          # Rest group
+# Ij =          # Interjection
+Cj = cj         # Conjunction
+
+
+
+

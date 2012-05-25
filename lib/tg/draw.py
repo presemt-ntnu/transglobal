@@ -41,8 +41,9 @@ class DrawGV:
     SOURCE_COLOR = "#c2a5cf"
     TARGET_COLOR = "#abdba0"
     
-    def __init__(self, nx_graph, score_attrs=["freq_score"]):
-        self.score_attrs = score_attrs
+    def __init__(self, nx_graph, best_score_attr="freq_score", base_score_attrs=[]):
+        self.base_score_attrs = base_score_attrs
+        self.best_score_attr = best_score_attr
         self.dot_graph = pydot.Dot('g0', graph_type='digraph', **self.GRAPH_DEFAULTS)   
         hypernodes = []
         # dot subgraph of all source nodes, which forces them on the same rank
@@ -90,6 +91,9 @@ class DrawGV:
                 
             self.dot_graph.add_edge(edge)
             
+        # 4. Mark best nodes
+        self.mark_best_nodes(nx_graph)
+        
              
     def write(self, out_fname, out_format="raw"):
         """
@@ -106,7 +110,8 @@ class DrawGV:
     
     def source_node(self, u, data):
         return pydot.Node(str(u), 
-                          label=u"{}/{}\\n{}".format(
+                          label=u"{}\\n{}/{}\\n{}".format(
+                              data["word"],
                               data["lemma"], 
                               data["pos"],
                               "|".join(data.get("lex_lempos", []))).encode("utf-8"), 
@@ -114,11 +119,9 @@ class DrawGV:
                           **self.NODE_DEFAULTS)        
     
     def target_node(self, u, data):
-        fillcolor="#386CB0" if data.get("best") else self.TARGET_COLOR
-        
         return pydot.Node(str(u), 
                           label=u"{}/{}".format(data["lemma"], data["pos"]).encode("utf-8"), 
-                          fillcolor=fillcolor,
+                          fillcolor=self.TARGET_COLOR,
                           **self.NODE_DEFAULTS)
     
     def hyper_node(self, u, data):
@@ -145,21 +148,46 @@ class DrawGV:
         return pydot.Edge(str(u), str(v), **self.EDGE_DEFAULTS)
     
     def trans_edge(self, u, v, data):
-        label = []
+        try:
+            label = "{0:.2f}".format(data[self.best_score_attr])
+        except KeyError:
+            label = "???"
+            
+        penwidth = max(10 * data.get(self.best_score_attr, 0), 1)
         
-        for score_attr in self.score_attrs:
-            try:
-                label.append("{0:.2f}".format(data[score_attr]))
-            except KeyError:
-                label.append("###")
+        if self.base_score_attrs:
+            labels = []
+            
+            for score_attr in self.base_score_attrs:
+                try:
+                    labels.append("{0}={1:.2f}".format(score_attr,
+                                                       data[score_attr]))
+                except KeyError:
+                    labels.append("{0}=???".format(score_attr))
                 
-        label = "; ".join(label)
-        penwidth = max(10 * data.get(self.score_attrs[0], 0), 1)
+            label += " (" + "; ".join(labels) + ")"
                                      
         return pydot.Edge(str(u), str(v), label=label, penwidth=penwidth,
-                          **self.EDGE_DEFAULTS)
+                       **self.EDGE_DEFAULTS)
         
-
+    def mark_best_nodes(self, nx_graph):
+        for u in nx_graph.source_nodes_iter():
+            v = nx_graph.max_score(u, self.best_score_attr)[1]
+            if v:
+                node = self.overall_best_node(v)
+                self.dot_graph.add_node(node)
+                
+            for score_attr in self.base_score_attrs:
+                v = nx_graph.max_score(u, self.best_score_attr)[1]
+                if v:
+                    node = self.base_best_node(v)
+                    self.dot_graph.add_node(node)
+                   
+    def overall_best_node(self, u):
+        return pydot.Node(str(u), fillcolor="#386CB0")
+    
+    def base_best_node(self, u):
+        return pydot.Node(str(u), color="black")
 
 
 
@@ -168,11 +196,13 @@ class Draw(GraphProces):
     def __init__(self, drawer=DrawGV):
         self.drawer = drawer
     
-    def _single_run(self, graph, out_fname=None, out_format="pdf", score_attrs=["freq_score"], out_dir=""):
+    def _single_run(self, graph, out_fname=None, out_format="pdf",
+                    best_score_attr="freq_score", base_score_attrs=[], out_dir=""):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
-        drawer = self.drawer(graph, score_attrs=score_attrs)
+        drawer = self.drawer(graph, best_score_attr=best_score_attr, 
+                             base_score_attrs=base_score_attrs)
         
         if not out_fname:
             out_fname = "graph-{}.{}".format(

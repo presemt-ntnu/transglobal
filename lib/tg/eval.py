@@ -13,6 +13,8 @@ from tg.config import config
 
 log = logging.getLogger(__name__)
 
+log.setLevel(logging.DEBUG)
+
 
 def lemmatize(in_fname, tagger_command, encoding, outf=sys.stdout):
     """
@@ -92,7 +94,8 @@ def lemmatize(in_fname, tagger_command, encoding, outf=sys.stdout):
     
     
     
-def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout, options=config["eval"]["mteval_opts"]):
+def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout,
+           options=config["eval"]["mteval_opts"]):
     """
     simple wrapper of NIST mteval-v13a.pl script
     """
@@ -112,10 +115,10 @@ def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout, options=config["eva
     # send text and retrieve tagger output 
     out, err = proc.communicate()    
     
-    log.debug("mteval standard output:\n" + out)
+    log.debug(u"mteval standard output:\n" + out.decode("utf-8"))
     
     if err:
-        log.error("mteval standard error:\n" + err)
+        log.error(u"mteval standard error:\n" + err.decode("utf-8"))
     
     if isinstance(outf, basestring):
         outf = open(outf, "w")
@@ -136,8 +139,11 @@ def get_scores(score_fname):
     """
     get overall NIST and BLEU scores from scores file
     """
-    tokens = open(score_fname).readlines()[7].split()
-    return float(tokens[3]), float(tokens[7])
+    # TODO: make parsing of scores more robust
+    tokens = codecs.open(score_fname, encoding="utf-8").readlines()[-19].split()
+    scores = float(tokens[3]), float(tokens[7])
+    log.info("scores: NIST = {0}; BLEU = {1}".format(*scores))
+    return scores
 
 
 def mteval_lang(lang_pair):
@@ -145,6 +151,8 @@ def mteval_lang(lang_pair):
     map Presemt language identifier pair to corresponding Mteval language
     identifiers
     """
-    mapping = {"en":"English", "de":"German"}
+    mapping = {"en":"English", 
+               "de":"German",
+               "gr":"Greek"}
     source_lang, target_lang = lang_pair.split("-")
     return mapping[source_lang], mapping[target_lang]

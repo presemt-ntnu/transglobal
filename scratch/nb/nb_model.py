@@ -2,7 +2,9 @@
 create naive bayes models and store parameters in hdf5 
 """
 
-# TODO: experiment with compression and chunk size
+# THIS IS OLD CODE - DON'T USE!!
+
+
 
 import codecs
 import cPickle
@@ -63,7 +65,7 @@ def save_nb_classifier_to_hdf5(group, classifier):
 
 def make_models(tab_fname, samp_hdf_fname, models_hdf_fname, classifier,
                 save_classifier_func=save_nb_classifier_to_hdf5, counts_pkl_fname=None,
-                max_models=None, source_lempos_subset=None):
+                max_models=None, source_lempos_subset=None, vocab_i=None, vocab_j=None):
     start_time = time.time() 
     log.info("opening samples file " + samp_hdf_fname)
     sample_hdfile = h5py.File(samp_hdf_fname, "r")
@@ -90,7 +92,11 @@ def make_models(tab_fname, samp_hdf_fname, models_hdf_fname, classifier,
     models["classifier_pickle"] = cPickle.dumps(classifier) 
     
     log.info("copying vocabulary ({0} terms)".format(len(sample_hdfile["vocab"])))
-    models_hdfile.create_dataset("vocab", data=sample_hdfile["vocab"])    
+    # create new type for variable-length strings
+    # see http://code.google.com/p/h5py/wiki/HowTo#Variable-length_strings
+    str_type = h5py.new_vlen(str)
+    models_hdfile.create_dataset("vocab", data=sample_hdfile["vocab"][vocab_i:vocab_j], 
+                                 dtype=str_type)
     
     prev_source_lempos = None
     models_count = 0
@@ -137,6 +143,7 @@ def make_models(tab_fname, samp_hdf_fname, models_hdf_fname, classifier,
                 targets = np.hstack((targets, new_targets))
         else:
             if prev_source_lempos and target_count:
+                data = data.tocsr()[:, vocab_i:vocab_j]
                 log.debug(u"fitting classifer for {} with {} targets on {} instances with {} features".format(
                     prev_source_lempos, len(target_names), data.shape[0], data.shape[1]))
                 

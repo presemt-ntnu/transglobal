@@ -119,9 +119,10 @@ def make_extension_matrix(samp_hdfile, tdict_pkl_fname, reverse_tdict_pkl_fname)
                     # so assume boolean
                     em[i,j] = 1
                     
-        log.debug(u"{0} ==> {1}".format(
-            target_lemma,
-            ", ".join([str((reverse_vocab[j], count)) for j, count in zip(em.rows[i], em.data[i])])))
+        if log.isEnabledFor(logging.DEBUG):
+            log.debug(u"{0} ==> {1}".format(
+                target_lemma,
+                ", ".join([str((reverse_vocab[j], count)) for j, count in zip(em.rows[i], em.data[i])])))
                    
     log.info("converting to csr_matrix") 
     return em.tocsr()
@@ -130,7 +131,7 @@ def make_extension_matrix(samp_hdfile, tdict_pkl_fname, reverse_tdict_pkl_fname)
 
 if __name__ == "__main__":
     from tg.utils import set_default_log
-    set_default_log(level=logging.INFO)
+    set_default_log(level=logging.DEBUG)
     
     from tg.config import config
     
@@ -139,18 +140,19 @@ if __name__ == "__main__":
                    tdict_pkl_fname = config["dict"]["de-en"]["pkl_fname"],
                    reverse_tdict_pkl_fname = config["dict"]["en-de"]["pkl_fname"],
                    #ext_hdf_fname = "en_samples_filtered_extended.hdf5",
-                   ext_hdf_fname = "en_samples_subset_filtered_extended.hdf5",
-                   #max_samp = 1,
+                   ##ext_hdf_fname = "en_samples_subset_filtered_extended.hdf5",
+                   ext_hdf_fname = "ff.hdf5",
+                   max_samp = 1,
                    )
     
-    extend_samples(#samp_hdf_fname = "de_samples_filtered.hdf5", 
-                   samp_hdf_fname = "de_samples_subset_filtered.hdf5", 
-                   tdict_pkl_fname = config["dict"]["en-de"]["pkl_fname"],
-                   reverse_tdict_pkl_fname = config["dict"]["de-en"]["pkl_fname"],
-                   #ext_hdf_fname = "de_samples_filtered_extended.hdf5",
-                   ext_hdf_fname = "de_samples_subset_filtered_extended.hdf5",
-                   #max_samp = 1,
-                   )
+    #extend_samples(#samp_hdf_fname = "de_samples_filtered.hdf5", 
+                   #samp_hdf_fname = "de_samples_subset_filtered.hdf5", 
+                   #tdict_pkl_fname = config["dict"]["en-de"]["pkl_fname"],
+                   #reverse_tdict_pkl_fname = config["dict"]["de-en"]["pkl_fname"],
+                   ##ext_hdf_fname = "de_samples_filtered_extended.hdf5",
+                   #ext_hdf_fname = "de_samples_subset_filtered_extended.hdf5",
+                   ##max_samp = 1,
+                   #)
     
   
     

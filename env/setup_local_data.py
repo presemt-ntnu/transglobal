@@ -9,66 +9,96 @@ from tg.utils import set_default_log
 set_default_log(level=logging.INFO)
 
 from tg.config import config
-from tg.transdict import TransDict
+from tg.transdict import TransDict, TransDictGreek
 from tg.counts import mk_counts_pkl
 from tg.eval import lemmatize
 from tg.utils import create_dirs
 
 
+
+def create_all():
+    create_dict_pkl()
+    create_counts_pkl()
+    create_lemma_data()
+
 #-----------------------------------------------------------------------------
 # create pickled translation dictionaries
 #-----------------------------------------------------------------------------
 
-dict_fname = config["dict"]["de-en"]["xml_fname"]
-posmap_fname = config["dict"]["de-en"]["posmap_fname"]
-trans_dict = TransDict.from_xml(dict_fname, pos_map=posmap_fname)
-pkl_fname = config["dict"]["de-en"]["pkl_fname"]
-create_dirs(pkl_fname)
-trans_dict.dump(pkl_fname)
-
-dict_fname = config["dict"]["de-en"]["xml_fname"]
-posmap_fname = config["dict"]["en-de"]["posmap_fname"]
-# use same dict but reversed
-trans_dict = TransDict.from_xml(dict_fname, reverse=True, pos_map=posmap_fname)
-pkl_fname = config["dict"]["en-de"]["pkl_fname"]
-create_dirs(pkl_fname)
-trans_dict.dump(pkl_fname)
+def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en")):
+    for lang_pair in lang_pairs:
+        if lang_pair == "de-en":
+            reverse = True
+        else:
+            reverse = False
+            
+        if lang_pair.startswith("gr-"):
+            trans_dict_class = TransDictGreek
+        else:
+            trans_dict_class = TransDict
+            
+        dict_fname = config["dict"][lang_pair]["xml_fname"]
+        posmap_fname = config["dict"][lang_pair]["posmap_fname"]
+        trans_dict = trans_dict_class.from_xml(dict_fname, 
+                                               reverse=reverse, 
+                                               pos_map=posmap_fname)
+        pkl_fname = config["dict"][lang_pair]["pkl_fname"]
+        create_dirs(pkl_fname)
+        trans_dict.dump(pkl_fname)
 
 
 #-----------------------------------------------------------------------------
 # create pickled counts
 #-----------------------------------------------------------------------------
 
-for lang in ("de", "en"):
-    pkl_fname = config["count"]["lemma"][lang]["pkl_fname"]
-    create_dirs(pkl_fname)
-    mk_counts_pkl(
-        config["count"]["lemma"][lang]["counts_fname"], 
-        pkl_fname,
-        int(config["count"]["lemma"][lang]["min_count"]))
+def create_counts_pkl(languages=(("de", "en", "gr"),)):
+    # so far, counts are only used for target languages
+    for lang in languages:
+        pkl_fname = config["count"]["lemma"][lang]["pkl_fname"]
+        create_dirs(pkl_fname)
+        mk_counts_pkl(
+            config["count"]["lemma"][lang]["counts_fname"], 
+            pkl_fname,
+            int(config["count"]["lemma"][lang]["min_count"]))
 
 
 #-----------------------------------------------------------------------------
 # create lemmatized evaluation data
 #-----------------------------------------------------------------------------
 
-lemma_ref_fname = config["eval"]["presemt"]["de-en"]["lemma_ref_fname"]
-create_dirs(lemma_ref_fname)
-lemmatize(
-    config["eval"]["presemt"]["de-en"]["word_ref_fname"],
-    config["tagger"]["en"]["command"],
-    config["tagger"]["en"]["encoding"],
-    lemma_ref_fname)
 
-lemma_ref_fname = config["eval"]["presemt"]["en-de"]["lemma_ref_fname"]
-create_dirs(lemma_ref_fname)
-lemmatize(
-    config["eval"]["presemt"]["en-de"]["word_ref_fname"],
-    config["tagger"]["de"]["command"],
-    config["tagger"]["de"]["encoding"],
-    lemma_ref_fname)
+def create_lemma_data():
+    create_lemma_data_METIS()
+    create_lemma_data_PRESEMT_dev()
 
-    
+def create_lemma_data_METIS():
+    # METIS data 
+    for lang_pair in "de-en", "en-de":
+        target_lang = lang_pair.split("-")[1]
+        lemma_ref_fname = config["eval"]["metis"][lang_pair]["lemma_ref_fname"]
+        create_dirs(lemma_ref_fname)
+        lemmatize(
+            config["eval"]["metis"][lang_pair]["word_ref_fname"],
+            config["tagger"][target_lang]["command"],
+            config["tagger"][target_lang]["encoding"],
+            lemma_ref_fname)
 
+
+def create_lemma_data_PRESEMT_dev():
+    # PRESEMT development data
+    #TODO: Greek data is automatically produces yet
+    for lang_pair in "de-en", "en-de":
+        target_lang = lang_pair.split("-")[1]
+        lemma_ref_fname = config["eval"]["presemt-dev"][lang_pair]["lemma_ref_fname"]
+        create_dirs(lemma_ref_fname)
+        lemmatize(
+            config["eval"]["presemt-dev"][lang_pair]["word_ref_fname"],
+            config["tagger"][target_lang]["command"],
+            config["tagger"][target_lang]["encoding"],
+            lemma_ref_fname)
+
+
+if __name__ == "__main__":
+    create_all()
 
 

@@ -205,6 +205,56 @@ class TransDict(object):
             
         return mapped_lempos[:-1]
     
+
+
+class TransDictGreek(TransDict):
+    """
+    A hack that permits partial matching of Greek POS tags.
+    
+    The Greek tagger delivers tags such as:
+    AsPpSp
+    AdXxBa
+    CjCo
+    NoCmFeSgAc
+    NoCmNeSgAc
+    
+    The list of possible tags is very long.
+    
+    The first two letters form the POS tag, the rest are features. However,
+    sometimes features are relevant for mapping. For example, NoCm is a
+    common noun (with tag "nocm" in the lexicon) and NoPr is a proper noun
+    (with tag "nopr" in the lexicon). So simply splitting off the initial two
+    chars won't do. 
+    
+    Instead we match the tagger's tag against each of the tags in the POS map
+    and check if the first part matches. For example, a tag like NoCmFeSgAc
+    matches NoCm and therefore gets mapped to the lexicon tag "nocm". Yes,
+    this is ugly and expensive.
+    """
+    
+    def _map_pos(self, lempos):
+        """
+        map all pos tags in lempos
+        """
+        mapped_lempos = ""
+        
+        # map pos tag
+        for pair in lempos.split():
+            lemma, pos = pair.rsplit(self.delimiter, 1)
+            mapped_lempos += ( lemma + 
+                               self.delimiter + 
+                               self._map_single_pos(pos) + 
+                               " " )
+            
+        return mapped_lempos[:-1]
+    
+    def _map_single_pos(self, pos):
+        for from_pos, to_pos in self.pos_map.items():
+            if pos.startswith(from_pos):
+                return to_pos
+        return ""
+    
+    
     
 
     

@@ -19,6 +19,10 @@ import graphproc
 log = logging.getLogger(__name__)
 
 
+def wrap(graph, *args, **kwargs):
+    print graph
+    
+
 class FreqScore(graphproc.GraphProces):
     """
     score translation candidates according to their frequency
@@ -29,6 +33,7 @@ class FreqScore(graphproc.GraphProces):
         self.counts_dict = cPickle.load(open(counts_pkl_fname))
         self.score_attr = score_attr
         self.oov_count = 0    
+
     def _single_run(self, graph):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
@@ -38,20 +43,16 @@ class FreqScore(graphproc.GraphProces):
             edge_data = []
             edge_counts = []
             total = 0.0
-            best_count, best_node = None, None
+            best_count = None
             
             for u,v,data in graph.trans_edges_iter(u):
                 count = self.count(graph, v)
                 edge_counts.append(count)
                 total += count
                 edge_data.append(data)
-                
-                if count > best_count:
-                    best_count, best_node = count, v
+                best_count = max(count, best_count)
             
-            if best_node:        
-                graph.node[u].setdefault("best_nodes", {})[self.score_attr] = best_node
-                
+            # convert counts to probabilities
             for count, data in zip(edge_counts, edge_data):
                 try:
                     data[self.score_attr] = count / total 

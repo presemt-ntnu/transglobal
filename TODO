@@ -1,27 +1,36 @@
+Languages:
+- EL-EN, EL-DE
+- NO-EN, NO-DE (pos tags in lexicon?)
+
+MWU:
+- exploit lookup of MWU
+
+Code:
+- more unit tests
+
+Classification:
+- centroid models
 - restrict effect of models to content words, excluding certain function words ?
+- tf*idf weighting and/or chi2 feature selection
 
-- are there compounded tags in lexicon!? e.g
-sein/v*.fullsein/pro|sein/v*.sein in graph2
-
+Lexicon:
+- are there compounded tags in lexicon!? e.g sein/v*.fullsein/pro|sein/v*.sein in graph2
 - German lemma d/art is not in lexicon
-
 - bug in lexicon? be->sein missing?
 
-- X2 feature selection
-
+Frequency:
+- before assigning a frequency to a translation, 
+check if there are other source words with the same translation, 
+and if so use the source counts to assign a proportionate frequency
 - get counts for multi-words from corpus through Manatee
-- arrange using MWU
+- use lempos rather than lemma counts
 
-- VSM WTD models
-- NB/DT WTD models
-- other languages
-
+Semeval:
 - produce graphs for Semeval data (with head marked)
 
+Other:
 - n-gram models
 - Lars' bidirectional lookup
-
 - determine lexical coverage & compute max scores
-
 - use zc buildout?
 - disambiguation as classification with evidence from multiple sources?

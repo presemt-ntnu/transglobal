@@ -1,15 +1,20 @@
 Software dependencies
 ---------------------
 
+Python:
 * configobj
 * networkx
-* pydot and Graphviz
+* pydot
+* suds (for Greek)
 * nose (only for testing)
-* TreeTagger for English, German 
 
-All Python libs are included in the Enthought Python Distribution (EPD).
-Tested with EPD 7.2 64-bit for Mac OS X.
+Other:
+* Graphviz (dot)
+* TreeTagger for English, German
 
+Most Python libs are included in the Enthought Python Distribution (EPD).
+Note: "suds" is not and should be installed manually. Tested with EPD 7.2
+64-bit for Mac OS X.
 
 
 Data dependecies
@@ -17,6 +22,7 @@ Data dependecies
 
 * Dictionaries in Presemt XML format in directory $TG_BASE_DIR/_data/dicts
 * Sorted lemma counts produced with Manatee in directory $TG_BASE_DIR/_data/counts
+* METIX and PRESEMT evaluation data
 
 
 Setup
