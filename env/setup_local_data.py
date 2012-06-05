@@ -67,35 +67,18 @@ def create_counts_pkl(languages=(("de", "en", "gr"),)):
 #-----------------------------------------------------------------------------
 
 
-def create_lemma_data():
-    create_lemma_data_METIS()
-    create_lemma_data_PRESEMT_dev()
+def create_lemma_data(data=("metis", "presemt-dev", 
+                            "wmt08", "wmt09", "wmt10", "wmt11")):
+    for data_set in data:
+        for lang_pair in config["eval"][data_set].keys():
+            target_lang = lang_pair.split("-")[1]
+            lemma_ref_fname = config["eval"][data_set][lang_pair]["lemma_ref_fname"]
+            create_dirs(lemma_ref_fname)
+            lemmatize(
+                config["eval"][data_set][lang_pair]["word_ref_fname"],
+                target_lang,
+                outf=lemma_ref_fname)
 
-def create_lemma_data_METIS():
-    # METIS data 
-    for lang_pair in "de-en", "en-de":
-        target_lang = lang_pair.split("-")[1]
-        lemma_ref_fname = config["eval"]["metis"][lang_pair]["lemma_ref_fname"]
-        create_dirs(lemma_ref_fname)
-        lemmatize(
-            config["eval"]["metis"][lang_pair]["word_ref_fname"],
-            config["tagger"][target_lang]["command"],
-            config["tagger"][target_lang]["encoding"],
-            lemma_ref_fname)
-
-
-def create_lemma_data_PRESEMT_dev():
-    # PRESEMT development data
-    #TODO: Greek data is automatically produces yet
-    for lang_pair in "de-en", "en-de":
-        target_lang = lang_pair.split("-")[1]
-        lemma_ref_fname = config["eval"]["presemt-dev"][lang_pair]["lemma_ref_fname"]
-        create_dirs(lemma_ref_fname)
-        lemmatize(
-            config["eval"]["presemt-dev"][lang_pair]["word_ref_fname"],
-            config["tagger"][target_lang]["command"],
-            config["tagger"][target_lang]["encoding"],
-            lemma_ref_fname)
 
 
 if __name__ == "__main__":

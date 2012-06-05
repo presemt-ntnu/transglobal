@@ -1,0 +1,4 @@
+Changes to WMT test files as downloaded from http://www.statmt.org/wmt12/translation-task.html:
+- changed "&" to "&amp;" 
+- fixed a number unclosed <hl> tags
+

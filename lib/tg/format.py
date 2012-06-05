@@ -100,8 +100,6 @@ class TextFormat(Format):
         if close:
             outf.close()
     
-    
-
 
 class MtevalFormat(Format):
     """
@@ -109,49 +107,52 @@ class MtevalFormat(Format):
     
     Parameters
     ----------
+    src_fname: str
+        Name of file containing translation source text in Mteval XML format 
+    trglang: str
+        Value of trglang attribute on root element
+    sysid: str
+        Value of sysid attribute on doc elements
     score_attr: string, optional
         attribute on translation edges which contains the scores
     unknown: None or str, optional
         Target lemma to use when no translations were found. 
         The default value of None means that the source lemma will be used. 
-    setid: str, optional
-    srclang: str,optional
-    trglang: str,optional
-    sysid: str, optional
-    docid: str, optional
-    genre: str, optional
         
     Attributes
     ----------
-    tree: ElementTree instance
+    elem_tree: ElementTree instance
         Contains result of formatting as an XML tree.
     """
     
-    xml_declaration = ( 
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<!DOCTYPE mteval SYSTEM '
-        '"ftp://jaguar.ncsl.nist.gov/mt/resources/mteval-xml-v1.3.dtd">\n' )
-    
-    def __init__(self, score_attr="best_score", unknown=None,
-                 setid="presemt", srclang="src", trglang="tgt", sysid="transglobal",
-                 docid="test", genre="xx"):
+    def __init__(self, src_fname, trglang, sysid,
+                 score_attr="best_score", unknown=None):
         Format.__init__(self, score_attr=score_attr, unknown=unknown)
-        # see ftp://jaguar.ncsl.nist.gov/mt/resources/mteval-xml-v1.6.dtd
-        root_el = et.Element("mteval")
-        tstset_el = et.SubElement(root_el, "tstset", setid=setid, srclang=srclang,
-                                  trglang=trglang)
-        self.doc_el = et.SubElement(tstset_el, "doc", docid=docid, genre=genre, sysid=sysid)
-        self.tree = et.ElementTree(root_el)
-        self.seg_count = 0
+        self.src_fname = src_fname
+        self.trglang = trglang
+        self.sysid = sysid
+        self.elem_tree = None
         
-    def _single_run(self, graph):
-        log.info("applying {0} to graph {1}".format(
-            self.__class__.__name__,
-            graph.graph["id"]))
-        self.seg_count += 1
-        seg_el = et.SubElement(self.doc_el, "seg", id=str(self.seg_count))
-        seg_el.text = self._target_lemma_string(graph)
-        
+    def _batch_run(self, graph_list):
+        # _single_run() does not make sense in this format
+        graph_list = iter(graph_list)
+            
+        for event, elem in et.iterparse(self.src_fname):  
+            if elem.tag == "srcset":
+                elem.tag = "tstset"
+                elem.set("trglang", self.trglang)
+            elif elem.tag == "doc":
+                elem.set("sysid", self.sysid)
+            elif elem.tag == "seg":
+                graph = graph_list.next()
+                log.info("applying {0} to graph {1}".format(
+                    self.__class__.__name__,
+                    graph.graph["id"]))                
+                elem.text = self._target_lemma_string(graph)
+
+                
+        self.elem_tree = et.ElementTree(elem) 
+
     def write(self, outf=sys.stdout, pprint=True):
         """
         Write formatted translation output to stream
@@ -159,11 +160,12 @@ class MtevalFormat(Format):
         Parameters
         ----------
         outf: str of file instance, optional
+            Output file
         pprint: bool, optional
             Pretty print XML output using indentation
         """
         if pprint: 
-            indent(self.tree.getroot())
+            indent(self.elem_tree.getroot())
 
         if isinstance(outf, basestring):
             outf = codecs.open(outf, "w")
@@ -172,16 +174,8 @@ class MtevalFormat(Format):
             close = False
             
         log.info("writing output in Mteval format to " + outf.name)            
-        outf.write(self.xml_declaration)
-        self.tree.write(outf, encoding="utf-8")
+        self.elem_tree.write(outf, encoding="utf-8")
         
         if close:
-            outf.close()
-        
-        
-        
-        
-        
-        
-    
-    
+            outf.close()                 
+

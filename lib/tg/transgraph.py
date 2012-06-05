@@ -10,18 +10,19 @@ log = logging.getLogger(__name__)
 
 class TransGraph(nx.DiGraph):
     
+    source_node_prefix = "s"
+    target_node_prefix = "t"
+    hyper_source_node_prefix = "hs"
+    hyper_target_node_prefix = "ht"
+    delimiter = u"/"
+    
     def __init__(self, data=None, **attr):
         nx.DiGraph.__init__(self, data, **attr) 
-        self.source_node_prefix = "s"
-        self.target_node_prefix = "t"
-        self.hyper_source_node_prefix = "hs"
-        self.hyper_target_node_prefix = "ht"
         self.source_node_count = 0   
         self.target_node_count = 0   
         self.hyper_source_node_count = 0   
         self.hyper_target_node_count = 0  
         self.source_start_node = None
-        self.delimiter = u"/"
          
     #-------------------------------------------------------------------------
     # source nodes

@@ -12,7 +12,8 @@ from tg.exps.preproc import preprocess
 from tg.exps.postproc import postprocess
 
 
-def most_frequent_translation(data_sets=("metis", "presemt-dev"),
+def most_frequent_translation(data_sets=("metis", "presemt-dev",
+                                         "wmt08","wmt09", "wmt10", "wmt11"),
                               lang_pairs=None,
                               draw=False):
     """
@@ -39,6 +40,7 @@ def most_frequent_translation(data_sets=("metis", "presemt-dev"),
 
 # for logging to stderr in utf-8 use:
 set_default_log(level=logging.INFO)
+#logging.getLogger("tg.annot").setLevel(logging.DEBUG)
 
 most_frequent_translation()
 

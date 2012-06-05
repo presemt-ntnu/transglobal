@@ -26,13 +26,12 @@ def postprocess(data_set, lang_pair, out_dir, exp_name, graph_list,
     text_format.write(os.path.join(out_dir, exp_name + ".txt"))
     
     # write translation output in Mteval format
-    srclang, trglang = mteval_lang(lang_pair)
+    trglang = lang_pair.split("-")[1]
     mte_format = MtevalFormat(
-        score_attr=score_attr, 
-        srclang=srclang, trglang=trglang, 
-        sysid="transglobal:most frequent translation",
-        setid=config["eval"][data_set][lang_pair]["setid"],
-        docid=config["eval"][data_set][lang_pair]["docid"])
+        config["eval"][data_set][lang_pair]["src_fname"],
+        trglang=trglang, 
+        sysid=sysid,
+        score_attr=score_attr)
     mte_format(graph_list)
     tst_fname = os.path.join(out_dir, exp_name + ".tst")
     mte_format.write(tst_fname)
