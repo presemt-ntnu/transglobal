@@ -68,9 +68,10 @@ def create_counts_pkl(languages=(("de", "en", "gr"),)):
 
 
 def create_lemma_data(data=("metis", "presemt-dev", 
-                            "wmt08", "wmt09", "wmt10", "wmt11")):
+                            "wmt08", "wmt09", "wmt10", "wmt11"),
+                      lang_pairs=()):
     for data_set in data:
-        for lang_pair in config["eval"][data_set].keys():
+        for lang_pair in lang_pairs or config["eval"][data_set].keys():
             target_lang = lang_pair.split("-")[1]
             lemma_ref_fname = config["eval"][data_set][lang_pair]["lemma_ref_fname"]
             create_dirs(lemma_ref_fname)
@@ -83,5 +84,7 @@ def create_lemma_data(data=("metis", "presemt-dev",
 
 if __name__ == "__main__":
     create_all()
+    #create_lemma_data(data=("presemt-dev",),
+    #                  lang_pairs=("no-de",))
 
 
