@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mteval SYSTEM "ftp://jaguar.ncsl.nist.gov/mt/resources/mteval-xml-v1.3.dtd">
+<mteval>
+<srcset setid="NO200_dev" srclang="Norwegian">
+<doc docid="doc1" genre="web">
+<p>
+<seg id="1">Den utskremte ungdommen hos forhandleren ville ikke ta tilbake skoene fordi de var så skitne.</seg>
+</p>
+<p>
+<seg id="2">For at denne politikken skulle lykkes, var det imidlertid nødvendig å stanse kapprustningen og få til reelle nedrustningsavtaler.</seg>
+</p>
+<p>
+<seg id="3">For mer informasjon, besøk greendayacrosstheworld.org .</seg>
+</p>
+<p>
+<seg id="4">Billie Joe twitret senere om videoen også funnet på GDA .</seg>
+</p>
+<p>
+<seg id="5">Dette er av våre kloke urbefolkninger blitt kalt Endetiden.</seg>
+</p>
+<p>
+<seg id="6">Et problem med såpe er at bare alkalisaltene av de store fettsyrene er vannløselige.</seg>
+</p>
+<p>
+<seg id="7">Flertallets innstilling fikk ved behandlingen i Stortinget støtte av Venstre.</seg>
+</p>
+</doc>
+</srcset>
+</mteval>

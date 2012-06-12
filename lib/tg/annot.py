@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 constructing linguistically annotated translation graphs
 """
@@ -97,18 +99,18 @@ class TreeTagger(Annotator):
         # Embed sentences in a simple xml strcture.
         # Default Treetagger skips xml tags but keep them in its output,
         # so sentence boundaries are retained.
-        text = u"<doc>"
+        text = u"<doc>\n"
         
         for sent in sentences:
             if encoding:
                 sent = sent.decode(encoding)
-            text += u"<{0}>{1}</{2}>".format(xml_sent_tag, sent, xml_sent_tag)
+            text += u"<{0}>{1}</{2}>\n".format(xml_sent_tag, sent, xml_sent_tag)
             
-        text += u"</doc>"
+        text += u"</doc>\n"
         return text
         
     def _tree_tagger(self, text):
-        log.debug("TreeTagger input:\n" + text)
+        log.debug(u"TreeTagger input:\n" + text)
         
         # convert from unicode to given encoding
         # we may loose some data here!
@@ -128,8 +130,8 @@ class TreeTagger(Annotator):
         # and convert back from given encoding to unicode
         tagger_out = tagger_out.decode(self.tagger_encoding, 
                                        "replace")        
-        log.debug("TreeTagger standard output:\n" + tagger_out)
-        log.debug("TreeTagger standard error:\n" + tagger_err)
+        log.debug(u"TreeTagger standard output:\n" + tagger_out)
+        log.debug(u"TreeTagger standard error:\n" + tagger_err)
         
         return tagger_out 
     
@@ -193,10 +195,13 @@ class TreeTagger(Annotator):
         # TODO how to handle ambiguity in lemmatization as in er|sie|Sie   
    
         if lemma == self.unknown:
-            log.warn(u"lemma unknown")
             if self.replace_unknown_lemma:
-                log.warn(u"using word {0} instead".format(word))
                 lemma = word
+                log.warn(u'unknown lemma for word "{0}", '
+                         u'using word instead'.format(word))
+            else:
+                log.warn(u'unknown lemma for word "{0}", '
+                         u'using {1} instead'.format(word, self.unknown))
        
         new_node = graph.add_source_node(word=word, lemma=lemma, pos=pos)
         
@@ -369,6 +374,99 @@ class ILSP_NLP_Greek(Annotator):
     
 
 
+class OsloBergenTagger(Annotator):
+    """
+    annotation of Norwegian input (Bokmål) text with Oslo-Bergen Tagger 
+    """
+    
+    tagger_encoding="utf-8"
+    eos_marker = u" * "
+    eos_line = u"*\t*\tsymb\n" 
+    
+    def __init__(self, command=config["tagger"]["no"]["command"]):
+        Annotator.__init__(self)    
+        self.command = command
+        
+    def annot_text(self, text, encoding=None, errors='strict'):
+        if encoding:
+            text = text.decode(encoding, errors)
+        else:
+            assert isinstance(text, unicode)
+            
+        tagger_out = self._obt(text)
+        return self._extract_from_text(tagger_out)
+                                       
+    def annot_sentences(self, sentences, encoding=None, errors='strict'):
+        text = self.eos_marker.join(sentences)
+        
+        if encoding:
+            text = text.decode(encoding, errors)
+        else:
+            assert isinstance(text, unicode)
+            
+        tagger_out = self._obt(text)
+        return self._extract_from_text(tagger_out, self.eos_line)
+    
+    def _obt(self, text):
+        log.debug(u"OBT input:\n" + text)
+        
+        # convert from unicode to given encoding
+        # we may loose some data here!
+        text = text.encode(self.tagger_encoding, "backslashreplace")
+        
+        # create pipe to tagger
+        log.debug("Calling OBT as " + self.command)
+        tagger_proc = subprocess.Popen(self.command, 
+                                       shell=True,
+                                       stdin=subprocess.PIPE, 
+                                       stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE)
+
+        # send text and retrieve tagger output 
+        tagger_out, tagger_err = tagger_proc.communicate(text)
+        
+        # and convert back from given encoding to unicode
+        tagger_out = tagger_out.decode(self.tagger_encoding, 
+                                       "replace")        
+        log.debug(u"OBT standard output:\n" + tagger_out)
+        log.debug(u"OBT standard error:\n" + tagger_err)       
+        
+        return tagger_out
+    
+    def _extract_from_text(self, tagger_out, eos_line="\n\n"):
+        graph_list = []
+        annot_sentences = tagger_out.strip().split(eos_line)
+        
+        for i, annot_sent in enumerate(annot_sentences):
+            graph = self._add_new_graph(n=i + 1)
+            graph_list.append(graph)
+            prev_node = None
+            
+            for line in annot_sent.strip().split("\n"):
+                prev_node = self._add_new_node(line, graph, prev_node)
+                
+        return graph_list
+    
+    def _add_new_graph(self, graph_id=None, n=None):
+        if n:
+            graph_id = "{0:03}".format(n)
+            
+        log.info("creating graph {}".format(graph_id))
+        return TransGraph(id=graph_id)
+
+    def _add_new_node(self, line, graph, prev_node):
+        word, lemma, pos = line.split("\t")
+        new_node = graph.add_source_node(word=word, lemma=lemma, pos=pos)
+        
+        if prev_node:
+            graph.add_word_order_edge(prev_node, new_node)
+        else:
+            graph.set_source_start_node(new_node)
+            
+        return new_node
+    
+
+
 def get_annotator(lang, *args, **kwargs):
     if lang == "en":
         return TreeTaggerEnglish(*args, **kwargs)
@@ -376,5 +474,7 @@ def get_annotator(lang, *args, **kwargs):
         return ILSP_NLP_Greek(*args, **kwargs)
     elif lang == "de":
         return TreeTaggerGerman(*args, **kwargs)
+    elif lang == "no":
+        return OsloBergenTagger(*args, **kwargs)
     else:
         raise ValueError("no annotator for language {}".format(lang))

@@ -4,7 +4,8 @@ test annotation
 
 from codecs import open
 
-from tg.annot import TreeTaggerEnglish, TreeTaggerGerman, ILSP_NLP_Greek
+from tg.annot import ( TreeTaggerEnglish, TreeTaggerGerman, ILSP_NLP_Greek,
+                       OsloBergenTagger )
 
 from setup import test_data_dir
 
@@ -70,18 +71,33 @@ class TestILSP_NLP_Greek:
         graph_list = annotator.annot_xml_file(xml_fname)
         check_graph_format(graph_list)
     
+
+class TestOsloBergenTagger:
     
+    def test_annot_text_file(self):
+        text_fname = test_data_dir + "/sample_no_1.txt"
+        annotator = OsloBergenTagger()
+        graph_list = annotator.annot_text_file(text_fname)
+        check_graph_format(graph_list)
+            
+    def test_annot_xml_file(self):
+        xml_fname = test_data_dir + "/sample_no_1.xml"
+        annotator = OsloBergenTagger()
+        graph_list = annotator.annot_xml_file(xml_fname)
+        check_graph_format(graph_list)    
     
             
             
 if __name__ == "__main__":
-    import nose
+    import nose, sys
+    sys.argv.append("-v")
     nose.run(defaultTest=__name__)
-    #import logging
-    #from tg.utils import set_default_log
-    #set_default_log()
-    #logging.getLogger("tg.annot").setLevel(logging.DEBUG)
-    #TestTreetaggerGerman().test_annot_xml_file()
-    #TestTreetaggerGerman().test_annot_text_file()
+    ##import logging
+    ##from tg.utils import set_default_log
+    ##set_default_log()
+    ##logging.getLogger("tg.annot").setLevel(logging.DEBUG)
+    ##TestOsloBergenTagger().test_annot_text_file()
+    ##TestOsloBergenTagger().test_annot_xml_file()
+
     
     
