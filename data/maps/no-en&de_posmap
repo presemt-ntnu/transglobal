@@ -1,0 +1,22 @@
+# Mapping from tags used by Oslo-Bergen Tagger for Norwegian to tags used
+# at English/German side of Presemt Norwgian-English/German dictionaries.
+# See http://tekstlab.uio.no/obt-ny/english/tagset.html
+
+adj = adj                            # adjective
+adv = adv                            # adverb
+det = det                            # determiner
+fork = fork                          # abbreviation
+# inf-merke                          # infinitive marker
+interj = interj                      # interjection
+konj = konj                          # conjunction
+prep = prep                          # preposition
+pron = pron                          # pronoun
+sbu = sbu                            # subjunction
+subst = subst                        # noun
+# ukjent                             # unkown
+verb = verb                          # verb
+
+
+
+
+

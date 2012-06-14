@@ -25,7 +25,8 @@ def create_all():
 # create pickled translation dictionaries
 #-----------------------------------------------------------------------------
 
-def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en")):
+def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en", "no-en",
+                                "no-de")):
     for lang_pair in lang_pairs:
         if lang_pair == "de-en":
             reverse = True
@@ -51,7 +52,7 @@ def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en")):
 # create pickled counts
 #-----------------------------------------------------------------------------
 
-def create_counts_pkl(languages=(("de", "en", "gr"),)):
+def create_counts_pkl(languages=(("de", "en", "gr", "no"),)):
     # so far, counts are only used for target languages
     for lang in languages:
         pkl_fname = config["count"]["lemma"][lang]["pkl_fname"]
@@ -86,5 +87,6 @@ if __name__ == "__main__":
     create_all()
     #create_lemma_data(data=("presemt-dev",),
     #                  lang_pairs=("no-de",))
+    #create_counts_pkl(languages=("no",))
 
 

@@ -455,8 +455,11 @@ class OsloBergenTagger(Annotator):
         return TransGraph(id=graph_id)
 
     def _add_new_node(self, line, graph, prev_node):
-        word, lemma, pos = line.split("\t")
-        new_node = graph.add_source_node(word=word, lemma=lemma, pos=pos)
+        word, lemma, tag = line.split("\t")
+        # use only the first part of the full tag as POS, but retain full tag
+        pos = tag.split("_", 1)[0]
+        new_node = graph.add_source_node(word=word, lemma=lemma, pos=pos,
+                                         tag=tag)
         
         if prev_node:
             graph.add_word_order_edge(prev_node, new_node)
