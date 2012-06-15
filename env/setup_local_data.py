@@ -28,15 +28,15 @@ def create_all():
 def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en", "no-en",
                                 "no-de")):
     for lang_pair in lang_pairs:
-        if lang_pair == "de-en":
-            reverse = True
-        else:
-            reverse = False
-            
         if lang_pair.startswith("gr-"):
             trans_dict_class = TransDictGreek
         else:
             trans_dict_class = TransDict
+            
+        try:
+            reverse = config["dict"][lang_pair].as_bool("reverse")
+        except KeyError:
+            reverse = False
             
         dict_fname = config["dict"][lang_pair]["xml_fname"]
         posmap_fname = config["dict"][lang_pair]["posmap_fname"]
@@ -52,7 +52,7 @@ def create_dict_pkl(lang_pairs=("de-en", "en-de", "gr-de", "gr-en", "no-en",
 # create pickled counts
 #-----------------------------------------------------------------------------
 
-def create_counts_pkl(languages=(("de", "en", "gr", "no"),)):
+def create_counts_pkl(languages=("de", "en", "gr", "no")):
     # so far, counts are only used for target languages
     for lang in languages:
         pkl_fname = config["count"]["lemma"][lang]["pkl_fname"]
