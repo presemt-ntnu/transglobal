@@ -426,6 +426,8 @@ class OsloBergenTagger(Annotator):
         tagger_out, tagger_err = tagger_proc.communicate(text)
         
         # and convert back from given encoding to unicode
+        tagger_err = tagger_err.decode(self.tagger_encoding, 
+                                       "replace")        
         tagger_out = tagger_out.decode(self.tagger_encoding, 
                                        "replace")        
         log.debug(u"OBT standard output:\n" + tagger_out)
@@ -443,7 +445,10 @@ class OsloBergenTagger(Annotator):
             prev_node = None
             
             for line in annot_sent.strip().split("\n"):
-                prev_node = self._add_new_node(line, graph, prev_node)
+                # ignore sentence boundaries inserted by tagger (empty lines)
+                # when using XML input
+                if line.strip():
+                    prev_node = self._add_new_node(line, graph, prev_node)
                 
         return graph_list
     

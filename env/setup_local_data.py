@@ -87,6 +87,6 @@ if __name__ == "__main__":
     create_all()
     #create_lemma_data(data=("presemt-dev",),
     #                  lang_pairs=("no-de",))
-    #create_counts_pkl(languages=("no",))
+    #create_dict_pkl(lang_pairs=("no-en", "no-de"))
 
 

@@ -25,9 +25,9 @@ def most_frequent_translation(data_sets=("metis", "presemt-dev",
     for data_set in data_sets:
         for lang_pair in lang_pairs or config["eval"][data_set].keys():
             out_dir, exp_name, graph_list = preprocess(data_set, lang_pair)
-            nist_score, bleu_score = postprocess(data_set, lang_pair, out_dir,
-                                                 exp_name, graph_list, 
-                                                 draw=draw)
+            nist_score, bleu_score = postprocess(data_set, lang_pair,
+                                                 out_dir, exp_name, 
+                                                 graph_list, draw=draw)
             results.append((data_set, lang_pair, nist_score, bleu_score))
     
     print "DATA:\tLANG:\tNIST:\tBLEU"
@@ -43,4 +43,6 @@ set_default_log(level=logging.INFO)
 #logging.getLogger("tg.annot").setLevel(logging.DEBUG)
 
 most_frequent_translation()
+#most_frequent_translation(data_sets=("presemt-dev",),
+#                          lang_pairs=("no-en", "no-de"))
 

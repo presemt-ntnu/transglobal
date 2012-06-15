@@ -24,6 +24,9 @@ class TransDict(object):
     # delimiter between lemma and POS tag in lempos string 
     delimiter = "/"
     
+    # replacement for delimiter if it occurs in original POS tag
+    replacement = ","
+    
     def __init__(self, pos_map=None):
         self._lempos_dict = {}   
         self._lemma_dict = {}
@@ -164,7 +167,7 @@ class TransDict(object):
         """
         return ( elem.text.strip() + 
                  cls.delimiter + 
-                 elem.get("tag") ) 
+                 elem.get("tag").replace(cls.delimiter, cls.replacement) ) 
     
     @classmethod    
     def _is_valid(cls, elem):
