@@ -1,0 +1,15 @@
+# Configuration for Mac OS X, relying on EPD 7.3-2 (64-bit) to provide
+# most of the required packages
+configobj==4.7.2
+hdf5==1.8.9
+networkx==1.6
+nose==1.1.2
+numpy==1.6.1
+pydot==1.0.28
+scikit-learn==0.11
+scipy==0.10.1
+suds==0.4
+
+
+
+
