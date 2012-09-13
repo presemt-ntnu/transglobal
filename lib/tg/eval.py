@@ -108,13 +108,3 @@ def get_scores(score_fname):
     return scores
 
 
-def mteval_lang(lang_pair):
-    """
-    map Presemt language identifier pair to corresponding Mteval language
-    identifiers
-    """
-    mapping = {"en":"English", 
-               "de":"German",
-               "gr":"Greek"}
-    source_lang, target_lang = lang_pair.split("-")
-    return mapping[source_lang], mapping[target_lang]

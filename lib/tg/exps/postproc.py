@@ -7,7 +7,7 @@ import os
 from tg.config import config
 from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
-from tg.eval import mteval, get_scores, mteval_lang
+from tg.eval import mteval, get_scores
 
 
 def postprocess(data_set, lang_pair, out_dir, exp_name, graph_list,

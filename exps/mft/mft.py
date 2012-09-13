@@ -44,5 +44,6 @@ set_default_log(level=logging.INFO)
 
 most_frequent_translation()
 #most_frequent_translation(data_sets=("presemt-dev",),
-#                          lang_pairs=("no-en", "no-de"))
+#                          lang_pairs=("no-en", "no-de"),
+#                          draw=True)
 
