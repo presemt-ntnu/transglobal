@@ -112,8 +112,12 @@ def extract_source_lempos_subset(graphs_pkl_fname):
     
     
 if __name__ == "__main__":
+    from os import getenv
+    from tg.config import config
     from tg.utils import set_default_log
     set_default_log(level=logging.INFO)
+        
+    base_dir = getenv("TG_BASE_DIR")    
         
     ## en-de
     #tab_fname = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/en/de/en-de_ambig.tab"
@@ -127,12 +131,12 @@ if __name__ == "__main__":
             #source_lempos_subset = extract_source_lempos_subset(graphs_pkl_fname))
         
     # de-en
-    tab_fname = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/de/en/de-en_ambig.tab"
-    samp_dir = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/en/samples/"
-    vocab_fname = "/Users/erwin/Projects/Transglobal/github/transglobal/_data/corpmod/en/en_vocab.pkl"
+    tab_fname = base_dir + "/_corpmod/de/en/de-en_ambig.tab"
+    samp_dir = base_dir + "/_corpmod/en/samples/"
+    vocab_fname = base_dir + "/_corpmod/en/en_vocab.pkl"
     #hdf_fname = "en_samples.hdf5"
-    hdf_fname = "en_samples_subset.hdf5"
-    graphs_pkl_fname = "de-en_graphs.pkl"
+    hdf_fname = base_dir + "/_corpmod/de-en_samples_subset.hdf5"
+    graphs_pkl_fname = base_dir + "/exps/mft/_mft_metis_de-en/mft_metis_de-en.pkl"
     convert(tab_fname, samp_dir, vocab_fname, hdf_fname, 
             samp_fpat="en-sample-{0}.mtx.gz",
             # max_samples=10,
