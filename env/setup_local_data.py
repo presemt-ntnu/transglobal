@@ -13,6 +13,7 @@ from tg.transdict import TransDict, TransDictGreek
 from tg.counts import mk_counts_pkl
 from tg.eval import lemmatize
 from tg.utils import create_dirs
+from tg.exps.preproc import preprocess
 
 
 
@@ -20,6 +21,7 @@ def create_all():
     create_dict_pkl()
     create_counts_pkl()
     create_lemma_data()
+    create_graphs()
 
 #-----------------------------------------------------------------------------
 # create pickled translation dictionaries
@@ -80,7 +82,19 @@ def create_lemma_data(data=("metis", "presemt-dev",
                 config["eval"][data_set][lang_pair]["word_ref_fname"],
                 target_lang,
                 outf=lemma_ref_fname)
+            
+            
+#-----------------------------------------------------------------------------
+# create annotated graphs with scores for translation frequency
+#-----------------------------------------------------------------------------
+            
 
+def create_graphs(data=("metis", "presemt-dev",
+                        "wmt08","wmt09", "wmt10", "wmt11"),
+                  lang_pairs=()):
+    for data_set in data:
+        for lang_pair in lang_pairs or config["eval"][data_set].keys():
+            preprocess(data_set, lang_pair)
 
 
 if __name__ == "__main__":

@@ -2,25 +2,24 @@
 preprocessing of experimental data
 """
 
-import codecs
-import logging
+import logging 
+log = logging.getLogger(__name__)
+
 import cPickle
 import os
-import xml.etree.cElementTree as et
 
 from tg.config import config
-from tg.graphproc import GraphProces
 from tg.annot import get_annotator
-from tg.transdict import TransDict, TransDictGreek
+from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.freqscore import FreqScore
 
 
-def preprocess(data_set, lang_pair, 
-               base_dir=""):
+
+def preprocess(data_set, lang_pair):
     source_lang, target_lang = lang_pair.split("-")
-    exp_name = "mft_{}_{}".format(data_set, lang_pair)
-    out_dir = os.path.join(base_dir, "_" + exp_name)
+    graphs_fname = config["eval"][data_set][lang_pair]["graphs_fname"]
+    out_dir = os.path.dirname(graphs_fname)
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
         
@@ -39,8 +38,6 @@ def preprocess(data_set, lang_pair,
     freq_score(graph_list)
     
     # save graphs
-    pkl_fname = os.path.join(out_dir, exp_name + ".pkl")
-    cPickle.dump(graph_list, open(pkl_fname, "wb"))
-    
-    return out_dir, exp_name, graph_list
+    log.info("saving preprocessed graphs to " + graphs_fname)
+    cPickle.dump(graph_list, open(graphs_fname, "wb"))
     
