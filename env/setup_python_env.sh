@@ -1,7 +1,16 @@
 # setup virtual python environment
-ENV=_python
-python '../bin/virtualenv.py' --verbose --distribute --system-site-packages --prompt="{transglobal}" "$ENV"
+
+# get dir of current script
+ENV_DIR="$(cd $(dirname "$0") && pwd -P)"
+
+PYTHON_ENV="$ENV_DIR/_python"
+python "$ENV_DIR/../bin/virtualenv.py" --verbose --distribute --system-site-packages --prompt="{transglobal}" "$PYTHON_ENV"
 
 # install required packages with pip
-"$ENV/bin/pip" install --requirement='requirements_osx.txt'
+"$PYTHON_ENV/bin/pip" install --requirement="$ENV_DIR/requirements.txt"
 
+# clean up
+if [ -f distribute*.tar.gz ]
+then
+    rm -v distribute*.tar.gz
+fi
