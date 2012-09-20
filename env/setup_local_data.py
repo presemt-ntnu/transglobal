@@ -102,5 +102,6 @@ if __name__ == "__main__":
     #create_lemma_data(data=("presemt-dev",),
     #                  lang_pairs=("no-de",))
     #create_dict_pkl(lang_pairs=("no-en", "no-de"))
-
+    #create_graphs(data=("presemt-dev",),
+    #              lang_pairs=("no-en", "no-de"))
 

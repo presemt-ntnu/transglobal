@@ -86,8 +86,3 @@ def coo_matrix_from_hdf5(group):
     """
     return sp.coo_matrix((group["data"], group["ij"]), 
                          shape=group.attrs["shape"])
-    
-    
-    
-        
-

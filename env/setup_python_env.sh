@@ -1,7 +1,8 @@
 # setup virtual python environment
 
 # get dir of current script
-ENV_DIR="$(cd $(dirname "$0") && pwd -P)"
+ENV_DIR="$(unset CDPATH && cd $(dirname "$0") && pwd -P)"
+echo $ENV_DIR
 
 PYTHON_ENV="$ENV_DIR/_python"
 python "$ENV_DIR/../bin/virtualenv.py" --verbose --distribute --system-site-packages --prompt="{transglobal}" "$PYTHON_ENV"

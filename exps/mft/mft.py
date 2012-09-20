@@ -39,7 +39,7 @@ def most_frequent_translation(data_sets=config["eval"]["data_sets"],
             
             nist_score, bleu_score = postprocess(exp_name, data_set,
                                                  lang_pair, graph_list, 
-                                                 score_attr="freq_score",                                                  
+                                                 best_score_attr="freq_score",                                                  
                                                  sysid="most frequent translation",                                                  
                                                  draw=draw,
                                                  text=text)

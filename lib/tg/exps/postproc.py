@@ -10,13 +10,18 @@ from tg.format import TextFormat, MtevalFormat
 from tg.eval import mteval, get_scores
 
 
-def postprocess(exp_name, data_set, lang_pair, graph_list, score_attr, sysid,
+def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
+                base_score_attrs=[],
+                sysid=None,
                 base_fname=None,
                 base_dir="./",
                 out_dir=None, 
                 draw=False,
                 text=False):
     
+    if not sysid:
+        sysid = exp_name
+        
     if not base_fname:
         base_fname = "_".join((exp_name, data_set, lang_pair))
     
@@ -29,12 +34,12 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, score_attr, sysid,
     # draw graphs
     if draw:
         draw = Draw()
-        draw(graph_list, out_format="pdf", best_score_attr=score_attr,
-             out_dir=out_dir)
+        draw(graph_list, out_format="pdf", best_score_attr=best_score_attr,
+             base_score_attrs=base_score_attrs, out_dir=out_dir)
     
     # write translation output in plain text format
     if text:
-        text_format = TextFormat(score_attr=score_attr)
+        text_format = TextFormat(score_attr=best_score_attr)
         text_format(graph_list)
         text_format.write(os.path.join(out_dir, base_fname + ".txt"))
     
@@ -44,7 +49,7 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, score_attr, sysid,
         config["eval"][data_set][lang_pair]["src_fname"],
         trglang=trglang, 
         sysid=sysid,
-        score_attr=score_attr)
+        score_attr=best_score_attr)
     mte_format(graph_list)
     tst_fname = os.path.join(out_dir, base_fname + ".tst")
     mte_format.write(tst_fname)

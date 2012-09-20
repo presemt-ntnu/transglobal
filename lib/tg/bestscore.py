@@ -26,12 +26,16 @@ class BestScore(graphproc.GraphProces):
         
         # TODO: handle hypernodes        
         for u in graph.source_nodes_iter(ordered=True):
-            for u, v, d in graph.trans_edges_iter(u):
-                for score_attr in self.base_score_attrs:
+            score_seen = False
+            
+            for score_attr in self.base_score_attrs:
+                for u, v, d in graph.trans_edges_iter(u):
                     try:
-                        d[self.best_score_attr] = data[score_attr]
+                        d[self.best_score_attr] = d[score_attr]
                     except KeyError:
                         continue
                     else:
-                        break
+                        score_seen = True
+                if score_seen:
+                    break
         
