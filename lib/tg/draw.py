@@ -172,14 +172,14 @@ class DrawGV:
         
     def mark_best_nodes(self, nx_graph):
         for u in nx_graph.source_nodes_iter():
-            v = nx_graph.max_score(u, self.best_score_attr)[1]
-            if v:
+            score, v = nx_graph.max_score(u, self.best_score_attr)
+            if score:
                 node = self.overall_best_node(v)
                 self.dot_graph.add_node(node)
                 
             for score_attr in self.base_score_attrs:
-                v = nx_graph.max_score(u, self.best_score_attr)[1]
-                if v:
+                score, v = nx_graph.max_score(u, score_attr)
+                if score:
                     node = self.base_best_node(v)
                     self.dot_graph.add_node(node)
                    
