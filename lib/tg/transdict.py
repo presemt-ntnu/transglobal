@@ -25,7 +25,7 @@ class TransDict(object):
     delimiter = "/"
     
     # replacement for delimiter if it occurs in original POS tag
-    replacement = ","
+    replacement = "|"
     
     def __init__(self, pos_map=None):
         self._lempos_dict = {}   
