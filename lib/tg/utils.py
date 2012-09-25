@@ -80,9 +80,9 @@ def coo_matrix_to_hdf5(matrix, group, data_dtype=None, **kwargs):
     group.attrs["shape"] = matrix.shape
     
     
-def coo_matrix_from_hdf5(group):
+def coo_matrix_from_hdf5(group, dtype=None):
     """
     read a sparse matric in COO format from a HDF5 group
     """
     return sp.coo_matrix((group["data"], group["ij"]), 
-                         shape=group.attrs["shape"])
+                         shape=group.attrs["shape"], dtype=dtype)
