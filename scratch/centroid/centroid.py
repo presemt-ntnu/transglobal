@@ -36,9 +36,9 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
     exp_count = 0
     
     for data in data_sets: 
-        for lang in  lang_pairs or config["eval"][data_set].keys():
+        for lang in  lang_pairs or config["eval"][data].keys():
             ambig_fname = config["sample"][lang]["ambig_fname"]
-            samples_fname = config["sample"][lang]["samples_fname"]
+            samples_fname = config["sample"][lang]["samples_filt_fname"]
             graphs_fname = config["eval"][data][lang]["graphs_fname"]
             script_fname = os.path.splitext(os.path.basename(__file__))[0]
             name = "{}_{}_{}".format(script_fname, data, lang)
@@ -106,6 +106,7 @@ set_default_log(level=logging.INFO)
 
 # logging.getLogger("model").setLevel(logging.DEBUG)    
 
+#centroid_exp()
 centroid_exp(data_sets=("presemt-dev",),
              lang_pairs=("no-en",))
 

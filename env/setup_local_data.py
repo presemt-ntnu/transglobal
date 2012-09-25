@@ -14,6 +14,7 @@ from tg.counts import mk_counts_pkl
 from tg.eval import lemmatize
 from tg.utils import create_dirs
 from tg.exps.preproc import preprocess
+from tg.sample import filter_sample_vocab
 
 
 
@@ -22,6 +23,7 @@ def create_all():
     create_counts_pkl()
     create_lemma_data()
     create_graphs()
+    filter_samples()
 
 #-----------------------------------------------------------------------------
 # create pickled translation dictionaries
@@ -95,10 +97,20 @@ def create_graphs(data=("metis", "presemt-dev",
     for data_set in data:
         for lang_pair in lang_pairs or config["eval"][data_set].keys():
             preprocess(data_set, lang_pair)
+            
+#-----------------------------------------------------------------------------
+# filter samples
+#-----------------------------------------------------------------------------
+
+def filter_samples(lang_pairs=()):
+    for lang_pair in lang_pairs or config["sample"].keys():
+        filter_sample_vocab(lang_pair)
+    
 
 
 if __name__ == "__main__":
     create_all()
+    # filter_samples()
     #create_lemma_data(data=("presemt-dev",),
     #                  lang_pairs=("no-de",))
     #create_dict_pkl(lang_pairs=("no-en", "no-de"))
