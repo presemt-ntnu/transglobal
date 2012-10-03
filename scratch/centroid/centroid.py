@@ -10,8 +10,11 @@ import os
 import logging
 
 import numpy as np
+import scipy.sparse as sp
 
 from sklearn.neighbors import NearestCentroid
+from sklearn.utils.validation import atleast2d_or_csr
+from sklearn.feature_extraction.text import TfidfTransformer
 
 from tg.config import config
 from tg.utils import set_default_log, makedirs
@@ -22,6 +25,43 @@ from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
 
 log = logging.getLogger(__name__)
+
+
+
+
+class CosNearestCentroid(NearestCentroid):
+    
+    """
+    Variant of nearest centroid classifier that uses cosine as similarity mertric
+    
+    Assumes that both training pass to "fit" and test data passed to
+    "predict" is normalized, e.g. by TfidfTransformer(norm=l2). Centroids are
+    also normalized. This means that computation of cosine reduces to dot
+    product. Works for sparse matrices. 
+    """
+    
+    def __init__(self):
+        # Just set metric to "cosine" 
+        # Shrinking is not supported for sparse matrices anyway.
+        NearestCentroid.__init__(self, metric="cosine")
+     
+    def fit(self, X, y):   
+        NearestCentroid.fit(self, X, y)
+        # Normalize centroids (divide them by their l2 length)
+        norms = np.sqrt(np.sum(self.centroids_**2, axis=-1))
+        self.centroids_ /=  np.asmatrix(norms).T
+        return self
+    
+    def predict(self, X):
+        # Problem: pairwise.pairwise_distances called in
+        # NearestCentroid.predict does not support cosine similarity for
+        # sparse matrices
+        X = atleast2d_or_csr(X)
+        if not hasattr(self, "centroids_"):
+            raise AttributeError("Model has not been trained yet.")
+        return self.classes_[X.dot(self.centroids_).argmax(axis=1)]
+        
+
 
 
 def centroid_exp(data_sets=config["eval"]["data_sets"], 
@@ -47,12 +87,13 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
             # (shrink_threshold cannot be used with sparse data)
-            classifier = NearestCentroid()
+            classifier = CosNearestCentroid()
     
             # train classifier
             model_builder = NearestCentroidModelBuilder( 
                 ambig_fname, samples_fname, models_fname, classifier,
-                graphs_fname)
+                graphs_fname, 
+                feat_selector=TfidfTransformer())
             model_builder.run()
 
             # apply classifier
@@ -61,8 +102,8 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             source_lang = lang.split("-")[0]
             scorer = ClassifierScore(model,
                                      score_attr=score_attr,
-                                     # FIXME: filter functio for Norwegian!
-                                     ##filter=filter_functions(source_lang)
+                                     # FIXME: filter function for Norwegian!
+                                     filter=filter_functions(source_lang)
                                      )
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
@@ -107,6 +148,6 @@ set_default_log(level=logging.INFO)
 # logging.getLogger("model").setLevel(logging.DEBUG)    
 
 #centroid_exp()
-centroid_exp(data_sets=("presemt-dev",),
-             lang_pairs=("no-en",))
+centroid_exp(data_sets=("metis",),
+             lang_pairs=("de-en",))
 
