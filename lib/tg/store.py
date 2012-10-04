@@ -52,6 +52,7 @@ class EstimatorStore(object):
     
     def __init__(self, file, mode=None, compression="lzf"):
         if not isinstance(file, h5py.File):  
+            log.info("opening store file " + file)
             self.file = h5py.File(file, mode)
         else:
             self.file = file
@@ -59,6 +60,7 @@ class EstimatorStore(object):
         self.compression = compression
         
     def close(self):
+        log.info("closing store file " + self.file.filename)
         self.file.close()
     
     def store_fit(self, estimator, path, set_params=False):
@@ -160,15 +162,29 @@ class DisambiguatorStore(EstimatorStore):
                                  compression=self.compression)     
         
     def load_vocab(self, as_dict=False):
+        utf8_vocab = self.file[self.VOCAB_PATH][()]
+        
         if as_dict:
             vocab = dict((lemma.decode("utf-8"), i) 
-                         for i,lemma in enumerate(self.file[self.VOCAB_PATH][()]))
+                         for i,lemma in enumerate(utf8_vocab))
         else:
             vocab = [ lemma.decode("utf-8") 
-                      for lemma in self.file[self.VOCAB_PATH][()] ]
+                      for lemma in utf8_vocab ]
             
         log.info("loaded vocabulary ({0} terms)".format(len(vocab)))
         return vocab
+    
+    def copy_vocab(self, sample_hdf_file):
+        """
+        Copy vocabulary from sample file to store file
+        
+        Parameters
+        ----------
+        sample_hdf_file: h5py.File instance
+            hdf5 file containing samples and vocabulary under path VOCAB_PATH
+        """
+        log.info("copying vocabulary from sample file")
+        sample_hdf_file.copy(self.VOCAB_PATH, self.file)
     
     def save_target_names(self, lempos, target_names):
         log.debug(u"saving target names for lempos {0}".format(lempos))
