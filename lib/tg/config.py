@@ -7,7 +7,7 @@ overrides this with user settings from TG_BASE_DIR/env/_tg.cfg (not under versio
 
 import logging
 from os import getenv
-from os.path import join
+from os.path import join, split
 
 from configobj import ConfigObj
 
@@ -18,7 +18,14 @@ config = ConfigObj()
 tg_base_dir = getenv("TG_BASE_DIR")
 
 if not tg_base_dir:
-    raise NameError("environment variable TG_BASE_DIR is undefined")
+    # If TG_BASE_DIR environment is not set, use position of source file to find root.
+    # Assume current file is in lib/tg.
+    fn =  __file__
+
+    for i in xrange(3):
+        fn, _ = split(fn)
+
+    tg_base_dir = fn
 
 log.debug("TG_BASE_DIR = " + tg_base_dir)
 
