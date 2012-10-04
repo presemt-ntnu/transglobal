@@ -11,7 +11,7 @@ import graphproc
 log = logging.getLogger(__name__)
 
 
-class RandProb(graphproc.GraphProces):
+class RandProb(graphproc.GraphProcess):
     """
     add random probabilities to translation candidates
     """

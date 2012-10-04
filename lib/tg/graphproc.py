@@ -5,7 +5,7 @@ graph process
 import transgraph
 
 
-class GraphProces(object):
+class GraphProcess(object):
     """
     abstract base class for TransGraph processors
     """

@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 
 
 
-class Lookup(graphproc.GraphProces):
+class Lookup(graphproc.GraphProcess):
     """
     determine translation candidates by lexical lookup in dictionary and add
     them to the translation graph

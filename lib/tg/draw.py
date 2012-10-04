@@ -3,7 +3,7 @@ import os
 
 import pydot
 
-from tg.graphproc import GraphProces
+from tg.graphproc import GraphProcess
 
 
 log = logging.getLogger(__name__)
@@ -191,7 +191,7 @@ class DrawGV:
 
 
 
-class Draw(GraphProces):
+class Draw(GraphProcess):
     
     def __init__(self, drawer=DrawGV):
         self.drawer = drawer

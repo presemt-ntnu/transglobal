@@ -8,7 +8,7 @@ import numpy as np
 import operator
 import scipy.sparse as sp
 
-from tg.graphproc import GraphProces
+from tg.graphproc import GraphProcess
 
 log = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 # log.setLevel(logging.DEBUG)
 
 
-class ClassifierScore(GraphProces):
+class ClassifierScore(GraphProcess):
     """
     Add classifier scores to translation candidates.
     

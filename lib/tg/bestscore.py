@@ -12,10 +12,10 @@ import graphproc
 log = logging.getLogger(__name__)
 
 
-class BestScore(graphproc.GraphProces):
+class BestScore(graphproc.GraphProcess):
     
     def __init__(self, base_score_attrs, score_attr="best_score", *args, **kwargs):
-        graphproc.GraphProces.__init__(self, *args, **kwargs)
+        graphproc.GraphProcess.__init__(self, *args, **kwargs)
         self.base_score_attrs = base_score_attrs
         self.best_score_attr = score_attr
         

@@ -23,7 +23,7 @@ def wrap(graph, *args, **kwargs):
     print graph
     
 
-class FreqScore(graphproc.GraphProces):
+class FreqScore(graphproc.GraphProcess):
     """
     score translation candidates according to their frequency
     """

@@ -7,20 +7,20 @@ import logging
 import sys
 import xml.etree.cElementTree as et
 
-from tg.graphproc import GraphProces
+from tg.graphproc import GraphProcess
 from tg.utils import indent
 
 
 log = logging.getLogger(__name__)
 
 
-class Format(GraphProces):
+class Format(GraphProcess):
     """
     Abstract base class for formatting translations
     """
 
     def __init__(self, score_attr="best_score", unknown=None):
-        GraphProces.__init__(self)
+        GraphProcess.__init__(self)
         self.score_attr = score_attr
         self.unknown = unknown
 
