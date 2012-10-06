@@ -68,7 +68,7 @@ def setup_en():
     text_fname = test_data_dir + "/sample_en_1.txt"
     log.info("annotating text from: " + text_fname)
     text = open(text_fname, encoding="utf-8").read()
-    graph_list = annotator(text)
+    graph_list = annotator.annot_text(text)
 
     log.info("writing pickled graph to " + annot_graphs_en_pkl_fname)
     dump(graph_list, open(annot_graphs_en_pkl_fname, "wb"))
