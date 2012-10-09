@@ -42,12 +42,15 @@ class EstimatorStore(object):
     # i.e. those which need to be (re)stored
     FITTED_ATTRS = {
         "BernoulliNB": ("class_log_prior_", "feature_log_prob_",),
+        "CosNearestCentroid": ("centroids_", "classes_"),
         "MultinomialNB": ("class_log_prior_", "feature_log_prob_",), 
         "NearestCentroid": ("centroids_", "classes_"),
+        "Normalizer": (),
         "Pipeline": (),
         "SelectKBest": ("pvalues_",),
         "SVC": ("shape_fit_", "support_", "support_vectors_", "n_support_", 
                 "dual_coef_", "_intercept_", "label_", "probA_", "probB_"),
+        "TfidfTransformer": ("idf_",),
         }
     
     def __init__(self, file, mode=None, compression="lzf"):
@@ -69,7 +72,7 @@ class EstimatorStore(object):
         if isinstance(estimator, Pipeline):
             self._store_pipeline_fit(estimator, path)
             
-    def _store_estimator_fit(self, estimator, path, set_params):
+    def _store_estimator_fit(self, estimator, path, set_params=False):
         # path must not exists yet, otherwise a valueError is raised
         self.file.create_group(path)
         
@@ -87,7 +90,7 @@ class EstimatorStore(object):
     def _store_pipeline_fit(self, estimator, path):
         for name, sub_estimator in estimator.steps:
             sub_path = path + "/" + name + self.SUB_AFFIX
-            self.store_fit(sub_estimator, sub_path)
+            self._store_estimator_fit(sub_estimator, sub_path)
     
     def restore_fit(self, estimator, path, set_params=False):
         self._restore_estimator_fit(estimator, path, set_params)
@@ -95,7 +98,7 @@ class EstimatorStore(object):
         if isinstance(estimator, Pipeline):
             self._restore_pipeline_fit(estimator, path)
             
-    def _restore_estimator_fit(self, estimator, path, set_params):
+    def _restore_estimator_fit(self, estimator, path, set_params=False):
         if set_params:
             params_pkl = self.file[path].attrs[self.PARAMS_KEY]
             params = cPickle.loads(params_pkl)
@@ -116,7 +119,7 @@ class EstimatorStore(object):
     def _restore_pipeline_fit(self, estimator, path):
         for name, sub_estimator in estimator.steps:
             sub_path = path + "/" + name + self.SUB_AFFIX
-            self.restore_fit(sub_estimator, sub_path)
+            self._restore_estimator_fit(sub_estimator, sub_path)
             
     def get_fitted_attrs(self, estimator):
         class_name = estimator.__class__.__name__
@@ -188,11 +191,6 @@ class DisambiguatorStore(EstimatorStore):
     
     def save_target_names(self, lempos, target_names):
         log.debug(u"saving target names for lempos {0}".format(lempos))
-        # Target names are stored as utf-8 encoded bytestrings, because HDF
-        # cannot handle unicode strings. On average this involves just a
-        # couple of translation candidates, so no variable length strings or
-        # compression.
-        target_names = [ name.encode("utf-8") for name in target_names ]
         path = self.FITS_PATH + "/" + lempos
         self.file[path].attrs[self.TARGET_NAMES_ATTR] = target_names
         
