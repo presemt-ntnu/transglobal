@@ -112,7 +112,8 @@ class TestDisambiguatorStore:
         # trunk) or "romp" (body trunk) as the Dutch translation of the
         # English noun "trunk"
         lempos = u"trunk/n"
-        target_names = u"stam romp".split() 
+        # FIXME: store_fit() should only accept unicode strings
+        target_names = u"stam romp".encode("utf-8").split()
         vocab = u"boom hoofd".split()
         
         X = np.array([[0,1],
