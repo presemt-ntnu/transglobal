@@ -14,53 +14,21 @@ import scipy.sparse as sp
 
 from sklearn.neighbors import NearestCentroid
 from sklearn.utils.validation import atleast2d_or_csr
+from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import Normalizer
 
 from tg.config import config
 from tg.utils import set_default_log, makedirs
-from tg.classify import NearestCentroidClassifier
-from tg.model import NearestCentroidModelBuilder
+from tg.classify import TranslationClassifier
+from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
+from tg.skl.centroid import CosNearestCentroid
 
 log = logging.getLogger(__name__)
-
-
-
-
-class CosNearestCentroid(NearestCentroid):
-    
-    """
-    Variant of nearest centroid classifier that uses cosine as similarity mertric
-    
-    Assumes that both training pass to "fit" and test data passed to
-    "predict" is normalized, e.g. by TfidfTransformer(norm=l2). Centroids are
-    also normalized. This means that computation of cosine reduces to dot
-    product. Works for sparse matrices. 
-    """
-    
-    def __init__(self):
-        # Just set metric to "cosine" 
-        # Shrinking is not supported for sparse matrices anyway.
-        NearestCentroid.__init__(self, metric="cosine")
-     
-    def fit(self, X, y):   
-        NearestCentroid.fit(self, X, y)
-        # Normalize centroids (divide them by their l2 length)
-        norms = np.sqrt(np.sum(self.centroids_**2, axis=-1))
-        self.centroids_ /=  np.asmatrix(norms).T
-        return self
-    
-    def predict(self, X):
-        # Problem: pairwise.pairwise_distances called in
-        # NearestCentroid.predict does not support cosine similarity for
-        # sparse matrices
-        X = atleast2d_or_csr(X)
-        if not hasattr(self, "centroids_"):
-            raise AttributeError("Model has not been trained yet.")
-        return self.classes_[X.dot(self.centroids_).argmax(axis=1)]
-        
 
 
 
@@ -78,7 +46,8 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
     for data in data_sets: 
         for lang in  lang_pairs or config["eval"][data].keys():
             ambig_fname = config["sample"][lang]["ambig_fname"]
-            samples_fname = config["sample"][lang]["samples_filt_fname"]
+            #samples_fname = config["sample"][lang]["samples_filt_fname"]
+            samples_fname = config["sample"][lang]["samples_fname"]
             graphs_fname = config["eval"][data][lang]["graphs_fname"]
             script_fname = os.path.splitext(os.path.basename(__file__))[0]
             name = "{}_{}_{}".format(script_fname, data, lang)
@@ -86,18 +55,19 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             if not os.path.exists(exp_dir):
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
-            # (shrink_threshold cannot be used with sparse data)
             classifier = CosNearestCentroid()
-    
+            #classifier = Pipeline( [("CHI2", SelectKBest(chi2, k=5000)),
+            #                        ("TFIDF", TfidfTransformer()),
+            #                        ("CNS", CosNearestCentroid())])
+            
             # train classifier
-            model_builder = NearestCentroidModelBuilder( 
+            model_builder = ModelBuilder( 
                 ambig_fname, samples_fname, models_fname, classifier,
-                graphs_fname, 
-                feat_selector=TfidfTransformer())
+                graphs_fname)
             model_builder.run()
 
             # apply classifier
-            model = NearestCentroidClassifier(models_fname)
+            model = TranslationClassifier(models_fname)
             score_attr="centroid_score"
             source_lang = lang.split("-")[0]
             scorer = ClassifierScore(model,
@@ -111,8 +81,8 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             best_scorer = BestScore(["centroid_score", "freq_score"])
             best_scorer(graph_list)
             
-            scored_graphs_fname = exp_dir + "/" + name + "_graphs.pkl"            
-            log.info("saving scored graphs to " + scored_graphs_fname)            
+            scored_graphs_fname = exp_dir + "/" + name + "_graphs.pkl"
+            log.info("saving scored graphs to " + scored_graphs_fname)
             cPickle.dump(graph_list, open(scored_graphs_fname, "w"))
             #graph_list = cPickle.load(open(scored_graphs_fname))
             
@@ -122,7 +92,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 base_score_attrs=["centroid_score","freq_score"],
                 out_dir=exp_dir,
                 base_fname=name,
-                draw=True
+                #draw=True
             ) 
             
             results[exp_count] = (data, lang, nist_score, bleu_score, name)
@@ -149,5 +119,6 @@ set_default_log(level=logging.INFO)
 
 #centroid_exp()
 centroid_exp(data_sets=("metis",),
-             lang_pairs=("de-en",))
+             lang_pairs=("en-de", "de-en")
+             )
 
