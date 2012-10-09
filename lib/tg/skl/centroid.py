@@ -1,9 +1,14 @@
 
+import codecs
+import sys
+
 import numpy as np
 
 from sklearn.neighbors import NearestCentroid
 from sklearn.preprocessing import normalize
 from sklearn.utils.validation import atleast2d_or_csr
+
+from tg.store import DisambiguatorStore
 
 
 class CosNearestCentroid(NearestCentroid):
@@ -56,3 +61,50 @@ class CosNearestCentroid(NearestCentroid):
         norms = cos_scores.sum(axis=1).reshape(-1,1)
         return cos_scores / norms
         
+
+
+# Tools
+
+def print_centroids(models_fname, lemma=None, pos=None, minimum=0, n=0,
+                    outf=codecs.getwriter('utf8')(sys.stdout) ):
+    models = DisambiguatorStore(models_fname)
+    vocab = models.load_vocab()
+    fits = models.file[models.FITS_PATH]
+    line = 78 * "=" + "\n"
+    subline = "    " + 74 * "-" + "\n"
+    if isinstance(outf, basestring):
+        outf = codecs.open(outf, "w", encoding="utf-8")
+        
+    if lemma:
+        if lemma in fits:
+            lemma_list = [lemma]
+        else:
+            lemma_list = []
+    else:
+        lemma_list = fits
+    
+    for lemma in lemma_list:
+        for lemma_pos in fits[lemma]:
+            if not pos or lemma_pos == pos:
+                lempos = lemma + u"/" + lemma_pos
+                outf.write(line + lempos + "\n" + line)
+                centroids_ = fits[lemma][lemma_pos]["centroids_"]
+                target_names = models.load_target_names(lempos)
+                target_n = 0
+                
+                for target, centroid in zip(target_names, centroids_):
+                    target_n += 1
+                    outf.write(subline)
+                    outf.write(u"    [{}] {} ---> {}\n".format(
+                        target_n,
+                        lempos,
+                        target))
+                    outf.write(subline)
+                    indices = centroid.argsort().tolist()
+                    indices.reverse()
+                    
+                    for i in indices[:n]:
+                        if centroid[i] > minimum:
+                            outf.write(u"    {0:>16.8f}    {1}\n".format(
+                                centroid[i],
+                                vocab[i]))

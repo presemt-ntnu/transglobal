@@ -12,7 +12,6 @@ import logging
 import numpy as np
 import scipy.sparse as sp
 
-from sklearn.neighbors import NearestCentroid
 from sklearn.utils.validation import atleast2d_or_csr
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -26,7 +25,7 @@ from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
-from tg.skl.centroid import CosNearestCentroid
+from tg.skl.centroid import CosNearestCentroid, print_centroids
 
 log = logging.getLogger(__name__)
 
@@ -59,12 +58,16 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             #classifier = Pipeline( [("CHI2", SelectKBest(chi2, k=5000)),
             #                        ("TFIDF", TfidfTransformer()),
             #                        ("CNS", CosNearestCentroid())])
-            
+
             # train classifier
             model_builder = ModelBuilder( 
                 ambig_fname, samples_fname, models_fname, classifier,
                 graphs_fname)
             model_builder.run()
+            
+            # Uncomment if you want to print the centroids to a file:
+            # print_fname = exp_dir + "/" + name + "_centroids.txt"
+            # print_centroids(models_fname, n=25, pos="n", outf=print_fname)
 
             # apply classifier
             model = TranslationClassifier(models_fname)
