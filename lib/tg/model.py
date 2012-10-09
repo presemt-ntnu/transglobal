@@ -95,7 +95,7 @@ class ModelBuilder(object):
                     log.warning("found no sample for " + target_lempos)
                     continue
                 
-                samp_mat = coo_matrix_from_hdf5(samp_group)
+                samp_mat = coo_matrix_from_hdf5(samp_group, dtype="f8")
                 
                 if not data:
                     # start new data set and targets

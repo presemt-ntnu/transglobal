@@ -145,7 +145,7 @@ class ClassifierScore(GraphProcess):
         # no of source nodes is not known in advance, so allocate too many rows
         dim = (len(graph), len(self.classifier.vocab))
         # lil sparse format allows indexing 
-        mat = sp.lil_matrix(dim, dtype=np.int16)
+        mat = sp.lil_matrix(dim, dtype="f8")
         
         for row_i, u in enumerate(graph.source_nodes_iter(ordered=True)):
             for u, v, data in graph.trans_edges_iter(u):
