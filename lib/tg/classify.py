@@ -20,7 +20,6 @@ class TranslationClassifier(object):
     def __init__(self, models_fname):
         self.models = DisambiguatorStore(models_fname)
         self.classifier = self.models.load_estimator()
-        self.vocab = self.models.load_vocab(as_dict=True)
         
     def score(self, source_lempos, context_vec):
         """
