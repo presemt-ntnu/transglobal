@@ -65,10 +65,15 @@ class CosNearestCentroid(NearestCentroid):
 
 # Tools
 
-def print_centroids(models_fname, lemma=None, pos=None, minimum=0, n=0,
+def print_centroids(models_fname, lemma=None, pos=None, minimum=0, n=None,
                     outf=codecs.getwriter('utf8')(sys.stdout) ):
+    # If used in combination with a feature selector,
+    # models must be build using with_vocab_mask=True
+    
+    # FIXME: messy code below
     models = DisambiguatorStore(models_fname)
-    vocab = models.load_vocab()
+    classifier = models.load_estimator()
+    full_vocab = np.array(models.load_vocab())
     fits = models.file[models.FITS_PATH]
     line = 78 * "=" + "\n"
     subline = "    " + 74 * "-" + "\n"
@@ -88,9 +93,26 @@ def print_centroids(models_fname, lemma=None, pos=None, minimum=0, n=0,
             if not pos or lemma_pos == pos:
                 lempos = lemma + u"/" + lemma_pos
                 outf.write(line + lempos + "\n" + line)
-                centroids_ = fits[lemma][lemma_pos]["centroids_"]
+                models.restore_fit(lempos, classifier)
+                
+                if isinstance(classifier, NearestCentroid):
+                    centroids_ = classifier.centroids_
+                else:
+                    # NearestCentroid is last item in Pipeline
+                    nc = classifier.steps[-1][-1]
+                    assert isinstance(nc, NearestCentroid)
+                    centroids_ = nc.centroids_
+                    
                 target_names = models.load_target_names(lempos)
                 target_n = 0
+                
+                try:
+                    vocab_mask = models.load_vocab_mask(lempos)[:]
+                except:
+                    vocab = full_vocab
+                else:
+                    vocab = full_vocab[vocab_mask]
+                    
                 
                 for target, centroid in zip(target_names, centroids_):
                     target_n += 1

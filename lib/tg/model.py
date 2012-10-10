@@ -17,6 +17,10 @@ import numpy as np
 import scipy.sparse as sp
 import h5py
 
+from sklearn.feature_selection.univariate_selection import (
+    _AbstractUnivariateFilter )
+from sklearn.feature_selection.rfe import RFE
+
 from tg.store import DisambiguatorStore
 from tg.utils import coo_matrix_from_hdf5
 
@@ -31,13 +35,14 @@ class ModelBuilder(object):
     """
     
     def __init__(self, tab_fname, samp_hdf_fname, models_hdf_fname,
-                 classifier, graphs_pkl_fname=None):
+                 classifier, graphs_pkl_fname=None, with_vocab_mask=False):
         self.tab_fname = tab_fname
         self.samp_hdf_fname = samp_hdf_fname
         self.models_hdf_fname = models_hdf_fname
         self.classifier = classifier
         self.graphs_pkl_fname = graphs_pkl_fname
         self.disambiguator_count = 0
+        self.with_vocab_mask = with_vocab_mask
         
     def run(self):
         self.prepare()
@@ -57,6 +62,10 @@ class ModelBuilder(object):
         self.models_hdfile.save_estimator(self.classifier)
         
         self.models_hdfile.copy_vocab(self.sample_hdfile)
+        
+        if self.with_vocab_mask:
+            log.info("storage with vocabulary masks")
+            self.vocab = self.models_hdfile.load_vocab()
         
         self.extract_source_lempos_subset()
         
@@ -147,10 +156,30 @@ class ModelBuilder(object):
     def build_disambiguator(self, source_lempos, data, targets, target_names):
         log.info("building disambiguator for " + source_lempos)
         # it seems scilearn classes want sparse matrices in csr format
-        self.classifier.fit(data.tocsr(), targets)
+        try:
+            self.classifier.fit(data.tocsr(), targets)  
+        except ValueError:
+            # FIXME: this happens when there are no features selected by e.g.
+            # SelectFpr
+            log.error("No model created!")
+            return 
+        
         self.models_hdfile.store_fit(source_lempos, self.classifier)
         self.models_hdfile.save_target_names(source_lempos, target_names)
-        self.disambiguator_count += 1        
+        if self.with_vocab_mask:        
+            self.save_vocab_mask(source_lempos)
+        self.disambiguator_count += 1  
+        
+    def save_vocab_mask(self, lempos):
+        # assume classifier is a fitted pipeline
+        mask = np.arange(len(self.vocab))
+        
+        for name, transformer in self.classifier.steps[:-1]:
+            # Is transformer a feature selector?
+            if isinstance(transformer, (_AbstractUnivariateFilter, RFE)):
+                mask = transformer.transform(mask)
+                
+        self.models_hdfile.save_vocab_mask(lempos, mask[0])
         
     def finish(self):
         log.info("closing samples file " + self.samp_hdf_fname)    

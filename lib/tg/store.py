@@ -48,6 +48,7 @@ class EstimatorStore(object):
         "Normalizer": (),
         "Pipeline": (),
         "SelectKBest": ("pvalues_",),
+        "SelectFpr": ("pvalues_",),
         "SVC": ("shape_fit_", "support_", "support_vectors_", "n_support_", 
                 "dual_coef_", "_intercept_", "label_", "probA_", "probB_"),
         "TfidfTransformer": ("idf_",),
@@ -138,6 +139,7 @@ class DisambiguatorStore(EstimatorStore):
     VOCAB_PATH = "vocab"
     TARGET_NAMES_ATTR = "target_names"
     FITS_PATH = "fits"
+    VOCAB_MASK_PATH = "vocab_mask"
         
     def save_estimator(self, estimator):
         # Pickle classifier and include in hdf5 file. This saves the
@@ -188,6 +190,16 @@ class DisambiguatorStore(EstimatorStore):
         """
         log.info("copying vocabulary from sample file")
         sample_hdf_file.copy(self.VOCAB_PATH, self.file)
+        
+    def save_vocab_mask(self, lempos, mask):
+        log.debug(u"saving vocab mask for lempos {0}".format(lempos))
+        path = self.FITS_PATH + "/" + lempos + "/" + self.VOCAB_MASK_PATH
+        self.file[path] = mask
+        
+    def load_vocab_mask(self, lempos):
+        log.debug(u"loading vocab mask for lempos {0}".format(lempos))
+        path = self.FITS_PATH + "/" + lempos + "/" + self.VOCAB_MASK_PATH
+        return self.file[path]
     
     def save_target_names(self, lempos, target_names):
         log.debug(u"saving target names for lempos {0}".format(lempos))
