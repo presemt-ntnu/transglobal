@@ -23,6 +23,7 @@ from sklearn.feature_selection.rfe import RFE
 
 from tg.store import DisambiguatorStore
 from tg.utils import coo_matrix_from_hdf5
+from tg.sample import AmbiguityMap
 
 
 log = logging.getLogger(__name__)
@@ -68,7 +69,12 @@ class ModelBuilder(object):
             self.vocab = self.models_hdfile.load_vocab()
         
         self.extract_source_lempos_subset()
-        
+        self.read_ambig_map()
+
+    def read_ambig_map(self):
+        self.ambig_map = AmbiguityMap(fn = self.tab_fname)
+
+
     def extract_source_lempos_subset(self):
         """
         extract all required source lempos from pickled graphs,
@@ -91,12 +97,10 @@ class ModelBuilder(object):
             self.source_lempos_subset = None
         
     def build(self):
-        sl2tl = self._get_source_to_target_lempos_map()
-        
-        for source_lempos, target_lempos_list in sl2tl.iteritems():
+        for source_lempos in self.ambig_map.source_iter():
             data = None
             
-            for target_lempos in target_lempos_list:
+            for target_lempos in self.ambig_map[source_lempos]:
                 try:
                     samp_group = self.samples[target_lempos]
                 except KeyError:

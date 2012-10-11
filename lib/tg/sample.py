@@ -8,6 +8,7 @@ operations on samples
 
 import logging
 import cPickle
+import codecs
 
 log = logging.getLogger(__name__)
 
@@ -19,6 +20,65 @@ from tg.config import config
 from tg.transdict import TransDict
 from tg.utils import coo_matrix_from_hdf5, coo_matrix_to_hdf5
 
+class AmbiguityMap():
+    """
+    Holds lempos ambiguity information for thhe samples of a given language pair
+    """
+
+    def __init__(self, lang_pair = None, fn = None, subset = None):
+        """
+        @param lang_pair: Read ambiguities from the file configured for the given language pair.
+        @param fn: Read ambiguities from the specified file.
+        """
+        if fn:
+            self.ambig_fn = fn
+        elif lang_pair:
+            self.ambig_fn = config["sample"][lang_pair]["ambig_fn"]
+        else:
+            raise ValueError
+
+        self.source_target_map = self._read_ambig_file(self.ambig_fn, subset = subset)
+
+    @staticmethod
+    def _read_ambig_file(ambig_fn, subset = None):
+        source_target_map = {}
+
+        for line in codecs.open(ambig_fn, encoding="utf8"):
+            source_label, target_label = line.rstrip().split("\t")[1:3]
+            # strip corpus POS tag
+            source_lempos = source_label.rsplit("/", 1)[0]
+            target_lempos = target_label.rsplit("/", 1)[0]
+
+            if subset and source_lempos not in subset:
+                continue
+
+            if source_target_map.has_key(source_lempos):
+                source_target_map[source_lempos].append(target_lempos)
+            else:
+                source_target_map[source_lempos] = [target_lempos]
+
+        return source_target_map
+
+    def __getitem__(self, item):
+        return self.source_target_map[item]
+
+    def source_target_pair_iter(self):
+        """
+        @return Iterator of all pairs of source and lemmas
+        """
+        return ((sl, tl) for sl, tl_list in self.source_target_map.iteritems() for tl in tl_list)
+
+    def source_iter(self):
+        """
+        @return Iterator of all source lemmas
+        """
+        return self.source_target_map.iterkeys()
+
+    def target_iter(self):
+        """
+        @return Iterator of all target lemmas
+        """
+        return (tl for tl_list in self.source_target_map.itervalues() for tl in tl_list)
 
 
 def filter_sample_vocab(lang_pair):
