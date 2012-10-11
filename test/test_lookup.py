@@ -12,16 +12,15 @@ from setup import annot_graphs_en_pkl_fname, en_de_dict_pkl_fname
 
 
 class TestLookup:
-    
-    @classmethod
-    def setup_class(cls):
+
+    def setUp(self):
         # load annotated graphs
-        cls.graph_list = load(open(annot_graphs_en_pkl_fname))
+        self.graph_list = load(open(annot_graphs_en_pkl_fname))
         # load minimal mapped translation dictionary
-        cls.en_de_dict = load(open(en_de_dict_pkl_fname))
+        self.en_de_dict = load(open(en_de_dict_pkl_fname))
         # perform lookup
-        lookup = Lookup(cls.en_de_dict)
-        lookup(cls.graph_list)
+        lookup = Lookup(self.en_de_dict)
+        lookup(self.graph_list)
         
     def test_lookup_1(self):
         # check translations of "linguist"
