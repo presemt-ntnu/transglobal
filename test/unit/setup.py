@@ -16,9 +16,9 @@ from tg.lookup import Lookup
 from tg.randscore import RandProb
 
 
-test_data_dir = join(config["TG_BASE_DIR"], "test/data")
+test_data_dir = join(config["TG_BASE_DIR"], "test/unit/data")
 
-test_local_dir = join(config["TG_BASE_DIR"], "test/_local")
+test_local_dir = join(config["TG_BASE_DIR"], "test/unit/_local")
 
 annot_graphs_en_pkl_fname = join(test_local_dir, "annot_graphs_en.pkl")
 graphs_en_de_pkl_fname = join(test_local_dir, "graphs_en-de.pkl")
