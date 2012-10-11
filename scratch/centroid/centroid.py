@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-evaluate Nearest Centroid models on Presemt evaluation data
+evaluate Nearest Centroid models
 """
 
 import cPickle
@@ -10,13 +10,10 @@ import os
 import logging
 
 import numpy as np
-import scipy.sparse as sp
 
-from sklearn.utils.validation import atleast2d_or_csr
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import Normalizer
 
 from tg.config import config
 from tg.utils import set_default_log, makedirs
@@ -45,8 +42,8 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
     for data in data_sets: 
         for lang in  lang_pairs or config["eval"][data].keys():
             ambig_fname = config["sample"][lang]["ambig_fname"]
-            #samples_fname = config["sample"][lang]["samples_filt_fname"]
-            samples_fname = config["sample"][lang]["samples_fname"]
+            samples_fname = config["sample"][lang]["samples_filt_fname"]
+            #samples_fname = config["sample"][lang]["samples_fname"]
             graphs_fname = config["eval"][data][lang]["graphs_fname"]
             script_fname = os.path.splitext(os.path.basename(__file__))[0]
             name = "{}_{}_{}".format(script_fname, data, lang)
@@ -55,20 +52,21 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
             classifier = CosNearestCentroid()
-            #classifier = Pipeline( [("CHI2", SelectKBest(chi2, k=5000)),
-            #                        ("TFIDF", TfidfTransformer()),
-            #                        ("CNS", CosNearestCentroid())])
+            classifier = Pipeline( [("CHI2", SelectKBest(chi2, k=5000)),
+                                    #("TFIDF", TfidfTransformer()),
+                                    ("CNS", CosNearestCentroid())])
 
             # train classifier
             model_builder = ModelBuilder( 
                 ambig_fname, samples_fname, models_fname, classifier,
-                graphs_fname)
+                graphs_fname, with_vocab_mask=True)
             model_builder.run()
             
-            # Uncomment if you want to print the centroids to a file:
-            # print_fname = exp_dir + "/" + name + "_centroids.txt"
-            # print_centroids(models_fname, n=25, pos="n", outf=print_fname)
-
+            # print the centroids to a file, only for nouns, only the 50 best
+            # features
+            print_fname = exp_dir + "/" + name + "_centroids.txt"
+            print_centroids(models_fname, pos="n", n=50, outf=print_fname)
+        
             # apply classifier
             model = TranslationClassifier(models_fname)
             score_attr="centroid_score"
@@ -95,7 +93,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 base_score_attrs=["centroid_score","freq_score"],
                 out_dir=exp_dir,
                 base_fname=name,
-                #draw=True
+                draw=True
             ) 
             
             results[exp_count] = (data, lang, nist_score, bleu_score, name)
@@ -121,7 +119,7 @@ set_default_log(level=logging.INFO)
 # logging.getLogger("model").setLevel(logging.DEBUG)    
 
 #centroid_exp()
-centroid_exp(data_sets=("metis",),
+centroid_exp(data_sets=("metis", "presemt-dev"),
              lang_pairs=("en-de", "de-en")
              )
 
