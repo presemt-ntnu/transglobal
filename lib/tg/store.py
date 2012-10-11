@@ -43,6 +43,7 @@ class EstimatorStore(object):
     FITTED_ATTRS = {
         "BernoulliNB": ("class_log_prior_", "feature_log_prob_",),
         "CosNearestCentroid": ("centroids_", "classes_"),
+        "DecisionTreeClassifier": ("tree_"),
         "MultinomialNB": ("class_log_prior_", "feature_log_prob_",), 
         "NearestCentroid": ("centroids_", "classes_"),
         "Normalizer": (),
