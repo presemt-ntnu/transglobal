@@ -160,14 +160,15 @@ class ModelBuilder(object):
     def build_disambiguator(self, source_lempos, data, targets, target_names):
         log.info("building disambiguator for " + source_lempos)
         # it seems scilearn classes want sparse matrices in csr format
-        try:
-            self.classifier.fit(data.tocsr(), targets)  
-        except ValueError:
-            # FIXME: this happens when there are no features selected by e.g.
-            # SelectFpr
-            log.error("No model created!")
-            return 
-        
+        ##try:
+            ##self.classifier.fit(data.tocsr(), targets)  
+        ##except ValueError:
+            ### FIXME: this happens when there are no features selected by e.g.
+            ### SelectFpr
+            ##log.error("No model created!")
+            ##return 
+            
+        self.classifier.fit(data.tocsr(), targets)  
         self.models_hdfile.store_fit(source_lempos, self.classifier)
         self.models_hdfile.save_target_names(source_lempos, target_names)
         if self.with_vocab_mask:        
