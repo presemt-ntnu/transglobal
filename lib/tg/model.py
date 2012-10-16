@@ -97,7 +97,11 @@ class ModelBuilder(object):
             self.source_lempos_subset = None
         
     def build(self):
-        for source_lempos in self.ambig_map.source_iter():
+        for source_lempos in self.ambig_map.source_iter():  
+            if self._skip(source_lempos):
+                log.debug(u"skipping model for {}".format(source_lempos))
+                continue
+            
             data = None
             
             for target_lempos in self.ambig_map[source_lempos]:
@@ -131,27 +135,6 @@ class ModelBuilder(object):
             if data:
                 self.build_disambiguator(source_lempos, data, targets,
                                          target_names)
-            
-    def _get_source_to_target_lempos_map(self):
-        sl2tl = {}
-        
-        for line in codecs.open(self.tab_fname, encoding="utf8"):
-            source_lempos, target_lempos = self._parse_line(line)
-            
-            if self._skip(source_lempos):
-                log.debug(u"skipping model for {} -> {}".format(
-                    source_lempos, target_lempos))
-                continue
-            
-            sl2tl.setdefault(source_lempos, []).append(target_lempos)
-            
-        return sl2tl
-            
-    def _parse_line(self, line):
-            source_label, target_label = line.rstrip().split("\t")[1:3]
-            # strip corpus POS tag
-            return ( source_label.rsplit("/", 1)[0], 
-                     target_label.rsplit("/", 1)[0] )
         
     def _skip(self, source_lempos):
         return ( self.source_lempos_subset and 
