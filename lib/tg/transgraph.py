@@ -242,7 +242,7 @@ class TransGraph(nx.DiGraph):
         self.add_edge(u, v, name="trans", attr_dict=attr_dict, **attr)
         
     def trans_edges_iter(self, u=None):
-        return ( (u,v,d) for _,v,d in self.out_edges_iter(u, data=True)
+        return ( (u,v,d) for u,v,d in self.out_edges_iter(u, data=True)
                  if d.get("name") == "trans" )
     
     def max_score(self, u, score_attr):
