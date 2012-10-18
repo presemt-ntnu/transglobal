@@ -41,10 +41,12 @@ class DrawGV:
     SOURCE_COLOR = "#c2a5cf"
     TARGET_COLOR = "#abdba0"
     
-    def __init__(self, nx_graph, best_score_attr="freq_score", base_score_attrs=[]):
+    def __init__(self, nx_graph, best_score_attr="freq_score",
+                 base_score_attrs=[]):
         self.base_score_attrs = base_score_attrs
         self.best_score_attr = best_score_attr
-        self.dot_graph = pydot.Dot('g0', graph_type='digraph', **self.GRAPH_DEFAULTS)   
+        self.dot_graph = pydot.Dot('g0', graph_type='digraph',
+                                   **self.GRAPH_DEFAULTS)
         hypernodes = []
         # dot subgraph of all source nodes, which forces them on the same rank
         subgraph = pydot.Subgraph('', rank='same') 
@@ -70,8 +72,8 @@ class DrawGV:
             subgraph = pydot.Subgraph('', rank='same') 
             
             for v in nx_graph.successors_iter(u):
-                # v must have a corresponding node in the dot graph; this is the reason that
-                # this cannot be intergrated in step 1
+                # v must have a corresponding node in the dot graph; this is
+                # the reason that this cannot be intergrated in step 1
                 node = self.dot_graph.get_node(v)[0]
                 subgraph.add_node(node)
     
@@ -94,6 +96,21 @@ class DrawGV:
         # 4. Mark best nodes
         self.mark_best_nodes(nx_graph)
         
+        # Finally, some nasty hacks to get the source words drawn in the
+        # direction from top to bottom. We introduce a invisible root node
+        # with ordered invisible eges to all normal source nodes.
+        # Disadvantage is that setting ordering=out messes up the order of
+        # target words in multi-word expressions...
+        self.dot_graph.set_ordering("out")
+        self.dot_graph.add_node(pydot.Node("__root__", shape="point",
+                                           style="invis"))
+        
+        for sn in nx_graph.source_nodes(ordered=True):
+            if not nx_graph.is_hyper_source_node(sn):
+                self.dot_graph.add_edge(
+                    pydot.Edge("__root__", str(sn), style="invis", weight=1))
+
+        
              
     def write(self, out_fname, out_format="raw"):
         """
@@ -109,18 +126,21 @@ class DrawGV:
         self.dot_graph.write(out_fname, format=out_format)
     
     def source_node(self, u, data):
+        label=u"{}\\n{}/{}\\n{}".format(
+            data["word"],
+            data["lemma"], 
+            data["pos"],
+            "|".join(data.get("lex_lempos", []))).encode("utf-8")
         return pydot.Node(str(u), 
-                          label=u"{}\\n{}/{}\\n{}".format(
-                              data["word"],
-                              data["lemma"], 
-                              data["pos"],
-                              "|".join(data.get("lex_lempos", []))).encode("utf-8"), 
+                          label=label, 
                           fillcolor=self.SOURCE_COLOR,
                           **self.NODE_DEFAULTS)        
     
     def target_node(self, u, data):
+        label=u"{}/{}".format(data["lemma"], 
+                              data["pos"]).encode("utf-8")
         return pydot.Node(str(u), 
-                          label=u"{}/{}".format(data["lemma"], data["pos"]).encode("utf-8"), 
+                          label=label, 
                           fillcolor=self.TARGET_COLOR,
                           **self.NODE_DEFAULTS)
     
@@ -135,12 +155,12 @@ class DrawGV:
             return pydot.Node(str(u), shape="point", style="bold")
     
     def source_next_edge(self, u, v, data):
-        edge = pydot.Edge(str(u), str(v),  style="bold", **self.EDGE_DEFAULTS)
+        edge = pydot.Edge(str(u), str(v), style="bold", **self.EDGE_DEFAULTS)
         edge.set_color(self.SOURCE_COLOR)
         return edge
     
     def target_next_edge(self, u, v, data):
-        edge = pydot.Edge(str(u), str(v), style="bold", **self.EDGE_DEFAULTS)
+        edge = pydot.Edge(str(u), str(v), style="bold", weight=0, **self.EDGE_DEFAULTS)
         edge.set_color(self.TARGET_COLOR)
         return edge
     
@@ -197,7 +217,8 @@ class Draw(GraphProcess):
         self.drawer = drawer
     
     def _single_run(self, graph, out_fname=None, out_format="pdf",
-                    best_score_attr="freq_score", base_score_attrs=[], out_dir=""):
+                    best_score_attr="freq_score", base_score_attrs=[], 
+                    out_dir=""):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
