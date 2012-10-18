@@ -11,7 +11,7 @@ import logging
 
 import numpy as np
 
-from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.feature_selection import SelectFpr, chi2
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 
@@ -23,6 +23,7 @@ from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
 from tg.skl.centroid import CosNearestCentroid, print_centroids
+from tg.skl.selection import MinCountFilter, MaxFreqFilter
 
 log = logging.getLogger(__name__)
 
@@ -52,9 +53,13 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
             classifier = CosNearestCentroid()
-            classifier = Pipeline( [("CHI2", SelectKBest(chi2, k=5000)),
+            classifier = Pipeline( [("MCF", MinCountFilter()),
+                                    ("MFF", MaxFreqFilter()),
+                                    #("CHI2", SelectFpr(chi2)),
                                     #("TFIDF", TfidfTransformer()),
-                                    ("CNS", CosNearestCentroid())])
+                                    ("CNC", CosNearestCentroid())
+                                    #("NC", NearestCentroidProb())
+                                    ])
 
             # train classifier
             model_builder = ModelBuilder( 
@@ -65,7 +70,10 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             # print the centroids to a file, only for nouns, only the 50 best
             # features
             print_fname = exp_dir + "/" + name + "_centroids.txt"
-            print_centroids(models_fname, pos="n", n=50, outf=print_fname)
+            print_centroids(models_fname, 
+                            #pos="n", 
+                            n=50, 
+                            outf=print_fname)
         
             # apply classifier
             model = TranslationClassifier(models_fname)
@@ -120,6 +128,6 @@ set_default_log(level=logging.INFO)
 
 #centroid_exp()
 centroid_exp(data_sets=("metis", "presemt-dev"),
-             lang_pairs=("en-de", "de-en")
+             lang_pairs=("de-en", "en-de")
              )
 

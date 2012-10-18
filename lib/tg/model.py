@@ -20,6 +20,7 @@ import h5py
 from sklearn.feature_selection.univariate_selection import (
     _AbstractUnivariateFilter )
 from sklearn.feature_selection.rfe import RFE
+from sklearn.feature_selection.selector_mixin import SelectorMixin
 
 from tg.store import DisambiguatorStore
 from tg.utils import coo_matrix_from_hdf5
@@ -34,6 +35,9 @@ class ModelBuilder(object):
     """
     Class for fitting disambiguators on samples and storing them in hdf5 file
     """
+    
+    # feature selectors that reduce the vocabulary
+    FEATURE_SELECTORS = _AbstractUnivariateFilter, RFE, SelectorMixin
     
     def __init__(self, tab_fname, samp_hdf_fname, models_hdf_fname,
                  classifier, graphs_pkl_fname=None, with_vocab_mask=False):
@@ -143,15 +147,19 @@ class ModelBuilder(object):
     def build_disambiguator(self, source_lempos, data, targets, target_names):
         log.info("building disambiguator for " + source_lempos)
         # it seems scilearn classes want sparse matrices in csr format
-        ##try:
-            ##self.classifier.fit(data.tocsr(), targets)  
-        ##except ValueError:
-            ### FIXME: this happens when there are no features selected by e.g.
-            ### SelectFpr
-            ##log.error("No model created!")
-            ##return 
+        try:
+            self.classifier.fit(data.tocsr(), targets)  
+        except ValueError, error:
+            if ( error.args == 
+                 ("zero-size array to maximum.reduce without identity",) ):
+                # this happens when there are no features selected 
+                # e.g. when using SelectFpr
+                log.error("No model created, because no features selected!")
+                return
+            else:
+                raise error
             
-        self.classifier.fit(data.tocsr(), targets)  
+        #self.classifier.fit(data.tocsr(), targets)  
         self.models_hdfile.store_fit(source_lempos, self.classifier)
         self.models_hdfile.save_target_names(source_lempos, target_names)
         if self.with_vocab_mask:        
@@ -164,10 +172,15 @@ class ModelBuilder(object):
         
         for name, transformer in self.classifier.steps[:-1]:
             # Is transformer a feature selector?
-            if isinstance(transformer, (_AbstractUnivariateFilter, RFE)):
+            if isinstance(transformer, self.FEATURE_SELECTORS):
                 mask = transformer.transform(mask)
                 
-        self.models_hdfile.save_vocab_mask(lempos, mask[0])
+        # some transformers (e.g. SelectKBest) return a 2-dimensional array,
+        # whereas ohers (e.g. classes using SelectorMixin) return a
+        # 1-dimensional array
+        mask = mask.flatten()
+                
+        self.models_hdfile.save_vocab_mask(lempos, mask)
         
     def finish(self):
         log.info("closing samples file " + self.samp_hdf_fname)    
