@@ -47,6 +47,7 @@ class EstimatorStore(object):
         "DecisionTreeClassifier": ("tree_"),
         "MaxFreqFilter": ("feature_importances_",),
         "MultinomialNB": ("class_log_prior_", "feature_log_prob_",), 
+        "NearestCentroid": ("centroids_", "classes_"),
         "NearestCentroidProb": ("centroids_", "classes_"),
         "Normalizer": (),
         "Pipeline": (),

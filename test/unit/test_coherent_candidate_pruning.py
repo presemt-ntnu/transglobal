@@ -10,7 +10,7 @@ def _highest_cset_entropy(graph):
     return CoherentCandidatePruner._get_entropy(graph, CoherentCandidatePruner._get_highest_ent_source_node(graph))
 
 class TestCoherentCandidatePruning(unittest.TestCase):
-    graphs_fn = os.path.join(test_data_dir, 'graphs_en-de_centroid.pkl')
+    graphs_fn = os.path.join(test_data_dir, 'graphs_en-de_freq-centroid.pkl')
 
     def setUp(self):
         self.graphs = cPickle.load(open(self.graphs_fn))

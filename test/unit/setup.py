@@ -17,6 +17,7 @@ from tg.randscore import RandProb
 
 
 test_data_dir = join(config["TG_BASE_DIR"], "test/unit/data")
+integration_data_dir = join(config["TG_BASE_DIR"], "test/integration/data")
 
 test_local_dir = join(config["TG_BASE_DIR"], "test/unit/_local")
 
@@ -65,7 +66,7 @@ def setup_en():
     log.info("using TreeTagger for English")
     annotator = TreeTaggerEnglish()  
     
-    text_fname = test_data_dir + "/sample_en_1.txt"
+    text_fname = integration_data_dir + "/sample_en_1.txt"
     log.info("annotating text from: " + text_fname)
     text = open(text_fname, encoding="utf-8").read()
     graph_list = annotator.annot_text(text)
