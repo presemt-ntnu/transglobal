@@ -43,9 +43,11 @@ class EstimatorStore(object):
     FITTED_ATTRS = {
         "BernoulliNB": ("class_log_prior_", "feature_log_prob_",),
         "CosNearestCentroid": ("centroids_", "classes_"),
+        "MinCountFilter": ("feature_importances_",),
         "DecisionTreeClassifier": ("tree_"),
+        "MaxFreqFilter": ("feature_importances_",),
         "MultinomialNB": ("class_log_prior_", "feature_log_prob_",), 
-        "NearestCentroid": ("centroids_", "classes_"),
+        "NearestCentroidProb": ("centroids_", "classes_"),
         "Normalizer": (),
         "Pipeline": (),
         "SelectKBest": ("pvalues_",),

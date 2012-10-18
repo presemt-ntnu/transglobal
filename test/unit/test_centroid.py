@@ -7,7 +7,28 @@ from numpy.testing import assert_almost_equal, assert_array_equal
 
 import scipy.sparse as sp
 
-from tg.skl.centroid import CosNearestCentroid
+from tg.skl.centroid import CosNearestCentroid, NearestCentroidProb
+
+
+class TestNearestCentroidPred:
+    
+    @classmethod
+    def setup_class(cls):
+        cls.X = np.array([[1.0, 2.0], 
+                          [2.0, 4.0], 
+                          [3.0, 6.0], 
+                          [2.0, 1.0], 
+                          [4.0, 2.0], 
+                          [6.0, 3.0]])
+        cls.y = np.array([1, 1, 1, 2, 2, 2])   
+        
+    def test_predict_proba(self):
+        clf = NearestCentroidProb()
+        clf.fit(self.X, self.y)
+        probs = clf.predict_proba(self.X)
+        # check that probabilities sum to one
+        prob_sums = probs.sum(axis=1)
+        assert_array_equal(prob_sums, np.ones_like(prob_sums))
 
 
 class TestCosNearestCentroid:

@@ -7,8 +7,28 @@ import numpy as np
 from sklearn.neighbors import NearestCentroid
 from sklearn.preprocessing import normalize
 from sklearn.utils.validation import atleast2d_or_csr
+from sklearn.metrics.pairwise import pairwise_distances
 
 from tg.store import DisambiguatorStore
+
+
+class NearestCentroidProb(NearestCentroid):
+    """
+    Variant of nearest centroid classifier that provides a predict_proba()
+    method
+    """
+    
+    def predict_proba(self, X):
+        X = atleast2d_or_csr(X)
+        if not hasattr(self, "centroids_"):
+            raise AttributeError("Model has not been trained yet.")
+        distances = pairwise_distances(X, self.centroids_, metric=self.metric)
+        # This is evidently silly, as normalizing the similarities does not
+        # turn them into probabilities. However, we need this method in
+        # tg.classify.TranslationClassifier._predict()
+        normalize(distances, norm="l1", copy=False)
+        return distances
+    
 
 
 class CosNearestCentroid(NearestCentroid):
@@ -58,8 +78,8 @@ class CosNearestCentroid(NearestCentroid):
         if self.norm:
             normalize(X, copy=False)
         cos_scores = X.dot(self.centroids_.T) 
-        norms = cos_scores.sum(axis=1).reshape(-1,1)
-        return cos_scores / norms
+        normalize(cos_scores, norm="l1", copy=False)
+        return cos_scores
         
 
 
@@ -127,6 +147,7 @@ def print_centroids(models_fname, lemma=None, pos=None, minimum=0, n=None,
                     
                     for i in indices[:n]:
                         if centroid[i] > minimum:
-                            outf.write(u"    {0:>16.8f}    {1}\n".format(
+                            outf.write(u"    {0:>16.8f}    {1:<16}    {2}\n".format(
                                 centroid[i],
-                                vocab[i]))
+                                vocab[i],
+                                centroid[i] * 100 * "*"))
