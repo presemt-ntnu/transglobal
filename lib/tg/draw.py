@@ -1,3 +1,11 @@
+"""
+drawing of translation graphs using Graphviz
+"""
+
+# TODO:
+# - clean up & speed up 
+
+
 import logging
 import os
 
@@ -183,7 +191,7 @@ class DrawGV:
                     labels.append("{0}={1:.2f}".format(score_attr,
                                                        data[score_attr]))
                 except KeyError:
-                    labels.append("{0}=???".format(score_attr))
+                    pass
                 
             label += " (" + "; ".join(labels) + ")"
                                      
@@ -226,7 +234,7 @@ class Draw(GraphProcess):
                              base_score_attrs=base_score_attrs)
         
         if not out_fname:
-            out_fname = "graph-{}.{}".format(
+            out_fname = "graph-{:03d}.{}".format(
                 graph.graph["id"],
                 out_format )
             
