@@ -211,6 +211,18 @@ DE_CONTENT_POS = set("ADJA ADJD "
                      #"VMFIN VMINF VMPP "
                      .split())
 
+DE_AUX_LEMMA = set(("sein", "haben", "werden"))
+
+def filter_german(graph, node):
+    return ( filter_de_aux_verbs(graph, node) or
+             filter_de_function_words(graph, node) )
+
+def filter_de_aux_verbs(graph, node):
+    """
+    filter out Germman auxiliary verbs on the basis of their lemma
+    """
+    return graph.lemma(node) in DE_AUX_LEMMA
+
 def filter_de_function_words(graph, node):
     """
     filter out Germman function words on the basis of the tagger's POS tag
@@ -232,7 +244,7 @@ def filter_en_function_words(graph, node):
 
 def filter_functions(lang):
     if lang == "de":
-        return filter_de_function_words
+        return filter_german
     elif lang == "en":
         return filter_en_function_words
     else:
