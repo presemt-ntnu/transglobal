@@ -1,11 +1,11 @@
 """
-ad-hoc code for tracing nearest centroid classification
+Ad-hoc code for tracing nearest centroid classification
 
 This is the result of "exploratory coding" and therefore messy stuff. 
 Is there a way to integrate this properly in the NearestCentroid classes?
 """
 
-
+import codecs
 import cPickle
 import logging
 import sys
@@ -22,7 +22,10 @@ from tg.classcore import DE_CONTENT_POS
 log = logging.getLogger(__name__)
 
 
-def trace_nc(graphs_fname, model_fname, n=None, source_pos=[]):
+def trace_nc(graphs_fname, model_fname, n=None, source_pos=[],
+             outf=codecs.getwriter('utf8')(sys.stdout)):
+    if isinstance(outf, basestring):
+        outf = codecs.open(outf, "w", encoding="utf-8")
     graphs = cPickle.load(open(graphs_fname))
     model = DisambiguatorStore(model_fname)
     estimator = model.load_estimator()
@@ -32,9 +35,9 @@ def trace_nc(graphs_fname, model_fname, n=None, source_pos=[]):
     
     for graph_count, graph in enumerate(graphs[:n]):
         source_string = graph.source_string()
-        print 100 * "="
-        print u"{}: {}".format(graph_count + 1, source_string)
-        print 100 * "=" + "\n"
+        outf.write( 100 * "=" + "/n")
+        outf.write( u"{}: {}\n".format(graph_count + 1, source_string))
+        outf.write( 100 * "=" + "\n\n")
         
         reverse_lookup = make_reverse_lookup(graph)
         source_node_vectors = make_source_node_vectors(graph, vocab_dict)
@@ -78,47 +81,44 @@ def trace_nc(graphs_fname, model_fname, n=None, source_pos=[]):
                 centroids = estimator.steps[-1][-1].centroids_  
                 
             target_lempos_list = model.load_target_names(source_lempos)
-                                                         
-            ##scores = dict( (graph.lempos(tn), data.get(score_attr))
-                           ##for _, tn, data in graph.trans_edges_iter(sn) )
                            
-            print 100 * "-"
-            print source_lempos
-            print 100 * "-" + "\n"
+            outf.write( 100 * "-" + "\n")
+            outf.write( source_lempos + "\n")
+            outf.write( 100 * "-" + "\n\n")
             
             for target_lempos, target_centroid in zip(target_lempos_list,
                                                       centroids):
                 prod = target_centroid * context_vec
-                print u"==> {:<24} {:1.4f}  {}".format(
+                outf.write( u"==> {:<24} {:1.4f}  {}\n".format(
                     target_lempos, 
                     prod.sum(),
-                    prod.sum() * 100 * "X")
-            print
+                    prod.sum() * 100 * "X"))
+            outf.write("\n")
             
             for target_lempos, target_centroid in zip(target_lempos_list,
                                                       centroids):
                 prod = target_centroid * context_vec
                 indices = target_centroid.argsort()[::-1]
                 
-                print  "\n" + source_string + "\n"
+                outf.write(  "\n" + source_string + "\n\n")
                 
-                print u"{:<64} ==> {:<24} {:1.4f}  {}".format(
+                outf.write( u"{:<64} ==> {:<24} {:1.4f}  {}\n".format(
                     source_lempos,
                     target_lempos, 
                     prod.sum(),
-                    prod.sum() * 100 * "X")
+                    prod.sum() * 100 * "X"))
                 
                 for i in indices:
                     if prod[0,i] > 0:
                         context_lemma = local_vocab[i]
                         sources = ",".join(reverse_lookup[context_lemma])
                         bar = prod[0,i] * 100 * "*"
-                        print u"{:<64} --> {:<24} {:1.4f}  {}".format(
+                        outf.write( u"{:<64} --> {:<24} {:1.4f}  {}\n".format(
                             sources, 
                             context_lemma, 
                             prod[0,i],
-                            bar)
-                print
+                            bar))
+                outf.write("\n")
                         
 
     
@@ -170,7 +170,8 @@ set_default_log(level=logging.INFO)
 trace_nc("_centroid_metis_de-en/centroid_metis_de-en_graphs.pkl",
          "_centroid_metis_de-en/centroid_metis_de-en.hdf5",
          #n=10,
-         source_pos=DE_CONTENT_POS
+         source_pos=DE_CONTENT_POS,
+         outf="_centroid_metis_de-en/centroid_metis_de-en_trace.txt"
          )
     
     
