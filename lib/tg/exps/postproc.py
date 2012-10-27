@@ -7,7 +7,7 @@ import os
 from tg.config import config
 from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
-from tg.eval import mteval, get_scores
+from tg.mteval import mteval, parse_total_scores
 
 
 def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
@@ -60,7 +60,7 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
            config["eval"][data_set][lang_pair]["src_fname"],
            tst_fname,
            scores_fname)
-    scores = get_scores(scores_fname)
+    scores = parse_total_scores(scores_fname)
     
-    return scores
+    return scores[1:]
 

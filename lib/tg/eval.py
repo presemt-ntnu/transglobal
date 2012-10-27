@@ -2,13 +2,10 @@
 processing of evaluation data
 """
 
-import codecs
 import logging
-import subprocess
 import sys
 import xml.etree.ElementTree as et
 
-from tg.config import config
 from tg.annot import get_annotator
 
 
@@ -55,56 +52,4 @@ def lemmatize(infname, lang, outf=sys.stdout, sent_tag="seg",
     etree.write(outf, encoding=encoding)
     
     
-    
-def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout,
-           options=config["eval"]["mteval_opts"]):
-    """
-    simple wrapper of NIST mteval-v13a.pl script
-    """
-    command = '{0} {1} -r "{2}" -s "{3}" -t "{4}" {5}'.format(
-        config["eval"]["perl_fname"],
-        config["eval"]["mteval_fname"],
-        ref_fname,
-        src_fname,
-        tst_fname,
-        options or "")
-        
-    # create pipe to eval script
-    log.debug("Calling evaluation script as as: " + command)
-    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
-      
-    # send text and retrieve tagger output 
-    out, err = proc.communicate()    
-    
-    log.debug(u"mteval standard output:\n" + out.decode("utf-8"))
-    
-    if err:
-        log.error(u"mteval standard error:\n" + err.decode("utf-8"))
-    
-    if isinstance(outf, basestring):
-        outf = open(outf, "w")
-        close = True
-    else:
-        close = False
-        
-    log.info("writing mteval output to " + outf.name)
-    outf.write(out)
-    
-    if close:
-        outf.close()
-    
-    return out, err
-
-
-def get_scores(score_fname):
-    """
-    get overall NIST and BLEU scores from scores file
-    """
-    # TODO: make parsing of scores more robust
-    tokens = codecs.open(score_fname, encoding="utf-8").readlines()[-19].split()
-    scores = float(tokens[3]), float(tokens[7])
-    log.info("scores: NIST = {0}; BLEU = {1}".format(*scores))
-    return scores
-
 
