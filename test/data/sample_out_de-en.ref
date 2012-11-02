@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<refset setid="presemt" srclang="de" trglang="en">
+  <doc docid="test" sysid="ref_1">
+    <seg id="1">The European Union has reacted already.</seg>
+    <seg id="2">This is absolutely disproportionate and in no way helps the peace process.</seg>
+    <seg id="3">I did receive the request you sent me.</seg>
+    <seg id="4">Nationalism is also the devotion to and the defence of the nation state.</seg>
+    <seg id="5">All other aspects are secondary.</seg>
+  </doc>
+  <doc docid="test" sysid="ref_2">
+    <seg id="1">There have been reactions on the side of the European Union.</seg>
+    <seg id="2">This is totally dispropotionate and does not support the peace process in no way.</seg>
+    <seg id="3">I have received your application.</seg>
+    <seg id="4">Nationalism means the feeling of affiliation and the defence of the nation state.</seg>
+    <seg id="5">The rest is secondary.</seg>
+  </doc>
+  <doc docid="test" sysid="ref_3">
+    <seg id="1">The european union has already reacted.</seg>
+    <seg id="2">This is absolutely exaggerated and in no way helps the peace procedure.</seg>
+    <seg id="3">I have already received the request which you addressed to me.</seg>
+    <seg id="4">Nationalism is adherence to the nation state and its defence too.</seg>
+    <seg id="5">All the rest are secondary.</seg>  
+  </doc>
+  <doc docid="test" sysid="ref_4">
+    <seg id="1">The European Union has already reacted.</seg>
+    <seg id="2">This is absolutely disproportionate and doesn't help the peace process at all.</seg>
+    <seg id="3">I received the application form they sent me.</seg>
+    <seg id="4">And nationalism is also the attachment to, and the defence of, the nation state.</seg>
+    <seg id="5">All the rest is secondary.</seg>
+  </doc>
+  <doc docid="test" sysid="ref_5">
+    <seg id="1">The European Union has responded already.</seg>
+    <seg id="2">This is beyond any proportion and in no way promotes the peace process.</seg>
+    <seg id="3">I have received your request.</seg>
+    <seg id="4">Also one's attachment to and the defence of one's nation is a form of nationalism.</seg>
+    <seg id="5">The rest is secondary.</seg>  
+  </doc>
+</refset>
