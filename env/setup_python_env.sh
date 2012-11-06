@@ -10,6 +10,12 @@ python "$ENV_DIR/../bin/virtualenv.py" --verbose --distribute --system-site-pack
 # install required packages with pip
 "$PYTHON_ENV/bin/pip" install --requirement="$ENV_DIR/requirements.txt"
 
+# Hack: force install of nose in virtual env, even if it already
+# exists in system wide packages, because otherwise running the
+# "nosetests" commend line script will not run with the Python
+# interpreter from the virtual env
+"$PYTHON_ENV/bin/pip" install --ignore-installed nose
+
 # clean up
 if [ -f distribute*.tar.gz ]
 then

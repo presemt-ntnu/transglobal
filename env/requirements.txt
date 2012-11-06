@@ -3,7 +3,7 @@
 configobj==4.7.2
 hdf5==1.8.9
 networkx==1.6
-nose==1.1.2
+#nose==1.1.2
 numpy==1.6.1
 pydot==1.0.28
 scikit-learn==0.11
