@@ -9,7 +9,6 @@ _*
 *.pkl
 *.png
 *.hdf5
-*.scores
 *.tst
 exp_*
 !__init__.py
