@@ -1,9 +1,10 @@
 import unittest
 import cPickle
 from tg.interpolated_score import InterpolatedScore
+from tg.config import config
 
 class TestInterpolatedScore(unittest.TestCase):
-    graphs_fn = 'data/graphs_en-de_freq-centroid.pkl'
+    graphs_fn = config["test_data_dir"] + '/graphs_en-de_freq-centroid.pkl'
 
     def setUp(self):
         self.graphs = cPickle.load(open(self.graphs_fn))

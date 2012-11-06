@@ -13,3 +13,4 @@ _*
 *.tst
 exp_*
 !__init__.py
+!test/data/*.pkl

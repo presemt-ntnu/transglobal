@@ -151,9 +151,3 @@ class TestDisambiguatorStore:
         assert vocab == vocab2
         assert score == score2
        
-       
-        
-if __name__ == "__main__":
-    import nose, sys
-    sys.argv.append("-v")
-    nose.run(defaultTest=__name__)

@@ -70,8 +70,3 @@ class TestCosNearestCentroid:
         prob_sums = probs.sum(axis=1)
         assert_array_equal(prob_sums, np.ones_like(prob_sums))
         
-
-if __name__ == "__main__":
-    import nose, sys
-    sys.argv.append("-v")
-    nose.run(defaultTest=__name__)

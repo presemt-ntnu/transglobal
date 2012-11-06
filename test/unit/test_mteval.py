@@ -2,17 +2,17 @@
 unit tests for mteval
 """
 
-import unittest
+from nose.tools import assert_almost_equal
 
+from tg.config import config
 from tg.mteval import ( parse_document_scores,
                         parse_segment_scores,
                         parse_total_scores )
 
+score_fname = config["test_data_dir"] + "/mft_wmt10_de-en.scores"
 
-score_fname = "data/mft_wmt10_de-en.scores"
 
-
-class TestMteval(unittest.TestCase):
+class TestMteval:
     
     def test_parse_total_scores(self):
         scores = parse_total_scores(score_fname)
@@ -28,13 +28,6 @@ class TestMteval(unittest.TestCase):
     def test_parse_segment_scores(self):
         scores = parse_segment_scores(score_fname)
         assert scores.shape[0] == 2489
-        self.assertAlmostEqual(scores[0]["NIST"], 1.1990) 
-        self.assertAlmostEqual(scores[0]["BLEU"], 0.0375) 
-        
-        
-        
-if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestMteval)
-    unittest.TextTestRunner(verbosity=2).run(suite)    
-
+        assert_almost_equal(scores[0]["NIST"], 1.1990) 
+        assert_almost_equal(scores[0]["BLEU"], 0.0375) 
         

@@ -12,11 +12,10 @@ import h5py
 
 from sklearn.naive_bayes import MultinomialNB
 
+from tg.config import config
 from tg.model import ModelBuilder
 from tg.classify import TranslationClassifier
 from tg.utils import coo_matrix_from_hdf5
-
-from setup import test_data_dir
 
 
 
@@ -27,8 +26,8 @@ class TestTranslationClassifier:
         models_hdf_fname = tempfile.NamedTemporaryFile().name
         
         builder = ModelBuilder(
-            tab_fname = test_data_dir +"/de-en_ambig.tab",
-            samp_hdf_fname = test_data_dir + "/de-en_samples.hdf5_",
+            tab_fname = config["test_data_dir"] +"/de-en_ambig.tab",
+            samp_hdf_fname = config["test_data_dir"] + "/de-en_samples.hdf5_",
             models_hdf_fname = models_hdf_fname,
             classifier = MultinomialNB() )
                 
@@ -39,7 +38,7 @@ class TestTranslationClassifier:
         
         # load a couple of vectors from the samples (i.e. the training
         # material) to test the translation classifier
-        f = h5py.File(test_data_dir + "/de-en_samples.hdf5_")
+        f = h5py.File(config["test_data_dir"] + "/de-en_samples.hdf5_")
         source_lempos = "Teller/n"
         targets = "basket/n dial/n disc/n dish/n disk/n plate/n".split()
         
@@ -55,9 +54,3 @@ class TestTranslationClassifier:
                 log.info(u"Predicted translation = {} (P={})".format(*best))
                 
         
-        
-if __name__ == "__main__":
-    import nose, sys
-    log.basicConfig(level=log.INFO)
-    sys.argv.append("-v")
-    nose.run(defaultTest=__name__)

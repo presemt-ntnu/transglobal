@@ -59,9 +59,3 @@ class TestMaxFreqFilter:
         X = filt.fit_transform(X)
         assert X.shape == (6,1)
         
-
-
-if __name__ == "__main__":
-    import nose, sys
-    sys.argv.append("-v")
-    nose.run(defaultTest=__name__)

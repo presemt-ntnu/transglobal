@@ -72,18 +72,22 @@ class TestTransdict:
         assert translations == self.trans_dict.lookup_lempos(lempos)[1]
         
     def test_getitem_lempos(self):
-        assert list(self.trans_dict["linguist/n"]) == [self.trans_dict.lookup_lempos("linguist/n")]
+        assert ( list(self.trans_dict["linguist/n"]) == 
+                 [self.trans_dict.lookup_lempos("linguist/n")] )
         
     def test_getitem_lemma(self):
-        assert list(self.trans_dict["linguist"]) == list(self.trans_dict.lookup_lemma("linguist"))
+        assert ( list(self.trans_dict["linguist"]) == 
+                 list(self.trans_dict.lookup_lemma("linguist")) )
         
     def test_getitem_lempos_unknown_pos(self):
         # should backoff to lemma
-        assert list(self.trans_dict["linguist/xyz"]) == list(self.trans_dict.lookup_lemma("linguist"))
+        assert ( list(self.trans_dict["linguist/xyz"]) == 
+                 list(self.trans_dict.lookup_lemma("linguist")) )
         
     def test_getitem_lempos_mwu_unknown_pos(self):
         # should backoff to lemma
-        assert list(self.trans_dict["kick/xx out/yy"]) == list(self.trans_dict.lookup_lemma("kick out"))
+        assert ( list(self.trans_dict["kick/xx out/yy"]) == 
+                 list(self.trans_dict.lookup_lemma("kick out")) )
         
     @raises(KeyError)  
     def test_getitem_unkown_lemma(self):
@@ -168,7 +172,3 @@ class TestMappedDict:
         self.trans_dict.lookup_lemma("1q84 out")
         
         
-                    
-if __name__ == "__main__":
-    import nose
-    nose.run(defaultTest=__name__)    
