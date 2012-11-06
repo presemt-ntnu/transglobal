@@ -15,20 +15,24 @@ class TestLookup:
 
     @classmethod
     def setup_class(cls):
-        # make annotated graphs
-        src_fname = config["test_data_dir"] + "/sample_out_de-en.src"
-        annotator = TreeTaggerGerman()
-        cls.graphs = annotator.annot_xml_file(src_fname) 
+        # get annotated graphs
+        graph_fname = config["test_data_dir"] + "/graphs_sample_out_de-en.pkl"
+        cls.graphs = load(open(graph_fname))
+        # remove lookup results by all deleting target nodes and hypernodes
+        for graph in cls.graphs:
+            for n in graph.nodes():
+                if not graph.is_source_node(n):
+                    graph.remove_node(n)
         # load minimal mapped translation dictionary
         en_de_dict_pkl_fname = ( config["test_data_dir"] + 
                                  "/dict_sample_out_de-en.pkl" )
         cls.dict = load(open(en_de_dict_pkl_fname))
-        # perform lookup
-        lookup = Lookup(cls.dict)
-        lookup(cls.graphs)
         
         
     def test_lookup(self):
+        lookup = Lookup(self.dict)
+        lookup(self.graphs)
+        
         for graph in self.graphs:
             for sn in graph.source_nodes_iter(ordered=True):
                 assert ( self._translations_in_graph(graph, sn) ==
