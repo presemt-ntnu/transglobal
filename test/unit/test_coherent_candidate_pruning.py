@@ -1,7 +1,5 @@
 import cPickle
 import unittest
-
-from setup import test_data_dir
 import os
 
 from tg.config import config
