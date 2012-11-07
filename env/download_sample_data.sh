@@ -15,3 +15,15 @@ scp "$REMOTE_BASE/no/en/no-en_samples.hdf5" "$SAMP_DIR"
 
 scp "$REMOTE_BASE/no/de/no-de_ambig.tab" "$SAMP_DIR"
 scp "$REMOTE_BASE/no/de/no-de_samples.hdf5" "$SAMP_DIR"
+
+scp "$REMOTE_BASE/gr/en/gr-en_ambig.tab" "$SAMP_DIR"
+scp "$REMOTE_BASE/gr/en/gr-en_samples.hdf5" "$SAMP_DIR" 
+
+scp "$REMOTE_BASE/gr/de/gr-de_ambig.tab" "$SAMP_DIR"
+scp "$REMOTE_BASE/gr/de/gr-de_samples.hdf5" "$SAMP_DIR"
+
+#scp "$REMOTE_BASE/cz/en/cz-en_ambig.tab" "$SAMP_DIR"
+#scp "$REMOTE_BASE/cz/en/cz-en_samples.hdf5" "$SAMP_DIR" 
+
+#scp "$REMOTE_BASE/cz/de/cz-de_ambig.tab" "$SAMP_DIR"
+#scp "$REMOTE_BASE/cz/de/cz-de_samples.hdf5" "$SAMP_DIR"
