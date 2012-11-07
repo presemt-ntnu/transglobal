@@ -235,7 +235,7 @@ class Draw(GraphProcess):
         
         if not out_fname:
             out_fname = "graph-{:03d}.{}".format(
-                graph.graph["id"],
+                graph.graph["n"],
                 out_format )
             
         if out_dir:
