@@ -9,11 +9,11 @@ constructing linguistically annotated translation graphs
 
 import codecs
 import cStringIO
-import xml.etree.ElementTree as et
 import logging
-import cStringIO
+import re
 import subprocess
 import urllib
+import xml.etree.ElementTree as et
 
 import suds
 
@@ -28,49 +28,183 @@ log = logging.getLogger(__name__)
 
 
 class Annotator(object):
+    """
+    Abstract base class for all annotators that annotate input text with
+    part-of-speech tags and lemmas.
+    """
     
-    # string value to use for unknown values
+    # string value to use for unknown values (POS tag or lemma)
     unknown = "__UNKNOWN__"    
     
     def annot_text(self, text, encoding=None, errors='strict'):
-        pass
+        """
+        Annotate free text
+        
+        This allows free text input where sentence boundaries are not given.
+        It therefore only works with annotators that can do sentence splitting.
+        The character encoding should preferably be the same as the one
+        supported by the tagger-lemmatizer to prevent conversion errors.
+        
+        Parameters
+        ----------
+        text: byte string
+            encoded text
+        encoding: string
+            character encoding; if None, text is assumed to be unicode 
+        errors: string
+            how to handle encoding conversion errors (cf. str.encode())
+        
+        Returns
+        -------
+        graphs: list
+            list of Transgraph instances
+        """
+        if encoding:
+            text = text.decode(encoding, errors=errors)
+        else:
+            assert isinstance(text, unicode)
+            
+        return self._annot_text(text)
     
     def annot_text_file(self, inf, encoding="utf-8", errors='strict'):
+        """
+        Annotate free text from file
+        
+        This allows free text input where sentence boundaries are not given.
+        The character encoding should preferably be the same as the one
+        supported by the tagger-lemmatizer.
+        
+        Parameters
+        ----------
+        text: byte string
+            encoded text
+        encoding: string
+            character encoding 
+        errors: string
+            how to handle encoding conversion errors (cf. str.encode())
+        
+        Returns
+        -------
+        graphs: list
+            list of Transgraph instances
+        """
         if not hasattr(inf, "read"):
             inf = codecs.open(inf, encoding=encoding, errors=errors)
         text = inf.read()    
         return self.annot_text(text)
     
-    def annot_sentences(self, sentences, encoding=None):
-        pass
+    def annot_sentences(self, sentences, encoding=None, errors='strict',
+                        ids=None):
+        """
+        Annotate sentences
+        
+        This allows free text input where sentence boundaries are not given.
+        The character encoding should preferably be the same as the one
+        supported by the tagger-lemmatizer.
+        
+        Parameters
+        ----------
+        sentences: iterable of unicode strings
+            sequence of sentences
+        encoding: string
+            character encoding; if None, sentences assumed to be unicode strings
+        ids: iterable of strings
+            sentence identifiers
+            
+        Returns
+        -------
+        graphs: list
+            list of Transgraph instances
+        """
+        if encoding:
+            sentences = (s.decode(encoding, errors=errors) for s in sentences)
+        # else there is no cheap way to check all sentences are unicode
+        
+        return self._annot_sentences(sentences, ids)
     
-    def annot_xml(self, source, xml_sent_tag="seg"):
+    def annot_xml(self, source, xml_sent_tag="seg", id_attr="id"):
+        """
+        Annotate sentences from XML string
+        
+        In contract to free text, this assumes sentence boundaries are given.
+        Character encoding is assumed to be utf-8 unless specified otehrwise
+        in the xml header.
+        
+        Parameters
+        ----------
+        source: byte string
+            file or filename with xml input 
+        xml_sent_tag: string
+            xml tag for sentences
+        id_attr: string
+            attribute of xml sentence tag that identifies the sentence
+        
+        Returns
+        -------
+        graphs: list
+            list of Transgraph instances
+        """
         # Source MUST be a byte string (i.e. encoded).
         # If encoding is different from utf-8, 
         # then it must be specifid by the XMl header
+        assert isinstance(source, str)
         inf = cStringIO.StringIO(source)
-        return self.annot_xml_file(inf, xml_sent_tag)
+        return self.annot_xml_file(inf, xml_sent_tag, id_attr)
         
-    def annot_xml_file(self, inf, xml_sent_tag="seg"):
-        sentences = self._extract_sentences_from_xml(inf, xml_sent_tag)
-        return self.annot_sentences(sentences)
+    def annot_xml_file(self, inf, xml_sent_tag="seg", id_attr="id"):
+        """
+        Annotate sentences from XML input
         
-    def _extract_sentences_from_xml(self, inf, xml_sent_tag):
-        # this assumes that a sentence contains no XML markup 
+        In contract to free text, this assumes sentence boundaries are given.
+        Character encoding is assumed to be utf-8 unless specified otehrwise
+        in the xml header.
+        
+        Parameters
+        ----------
+        inf: file or string
+            file or filename with xml input
+        xml_sent_tag: string
+            xml tag for sentences
+        id_attr: string
+            attribute of xml sentence tag that identifies the sentence
+        
+        Returns
+        -------
+        graphs: list
+            list of Transgraph instances
+        """
+        sentences, ids = self._extract_sentences_from_xml(inf, xml_sent_tag,
+                                                          id_attr)
+        return self._annot_sentences(sentences, ids)
+        
+    def _extract_sentences_from_xml(self, inf, xml_sent_tag, id_attr):
+        # this assumes that a sentence contains no internal XML markup 
         # (e.g. <b>...</b>)
-        return ( elem.text
-                 for _, elem in et.iterparse(inf)
-                 if elem.tag == xml_sent_tag )
+        pairs =  ( ( elem.text, elem.get(id_attr))
+                   for _, elem in et.iterparse(inf)
+                   if elem.tag == xml_sent_tag )
+        return zip(*pairs)
+        
+    def _add_new_graph(self, graph_id=None, n=None):
+        log.info("creating graph (id={}, n={})".format(graph_id, n))
+        return TransGraph(id=graph_id, n=n)   
+    
+    def _annot_text(self, text):
+        pass
+    
+    def _annot_sentences(self, sentences, ids=None):
+        pass
         
         
             
         
 class TreeTagger(Annotator):
     """
-    annotation of input text with TreeTagger 
+    Annotation of input text with TreeTagger 
     """
     
-    unknown_lemma = "<unknown>"
+    # string used by TreeTagger for unknown lemmas
+    unknown_lemma = u"<unknown>"
     
     def __init__(self, command, tagger_encoding, eos_pos_tag=None,
                  replace_unknown_lemma=True):
@@ -80,32 +214,77 @@ class TreeTagger(Annotator):
         self.eos_pos_tag = eos_pos_tag
         self.replace_unknown_lemma = replace_unknown_lemma
         
-    def annot_text(self, text, encoding=None, errors='strict'):
-        if encoding:
-            text = text.decode(encoding, errors)
-        else:
-            assert isinstance(text, unicode)
+    def annot_xml(self, source, xml_sent_tag="seg", id_attr="id"):
+        # The approach from the Annotator base class is to extract sentences
+        # from the XML file and then call self.annot_sentences. However,
+        # TreeTagger can process XML input directly, so instead we
+        # tag-lemmatize the xml input and then create graphs directly from
+        # the XML output.
+        tagger_out = self._tree_tagger(source)
+        # XML parser interprets "<unknown>" as an XML tag and crashes when it
+        # finds no matching "</unknown>" tag, so replace by __UNKNOWN__
+        tagger_out = tagger_out.replace(self.unknown_lemma, self.unknown)
+        # Replace illegal ampercents too
+        tagger_out = tagger_out.replace(u"&", u"&amp;")
+        # tagger_out is unicode but XML parser expects byte string
+        # (cStringIO cannot cope with unicode either)
+        tagger_out = tagger_out.encode("utf-8")
+        graph_list = []        
+        
+        for _, elem in et.iterparse(cStringIO.StringIO(tagger_out)):
+            if elem.tag == xml_sent_tag:
+                graph = self._add_new_graph(graph_id=elem.get(id_attr),
+                                            n=len(graph_list) + 1)
+                graph_list.append(graph)
+                prev_node = None
+                text = elem.text.strip()
+                
+                if text:
+                    for line in text.split("\n"):
+                        prev_node, _ = self._add_new_node(line, graph, 
+                                                          prev_node)
+                    
+        return graph_list
+        
+    def annot_xml_file(self, inf, xml_sent_tag="seg", id_attr="id"):
+        if isinstance(inf, basestring):
+            inf = open(inf)
             
+        source = inf.read()
+        
+        m = re.match('<\?xml[^<>]+encoding="(.+)"', source)
+        if m:
+            encoding = m.groups(0)
+        else:
+            encoding = "utf-8"
+        
+        source = source.decode(encoding)
+        return self.annot_xml(source, xml_sent_tag, id_attr)
+        
+    def _annot_text(self, text):
         tagger_out = self._tree_tagger(text)
-        return self._extract_from_text(tagger_out)
+        return self._extract_sentences_from_text(tagger_out)
     
-    def annot_sentences(self, sentences, encoding=None):
+    def _annot_sentences(self, sentences, ids=None):
         xml_sent_tag = "seg"
-        text = self._embed_in_xml(sentences, encoding, xml_sent_tag)
-        tagger_out = self._tree_tagger(text)
-        return self._extract_from_xml(tagger_out, xml_sent_tag)
-
-    def _embed_in_xml(self, sentences, encoding, xml_sent_tag):
+        id_attr = "id"
+        if not ids:
+            ids = ("{:03d}".format(i+1) for i in range(len(sentences)))
+        source = self._embed_in_xml(sentences, xml_sent_tag, id_attr, ids)
+        return self.annot_xml(source, xml_sent_tag, id_attr)
+    
+    def _embed_in_xml(self, sentences, xml_sent_tag, id_attr, ids):
         # Embed sentences in a simple xml strcture.
         # Default Treetagger skips xml tags but keep them in its output,
         # so sentence boundaries are retained.
         text = u"<doc>\n"
-        
-        for sent in sentences:
-            if encoding:
-                sent = sent.decode(encoding)
-            text += u"<{0}>{1}</{2}>\n".format(xml_sent_tag, sent, xml_sent_tag)
             
+        for sent, id in zip(sentences, ids):
+            text += u'<{0} {1}="{2}">{3}</{4}>\n'.format(xml_sent_tag,
+                                                         id_attr,
+                                                         id,
+                                                         sent, 
+                                                         xml_sent_tag)
         text += u"</doc>\n"
         return text
         
@@ -135,7 +314,7 @@ class TreeTagger(Annotator):
         
         return tagger_out 
     
-    def _extract_from_text(self, tagger_out):
+    def _extract_sentences_from_text(self, tagger_out):
         graph_list = []
         start_new_graph = True
         
@@ -156,37 +335,6 @@ class TreeTagger(Annotator):
                 
         return graph_list
     
-    def _extract_from_xml(self, tagger_out, xml_sent_tag):
-        graph_list = []
-        sent_count = 0
-        # XML parser interprets "<unknown>" as an XML tag and crashes when it
-        # finds no matching "</unknown>" tag, so replace by __UNKNOWN__
-        tagger_out = tagger_out.replace(self.unknown_lemma, self.unknown)
-        # Replace illegal ampercents too
-        tagger_out = tagger_out.replace("&", "&amp;")
-        # tagger_out is unicode but XML parser expects byte string
-        # (cStringIO cannot cope with unicode either)
-        tagger_out = tagger_out.encode("utf-8")
-        
-        for _, elem in et.iterparse(cStringIO.StringIO(tagger_out)):
-            if elem.tag == xml_sent_tag:
-                sent_count += 1
-                graph = self._add_new_graph(sent_count)
-                graph_list.append(graph)
-                prev_node = None
-                
-                for line in elem.text.strip().split("\n"):
-                    prev_node, _ = self._add_new_node(line, graph, prev_node)
-                    
-        return graph_list
-
-    def _add_new_graph(self, graph_id=None, n=None):
-        if n:
-            graph_id = "{0:03}".format(n)
-            
-        log.info("creating graph {}".format(graph_id))
-        return TransGraph(id=graph_id)
-
     def _add_new_node(self, line, graph, prev_node):
         # fix: TreeTagger for English sometimes produces output like
         # 'that\t\tIN\tthat',
@@ -260,23 +408,18 @@ class ILSP_NLP_Greek(Annotator):
     def __init__(self, *arg, **kargs):
         self.client = suds.client.Client(self.wsdl_url)
         
-        
-    def annot_text(self, text, encoding=None, errors='strict'):
-        if encoding:
-            text = text.decode(encoding, errors)
-        else:
-            assert isinstance(text, unicode)
-        
+    def _annot_text(self, text):
         output_url = self._ilsp_nlp(text, input_type="txt")  
-        return self._extract_from_xml(output_url, sent_tag="s")
+        return self._parse_ilsp_nlp_output(output_url, sent_tag="s")
                                       
-                                      
-    def annot_sentences(self, sentences, encoding=None):
-        xml_source = self._embed_in_xml(sentences, encoding)
+    def _annot_sentences(self, sentences, ids=None):
+        if not ids:
+            ids = ("{:03d}".format(i+1) for i in range(len(sentences)))
+        xml_source = self._embed_in_xml(sentences, ids)
         output_url = self._ilsp_nlp(xml_source, input_type="xcesbasic")
-        return self._extract_from_xml(output_url, sent_tag="p")
+        return self._parse_ilsp_nlp_output(output_url, sent_tag="p")
     
-    def _embed_in_xml(self, sentences, encoding):
+    def _embed_in_xml(self, sentences, ids):
         # Embed sentences in minimal XCES xml .
         # Sentences are embedded as paragraphs (<p> rather than <s>), 
         # because ilsp_nlp performs both sentence chunking and tokenization.
@@ -285,12 +428,8 @@ class ILSP_NLP_Greek(Annotator):
         # This prevents sentences from being chunked by ilsp_nlp.
         xml_source = u"<cesDoc><cesHeader /><text><body>\n"
         
-        for sent in sentences:
-            if encoding:
-                sent = sent.decode(encoding)
-            else:
-                assert isinstance(sent, unicode) 
-            xml_source += u"<p>" + sent + u"</p>\n"
+        for sent, id in zip(sentences, ids):
+            xml_source += u'<p id="{}">'.format(id) + sent + u"</p>\n"
                 
         xml_source += u"</body></text></cesDoc>"
         return xml_source
@@ -328,9 +467,8 @@ class ILSP_NLP_Greek(Annotator):
         return output_url
         # TODO: are we suppposed to call destroy(xs:string jobId, )?
     
-    def _extract_from_xml(self, output_url, sent_tag):
+    def _parse_ilsp_nlp_output(self, output_url, sent_tag):
         graph_list = []
-        sent_count = 0
         output = urllib.urlopen(output_url)
         
         # some silly moves to get the root element
@@ -347,9 +485,8 @@ class ILSP_NLP_Greek(Annotator):
         for event, elem in context:   
             if event == "start":
                 if elem.tag == sent_tag:
-                    graph_id = elem.get("id")
-                    log.info("creating graph {}".format(graph_id))                    
-                    graph = TransGraph(id=graph_id)
+                    graph = self._add_new_graph(n=len(graph_list) + 1,
+                                                graph_id=elem.get("id"))
                     graph_list.append(graph)
                     prev_node = None
             elif event == "end":
@@ -376,36 +513,28 @@ class ILSP_NLP_Greek(Annotator):
 
 class OsloBergenTagger(Annotator):
     """
-    annotation of Norwegian input (Bokmål) text with Oslo-Bergen Tagger 
+    annotation of Norwegian (Bokmål) input text with Oslo-Bergen Tagger 
     """
-    
     tagger_encoding="utf-8"
-    eos_marker = u" * "
-    eos_line = u"*\t*\tsymb\n" 
+    eos_marker = u" END_OF_SENTENCE . "
+    eos_line = ( u"END_OF_SENTENCE\tEND_OF_SENTENCE\tsubst_prop\n"
+                 u".\t$.\t<punkt>\n" )
     
     def __init__(self, command=config["tagger"]["no"]["command"]):
         Annotator.__init__(self)    
         self.command = command
         
-    def annot_text(self, text, encoding=None, errors='strict'):
-        if encoding:
-            text = text.decode(encoding, errors)
-        else:
-            assert isinstance(text, unicode)
-            
+    def _annot_text(self, text):
         tagger_out = self._obt(text)
-        return self._extract_from_text(tagger_out)
+        return self._parse_obt_output(tagger_out)
                                        
-    def annot_sentences(self, sentences, encoding=None, errors='strict'):
+    def _annot_sentences(self, sentences, ids=None):
+        # There is no easy way to enforce sentence boundaries in OBT, so we
+        # insert a silly eos_marker which always triggers a sentence
+        # boundary. 
         text = self.eos_marker.join(sentences)
-        
-        if encoding:
-            text = text.decode(encoding, errors)
-        else:
-            assert isinstance(text, unicode)
-            
         tagger_out = self._obt(text)
-        return self._extract_from_text(tagger_out, self.eos_line)
+        return self._parse_obt_output(tagger_out, self.eos_line, ids)
     
     def _obt(self, text):
         log.debug(u"OBT input:\n" + text)
@@ -435,12 +564,15 @@ class OsloBergenTagger(Annotator):
         
         return tagger_out
     
-    def _extract_from_text(self, tagger_out, eos_line="\n\n"):
+    def _parse_obt_output(self, tagger_out, eos_line="\n\n", ids=None):
         graph_list = []
         annot_sentences = tagger_out.strip().split(eos_line)
+        if not ids:
+            ids = ("{:03d}".format(i+1) for i in range(len(annot_sentences)))
         
-        for i, annot_sent in enumerate(annot_sentences):
-            graph = self._add_new_graph(n=i + 1)
+        for annot_sent, id in zip(annot_sentences, ids):
+            graph = self._add_new_graph(n=len(graph_list) + 1,
+                                        graph_id=id)
             graph_list.append(graph)
             prev_node = None
             
@@ -451,13 +583,6 @@ class OsloBergenTagger(Annotator):
                     prev_node = self._add_new_node(line, graph, prev_node)
                 
         return graph_list
-    
-    def _add_new_graph(self, graph_id=None, n=None):
-        if n:
-            graph_id = "{0:03}".format(n)
-            
-        log.info("creating graph {}".format(graph_id))
-        return TransGraph(id=graph_id)
 
     def _add_new_node(self, line, graph, prev_node):
         word, lemma, tag = line.split("\t")
