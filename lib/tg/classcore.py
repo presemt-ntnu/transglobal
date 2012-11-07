@@ -192,16 +192,35 @@ class ClassifierScore(GraphProcess):
             source_lempos, items_str))
         
     def _log_scores(self, lempos2score, source_lempos):
-        items = sorted(lempos2score.items(), reverse=True, key=operator.itemgetter(1))
+        items = sorted(lempos2score.items(), reverse=True,
+                       key=operator.itemgetter(1))
         items_str = u", ".join(u"{0}={1:.4f}".format(*pair) for pair in items)
-        log.debug(u"scores for lempos {0}: {1}\n".format(source_lempos, items_str))
+        log.debug(u"scores for lempos {0}: {1}\n".format(source_lempos,
+                                                         items_str))
                 
         
    
     
-# ----------------------------------------------------------------------------        
+# ---------------------------------------------------------------------------- 
 # Filter functions
-# ----------------------------------------------------------------------------        
+# ---------------------------------------------------------------------------- 
+
+
+def filter_functions(lang):
+    if lang == "de":
+        return filter_german
+    elif lang == "en":
+        return filter_en_function_words
+    elif lang == "no":
+        return filter_no_function_words
+    elif lang == "gr":
+        return filter_gr_function_words
+    else:
+        raise ValueError("no filter function for language {}".format(lang))
+
+
+
+# German
 
 DE_CONTENT_POS = set("ADJA ADJD "
                      "ADV " 
@@ -230,6 +249,8 @@ def filter_de_function_words(graph, node):
     return graph.pos(node) not in DE_CONTENT_POS
     
     
+    
+# English
 
 EN_CONTENT_POS = set("JJ JJR JJS NN NNS NP NPS RB RBR RBS "
                      "VB VBD VBG VBN VBP VBZ".split())
@@ -242,11 +263,24 @@ def filter_en_function_words(graph, node):
 
 
 
-def filter_functions(lang):
-    if lang == "de":
-        return filter_german
-    elif lang == "en":
-        return filter_en_function_words
-    else:
-        raise ValueError("no filter function for language {}".format(lang))
+# Norwegian
+
+NO_CONTENT_POS = set("subst verb adv adj".split())
+
+def filter_no_function_words(graph, node):
+    """
+    filter out Norwegian function words on the basis of the tagger's POS tag
+    """
+    return graph.pos(node) not in NO_CONTENT_POS
+
+
+# Greek
+
+GR_CONTENT_POS = set("No Vb Ad Aj".split())
+
+def filter_gr_function_words(graph, node):
+    """
+    filter out Greek function words on the basis of the tagger's POS tag
+    """
+    return graph.pos(node)[:2] not in GR_CONTENT_POS
 
