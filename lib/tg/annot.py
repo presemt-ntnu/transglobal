@@ -202,6 +202,10 @@ class TreeTagger(Annotator):
     """
     Annotation of input text with TreeTagger 
     """
+    # The approach from the Annotator base class is to extract sentences from
+    # the XML file and then call self.annot_sentences. However, TreeTagger
+    # can process XML input directly, so instead we tag-lemmatize the xml
+    # input and then create graphs directly from the XML output.
     
     # string used by TreeTagger for unknown lemmas
     unknown_lemma = u"<unknown>"
@@ -215,17 +219,27 @@ class TreeTagger(Annotator):
         self.replace_unknown_lemma = replace_unknown_lemma
         
     def annot_xml(self, source, xml_sent_tag="seg", id_attr="id"):
-        # The approach from the Annotator base class is to extract sentences
-        # from the XML file and then call self.annot_sentences. However,
-        # TreeTagger can process XML input directly, so instead we
-        # tag-lemmatize the xml input and then create graphs directly from
-        # the XML output.
+        #  strip utf-8 byte-order-mark
+        source = source.lstrip(codecs.BOM_UTF8)
+        
+        # figure out encoding from xml header or default to utf-8
+        m = re.match('.?<\?xml[^<>]+encoding="(.+)"', source)
+        if m:
+            encoding = m.groups()[0]
+        else:
+            encoding = "utf-8"
+        source = source.decode(encoding)
+        
+        # run Treetagger
         tagger_out = self._tree_tagger(source)
+        
         # XML parser interprets "<unknown>" as an XML tag and crashes when it
         # finds no matching "</unknown>" tag, so replace by __UNKNOWN__
         tagger_out = tagger_out.replace(self.unknown_lemma, self.unknown)
+        
         # Replace illegal ampercents too
         tagger_out = tagger_out.replace(u"&", u"&amp;")
+
         # tagger_out is unicode but XML parser expects byte string
         # (cStringIO cannot cope with unicode either)
         tagger_out = tagger_out.encode("utf-8")
@@ -240,10 +254,9 @@ class TreeTagger(Annotator):
                 text = elem.text.strip()
                 
                 if text:
-                    for line in text.split("\n"):
+                    for line in text.split(u"\n"):
                         prev_node, _ = self._add_new_node(line, graph, 
                                                           prev_node)
-                    
         return graph_list
         
     def annot_xml_file(self, inf, xml_sent_tag="seg", id_attr="id"):
@@ -251,14 +264,6 @@ class TreeTagger(Annotator):
             inf = open(inf)
             
         source = inf.read()
-        
-        m = re.match('<\?xml[^<>]+encoding="(.+)"', source)
-        if m:
-            encoding = m.groups(0)
-        else:
-            encoding = "utf-8"
-        
-        source = source.decode(encoding)
         return self.annot_xml(source, xml_sent_tag, id_attr)
         
     def _annot_text(self, text):
@@ -286,7 +291,7 @@ class TreeTagger(Annotator):
                                                          sent, 
                                                          xml_sent_tag)
         text += u"</doc>\n"
-        return text
+        return text.encode("utf-8")
         
     def _tree_tagger(self, text):
         log.debug(u"TreeTagger input:\n" + text)
