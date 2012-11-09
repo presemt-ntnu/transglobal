@@ -7,6 +7,7 @@ import xml.etree.cElementTree as et
 from collections import Counter
 
 from tg.graphproc import GraphProcess
+from tg.mteval import read_ref_trans_counts
 
 log = logging.getLogger(__name__)
 
@@ -40,47 +41,9 @@ class MaxScore(GraphProcess):
     def __init__(self, ref_fname, score_attr="max_score"):
         GraphProcess.__init__(self)
         self.score_attr = score_attr
-        self.counts = self._get_counts(ref_fname)
-        
-    def _get_counts(self, ref_fname):
-        """
-        For each segment, create a bag (multi-set) from the tokens of its
-        reference translation(s)
-        """
-        counts = {}
-        doc_order = []
-        
-        for event, elem in et.iterparse(ref_fname, events=("start", "end")):
-            if event == "start" and elem.tag == "doc":
-                doc_id = elem.attrib["docid"]
-                if doc_id not in doc_order:
-                    doc_order.append(doc_id)
-                try:
-                    doc_counts = counts[doc_id]
-                except KeyError:
-                    doc_counts = counts[doc_id] = []
-                seg_num = 0
-            elif event == "end" and elem.tag == "seg":
-                # tokens are lower-cased
-                tokens = elem.text.lower().split()
-                try:
-                    seg_counts = doc_counts[seg_num]
-                except IndexError:
-                    seg_counts = Counter()
-                    # seg_counts are kept in an ordered list rather than a
-                    # dict keyed on seg_id, because the corresponding graphs
-                    # may not have a seg:id attribute
-                    doc_counts.append(seg_counts)
-                seg_counts.update(tokens)
-                seg_num += 1
-                
         # It is assumed that the order of documents (by docid) in the source
         # and reference is the same
-        ordered_counts = []
-        for doc_id in doc_order:
-            ordered_counts.extend(counts[doc_id])
-
-        return ordered_counts
+        self.counts = read_ref_trans_counts(ref_fname, flatten=True)
     
     def _batch_run(self, obj_list, *args, **kwargs):
         self.seg_num = 0

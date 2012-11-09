@@ -10,6 +10,8 @@ from tg.utils import set_default_log
 
 from tg.format import TextFormat
 
+# TODO:
+# - check that result is indeed correct
 
 class TestMaxScore:
     
