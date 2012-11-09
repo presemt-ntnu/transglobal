@@ -1,12 +1,15 @@
 """
 parse NIST and BLEU scores from output of mteval scoring script
 """
-
+  
+      
+from collections import OrderedDict, Counter
 import codecs
 import logging
 import re
 import subprocess
 import sys
+import xml.etree.cElementTree as et 
 
 import numpy as np
 
@@ -76,6 +79,137 @@ def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout,
     
     return out, err
 
+
+
+def read_ref_trans(ref_fname, flatten=False):
+    """
+    Read reference translations from file in mteval xml format
+    
+    Parameters
+    ----------
+    ref_fname: file or filename
+        reference translations in mteval xml format
+        
+    Returns
+    -------
+    refset: OrderedDict
+        ordered dictionary mapping doc id to another ordered dict which
+        maps seg id to a list of reference translations
+    flatten: bool
+        flatten refset by removing ordered dicts for documents and segments,
+        returning only an ordered list of translations for each segment 
+     
+    Examples
+    --------
+    Get reference translations for doc with id "test" and segment with id "1":
+    
+    >>> refset["test"]["1"]    
+    ['the European Union have react already .', 
+     'There have be reaction on the side of the European Union .', 
+     'the European union have already react .', 
+     'the European Union have already react .', 
+     'the European Union have respond already .']
+    """
+    refset = OrderedDict()
+    
+    for event, elem in et.iterparse(ref_fname, events=("start", "end")):
+        if event == "start" and elem.tag == "doc":
+            doc_id = elem.attrib["docid"]
+            try:
+                doc = refset[doc_id]
+            except KeyError:
+                doc = refset[doc_id] = OrderedDict()
+        elif event == "end" and elem.tag == "seg":
+            seg_id = elem.get("id")
+            try:
+                doc[seg_id].append(elem.text)
+            except KeyError:
+                doc[seg_id] = [elem.text]
+
+    if flatten:
+        refset = _flatten_ref_trans(refset)
+        
+    return refset
+
+
+
+def read_ref_trans_counts(ref_fname, tok_func=lambda s: s.lower().split(), 
+                          flatten=False):
+    """
+    Read reference translations counts from file in mteval xml format
+    
+    Parameters
+    ----------
+    ref_fname: file or filename
+        reference translations in mteval xml format
+    tok_func: func
+        tokenisation function taking a sentence string as input and returning a 
+        list of tokens 
+    flatten: bool
+        flatten refset by removing ordered dicts for documents and segments,
+        returning only an ordered list of tokens counts for each segment 
+        
+    Returns
+    -------
+    refset: OrderedDict
+        ordered dictionary mapping doc id to another ordered dict which
+        maps seg id to Counter instances, each one holding token counts over all
+        reference translations of a segment
+     
+    Examples
+    --------
+    Get tokens counts for document with id "test" and segment with id "1":
+    
+    >>> refset["test"]["1"]
+    Counter({'the': 6, 'union': 5, '.': 5, 'have': 5, 'european': 5, 
+    'already': 4, 'react': 3, 'respond': 1, 'be': 1, 'reaction': 1, 'of': 1, 
+    'there': 1, 'on': 1, 'side': 1})   
+    
+    Get ordered list of segment ids in document with id "test":
+
+    >>> refset["test"].keys()
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', 
+    '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', 
+    '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', 
+    '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
+    
+    Get count of token "european" in last segment of doc:
+    
+    >>> refset["test"].values()[-1]["european"]
+    4
+    """
+    refset = OrderedDict()
+    
+    for event, elem in et.iterparse(ref_fname, events=("start", "end")):
+        if event == "start" and elem.tag == "doc":
+            doc_id = elem.attrib["docid"]
+            try:
+                doc = refset[doc_id]
+            except KeyError:
+                doc = refset[doc_id] = OrderedDict()
+        elif event == "end" and elem.tag == "seg":
+            seg_id = elem.get("id")
+            # tokens are lower-cased
+            tokens = tok_func(elem.text)
+            try:
+                doc[seg_id].update(tokens)
+            except KeyError:
+                doc[seg_id] = Counter(tokens)
+                
+    if flatten:
+        refset = _flatten_ref_trans(refset)
+
+    return refset
+
+
+def _flatten_ref_trans(refset):
+    """
+    Flatten reference translations or their tokens counts
+    """
+    return [ seg
+             for doc in refset.values()
+             for seg in doc.values() ]
+            
 
 
 def parse_total_scores(file):
