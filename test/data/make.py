@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Make test data
 
@@ -20,6 +22,7 @@ from tg.transdict import TransDict
 from tg.utils import set_default_log
 from tg.draw import Draw
 from tg.freqscore import FreqScore
+from tg.randscore import RandProb
 
 log = logging.getLogger(__name__)   
 set_default_log(level=logging.INFO)
@@ -95,9 +98,15 @@ def make_graphs():
         freq_score = FreqScore(counts_fname)
         freq_score(graphs)
         
+        # score random translation
+        counts_fname = config["count"]["lemma"][target_lang]["pkl_fname"]
+        rand_score = RandProb()
+        rand_score(graphs)
+        
         # draw graphs
         draw = Draw()
-        draw(graphs, out_format="pdf", best_score_attr="freq_score", 
+        draw(graphs, out_format="pdf", 
+             base_score_attrs=["freq_score", "rand_score"], 
              out_dir="_draw_" + lang_pair)
         
         # save graphs
