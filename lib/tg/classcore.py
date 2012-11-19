@@ -161,7 +161,7 @@ class ClassifierScore(GraphProcess):
                     
         mat = mat.tocsr()
         # remove superfluous rows now that number of source nodes is known
-        return mat[:row_i, :]
+        return mat[:row_i + 1, :]
     
     # tracing/debugging code
     
