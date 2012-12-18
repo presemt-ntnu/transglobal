@@ -139,11 +139,11 @@ set_default_log(level=logging.INFO)
 # logging.getLogger("model").setLevel(logging.DEBUG)    
 
 
-centroid_exp(data_sets=("wmt08",),
-             lang_pairs=("gr-en", "gr-de"),
+centroid_exp(#data_sets=("wmt08",),
+             #lang_pairs=("gr-en", "gr-de"),
              #text=True,
              #draw=True,
-             #diff=True,
+             diff=True,
              trash_models=True,
              #dump_centroids=True,
              )
