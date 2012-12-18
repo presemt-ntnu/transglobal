@@ -31,9 +31,11 @@ log = logging.getLogger(__name__)
 
 def centroid_exp(data_sets=config["eval"]["data_sets"], 
                 lang_pairs=(),
+                text=False,
                 draw=False,
                 diff=False,
-                trash_models=False):
+                trash_models=False,
+                dump_centroids=False):
     
     descriptor = [ ("data", "S16"),
                    ("lang", "S8"),
@@ -60,7 +62,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
             classifier = CosNearestCentroid()
-            classifier = Pipeline( [("MCF", MinCountFilter()),
+            classifier = Pipeline( [("MCF", MinCountFilter(5)),
                                     ("MFF", MaxFreqFilter()),
                                     #("CHI2", SelectFpr(chi2)),
                                     #("TFIDF", TfidfTransformer()),
@@ -74,13 +76,12 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 graphs_fname, with_vocab_mask=True)
             model_builder.run()
             
-            # print the centroids to a file, only for nouns, only the 50 best
-            # features
-            print_fname = exp_dir + "/" + name + "_centroids.txt"
-            print_centroids(models_fname, 
-                            #pos="n", 
-                            n=50, 
-                            outf=print_fname)
+            # print the centroids to a file, only the 50 best features
+            if dump_centroids:
+                print_fname = exp_dir + "/" + name + "_centroids.txt"
+                print_centroids(models_fname, 
+                                n=50, 
+                                outf=print_fname)
         
             # apply classifier
             model = TranslationClassifier(models_fname)
@@ -106,6 +107,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 base_score_attrs=["centroid_score","freq_score"],
                 out_dir=exp_dir,
                 base_fname=name,
+                text=text,
                 draw=draw,
                 diff=diff
             ) 
@@ -136,11 +138,13 @@ set_default_log(level=logging.INFO)
 
 # logging.getLogger("model").setLevel(logging.DEBUG)    
 
-#centroid_exp()
+
 centroid_exp(data_sets=("presemt-dev",),
-             lang_pairs=("gr-en", "gr-de"),
+             lang_pairs=("no-en", "no-de"),
+             #text=True,
              #draw=True,
              diff=True,
-             trash_models=True
+             #trash_models=True,
+             #dump_centroids=True,
              )
 
