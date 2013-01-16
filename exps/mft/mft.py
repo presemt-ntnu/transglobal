@@ -9,6 +9,7 @@ import cPickle
 import sys
 
 import numpy as np
+import asciitable as at
 
 from tg.config import config
 from tg.utils import set_default_log
@@ -26,7 +27,7 @@ def most_frequent_translation(data_sets=config["eval"]["data_sets"],
     """
     results = []
     
-    descriptor = {"names": ("data", "lang_pair", "NIST", "BLUE", "exp_name"), 
+    descriptor = {"names": ("data", "lang_pair", "NIST", "BLEU", "exp_name"), 
                   "formats": ("S16", "S8", "f4", "f4", "S64")}
     results = np.zeros(9999, dtype=descriptor)
     result_count = 0
@@ -39,10 +40,9 @@ def most_frequent_translation(data_sets=config["eval"]["data_sets"],
             
             nist_score, bleu_score = postprocess(exp_name, data_set,
                                                  lang_pair, graph_list, 
-                                                 best_score_attr="freq_score",                                                  
-                                                 sysid="most frequent translation",                                                  
-                                                 draw=draw,
-                                                 text=text)
+                                                 best_score_attr="freq_score",
+                                                 text=text,
+                                                 draw=draw)
 
             results[result_count] = ( data_set, lang_pair, 
                                       nist_score, bleu_score,
@@ -51,13 +51,14 @@ def most_frequent_translation(data_sets=config["eval"]["data_sets"],
             
     results = results[:result_count]    
     results_fname = "_mft_results"
-    log.info("saving results to " + results_fname)
+    log.info("saving pickled results to " + results_fname + ".npy")
     np.save(results_fname, results)
     
-    print "%-16s\t%-8s\t%8s\t%8s\t%s" % ("DATA:", "LANG:", 
-                                         "NIST:", "BLUE:", "NAME:")
-    for row in results:
-        print "%-16s\t%-8s\t%8.4f\t%8.4f\t%s" % tuple(row)
+    log.info("saving ascii table of results to " + results_fname + ".txt")
+    at.write(results, results_fname + ".txt", Writer=at.FixedWidthTwoLine,
+             delimiter_pad=" ")    
+    at.write(results, sys.stdout, Writer=at.FixedWidthTwoLine,
+             delimiter_pad=" ")
         
     return results
 
@@ -69,10 +70,10 @@ set_default_log(level=logging.INFO)
 
 most_frequent_translation()
 
-# process Norwegain with output as text and graphs:
+#process Norwegain with output as text and graphs:
 #most_frequent_translation(data_sets=("presemt-dev",),
-#                          lang_pairs=("no-en", "no-de"),
-#                          draw=True,
-#                          text=True,
-#                          )
+                          #lang_pairs=("no-en", "no-de"),
+                          ##draw=True,
+                          ##text=True,
+                          #)
 
