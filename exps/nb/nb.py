@@ -13,9 +13,10 @@ import sys
 import numpy as np
 import asciitable as at
 
-from sklearn.feature_selection import SelectFpr, chi2
+from sklearn.feature_selection import SelectFpr,SelectKBest, chi2
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
+from sklearn.naive_bayes import MultinomialNB
 
 from tg.config import config
 from tg.utils import set_default_log, makedirs
@@ -24,20 +25,18 @@ from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
-from tg.skl.centroid import CosNearestCentroid, print_centroids
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 
 log = logging.getLogger(__name__)
 
 
 
-def centroid_exp(data_sets=config["eval"]["data_sets"], 
+def nb_exp(data_sets=config["eval"]["data_sets"], 
                 lang_pairs=(),
                 text=False,
                 draw=False,
                 diff=False,
-                trash_models=False,
-                dump_centroids=False):
+                trash_models=False):
     
     descriptor = [ ("data", "S16"),
                    ("lang", "S8"),
@@ -69,10 +68,10 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             models_fname = exp_dir + "/" + name + ".hdf5"
             classifier = Pipeline( [("MCF", MinCountFilter(5)),
                                     ("MFF", MaxFreqFilter(0.01)),
+                                    #("CHI2", SelectKBest(chi2)),
                                     ("CHI2", SelectFpr(chi2)),
                                     #("TFIDF", TfidfTransformer()),
-                                    ("CNC", CosNearestCentroid())
-                                    #("NC", NearestCentroidProb())
+                                    ("MNB", MultinomialNB())
                                     ])
 
             # train classifier
@@ -81,16 +80,9 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 graphs_fname, with_vocab_mask=True)
             model_builder.run()
             
-            # print the centroids to a file, only the 50 best features
-            if dump_centroids:
-                print_fname = exp_dir + "/" + name + "_centroids.txt"
-                print_centroids(models_fname, 
-                                n=50, 
-                                outf=print_fname)
-        
             # apply classifier
             model = TranslationClassifier(models_fname)
-            score_attr="centroid_score"
+            score_attr="nb_score"
             source_lang = lang.split("-")[0]
             scorer = ClassifierScore(model,
                                      score_attr=score_attr,
@@ -98,7 +90,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
             
-            best_scorer = BestScore(["centroid_score", "freq_score"])
+            best_scorer = BestScore(["nb_score", "freq_score"])
             best_scorer(graph_list)
             
             scored_graphs_fname = exp_dir + "/" + name + "_graphs.pkl"
@@ -109,7 +101,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             nist_score, bleu_score = postprocess(
                 name, data, lang, graph_list, 
                 best_score_attr="best_score",
-                base_score_attrs=["centroid_score","freq_score"],
+                base_score_attrs=["nb_score","freq_score"],
                 out_dir=exp_dir,
                 base_fname=name,
                 text=text,
@@ -127,7 +119,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                 log.info("Trashing models file " + models_fname)
                 os.remove(models_fname)
             
-            
+            # add to table of results per data set & language pair
             sub_results = results[(results["lang"] == lang) &
                                   (results["data"] == data)]
             sub_results = np.sort(sub_results, 
@@ -153,16 +145,15 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
 # for logging to stderr in utf-8 use:
 set_default_log(level=logging.INFO)
 
-#logging.getLogger("tg.skl.selection").setLevel(logging.DEBUG)    
+#logging.getLogger("tg.classcore").setLevel(logging.DEBUG)    
 
 
-centroid_exp(data_sets=("presemt-dev",),
-             #lang_pairs=("gr-en", "gr-de"),
-             #lang_pairs=("no-en", "no-de"),
-             #text=True,
-             #draw=True,
-             diff=True,
-             trash_models=True,
-             #dump_centroids=True,
-             )
+nb_exp(data_sets=("metis","presemt-dev"),
+       #lang_pairs=("no-en", "no-de"),
+       #lang_pairs=("de-en", "en-de"),
+       #text=True,
+       #draw=True,
+       diff=True,
+       #trash_models=True,
+       )
 
