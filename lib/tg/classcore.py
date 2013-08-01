@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 scoring translation candidates with a classifier
 """
@@ -161,7 +163,7 @@ class ClassifierScore(GraphProcess):
                     
         mat = mat.tocsr()
         # remove superfluous rows now that number of source nodes is known
-        return mat[:row_i, :]
+        return mat[:row_i + 1, :]
     
     # tracing/debugging code
     
@@ -212,7 +214,7 @@ def filter_functions(lang):
     elif lang == "en":
         return filter_en_function_words
     elif lang == "no":
-        return filter_no_function_words
+        return filter_no
     elif lang == "gr":
         return filter_gr_function_words
     else:
@@ -266,6 +268,18 @@ def filter_en_function_words(graph, node):
 # Norwegian
 
 NO_CONTENT_POS = set("subst verb adv adj".split())
+
+NO_AUX_LEMMA = set("være bli få ha".decode("utf-8").split())
+
+def filter_no(graph, node):
+    return ( filter_no_aux_verbs(graph, node) or
+             filter_no_function_words(graph, node) )
+
+def filter_no_aux_verbs(graph, node):
+    """
+    filter out Norwegian auxiliary verbs on the basis of their lemma
+    """
+    return graph.lemma(node) in NO_AUX_LEMMA
 
 def filter_no_function_words(graph, node):
     """

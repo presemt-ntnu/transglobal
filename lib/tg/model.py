@@ -139,6 +139,9 @@ class ModelBuilder(object):
             if data:
                 self.build_disambiguator(source_lempos, data, targets,
                                          target_names)
+                
+        if self.disambiguator_count == 0:
+            log.error("No disambiguation models were created!")
         
     def _skip(self, source_lempos):
         return ( self.source_lempos_subset and 
@@ -150,8 +153,9 @@ class ModelBuilder(object):
         try:
             self.classifier.fit(data.tocsr(), targets)  
         except ValueError, error:
-            if ( error.args == 
-                 ("zero-size array to maximum.reduce without identity",) ):
+            if ( error.args in [
+                ("zero-size array to maximum.reduce without identity",),
+                ('Invalid threshold: all features are discarded.',)] ):
                 # this happens when there are no features selected 
                 # e.g. when using SelectFpr
                 log.error("No model created, because no features selected!")
@@ -192,12 +196,18 @@ class ModelBuilder(object):
         size = os.path.getsize(self.models_hdf_fname) / float(1024.0 ** 2)
         log.info("elapsed time: {0}".format(
             datetime.timedelta(seconds=elapsed_time)))
-        log.info("average time per model: {0}".format(
-            datetime.timedelta(seconds=elapsed_time/
-                               float(self.disambiguator_count))))
+        try:
+            average_time = datetime.timedelta(seconds=elapsed_time/
+                               float(self.disambiguator_count))
+        except ZeroDivisionError:
+            average_time = 0.0
+        log.info("average time per model: {0}".format(average_time))
         log.info("models file size: {0:.2f} MB".format(size))
-        log.info("average model size: {:.2f} MB".format(
-            size/ float(self.disambiguator_count)))
+        try:
+            average_size = size/ float(self.disambiguator_count)
+        except ZeroDivisionError:
+            average_size = 0.0
+        log.info("average model size: {:.2f} MB".format(average_size))
         
 
 

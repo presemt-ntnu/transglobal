@@ -8,6 +8,7 @@ from tg.config import config
 from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
 from tg.mteval import mteval, parse_total_scores
+from tg.transdiff import trans_diff
 
 
 def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
@@ -17,6 +18,7 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
                 base_dir="./",
                 out_dir=None, 
                 draw=False,
+                diff=False,
                 text=False):
     
     if not sysid:
@@ -36,6 +38,13 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
         draw = Draw()
         draw(graph_list, out_format="pdf", best_score_attr=best_score_attr,
              base_score_attrs=base_score_attrs, out_dir=out_dir)
+        
+    # summarize translation differences  
+    if diff:
+        ref_fname = config["eval"][data_set][lang_pair]["lemma_ref_fname"]
+        diff_fname = os.path.join(out_dir, base_fname + "_diff.txt")
+        score_attrs = base_score_attrs #+ [best_score_attr]
+        trans_diff(graph_list, score_attrs, ref_fname, outf=diff_fname)
     
     # write translation output in plain text format
     if text:
@@ -55,7 +64,7 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
     mte_format.write(tst_fname)
     
     # calculate BLEU and NIST scores using mteval script
-    scores_fname = os.path.join(out_dir, base_fname + ".scores")
+    scores_fname = os.path.join(out_dir, base_fname + "_score.txt")
     mteval(config["eval"][data_set][lang_pair]["lemma_ref_fname"],
            config["eval"][data_set][lang_pair]["src_fname"],
            tst_fname,

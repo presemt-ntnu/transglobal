@@ -33,6 +33,7 @@ class MinCountFilter(BaseEstimator, SelectorMixin):
     #     self.transform(X)
     
     def __init__(self, min_count=5):
+        self.min_count = min_count
         self.threshold = min_count
     
     def fit(self, X, y=None, **fit_params):
@@ -42,7 +43,7 @@ class MinCountFilter(BaseEstimator, SelectorMixin):
         else:
             self.feature_importances_ = X.sum(axis=0)
         
-        log.debug("MinCountFilter filtered {} of {} features".format(
+        log.debug("MinCountFilter removed out {} of {} features".format(
             np.sum(self.feature_importances_ < self.threshold),
             X.shape[1]))
         
@@ -70,7 +71,7 @@ class MaxFreqFilter(BaseEstimator, SelectorMixin):
         self.feature_importances_ = np.array(means <= self.max_freq, 
                                              dtype=np.int) 
         
-        log.debug("MaxFreqFilter filtered {} of {} features".format(
+        log.debug("MaxFreqFilter removed {} of {} features".format(
             X.shape[1] - self.feature_importances_.sum(),
             X.shape[1]))
         
