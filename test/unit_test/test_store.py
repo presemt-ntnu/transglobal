@@ -142,7 +142,7 @@ class TestDisambiguatorStore:
         estimator2 = f2.load_estimator()
         vocab2 = f2.load_vocab()
         f2.restore_fit(lempos, estimator2)
-        target_names2 = f.load_target_names(lempos)
+        target_names2 = f2.load_target_names(lempos)
         centroids2 = estimator2.centroids_
         score2 = estimator2.score(X, y)
         
