@@ -82,12 +82,6 @@ class TestEstimatorStore:
         clf2 = SVC()
         anova_svc2 = Pipeline([('anova', anova_filter2), 
                                ('svc', clf2)])
-        
-        # *** HACK **** 
-        # BaseLibSVM.fit(X,y) sets self._sparse depending on whether X is
-        # sparse or dense. BaseLibSVM.predict won't work without it... :-(
-        clf2._sparse = False
-        # *************
             
         f = EstimatorStore(fname)
         f.restore_fit(anova_svc2, path, set_params=True)

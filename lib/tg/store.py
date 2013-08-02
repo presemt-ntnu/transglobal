@@ -51,10 +51,11 @@ class EstimatorStore(object):
         "NearestCentroidProb": ("centroids_", "classes_"),
         "Normalizer": (),
         "Pipeline": (),
-        "SelectKBest": ("pvalues_",),
-        "SelectFpr": ("pvalues_",),
+        "SelectKBest": ("pvalues_", "scores_"),
+        "SelectFpr": ("pvalues_", "scores_"),
         "SVC": ("shape_fit_", "support_", "support_vectors_", "n_support_", 
-                "dual_coef_", "_intercept_", "classes_", "probA_", "probB_"),
+                "dual_coef_", "_intercept_", "classes_", "probA_", "probB_",
+                "_label", "_gamma", "_sparse"),
         "TfidfTransformer": ("idf_",),
         }
     
@@ -88,9 +89,15 @@ class EstimatorStore(object):
             
         for attr in self.get_fitted_attrs(estimator):
             data = getattr(estimator, attr)
-            dataset = self.file[path].create_dataset(attr, 
-                                                data=data,
-                                                compression=self.compression)
+            try:
+                dataset = self.file[path].create_dataset(attr, 
+                                                    data=data,
+                                                    compression=self.compression)
+            except TypeError:
+                # TypeError: Scalar datasets don't support chunk/filter options
+                # from _hl/filters.py", line 71, in generate_dcpl
+                # Try again without compression
+                dataset = self.file[path].create_dataset(attr, data=data)
             
     def _store_pipeline_fit(self, estimator, path):
         for name, sub_estimator in estimator.steps:
@@ -111,12 +118,16 @@ class EstimatorStore(object):
         
         for attr in self.get_fitted_attrs(estimator):
             dataset = self.file[path][attr]
-            # Workaround for problem that conversion to an numpy array does
-            # not work when dataset with shape like (0,). This occurs e.g.
-            # with SVC.probA_ and SVC.probB
-            if len(dataset):
+            if dataset.shape == ():
+                # value us scalar 
+                value = dataset.value
+            elif len(dataset):                
+                # value is array                
                 value = dataset[:]
             else:
+                # Workaround for problem that conversion to an numpy array does
+                # not work when dataset with shape like (0,). This occurs e.g.
+                # with SVC.probA_ and SVC.probB                
                 value = np.zeros(shape=dataset.shape, dtype=dataset.dtype)
             
             setattr(estimator, attr, value)
