@@ -54,7 +54,7 @@ class EstimatorStore(object):
         "SelectKBest": ("pvalues_",),
         "SelectFpr": ("pvalues_",),
         "SVC": ("shape_fit_", "support_", "support_vectors_", "n_support_", 
-                "dual_coef_", "_intercept_", "label_", "probA_", "probB_"),
+                "dual_coef_", "_intercept_", "classes_", "probA_", "probB_"),
         "TfidfTransformer": ("idf_",),
         }
     
