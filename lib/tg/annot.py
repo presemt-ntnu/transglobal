@@ -523,7 +523,7 @@ class OsloBergenTagger(Annotator):
     tagger_encoding="utf-8"
     eos_marker = u" END_OF_SENTENCE . "
     eos_line = ( u"END_OF_SENTENCE\tEND_OF_SENTENCE\tsubst_prop\n"
-                 u".\t$.\t<punkt>\n" )
+                 u".\t$.\t<punkt>_<<<\n" )
     
     def __init__(self, command=config["tagger"]["no"]["command"]):
         Annotator.__init__(self)    
