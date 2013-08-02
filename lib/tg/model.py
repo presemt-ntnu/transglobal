@@ -17,8 +17,14 @@ import numpy as np
 import scipy.sparse as sp
 import h5py
 
-from sklearn.feature_selection.univariate_selection import (
-    _AbstractUnivariateFilter )
+try:
+    from sklearn.feature_selection.univariate_selection import _BaseFilter
+except ImportError:
+    # sklearn<0.13
+    from sklearn.feature_selection.univariate_selection import _AbstractUnivariateFilter as _Basefilter
+    
+
+
 from sklearn.feature_selection.rfe import RFE
 from sklearn.feature_selection.selector_mixin import SelectorMixin
 
@@ -37,7 +43,7 @@ class ModelBuilder(object):
     """
     
     # feature selectors that reduce the vocabulary
-    FEATURE_SELECTORS = _AbstractUnivariateFilter, RFE, SelectorMixin
+    FEATURE_SELECTORS = _BaseFilter, RFE, SelectorMixin
     
     def __init__(self, tab_fname, samp_hdf_fname, models_hdf_fname,
                  classifier, graphs_pkl_fname=None, with_vocab_mask=False):
