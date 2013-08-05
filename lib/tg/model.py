@@ -30,11 +30,10 @@ from sklearn.feature_selection.selector_mixin import SelectorMixin
 
 from tg.store import DisambiguatorStore
 from tg.utils import coo_matrix_from_hdf5
-from tg.sample import AmbiguityMap
+from tg.ambig import AmbiguityMap
 
 
 log = logging.getLogger(__name__)
-
 
 
 class ModelBuilder(object):
@@ -45,13 +44,12 @@ class ModelBuilder(object):
     # feature selectors that reduce the vocabulary
     FEATURE_SELECTORS = _BaseFilter, RFE, SelectorMixin
     
-    def __init__(self, tab_fname, samp_hdf_fname, models_hdf_fname,
-                 classifier, graphs_pkl_fname=None, with_vocab_mask=False):
-        self.tab_fname = tab_fname
+    def __init__(self, ambig_map, samp_hdf_fname, models_hdf_fname,
+                 classifier, with_vocab_mask=False):
+        self.ambig_map = ambig_map
         self.samp_hdf_fname = samp_hdf_fname
         self.models_hdf_fname = models_hdf_fname
         self.classifier = classifier
-        self.graphs_pkl_fname = graphs_pkl_fname
         self.disambiguator_count = 0
         self.with_vocab_mask = with_vocab_mask
         
@@ -77,41 +75,10 @@ class ModelBuilder(object):
         if self.with_vocab_mask:
             log.info("storage with vocabulary masks")
             self.vocab = self.models_hdfile.load_vocab()
-        
-        self.extract_source_lempos_subset()
-        self.read_ambig_map()
 
-    def read_ambig_map(self):
-        self.ambig_map = AmbiguityMap(fn = self.tab_fname)
-
-
-    def extract_source_lempos_subset(self):
-        """
-        extract all required source lempos from pickled graphs,
-        where POS tag is the *lexicon* POS tag
-        """
-        if self.graphs_pkl_fname:
-            log.info("extracting source lempos subset")
-            self.source_lempos_subset = set()
-            
-            for graph in cPickle.load(open(self.graphs_pkl_fname)):
-                for _,node_attr in graph.source_nodes_iter(data=True, 
-                                                           ordered=True):
-                    try:
-                        self.source_lempos_subset.add(
-                            " ".join(node_attr["lex_lempos"]))
-                    except KeyError:
-                        # not found in lexicon
-                        pass
-        else:
-            self.source_lempos_subset = None
         
     def build(self):
         for source_lempos in self.ambig_map.source_iter():  
-            if self._skip(source_lempos):
-                log.debug(u"skipping model for {}".format(source_lempos))
-                continue
-            
             data = None
             
             for target_lempos in self.ambig_map[source_lempos]:
@@ -148,10 +115,6 @@ class ModelBuilder(object):
                 
         if self.disambiguator_count == 0:
             log.error("No disambiguation models were created!")
-        
-    def _skip(self, source_lempos):
-        return ( self.source_lempos_subset and 
-                 source_lempos not in self.source_lempos_subset )
             
     def build_disambiguator(self, source_lempos, data, targets, target_names):
         log.info("building disambiguator for " + source_lempos)
@@ -160,6 +123,7 @@ class ModelBuilder(object):
             self.classifier.fit(data.tocsr(), targets)  
         except ValueError, error:
             if ( error.args in [
+                ('zero-size array to reduction operation maximum which has no identity',),
                 ("zero-size array to maximum.reduce without identity",),
                 ('Invalid threshold: all features are discarded.',)] ):
                 # this happens when there are no features selected 
