@@ -78,6 +78,12 @@ class AmbiguityMap():
     
     def __len__(self):
         return len(self.source_target_map)
+    
+    def __iter__(self):
+        """
+        @return Iterator of all pairs of source lemmas and their corresponding list of target lemmas
+        """
+        return self.source_target_map.iteritems()
 
     def source_target_pair_iter(self):
         """
@@ -96,3 +102,4 @@ class AmbiguityMap():
         @return Iterator of all target lemmas
         """
         return (tl for tl_list in self.source_target_map.itervalues() for tl in tl_list)
+    

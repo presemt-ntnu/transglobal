@@ -9,16 +9,88 @@ operations on samples
 import logging
 import cPickle
 import codecs
+import collections
 
 log = logging.getLogger(__name__)
 
 import h5py
+import numpy as np
+import scipy.sparse as sp
 
 from tg.config import config
 from tg.transdict import TransDict
 from tg.utils import coo_matrix_from_hdf5, coo_matrix_to_hdf5
 
 
+# for multiple return values of DataSetGenerator._get_labeled_data
+DataSet = collections.namedtuple("DataSet", ["source_lempos", 
+                                             "target_lempos", 
+                                             "samples", 
+                                             "targets"])
+
+class DataSetGenerator(object):
+    """
+    Generates labeled data from an ambiguity map and a samples file
+    """
+
+    def __init__(self, ambig_map, samp_hdfile, dtype="f8"):
+        self.ambig_map = ambig_map
+        self.samp_hdfile= samp_hdfile
+        self.dtype = dtype
+        
+    def __iter__(self):
+        # generate a data set for every source lempos in the ambuity map
+        for source_lempos, target_lempos_list in self.ambig_map:
+            yield self._get_labeled_data(source_lempos, target_lempos_list)
+            
+    def _get_sample_mat(self, lempos):
+        try:
+            group = self.samp_hdfile["samples"][lempos]
+        except KeyError:
+            # Should not happen.
+            # Leave handling of KeyError to caller.
+            log.warning("found no samples for " + lempos)
+            raise
+        
+        # read a sparse matric in COO format from a HDF5 group
+        return sp.coo_matrix((group["data"], group["ij"]), 
+                             shape=group.attrs["shape"], 
+                             dtype=self.dtype)
+    
+    def _get_labeled_data(self, source_lempos, target_lempos_list):
+        samples = None
+        targets = None
+        target_count = 0
+        sampled_target_lempos = []
+        
+        for lempos in target_lempos_list:
+            try:
+                samp_mat = self._get_sample_mat(lempos)
+            except KeyError:
+                # silently skip lempos if there are no samples
+                continue
+            
+            if not samples:
+                # start new data set and targets
+                samples = samp_mat
+                targets = np.zeros((samp_mat.shape[0],))
+            else:
+                # append to data and targets
+                samples = sp.vstack([samples, samp_mat])
+                # concat new targets corresponding to number of samples
+                new_targets = np.zeros((samp_mat.shape[0],)) + target_count
+                targets = np.hstack((targets, new_targets))
+            
+            target_count += 1
+            # hdf5 cannot store array of unicode strings, so use byte
+            # strings for target names
+            sampled_target_lempos.append(lempos.encode("utf-8"))
+            
+        return DataSet(source_lempos, 
+                       sampled_target_lempos, 
+                       samples, 
+                       targets)
+    
 
 
 def filter_sample_vocab(lang_pair):
