@@ -19,4 +19,5 @@ LIB_DIR="$TG_BASE_DIR/lib"
 export PYTHONPATH="$LIB_DIR:$PYTHONPATH"
 
 # 4. fix problem with runnning ipython within virtualenv
-alias ipython="python -c 'import IPython; IPython.embed()'"
+# alias ipython="python -c 'import IPython; IPython.embed()'"
+# Deprecated? Does not work iPython Notebook.

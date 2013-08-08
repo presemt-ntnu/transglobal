@@ -21,6 +21,7 @@ from sklearn.naive_bayes import MultinomialNB
 from tg.config import config
 from tg.utils import set_default_log, makedirs
 from tg.classify import TranslationClassifier
+from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
@@ -73,11 +74,13 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
                                     #("TFIDF", TfidfTransformer()),
                                     ("MNB", MultinomialNB())
                                     ])
+            
+            # get ambiguity map
+            ambig_map = AmbiguityMap(ambig_fname, graphs_fname=graphs_fname)
 
             # train classifier
-            model_builder = ModelBuilder( 
-                ambig_fname, samples_fname, models_fname, classifier,
-                graphs_fname, with_vocab_mask=True)
+            model_builder = ModelBuilder( ambig_map, samples_fname,
+                                          models_fname, classifier, with_vocab_mask=True)
             model_builder.run()
             
             # apply classifier

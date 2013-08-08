@@ -30,11 +30,11 @@ from sklearn.feature_selection.selector_mixin import SelectorMixin
 
 from tg.store import DisambiguatorStore
 from tg.utils import coo_matrix_from_hdf5
-from tg.sample import AmbiguityMap
+from tg.ambig import AmbiguityMap
+from tg.sample import DataSetGenerator
 
 
 log = logging.getLogger(__name__)
-
 
 
 class ModelBuilder(object):
@@ -45,13 +45,12 @@ class ModelBuilder(object):
     # feature selectors that reduce the vocabulary
     FEATURE_SELECTORS = _BaseFilter, RFE, SelectorMixin
     
-    def __init__(self, tab_fname, samp_hdf_fname, models_hdf_fname,
-                 classifier, graphs_pkl_fname=None, with_vocab_mask=False):
-        self.tab_fname = tab_fname
+    def __init__(self, ambig_map, samp_hdf_fname, models_hdf_fname,
+                 classifier, with_vocab_mask=False):
+        self.ambig_map = ambig_map
         self.samp_hdf_fname = samp_hdf_fname
         self.models_hdf_fname = models_hdf_fname
         self.classifier = classifier
-        self.graphs_pkl_fname = graphs_pkl_fname
         self.disambiguator_count = 0
         self.with_vocab_mask = with_vocab_mask
         
@@ -77,89 +76,24 @@ class ModelBuilder(object):
         if self.with_vocab_mask:
             log.info("storage with vocabulary masks")
             self.vocab = self.models_hdfile.load_vocab()
-        
-        self.extract_source_lempos_subset()
-        self.read_ambig_map()
-
-    def read_ambig_map(self):
-        self.ambig_map = AmbiguityMap(fn = self.tab_fname)
-
-
-    def extract_source_lempos_subset(self):
-        """
-        extract all required source lempos from pickled graphs,
-        where POS tag is the *lexicon* POS tag
-        """
-        if self.graphs_pkl_fname:
-            log.info("extracting source lempos subset")
-            self.source_lempos_subset = set()
             
-            for graph in cPickle.load(open(self.graphs_pkl_fname)):
-                for _,node_attr in graph.source_nodes_iter(data=True, 
-                                                           ordered=True):
-                    try:
-                        self.source_lempos_subset.add(
-                            " ".join(node_attr["lex_lempos"]))
-                    except KeyError:
-                        # not found in lexicon
-                        pass
-        else:
-            self.source_lempos_subset = None
-        
     def build(self):
-        for source_lempos in self.ambig_map.source_iter():  
-            if self._skip(source_lempos):
-                log.debug(u"skipping model for {}".format(source_lempos))
-                continue
+        for data_set in DataSetGenerator(self.ambig_map,
+                                         self.sample_hdfile):
+            if data_set.samples:
+                self.build_disambiguator(data_set)
+            else:
+                log.error("No samples and thus no disambiguation models for " +
+                          data_set.source_lempos)
             
-            data = None
-            
-            for target_lempos in self.ambig_map[source_lempos]:
-                try:
-                    samp_group = self.samples[target_lempos]
-                except KeyError:
-                    # should not happen
-                    log.warning("found no sample for " + target_lempos)
-                    continue
-                
-                samp_mat = coo_matrix_from_hdf5(samp_group, dtype="f8")
-                
-                if not data:
-                    # start new data set and targets
-                    data = samp_mat
-                    targets = np.zeros((samp_mat.shape[0],))
-                    target_count = 0
-                    target_names = []
-                else:
-                    # append to data and targets
-                    data = sp.vstack([data, samp_mat])
-                    # concat new targets corresponding to number of samples
-                    new_targets = np.zeros((samp_mat.shape[0],)) + target_count
-                    targets = np.hstack((targets, new_targets))
-                
-                target_count += 1
-                # hdf5 cannot store array of unicode strings, so use byte
-                # strings for target names
-                target_names.append(target_lempos.encode("utf-8"))
-                
-            if data:
-                self.build_disambiguator(source_lempos, data, targets,
-                                         target_names)
-                
-        if self.disambiguator_count == 0:
-            log.error("No disambiguation models were created!")
-        
-    def _skip(self, source_lempos):
-        return ( self.source_lempos_subset and 
-                 source_lempos not in self.source_lempos_subset )
-            
-    def build_disambiguator(self, source_lempos, data, targets, target_names):
-        log.info("building disambiguator for " + source_lempos)
+    def build_disambiguator(self, data_set):
+        log.info("building disambiguator for " + data_set.source_lempos)
         # it seems scilearn classes want sparse matrices in csr format
         try:
-            self.classifier.fit(data.tocsr(), targets)  
+            self.classifier.fit(data_set.samples.tocsr(), data_set.targets)  
         except ValueError, error:
             if ( error.args in [
+                ('zero-size array to reduction operation maximum which has no identity',),
                 ("zero-size array to maximum.reduce without identity",),
                 ('Invalid threshold: all features are discarded.',)] ):
                 # this happens when there are no features selected 
@@ -169,11 +103,10 @@ class ModelBuilder(object):
             else:
                 raise error
             
-        #self.classifier.fit(data.tocsr(), targets)  
-        self.models_hdfile.store_fit(source_lempos, self.classifier)
-        self.models_hdfile.save_target_names(source_lempos, target_names)
+        self.models_hdfile.store_fit(data_set.source_lempos, self.classifier)
+        self.models_hdfile.save_target_names(data_set.source_lempos, data_set.target_lempos)
         if self.with_vocab_mask:        
-            self.save_vocab_mask(source_lempos)
+            self.save_vocab_mask(data_set.source_lempos)
         self.disambiguator_count += 1  
         
     def save_vocab_mask(self, lempos):
@@ -195,25 +128,23 @@ class ModelBuilder(object):
     def finish(self):
         log.info("closing samples file " + self.samp_hdf_fname)    
         self.sample_hdfile.close()
-        log.info("saved {} models".format(self.disambiguator_count))
         log.info("closing models file " + self.models_hdf_fname)    
         self.models_hdfile.close()
-        elapsed_time = time.time() - self.start_time
-        size = os.path.getsize(self.models_hdf_fname) / float(1024.0 ** 2)
-        log.info("elapsed time: {0}".format(
-            datetime.timedelta(seconds=elapsed_time)))
-        try:
+        
+        if self.disambiguator_count > 0:
+            log.info("saved {} models".format(self.disambiguator_count))
+            elapsed_time = time.time() - self.start_time
+            size = os.path.getsize(self.models_hdf_fname) / float(1024.0 ** 2)
+            log.info("elapsed time: {0}".format(
+                datetime.timedelta(seconds=elapsed_time)))
             average_time = datetime.timedelta(seconds=elapsed_time/
-                               float(self.disambiguator_count))
-        except ZeroDivisionError:
-            average_time = 0.0
-        log.info("average time per model: {0}".format(average_time))
-        log.info("models file size: {0:.2f} MB".format(size))
-        try:
+                float(self.disambiguator_count))                              
+            log.info("average time per model: {0}".format(average_time))
+            log.info("models file size: {0:.2f} MB".format(size))
             average_size = size/ float(self.disambiguator_count)
-        except ZeroDivisionError:
-            average_size = 0.0
-        log.info("average model size: {:.2f} MB".format(average_size))
+            log.info("average model size: {:.2f} MB".format(average_size))
+        else:
+            log.error("No disambiguation models were created!")         
         
 
 

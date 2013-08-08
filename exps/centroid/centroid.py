@@ -20,6 +20,7 @@ from sklearn.pipeline import Pipeline
 from tg.config import config
 from tg.utils import set_default_log, makedirs
 from tg.classify import TranslationClassifier
+from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
@@ -74,11 +75,13 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                                     ("CNC", CosNearestCentroid())
                                     #("NC", NearestCentroidProb())
                                     ])
+            
+            # get ambiguity map
+            ambig_map = AmbiguityMap(ambig_fname, graphs_fname=graphs_fname)
 
             # train classifier
-            model_builder = ModelBuilder( 
-                ambig_fname, samples_fname, models_fname, classifier,
-                graphs_fname, with_vocab_mask=True)
+            model_builder = ModelBuilder( ambig_map, samples_fname,
+                                          models_fname, classifier, with_vocab_mask=True)
             model_builder.run()
             
             # print the centroids to a file, only the 50 best features
@@ -157,6 +160,7 @@ set_default_log(level=logging.INFO)
 
 
 centroid_exp(data_sets=("presemt-dev",),
+             #lang_pairs = ("de-en",),
              #lang_pairs=("gr-en", "gr-de"),
              #lang_pairs=("no-en", "no-de"),
              #text=True,

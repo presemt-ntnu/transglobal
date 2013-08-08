@@ -9,76 +9,88 @@ operations on samples
 import logging
 import cPickle
 import codecs
+import collections
 
 log = logging.getLogger(__name__)
 
-import numpy as np
-
 import h5py
+import numpy as np
+import scipy.sparse as sp
 
 from tg.config import config
 from tg.transdict import TransDict
 from tg.utils import coo_matrix_from_hdf5, coo_matrix_to_hdf5
 
-class AmbiguityMap():
+
+# for multiple return values of DataSetGenerator._get_labeled_data
+DataSet = collections.namedtuple("DataSet", ["source_lempos", 
+                                             "target_lempos", 
+                                             "samples", 
+                                             "targets"])
+
+class DataSetGenerator(object):
     """
-    Holds lempos ambiguity information for thhe samples of a given language pair
+    Generates labeled data from an ambiguity map and a samples file
     """
 
-    def __init__(self, lang_pair = None, fn = None, subset = None):
-        """
-        @param lang_pair: Read ambiguities from the file configured for the given language pair.
-        @param fn: Read ambiguities from the specified file.
-        """
-        if fn:
-            self.ambig_fn = fn
-        elif lang_pair:
-            self.ambig_fn = config["sample"][lang_pair]["ambig_fn"]
-        else:
-            raise ValueError
-
-        self.source_target_map = self._read_ambig_file(self.ambig_fn, subset = subset)
-
-    @staticmethod
-    def _read_ambig_file(ambig_fn, subset = None):
-        source_target_map = {}
-
-        for line in codecs.open(ambig_fn, encoding="utf8"):
-            source_label, target_label = line.rstrip().split("\t")[1:3]
-            # strip corpus POS tag
-            source_lempos = source_label.rsplit("/", 1)[0]
-            target_lempos = target_label.rsplit("/", 1)[0]
-
-            if subset and source_lempos not in subset:
+    def __init__(self, ambig_map, samp_hdfile, dtype="f8"):
+        self.ambig_map = ambig_map
+        self.samp_hdfile= samp_hdfile
+        self.dtype = dtype
+        
+    def __iter__(self):
+        # generate a data set for every source lempos in the ambuity map
+        for source_lempos, target_lempos_list in self.ambig_map:
+            yield self._get_labeled_data(source_lempos, target_lempos_list)
+            
+    def _get_sample_mat(self, lempos):
+        try:
+            group = self.samp_hdfile["samples"][lempos]
+        except KeyError:
+            # Should not happen.
+            # Leave handling of KeyError to caller.
+            log.warning("found no samples for " + lempos)
+            raise
+        
+        # read a sparse matric in COO format from a HDF5 group
+        return sp.coo_matrix((group["data"], group["ij"]), 
+                             shape=group.attrs["shape"], 
+                             dtype=self.dtype)
+    
+    def _get_labeled_data(self, source_lempos, target_lempos_list):
+        samples = None
+        targets = None
+        target_count = 0
+        sampled_target_lempos = []
+        
+        for lempos in target_lempos_list:
+            try:
+                samp_mat = self._get_sample_mat(lempos)
+            except KeyError:
+                # silently skip lempos if there are no samples
                 continue
-
-            if source_target_map.has_key(source_lempos):
-                source_target_map[source_lempos].append(target_lempos)
+            
+            if not samples:
+                # start new data set and targets
+                samples = samp_mat
+                targets = np.zeros((samp_mat.shape[0],))
             else:
-                source_target_map[source_lempos] = [target_lempos]
-
-        return source_target_map
-
-    def __getitem__(self, item):
-        return self.source_target_map[item]
-
-    def source_target_pair_iter(self):
-        """
-        @return Iterator of all pairs of source and lemmas
-        """
-        return ((sl, tl) for sl, tl_list in self.source_target_map.iteritems() for tl in tl_list)
-
-    def source_iter(self):
-        """
-        @return Iterator of all source lemmas
-        """
-        return self.source_target_map.iterkeys()
-
-    def target_iter(self):
-        """
-        @return Iterator of all target lemmas
-        """
-        return (tl for tl_list in self.source_target_map.itervalues() for tl in tl_list)
+                # append to data and targets
+                samples = sp.vstack([samples, samp_mat])
+                # concat new targets corresponding to number of samples
+                new_targets = np.zeros((samp_mat.shape[0],)) + target_count
+                targets = np.hstack((targets, new_targets))
+            
+            target_count += 1
+            # hdf5 cannot store array of unicode strings, so use byte
+            # strings for target names
+            sampled_target_lempos.append(lempos.encode("utf-8"))
+            
+        return DataSet(source_lempos, 
+                       sampled_target_lempos, 
+                       samples, 
+                       targets)
+    
 
 
 def filter_sample_vocab(lang_pair):

@@ -13,6 +13,7 @@ import h5py
 from sklearn.naive_bayes import MultinomialNB
 
 from tg.config import config
+from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 from tg.classify import TranslationClassifier
 from tg.utils import coo_matrix_from_hdf5
@@ -25,8 +26,12 @@ class TestTranslationClassifier:
         # build a small model
         models_hdf_fname = tempfile.NamedTemporaryFile().name
         
+        # get ambiguity map
+        ambig_fname = config["test_data_dir"] +"/de-en_ambig.tab"
+        ambig_map = AmbiguityMap(ambig_fname)
+            
         builder = ModelBuilder(
-            tab_fname = config["test_data_dir"] +"/de-en_ambig.tab",
+            ambig_map = ambig_map,
             samp_hdf_fname = config["test_data_dir"] + "/de-en_samples.hdf5_",
             models_hdf_fname = models_hdf_fname,
             classifier = MultinomialNB() )

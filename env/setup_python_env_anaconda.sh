@@ -7,7 +7,7 @@
 
 # Create virtual environment with required packages
 ENV_NAME="transglobal"
-CONDA_PACKAGES="h5py ipython matplotlib networkx nose numpy pip pydot scikit-learn"
+CONDA_PACKAGES="h5py ipython ipython-notebook matplotlib networkx nose numpy pip pydot scikit-learn"
 conda create -n "$ENV_NAME" $CONDA_PACKAGES
 
 # Activate (to use right pip binary)
