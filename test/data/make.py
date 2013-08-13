@@ -13,6 +13,8 @@ from codecs import open
 from os.path import splitext
 import logging
 
+from sklearn.naive_bayes import MultinomialNB
+
 
 from tg.config import config
 from tg.eval import lemmatize
@@ -23,6 +25,8 @@ from tg.utils import set_default_log
 from tg.draw import Draw
 from tg.freqscore import FreqScore
 from tg.randscore import RandProb
+from tg.ambig import AmbiguityMap
+from tg.model import ModelBuilder
 
 log = logging.getLogger(__name__)   
 set_default_log(level=logging.INFO)
@@ -67,12 +71,21 @@ class LookupKeepKeys(Lookup):
 
 
 def lemmatize_reference():
+    """
+    Create lemmatized versions of the reference translations used for evaluation.
+    """
     lemmatize("sample_out_de-en.ref", "en", 
               "lemma_sample_out_de-en.ref")
     lemmatize("sample_newstest2011-ref.de.sgm", "de",
               "lemma_sample_newstest2011-ref.de.sgm")
     
+    
 def make_graphs():
+    """
+    Create annotated translations graphs with scores for rnadom translation
+    and most frequent translation. Also create minimal translation
+    dictionaries for these graphs and drawings.
+    """
     for lang_pair, src_fname in [ ("en-de", "sample_newstest2011-src.en.sgm"),
                                   ("de-en", "sample_out_de-en.src") ]:
         source_lang, target_lang = lang_pair.split("-")
@@ -112,8 +125,34 @@ def make_graphs():
         # save graphs
         graphs_fname = "graphs_" + root_fname + ".pkl"
         dump(graphs, open(graphs_fname, "wb"))
-    
+        
+        
+def make_classifiers():   
+    for lang_pair in "de-en",: 
+        ambig_fname = "{}/{}_ambig.tab".format(
+            config["test_data_dir"], lang_pair)
+        ambig_map = AmbiguityMap(ambig_fname)
+        
+        samp_fname = "{}/{}_samples.hdf5_".format(
+            config["test_data_dir"], lang_pair)
+                
+        models_fname = "{}/{}_models.hdf5_".format(
+            config["test_data_dir"], lang_pair)        
+            
+        builder = ModelBuilder(
+            ambig_map = ambig_map,
+            samp_hdf_fname = samp_fname,
+            models_hdf_fname = models_fname,
+            classifier = MultinomialNB() )
+                
+        builder.run()  
     
 
-lemmatize_reference()    
-make_graphs()
+def make_all():
+    lemmatize_reference()    
+    make_graphs()
+    make_classifiers()
+    
+    
+if __name__ == "__main__":
+    make_all()
