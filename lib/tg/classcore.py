@@ -39,6 +39,11 @@ class ClassifierScore(GraphProcess):
         A function to filter out certain source nodes. It must take two 
         arguments: a graph and a source node. If its return value is true,
         the source node will not be scored by the classifier.
+    vectorizer: {"full", "mft"}
+        Method of constructing context vectors
+        * "full" (default): use all possible translations of source words
+        * "mft": use only most frequent translation of each source word; 
+                 requires prior scoring with FreqScore
         
     Notes
     -----
@@ -46,13 +51,22 @@ class ClassifierScore(GraphProcess):
     single graph or a list of graphs.
     """
     
-    def __init__(self, classifier, score_attr="class_score", filter=None):
+    def __init__(self, classifier, score_attr="class_score", filter=None,
+                 vectorizer = "full"):
         self.classifier = classifier
         self.score_attr = score_attr
         if filter:
             self.filter = filter
         else:
             self.filter = lambda graph, node : False
+            
+        if vectorizer == "full":
+            self._make_source_node_vectors = self._make_full_vectors
+        elif vectorizer == "mft":
+            self._make_source_node_vectors = self._make_mft_vectors
+        else:
+            raise ValueError("unknown value '{}' for keyword argument "
+            "'vectorizer'".format(vectorizer))
         
         if log.isEnabledFor(logging.debug): self._construct_reverse_vocab()
     
@@ -138,7 +152,7 @@ class ClassifierScore(GraphProcess):
         
         graph.node[u]["best_nodes"][self.score_attr] = best_node
            
-    def _make_source_node_vectors(self, graph):
+    def _make_full_vectors(self, graph):
         """ 
         Create a sparse matrix consisting of a vector for every source node.
         The vector for a source node counts its translation candidates
@@ -160,6 +174,40 @@ class ClassifierScore(GraphProcess):
                         # ignore target lemma that is out of vocabulary
                         continue
                     mat[row_i, col_j] += 1
+                    
+        mat = mat.tocsr()
+        # remove superfluous rows now that number of source nodes is known
+        return mat[:row_i + 1, :]
+    
+    def _make_mft_vectors(self, graph):
+        """ 
+        Create a sparse matrix consisting of a vector for every source node.
+        The vector for a source node indicates its most frequent translation candidate.
+        Application of this method assumes that FreqScore has been applied and that a
+        'freq_score' attribute is present on edges. 
+        """
+        # no of source nodes is not known in advance, so allocate too many rows
+        dim = (len(graph), len(self.classifier.vocab))
+        # lil sparse format allows indexing 
+        mat = sp.lil_matrix(dim, dtype="f8")
+        freq_score = "freq_score"
+        
+        for row_i, u in enumerate(graph.source_nodes_iter(ordered=True)):
+            # TODO: handle source/target hypernodes             
+            score, v = graph.max_score(u, freq_score)
+            
+            # if v is None, then there are no translation with freq_score
+            # attribute or no translation edges at all
+            if v:
+                target_lemma = graph.lemma(v)
+                
+                try:
+                    col_j = self.classifier.vocab[target_lemma]
+                except KeyError:
+                    # ignore target lemma that is out of vocabulary
+                    continue
+                
+                mat[row_i, col_j] += 1
                     
         mat = mat.tocsr()
         # remove superfluous rows now that number of source nodes is known
