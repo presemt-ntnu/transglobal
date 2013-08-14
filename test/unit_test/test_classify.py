@@ -23,20 +23,7 @@ from tg.utils import coo_matrix_from_hdf5
 class TestTranslationClassifier:
     
     def test_translation_classifier(self):
-        # build a small model
-        models_hdf_fname = tempfile.NamedTemporaryFile().name
-        
-        # get ambiguity map
-        ambig_fname = config["test_data_dir"] +"/de-en_ambig.tab"
-        ambig_map = AmbiguityMap(ambig_fname)
-            
-        builder = ModelBuilder(
-            ambig_map = ambig_map,
-            samp_hdf_fname = config["test_data_dir"] + "/de-en_samples.hdf5_",
-            models_hdf_fname = models_hdf_fname,
-            classifier = MultinomialNB() )
-                
-        builder.run()
+        models_hdf_fname = config["test_data_dir"] + "/de-en_models.hdf5_"
         
         # make a translation classifier that uses this model
         trans_clf = TranslationClassifier(models_hdf_fname)
