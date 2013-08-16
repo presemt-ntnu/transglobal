@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-evaluate Nearest Centroid models
+evaluate plain Nearest Centroid models
 """
 
 import cPickle
@@ -25,7 +25,7 @@ from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
-from tg.skl.centroid import CosNearestCentroid, print_centroids
+from tg.skl.centroid import NearestCentroidProb, print_centroids
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 
 log = logging.getLogger(__name__)
@@ -68,20 +68,14 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             if not os.path.exists(exp_dir):
                 os.makedirs(exp_dir)
             models_fname = exp_dir + "/" + name + ".hdf5"
-            classifier = Pipeline( [("MCF", MinCountFilter(5)),
-                                    ("MFF", MaxFreqFilter(0.01)),
-                                    ("CHI2", SelectFpr(chi2)),
-                                    #("TFIDF", TfidfTransformer()),
-                                    ("CNC", CosNearestCentroid())
-                                    #("NC", NearestCentroidProb())
-                                    ])
+            classifier = NearestCentroidProb()
             
             # get ambiguity map
             ambig_map = AmbiguityMap(ambig_fname, graphs_fname=graphs_fname)
 
             # train classifier
             model_builder = ModelBuilder( ambig_map, samples_fname,
-                                          models_fname, classifier, with_vocab_mask=True)
+                                          models_fname, classifier) #,with_vocab_mask=True)
             model_builder.run()
             
             # print the centroids to a file, only the 50 best features
@@ -97,7 +91,8 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
             source_lang = lang.split("-")[0]
             scorer = ClassifierScore(model,
                                      score_attr=score_attr,
-                                     filter=filter_functions(source_lang))
+                                     filter=filter_functions(source_lang),
+                                     vectorizer="mft")
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
             
@@ -159,14 +154,14 @@ set_default_log(level=logging.INFO)
 #logging.getLogger("tg.skl.selection").setLevel(logging.DEBUG)    
 
 
-centroid_exp(data_sets=("presemt-dev",),
+centroid_exp(#data_sets=("presemt-dev",),
              #lang_pairs = ("de-en",),
              #lang_pairs=("gr-en", "gr-de"),
              #lang_pairs=("no-en", "no-de"),
-             #text=True,
+             text=True,
              #draw=True,
              diff=True,
              trash_models=True,
-             #dump_centroids=True,
+             dump_centroids=True,
              )
 
