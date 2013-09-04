@@ -50,6 +50,7 @@ class EstimatorStore(object):
         "NearestCentroid": ("centroids_", "classes_"),
         "NearestCentroidProb": ("centroids_", "classes_"),
         "Normalizer": (),
+        "NMF": ("components_", "n_components_"),
         "Pipeline": (),
         "SelectKBest": ("pvalues_", "scores_"),
         "SelectFpr": ("pvalues_", "scores_"),
