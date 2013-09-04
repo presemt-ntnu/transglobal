@@ -2,9 +2,6 @@
 classes for feature selection
 """
 
-# TODO
-# - unit tests
-
 
 import logging
 
@@ -91,7 +88,3 @@ class MaxFreqFilter(BaseEstimator, _LearntSelectorMixin):
             X.shape[1]))
         
         return self
-        
-        
-        
-        
