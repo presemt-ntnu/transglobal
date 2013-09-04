@@ -13,7 +13,6 @@ import numpy as np
 from sklearn.decomposition import NMF
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.preprocessing import Binarizer
 from tg.config import config
 from tg.ambig import AmbiguityMap
 from tg.sample import DataSetGenerator
