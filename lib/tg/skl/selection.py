@@ -10,6 +10,7 @@ import scipy.sparse as sp
 
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection.from_model import _LearntSelectorMixin
+from sklearn.utils import atleast2d_or_csr
 
 log = logging.getLogger(__name__)
 
@@ -34,6 +35,7 @@ class MinCountFilter(BaseEstimator, _LearntSelectorMixin):
         self.threshold = min_count
     
     def fit(self, X, y=None, **fit_params):
+        X = atleast2d_or_csr(X)
         if sp.issparse(X):
             # Indices attrib of sparse matrix in csr format contains column
             # numbers of non-zero elements. Counting the number of
@@ -64,7 +66,8 @@ class MaxFreqFilter(BaseEstimator, _LearntSelectorMixin):
         self.max_freq = max_freq
         self.threshold = 1
         
-    def fit(self, X, y=None, **fit_params):
+    def fit(self, X, y=None, **fit_params):        
+        X = atleast2d_or_csr(X)        
         if sp.issparse(X):
             # Indices attrib of sparse matrix in csr format contains column
             # numbers of non-zero elements. Counting the number of
@@ -72,7 +75,6 @@ class MaxFreqFilter(BaseEstimator, _LearntSelectorMixin):
             # number of non-zero elements per column. The minlength argument
             # guarantees even zero-count columns at the end of the matrix are
             # included.
-            assert X.format == "csr"
             counts = np.bincount(X.indices, minlength=X.shape[1])
         else:
             counts = (X > 0).sum(axis=0)
