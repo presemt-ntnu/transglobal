@@ -130,11 +130,14 @@ class TransDict(object):
                     log.error("skiping ill-formed lexicon entry "
                               "with id {0}".format(elem.get("id")))
                     continue
-                
-                sl_lem = sl_lem.rstrip()
-                tl_lem = tl_lem.rstrip()
-                sl_lempos = sl_lempos.rstrip()
-                tl_lempos = tl_lempos.rstrip()
+
+                # ElementTree returns text as type string,
+                # unless it contains non-ascii chars.
+                # For uniformity, convert all text to unicode.
+                sl_lem = unicode(sl_lem.rstrip())
+                tl_lem = unicode(tl_lem.rstrip())
+                sl_lempos = unicode(sl_lempos.rstrip())
+                tl_lempos = unicode(tl_lempos.rstrip())
 
                 if not reverse:
                     lempos_dict[sl_lempos].add(tl_lempos)

@@ -358,7 +358,7 @@ sg56
 (lp150
 ssS'filename'
 p151
-S'/Users/erwin/Projects/transglobal/git/transglobal/data/maps/en-de_posmap'
+S'/Users/erwin/Projects/Transglobal/git/transglobal/data/maps/en-de_posmap'
 p152
 sS'_interpolation_engine'
 p153
@@ -399,4616 +399,4616 @@ I01
 stbsS'_lempos_dict'
 p168
 (dp169
-S'anything/dt'
+Vanything/dt
 p170
-(S'jedes/pro'
-S'alles/pro'
+(Vjedes/pro
+Valles/pro
 tp171
-sS'name/vv'
+sVname/vv
 p172
-(S'machen/v*.full namhaft/v*.full'
-S'benennen/v*.full'
-S'bezeichnen/v*.full'
-S'mit/v*.full einem/v*.full Namen/v*.full versehen/v*.full'
-S'nennen/v*.full'
-S'namhaft/v*.full machen/v*.full'
-S'versehen/v*.full mit/v*.full einem/v*.full Namen/v*.full'
-S'ernennen/v*.full'
+(Vmachen/v*.full namhaft/v*.full
+Vbenennen/v*.full
+Vbezeichnen/v*.full
+Vmit/v*.full einem/v*.full Namen/v*.full versehen/v*.full
+Vnennen/v*.full
+Vnamhaft/v*.full machen/v*.full
+Vversehen/v*.full mit/v*.full einem/v*.full Namen/v*.full
+Vernennen/v*.full
 tp173
-sS'education/n'
+sVeducation/n
 p174
-(S'Bildungswesen/n'
-S'Schulwesen/n'
-S'Schulausbildung/n'
-S'Erziehung/n'
-S'erziehung/n und/n unterricht/n'
-S'Erziehungswissenschaft/n'
-S'Vorbildung/n'
-S'Unterrichtswesen/n'
+(VBildungswesen/n
+VSchulwesen/n
+VSchulausbildung/n
+VErziehung/n
+Verziehung/n und/n unterricht/n
+VErziehungswissenschaft/n
+VVorbildung/n
+VUnterrichtswesen/n
 VPädagogik/n
-S'Ausbildung/n'
-S'Unterricht/n'
-S'Schulung/n'
-S'Bildung/n'
+VAusbildung/n
+VUnterricht/n
+VSchulung/n
+VBildung/n
 tp175
-sS'quip/vv'
+sVquip/vv
 p176
-(S'witzeln/v*.full'
-S'scherzen/v*.full'
+(Vwitzeln/v*.full
+Vscherzen/v*.full
 tp177
-sS'mean/n'
+sVmean/n
 p178
-(S'Mittelweg/n'
-S'Weg/n'
-S'Effektivwert/n'
-S'Mittelwert/n'
-S'klasse/n'
-S'Durchschnitt/n'
+(VMittelweg/n
+VWeg/n
+VEffektivwert/n
+VMittelwert/n
+Vklasse/n
+VDurchschnitt/n
 VMittelmaß/n
 tp179
-sS'generally/adv'
+sVgenerally/adv
 p180
 (Vdurchgängig/adv
-S'generell/adv'
-S'allseits/adv'
-S'im/adv allgemeinen/adv'
+Vgenerell/adv
+Vallseits/adv
+Vim/adv allgemeinen/adv
 Vgewöhnlich/adv
 Vüberhaupt/adv
-S'gemeinhin/adv'
-S'allgemein/adv'
+Vgemeinhin/adv
+Vallgemein/adv
 Vhauptsächlich/adv
 tp181
-sS'note/n'
+sVnote/n
 p182
-(S'Kommentar/n'
-S'Hinweis/n'
-S'Memorandum/n'
-S'Brief/n'
-S'Notiz/n'
-S'Aktenvermerk/n'
-S'Note/n'
-S'Skizze/n'
-S'Ton/n'
-S'Vermerken/n'
-S'Einbauhinweis/n'
-S'Banknote/n'
-S'Bemerkung/n'
-S'kurze/n Mitteilung/n'
-S'Anmerkung/n /Anm.//n'
-S'Auftragsnotierung/n'
-S'Vermerk/n'
-S'Mitteilung/n'
-S'Merken/n'
-S'Notierung/n'
-S'Anmerkung/n'
+(VKommentar/n
+VHinweis/n
+VMemorandum/n
+VBrief/n
+VNotiz/n
+VAktenvermerk/n
+VNote/n
+VSkizze/n
+VTon/n
+VVermerken/n
+VEinbauhinweis/n
+VBanknote/n
+VBemerkung/n
+Vkurze/n Mitteilung/n
+VAnmerkung/n /Anm.//n
+VAuftragsnotierung/n
+VVermerk/n
+VMitteilung/n
+VMerken/n
+VNotierung/n
+VAnmerkung/n
 VErläuterung/n
-S'Hinweisblatt/n'
-S'Aufzeichnung/n'
-S'Zettel/n'
-S'Beachten/n'
-S'anmerken/n'
+VHinweisblatt/n
+VAufzeichnung/n
+VZettel/n
+VBeachten/n
+Vanmerken/n
 tp183
-sS'like/vv to/vv'
+sVlike/vv to/vv
 p184
-(S'gerne/adv'
+(Vgerne/adv
 tp185
-sS'above/in'
+sVabove/in
 p186
-(S'oberhalb/appr'
+(Voberhalb/appr
 Vüber/appr
 tp187
-sS'phone/vv'
+sVphone/vv
 p188
-(S'antelephonieren/v*.full'
-S'telefonieren/v*.full'
-S'antelefonieren/v*.full'
-S'anrufen/v*.full'
-S'telephonieren/v*.full'
-S'rufen/v*.full an/v*.full'
+(Vantelephonieren/v*.full
+Vtelefonieren/v*.full
+Vantelefonieren/v*.full
+Vanrufen/v*.full
+Vtelephonieren/v*.full
+Vrufen/v*.full an/v*.full
 tp189
-sS'straight/jj'
+sVstraight/jj
 p190
 (Vunverdünnt/adj
-S'gerade/adj'
-S'aufrichtig/adj'
-S'scheitrecht/adj'
-S'gradlinig/adj'
-S'pur/adj'
+Vgerade/adj
+Vaufrichtig/adj
+Vscheitrecht/adj
+Vgradlinig/adj
+Vpur/adj
 Vspießbürgerlich/adj
 Vunverfälscht/adj
-S'unmittelbar/adj'
-S'aufrecht/adj'
-S'ehrlich/adj'
+Vunmittelbar/adj
+Vaufrecht/adj
+Vehrlich/adj
 tp191
-sS'originated/vv'
+sVoriginated/vv
 p192
-(S'hervorgebracht/v*.full'
-S'gestammt/v*.full'
-S'entstand/v*.full'
-S'entstanden/v*.full'
-S'ausgegangen/v*.full'
-S'abgestammt/v*.full'
+(Vhervorgebracht/v*.full
+Vgestammt/v*.full
+Ventstand/v*.full
+Ventstanden/v*.full
+Vausgegangen/v*.full
+Vabgestammt/v*.full
 tp193
-sS'"/sym'
+sV"/sym
 p194
-(S'"/sym.other'
+(V"/sym.other
 tp195
-sS'stop/vv'
+sVstop/vv
 p196
-(S'versagen/v*.full'
-S'machen/v*.full Halt/v*.full'
-S'unterbinden/v*.full'
-S'bleiben/v*.full stehen/v*.full'
-S'stehenbleiben/v*.full'
-S'zum/v*.full Stehen/v*.full bringen/v*.full'
-S'Einhalt/v*.full gebieten/v*.full'
-S'verstopfen/v*.full'
-S'stoppen/v*.full ab/v*.full'
-S'halten/v*.full'
-S'pfropfen/v*.full'
-S'anhalten/v*.full'
-S'innehalten/v*.full'
-S'haltmachen/v*.full'
-S'absperren/v*.full'
-S'sperren/v*.full ab/v*.full'
-S'lassen/v*.full sein/v*.full'
+(Vversagen/v*.full
+Vmachen/v*.full Halt/v*.full
+Vunterbinden/v*.full
+Vbleiben/v*.full stehen/v*.full
+Vstehenbleiben/v*.full
+Vzum/v*.full Stehen/v*.full bringen/v*.full
+VEinhalt/v*.full gebieten/v*.full
+Vverstopfen/v*.full
+Vstoppen/v*.full ab/v*.full
+Vhalten/v*.full
+Vpfropfen/v*.full
+Vanhalten/v*.full
+Vinnehalten/v*.full
+Vhaltmachen/v*.full
+Vabsperren/v*.full
+Vsperren/v*.full ab/v*.full
+Vlassen/v*.full sein/v*.full
 Vaufhören/v*.full
-S'abschalten/v*.full'
-S'stoppen/v*.full'
-S'schlagen/v*.full an/v*.full'
-S'binden/v*.full unter/v*.full'
-S'hemmen/v*.full'
-S'stehen/v*.full bleiben/v*.full'
+Vabschalten/v*.full
+Vstoppen/v*.full
+Vschlagen/v*.full an/v*.full
+Vbinden/v*.full unter/v*.full
+Vhemmen/v*.full
+Vstehen/v*.full bleiben/v*.full
 Vsetzen/v*.full außer/v*.full Betrieb/v*.full
-S'abstellen/v*.full'
-S'anschlagen/v*.full'
-S'stillsetzen/v*.full'
-S'abstoppen/v*.full'
-S'gebieten/v*.full Einhalt/v*.full'
-S'halten/v*.full inne/v*.full'
-S'stellen/v*.full ab/v*.full'
-S'halten/v*.full an/v*.full'
-S'sein/v*.full lassen/v*.full'
-S'brechen/v*.full ab/v*.full'
-S'schalten/v*.full ab/v*.full'
-S'halten/v*.full auf/v*.full'
-S'abbrechen/v*.full'
-S'machen/v*.full halt/v*.full'
-S'beenden/v*.full'
-S'setzen/v*.full still/v*.full'
-S'bringen/v*.full zum/v*.full Stehen/v*.full'
+Vabstellen/v*.full
+Vanschlagen/v*.full
+Vstillsetzen/v*.full
+Vabstoppen/v*.full
+Vgebieten/v*.full Einhalt/v*.full
+Vhalten/v*.full inne/v*.full
+Vstellen/v*.full ab/v*.full
+Vhalten/v*.full an/v*.full
+Vsein/v*.full lassen/v*.full
+Vbrechen/v*.full ab/v*.full
+Vschalten/v*.full ab/v*.full
+Vhalten/v*.full auf/v*.full
+Vabbrechen/v*.full
+Vmachen/v*.full halt/v*.full
+Vbeenden/v*.full
+Vsetzen/v*.full still/v*.full
+Vbringen/v*.full zum/v*.full Stehen/v*.full
 Vhören/v*.full auf/v*.full
-S'arretieren/v*.full'
+Varretieren/v*.full
 Vaußer/v*.full Betrieb/v*.full setzen/v*.full
-S'Halt/v*.full machen/v*.full'
-S'aufhalten/v*.full'
+VHalt/v*.full machen/v*.full
+Vaufhalten/v*.full
 tp197
-sS'most/n'
+sVmost/n
 p198
 (Vaufs/n Höchste/n
-S'am/n liebsten/n'
-S'am/n meisten/n'
+Vam/n liebsten/n
+Vam/n meisten/n
 tp199
-sS'like/rb to/rb'
+sVlike/rb to/rb
 p200
-(S'gern/adv'
+(Vgern/adv
 tp201
-sS'no/dt'
+sVno/dt
 p202
-(S'keiner/pro'
-S'keine/pro'
-S'kein/pro'
-S'keinerlei/pro'
-S'keines/pro'
+(Vkeiner/pro
+Vkeine/pro
+Vkein/pro
+Vkeinerlei/pro
+Vkeines/pro
 tp203
-sS'go/n'
+sVgo/n
 p204
-(S'ablaufen/n'
-S'Verzweigen/n'
-S'weggehen/n'
+(Vablaufen/n
+VVerzweigen/n
+Vweggehen/n
 tp205
-sS'situation/jj'
+sVsituation/jj
 p206
-(S'situativ/adj'
+(Vsituativ/adj
 tp207
-sS'really/jj'
+sVreally/jj
 p208
-(S'wirklich/adj'
+(Vwirklich/adj
 tp209
-sS'anything/adv'
+sVanything/adv
 p210
 (Vüberhaupt/adv
 tp211
-sS'municipal/jj'
+sVmunicipal/jj
 p212
-(S'stadttechnisch/adj'
-S'stadtwirtschaftlich/adj'
+(Vstadttechnisch/adj
+Vstadtwirtschaftlich/adj
 Vstädtisch/adj
-S'kommunal/adj'
-S'kreiseigen/adj'
+Vkommunal/adj
+Vkreiseigen/adj
 Vstädt./adj
-S'staedt./adj'
-S'gemeindeeigen/adj'
-S'kommuneneigen/adj'
-S'gemeindlich/adj'
-S'kommunalwirtschaftlich/adj'
+Vstaedt./adj
+Vgemeindeeigen/adj
+Vkommuneneigen/adj
+Vgemeindlich/adj
+Vkommunalwirtschaftlich/adj
 tp213
-sS'which/w'
+sVwhich/w
 p214
-(S'wieviel/pro.inter'
-S'welche/pro.inter'
-S'welcher/pro.inter'
-S'wozu/adv'
-S'welch/pro.inter'
-S'welches/pro.inter'
+(Vwieviel/pro.inter
+Vwelche/pro.inter
+Vwelcher/pro.inter
+Vwozu/adv
+Vwelch/pro.inter
+Vwelches/pro.inter
 tp215
-sS'fraud/n'
+sVfraud/n
 p216
 (VBetrüger/n
-S'Schwindler/n'
-S'Etikettenschwindel/n'
-S'Schiebung/n'
-S'Hochstapler/n'
-S'Heuchler/n'
-S'Betrugsdelikt/n'
+VSchwindler/n
+VEtikettenschwindel/n
+VSchiebung/n
+VHochstapler/n
+VHeuchler/n
+VBetrugsdelikt/n
 VBetrügerei/n
 VBetrügerin/n
-S'Betrugsfall/n'
-S'Betrug/n'
-S'Schwindlerin/n'
+VBetrugsfall/n
+VBetrug/n
+VSchwindlerin/n
 Varglistige/n Täuschung/n
 tp217
-sS'phone/n'
+sVphone/n
 p218
 (Vanläuten/n
-S'Fernsprechapparat/n'
-S'anrufen/n'
-S'Telephon/n'
-S'Fernsprecher/n'
+VFernsprechapparat/n
+Vanrufen/n
+VTelephon/n
+VFernsprecher/n
 VHörer/n
-S'Telefon/n'
-S'anklingeln/n'
-S'anbimmeln/n'
+VTelefon/n
+Vanklingeln/n
+Vanbimmeln/n
 tp219
-sS'understand/vv'
+sVunderstand/vv
 p220
-(S'begreifen/v*.full'
-S'bekommen/v*.full mit/v*.full'
+(Vbegreifen/v*.full
+Vbekommen/v*.full mit/v*.full
 VVerständnis/v*.full haben/v*.full
-S'mitbekommen/v*.full'
-S'sich/v*.full selbst/v*.full erkennen/v*.full'
-S'vollziehen/v*.full nach/v*.full'
-S'erfassen/v*.full'
+Vmitbekommen/v*.full
+Vsich/v*.full selbst/v*.full erkennen/v*.full
+Vvollziehen/v*.full nach/v*.full
+Verfassen/v*.full
 Vhaben/v*.full Verständnis/v*.full
-S'erkennen/v*.full sich/v*.full selbst/v*.full'
-S'einsehen/v*.full'
-S'nachvollziehen/v*.full'
-S'auffassen/v*.full'
-S'sehen/v*.full ein/v*.full'
-S'vollziehen/v*.full'
-S'fassen/v*.full auf/v*.full'
-S'verstehen/v*.full'
+Verkennen/v*.full sich/v*.full selbst/v*.full
+Veinsehen/v*.full
+Vnachvollziehen/v*.full
+Vauffassen/v*.full
+Vsehen/v*.full ein/v*.full
+Vvollziehen/v*.full
+Vfassen/v*.full auf/v*.full
+Vverstehen/v*.full
 tp221
-sS'establish/n'
+sVestablish/n
 p222
-(S'einrichten/n'
-S'aufbauen/n'
-S'Herausarbeiten/n'
-S'Schaffung/n'
-S'ansiedeln/n'
-S'aufstellen/n'
-S'festsetzen/n'
+(Veinrichten/n
+Vaufbauen/n
+VHerausarbeiten/n
+VSchaffung/n
+Vansiedeln/n
+Vaufstellen/n
+Vfestsetzen/n
 tp223
-sS'few/jj'
+sVfew/jj
 p224
-(S'wenig/adj'
+(Vwenig/adj
 tp225
-sS'explain/n'
+sVexplain/n
 p226
-(S'auseinandersetzen/n'
+(Vauseinandersetzen/n
 VErläutern/n
-S'dartun/n'
-S'darlegen/n'
-S'Darlegen/n'
+Vdartun/n
+Vdarlegen/n
+VDarlegen/n
 tp227
-sS'instance/vv'
+sVinstance/vv
 p228
 (Vals/v*.full Beispiel/v*.full anführen/v*.full
 Vführen/v*.full als/v*.full Beispiel/v*.full an/v*.full
 tp229
-sS'immediately/rb'
+sVimmediately/rb
 p230
-(S'sofort/adv'
-S'sogleich/adv'
+(Vsofort/adv
+Vsogleich/adv
 tp231
-sS'code/vv'
+sVcode/vv
 p232
 (Vverschlüsseln/v*.full
-S'codieren/v*.full'
-S'geben/v*.full ein/v*.full'
-S'kennzeichnen/v*.full'
+Vcodieren/v*.full
+Vgeben/v*.full ein/v*.full
+Vkennzeichnen/v*.full
 Vmitverschlüsseln/v*.full
-S'kodieren/v*.full'
-S'eingeben/v*.full'
-S'chiffrieren/v*.full'
+Vkodieren/v*.full
+Veingeben/v*.full
+Vchiffrieren/v*.full
 tp233
-sS'but/n'
+sVbut/n
 p234
-(S'Gleichwohl/n'
-S'Aber/n'
+(VGleichwohl/n
+VAber/n
 tp235
-sS'at/adv all/adv'
+sVat/adv all/adv
 p236
-(S'irgend/adv'
+(Virgend/adv
 tp237
-sS'mention/n'
+sVmention/n
 p238
 (Vanführen/n
 VErwähnung/n
-S'Nennung/n'
+VNennung/n
 tp239
-sS'say/vv'
+sVsay/vv
 p240
-(S'besagen/v*.full'
-S'das/v*.full Wort/v*.full haben/v*.full'
-S'sagen/v*.full'
-S'haben/v*.full das/v*.full Wort/v*.full'
+(Vbesagen/v*.full
+Vdas/v*.full Wort/v*.full haben/v*.full
+Vsagen/v*.full
+Vhaben/v*.full das/v*.full Wort/v*.full
 Väußern/v*.full
 tp241
-sS'there/rb'
+sVthere/rb
 p242
-(S'dorthin/adv'
-S'dort/adv'
-S'dabei/adv'
+(Vdorthin/adv
+Vdort/adv
+Vdabei/adv
 tp243
-sS'answer/vv the/vv phone/vv'
+sVanswer/vv the/vv phone/vv
 p244
-(S'ans/v*.full Telephon/v*.full gehen/v*.full'
-S'ans/v*.full Telefon/v*.full gehen/v*.full'
-S'nehmen/v*.full einen/v*.full Anruf/v*.full entgegen/v*.full'
-S'gehen/v*.full ans/v*.full Telefon/v*.full'
-S'einen/v*.full Anruf/v*.full entgegennehmen/v*.full'
+(Vans/v*.full Telephon/v*.full gehen/v*.full
+Vans/v*.full Telefon/v*.full gehen/v*.full
+Vnehmen/v*.full einen/v*.full Anruf/v*.full entgegen/v*.full
+Vgehen/v*.full ans/v*.full Telefon/v*.full
+Veinen/v*.full Anruf/v*.full entgegennehmen/v*.full
 tp245
-sS'future/n'
+sVfuture/n
 p246
 (VTermingeschäft/n
-S'Futur/n'
-S'Future/n'
-S'Zukunft/n'
+VFutur/n
+VFuture/n
+VZukunft/n
 tp247
-sS'no/adv'
+sVno/adv
 p248
-(S'nein/adv'
+(Vnein/adv
 tp249
-sS'that/in'
+sVthat/in
 p250
-(S'auf/conj.sub* dass/conj.sub*'
+(Vauf/conj.sub* dass/conj.sub*
 Vauf/conj.sub* daß/conj.sub*
 tp251
-sS'like/adv'
+sVlike/adv
 p252
-(S'wie/adv'
-S'gerne/adv'
-S'gleich/adv'
-S'dergleichen/adv'
+(Vwie/adv
+Vgerne/adv
+Vgleich/adv
+Vdergleichen/adv
 tp253
-sS'year/n'
+sVyear/n
 p254
-(S'Jahr/n'
-S'Jahrgang/n'
+(VJahr/n
+VJahrgang/n
 tp255
-sS'about/in'
+sVabout/in
 p256
-(S'betreffs/appr'
-S'gegen/appr'
+(Vbetreffs/appr
+Vgegen/appr
 Vüber/appr acc/appr
 Vüber/appr
-S'ca./adv'
-S'um/appr'
+Vca./adv
+Vum/appr
 tp257
-sS'agree/vv with/vv'
+sVagree/vv with/vv
 p258
-(S'einer/v*.full Meinung/v*.full sein/v*.full'
-S'sein/v*.full einer/v*.full Meinung/v*.full'
-S'sein/v*.full mit/v*.full eins/v*.full'
-S'recht/v*.full geben/v*.full'
-S'sein/v*.full der/v*.full gleichen/v*.full Meinung/v*.full'
-S'mit/v*.full eins/v*.full sein/v*.full'
-S'der/v*.full gleichen/v*.full Meinung/v*.full sein/v*.full'
-S'geben/v*.full recht/v*.full'
+(Veiner/v*.full Meinung/v*.full sein/v*.full
+Vsein/v*.full einer/v*.full Meinung/v*.full
+Vsein/v*.full mit/v*.full eins/v*.full
+Vrecht/v*.full geben/v*.full
+Vsein/v*.full der/v*.full gleichen/v*.full Meinung/v*.full
+Vmit/v*.full eins/v*.full sein/v*.full
+Vder/v*.full gleichen/v*.full Meinung/v*.full sein/v*.full
+Vgeben/v*.full recht/v*.full
 tp259
-sS'at/n'
+sVat/n
 p260
-(S'At-Zeichen/n'
+(VAt-Zeichen/n
 tp261
-sS'one/cd'
+sVone/cd
 p262
-(S'ein/card'
-S'eins/card'
+(Vein/card
+Veins/card
 tp263
-sS'veteran/jj'
+sVveteran/jj
 p264
-(S'altgedient/adj'
+(Valtgedient/adj
 tp265
-sS'select/jj'
+sVselect/jj
 p266
-(S'exklusiv/adj'
+(Vexklusiv/adj
 tp267
-sS'nickname/n'
+sVnickname/n
 p268
-(S'Spitzname/n'
-S'Kosename/n'
-S'Uzname/n'
+(VSpitzname/n
+VKosename/n
+VUzname/n
 tp269
-sS'recall/n'
+sVrecall/n
 p270
-(S'Widerruf/n'
+(VWiderruf/n
 VRückruf/n
 Vrückrufen/n
 VRückberufung/n
-S'Wiederaufruf/n'
-S'Aufruf/n'
-S'Abruf/n'
+VWiederaufruf/n
+VAufruf/n
+VAbruf/n
 Vzurückrufen/n
-S'Abberufung/n'
-S'Wiedergabe/n'
+VAbberufung/n
+VWiedergabe/n
 tp271
-sS'of/in'
+sVof/in
 p272
-(S'vor/appr'
-S'auf/appr'
-S'aus/appr'
+(Vvor/appr
+Vauf/appr
+Vaus/appr
 Vüber/appr
-S'von/appr'
+Vvon/appr
 tp273
-sS'his/jj'
+sVhis/jj
 p274
-(S'seinige/adj'
+(Vseinige/adj
 tp275
-sS'occasionally/n'
+sVoccasionally/n
 p276
-(S'fallweise/n'
+(Vfallweise/n
 tp277
-sS'there/adv'
+sVthere/adv
 p278
-(S'dazu/adv'
-S'dahin/adv'
-S'dort/adv'
-S'dorthin/adv'
-S'da/adv'
+(Vdazu/adv
+Vdahin/adv
+Vdort/adv
+Vdorthin/adv
+Vda/adv
 tp279
-sS'for/in the/in'
+sVfor/in the/in
 p280
 (Vübern/appr
 Vfürs/appr
 Vüberm/appr
-S'aufn/appr'
+Vaufn/appr
 Vübers/appr
-S'aufs/appr'
-S'aufm/appr'
+Vaufs/appr
+Vaufm/appr
 tp281
-sS'bar/n'
+sVbar/n
 p282
 (VSchankbüffet/n
-S'Schiene/n'
-S'Nachtklub/n'
-S'Tragschiene/n'
-S'Gleitschiene/n'
-S'Strich/n'
-S'Roststab/n'
-S'Holm/n'
-S'Nachtlokal/n'
-S'Taste/n'
-S'Gaststube/n'
-S'Stab/n'
-S'Stabelement/n'
-S'Stange/n'
-S'Theke/n'
-S'Gastwirtschaft/n'
-S'Schranke/n'
-S'Tresen/n'
-S'Takt/n'
-S'Raste/n'
+VSchiene/n
+VNachtklub/n
+VTragschiene/n
+VGleitschiene/n
+VStrich/n
+VRoststab/n
+VHolm/n
+VNachtlokal/n
+VTaste/n
+VGaststube/n
+VStab/n
+VStabelement/n
+VStange/n
+VTheke/n
+VGastwirtschaft/n
+VSchranke/n
+VTresen/n
+VTakt/n
+VRaste/n
 VAusschankbüfett/n
-S'Schankstube/n'
-S'Verbindungsstab/n'
-S'Schanktisch/n'
-S'Hemmnis/n'
-S'Band/n'
-S'Barren/n'
-S'Baranlage/n'
-S'Takteinheit/n'
+VSchankstube/n
+VVerbindungsstab/n
+VSchanktisch/n
+VHemmnis/n
+VBand/n
+VBarren/n
+VBaranlage/n
+VTakteinheit/n
 Vabsolute/n Atmosphäre/n
-S'Balken/n'
-S'Bar/n'
-S'Ausschank/n'
-S'Steg/n'
-S'Barrenholm/n'
-S'Hindernis/n'
-S'Stabstahl/n'
-S'Wirtschaft/n'
-S'Mauer/n'
+VBalken/n
+VBar/n
+VAusschank/n
+VSteg/n
+VBarrenholm/n
+VHindernis/n
+VStabstahl/n
+VWirtschaft/n
+VMauer/n
 VFüllstab/n
-S'Leiste/n'
-S'Latte/n'
-S'Taktstrich/n'
-S'Reck/n'
-S'Streifen/n'
-S'Gitterstange/n'
+VLeiste/n
+VLatte/n
+VTaktstrich/n
+VReck/n
+VStreifen/n
+VGitterstange/n
 VBüfett/n
 Vausschließen/n
-S'Deichsel/n'
-S'Barre/n'
+VDeichsel/n
+VBarre/n
 VSchankstätte/n
-S'Profilstab/n'
-S'Riegel/n'
+VProfilstab/n
+VRiegel/n
 tp283
-sS'the/n only/n thing/n'
+sVthe/n only/n thing/n
 p284
-(S'Einzige/n'
+(VEinzige/n
 Vdas/n einzig/n Mögliche/n
 tp285
-sS'new/adv'
+sVnew/adv
 p286
-(S'fremd/adv'
-S'ungewohnt/adv'
+(Vfremd/adv
+Vungewohnt/adv
 tp287
-sS'about/rb'
+sVabout/rb
 p288
-(S'zirka/adv'
-S'etwa/adv'
+(Vzirka/adv
+Vetwa/adv
 Vungefähr/adv
 tp289
-sS'similarly/rb'
+sVsimilarly/rb
 p290
 (Vgleichermaßen/adv
 Vungefähr/adv
 tp291
-sS'least/jj'
+sVleast/jj
 p292
-(S'kleinster/adj'
-S'wenigster/adj'
-S'geringster/adj'
-S'geringst/adj'
-S'kleinste/adj'
-S'wenigste/adj'
-S'geringste/adj'
-S'kleinstes/adj'
-S'wenigstes/adj'
-S'letzte/adj'
-S'geringstes/adj'
+(Vkleinster/adj
+Vwenigster/adj
+Vgeringster/adj
+Vgeringst/adj
+Vkleinste/adj
+Vwenigste/adj
+Vgeringste/adj
+Vkleinstes/adj
+Vwenigstes/adj
+Vletzte/adj
+Vgeringstes/adj
 tp293
-sS'affair/n'
+sVaffair/n
 p294
 (VGeschäft/n
 VAffäre/n
-S'Seitensprung/n'
-S'Fall/n'
-S'Angelegenheit/n'
-S'Skandal/n'
-S'Vorgang/n'
+VSeitensprung/n
+VFall/n
+VAngelegenheit/n
+VSkandal/n
+VVorgang/n
 VVerhältnis/n
-S'Sache/n'
-S'Liaison/n'
-S'Liebschaft/n'
+VSache/n
+VLiaison/n
+VLiebschaft/n
 VLiebesaffäre/n
 tp295
-sS'generally/jj'
+sVgenerally/jj
 p296
 (Vhauptsächlich/adj
 Vgewöhnlich/adj
 tp297
-sS'mean/jj'
+sVmean/jj
 p298
-(S'gemein/adj'
+(Vgemein/adj
 Värmlich/adj
-S'hinterfotzig/adj'
+Vhinterfotzig/adj
 Vböse/adj
-S'genial/adj'
-S'armselig/adj'
-S'durchschnittlich/adj'
-S'geizig/adj'
+Vgenial/adj
+Varmselig/adj
+Vdurchschnittlich/adj
+Vgeizig/adj
 Vschäbig/adj
 tp299
-sS'course/n'
+sVcourse/n
 p300
-(S'Weg/n'
-S'Lehrgang/n'
-S'Speisegang/n'
-S'Parcours/n'
-S'Geschehen/n'
-S'Rennbahn/n'
-S'Piste/n'
-S'Grundrissgestalt/n'
-S'Bahn/n'
-S'Schicht/n'
-S'Zug/n'
-S'Laufbuchse/n'
-S'Strecke/n'
-S'Kurs/n'
-S'Lehrveranstaltung/n'
-S'Bildungsgang/n'
-S'Lauf/n'
-S'Streichen/n'
-S'Ablauf/n'
-S'Gang/n'
-S'Richtung/n'
-S'Verlauf/n'
+(VWeg/n
+VLehrgang/n
+VSpeisegang/n
+VParcours/n
+VGeschehen/n
+VRennbahn/n
+VPiste/n
+VGrundrissgestalt/n
+VBahn/n
+VSchicht/n
+VZug/n
+VLaufbuchse/n
+VStrecke/n
+VKurs/n
+VLehrveranstaltung/n
+VBildungsgang/n
+VLauf/n
+VStreichen/n
+VAblauf/n
+VGang/n
+VRichtung/n
+VVerlauf/n
 VGrundrißgestalt/n
-S'Route/n'
-S'Platz/n'
-S'Schulungskurs/n'
-S'Kursus/n'
+VRoute/n
+VPlatz/n
+VSchulungskurs/n
+VKursus/n
 tp301
-sS'already/adv'
+sValready/adv
 p302
-(S'bereits/adv'
-S'schon/adv'
+(Vbereits/adv
+Vschon/adv
 tp303
-sS'match/n'
+sVmatch/n
 p304
-(S'Anarbeiten/n'
+(VAnarbeiten/n
 Vübereinstimmen/n
-S'dazu/n passende/n Sache/n'
+Vdazu/n passende/n Sache/n
 VGegenstück/n
-S'Abgleichen/n'
-S'Pendant/n'
-S'Ebenbild/n'
+VAbgleichen/n
+VPendant/n
+VEbenbild/n
 VZündholz/n
-S'zusammenpassen/n'
-S'dazu/n passende/n Person/n'
-S'Match/n'
-S'zusammenpassendes/n Paar/n'
-S'Streichholz/n'
-S'Spiel/n'
-S'Anpassung/n'
-S'Kampf/n'
-S'Wettkampf/n'
+Vzusammenpassen/n
+Vdazu/n passende/n Person/n
+VMatch/n
+Vzusammenpassendes/n Paar/n
+VStreichholz/n
+VSpiel/n
+VAnpassung/n
+VKampf/n
+VWettkampf/n
 tp305
-sS'then/rb'
+sVthen/rb
 p306
-(S'folglich/adv'
-S'sodann/adv'
-S'damals/adv'
+(Vfolglich/adv
+Vsodann/adv
+Vdamals/adv
 Vanschließend/adv
-S'danach/adv'
+Vdanach/adv
 tp307
-sS'have/jj'
+sVhave/jj
 p308
-(S'bekommen/adj'
+(Vbekommen/adj
 tp309
-sS'meaning/adv'
+sVmeaning/adv
 p310
-(S'bedeutend/adv'
-S'beabsichtigend/adv'
-S'vorhabend/adv'
-S'bezeichnend/adv'
+(Vbedeutend/adv
+Vbeabsichtigend/adv
+Vvorhabend/adv
+Vbezeichnend/adv
 Vheißend/adv
-S'meinend/adv'
+Vmeinend/adv
 tp311
-sS'which/dt'
+sVwhich/dt
 p312
-(S'die/art'
-S'der/art'
-S'das/art'
-S'd/art'
+(Vdie/art
+Vder/art
+Vdas/art
+Vd/art
 tp313
-sS'political/jj'
+sVpolitical/jj
 p314
-(S'politisch/adj'
-S'fachpolitisch/adj'
+(Vpolitisch/adj
+Vfachpolitisch/adj
 tp315
-sS'coalition/n partner/n'
+sVcoalition/n partner/n
 p316
-(S'Koalitionspartner/n'
+(VKoalitionspartner/n
 tp317
-sS'be/vv to/vv'
+sVbe/vv to/vv
 p318
-(S'sollen/v*.mod'
+(Vsollen/v*.mod
 tp319
-sS'and/n'
+sVand/n
 p320
-(S'And/n'
+(VAnd/n
 tp321
-sS'Election/n'
+sVElection/n
 p322
 (VErwählung/n
 tp323
-sS'I/uh do/uh not/uh know/uh'
+sVI/uh do/uh not/uh know/uh
 p324
-(S'Keine/itj Ahnung/itj'
+(VKeine/itj Ahnung/itj
 Vich/itj weiß/itj nicht/itj
 tp325
-sS'our/pp$'
+sVour/pp$
 p326
-(S'unser/pro'
-S'unsere/pro'
+(Vunser/pro
+Vunsere/pro
 tp327
-sS'certain/vv'
+sVcertain/vv
 p328
 (Vüberzeugt/v*.full
-S'bestimmt/v*.full'
+Vbestimmt/v*.full
 tp329
-sS'though/rb'
+sVthough/rb
 p330
-(S'immerhin/adv'
+(Vimmerhin/adv
 tp331
-sS'will/vv'
+sVwill/vv
 p332
-(S'werden/v*.full'
-S'vermachen/v*.full'
+(Vwerden/v*.full
+Vvermachen/v*.full
 tp333
-sS'character/n'
+sVcharacter/n
 p334
-(S'Schrift/n'
-S'Anschlag/n'
-S'Buchstabe/n'
-S'Beschaffenheit/n'
-S'Art/n'
-S'Rolle/n'
-S'Symbol/n'
-S'Merkmal/n'
-S'Charakter/n'
-S'Zeichen/n'
-S'Kerl/n'
-S'Person/n'
+(VSchrift/n
+VAnschlag/n
+VBuchstabe/n
+VBeschaffenheit/n
+VArt/n
+VRolle/n
+VSymbol/n
+VMerkmal/n
+VCharakter/n
+VZeichen/n
+VKerl/n
+VPerson/n
 VPrägung/n
-S'Figur/n'
-S'Gestalt/n'
+VFigur/n
+VGestalt/n
 VPersönlichkeit/n
-S'Typ/n'
-S'Schriftzeichen/n'
-S'Character/n'
+VTyp/n
+VSchriftzeichen/n
+VCharacter/n
 tp335
-sS'test/n'
+sVtest/n
 p336
-(S'Untersuchung/n'
+(VUntersuchung/n
 VBewährungsprobe/n
 VÜberprüfung/n
-S'ausprobieren/n'
-S'Schale/n'
-S'Probe/n'
+Vausprobieren/n
+VSchale/n
+VProbe/n
 VPrüfverfahren/n
-S'Klausur/n'
+VKlausur/n
 VPrüfen/n
 VPrüfpunkt/n
 VPrüftest/n
-S'Klausurarbeit/n'
-S'Austesten/n'
-S'Testverlauf/n'
-S'Belastungsprobe/n'
+VKlausurarbeit/n
+VAustesten/n
+VTestverlauf/n
+VBelastungsprobe/n
 VPrüfung/n
-S'Erprobung/n'
-S'Test/n'
-S'Versuch/n'
-S'Testversuch/n'
-S'Testlauf/n'
+VErprobung/n
+VTest/n
+VVersuch/n
+VTestversuch/n
+VTestlauf/n
 tp337
-sS'interview/n'
+sVinterview/n
 p338
-(S'Umfrage/n'
-S'Befragen/n'
-S'Befragung/n'
+(VUmfrage/n
+VBefragen/n
+VBefragung/n
 VVorstellungsgespräch/n
-S'Interview/n'
-S'Unterredung/n'
-S'Befragt/n'
+VInterview/n
+VUnterredung/n
+VBefragt/n
 VBewerbungsgespräch/n
 VGespräch/n
 tp339
-sS'consult/vv'
+sVconsult/vv
 p340
-(S'gehen/v*.full mit/v*.full zurate/v*.full'
-S'fragen/v*.full um/v*.full Rat/v*.full'
-S'ziehen/v*.full zu/v*.full'
-S'zurate/v*.full ziehen/v*.full'
-S'konsultieren/v*.full'
-S'befragen/v*.full'
-S'ziehen/v*.full hinzu/v*.full'
-S'sich/v*.full beraten/v*.full'
-S'zu/v*.full Rate/v*.full ziehen/v*.full'
-S'beraten/v*.full sich/v*.full'
-S'hinzuziehen/v*.full'
-S'ziehen/v*.full heran/v*.full'
-S'ziehen/v*.full zurate/v*.full'
-S'suchen/v*.full auf/v*.full'
-S'aufsuchen/v*.full'
-S'heranziehen/v*.full'
-S'ziehen/v*.full zu/v*.full Rate/v*.full'
-S'mit/v*.full zurate/v*.full gehen/v*.full'
-S'zuziehen/v*.full'
-S'um/v*.full Rat/v*.full fragen/v*.full'
+(Vgehen/v*.full mit/v*.full zurate/v*.full
+Vfragen/v*.full um/v*.full Rat/v*.full
+Vziehen/v*.full zu/v*.full
+Vzurate/v*.full ziehen/v*.full
+Vkonsultieren/v*.full
+Vbefragen/v*.full
+Vziehen/v*.full hinzu/v*.full
+Vsich/v*.full beraten/v*.full
+Vzu/v*.full Rate/v*.full ziehen/v*.full
+Vberaten/v*.full sich/v*.full
+Vhinzuziehen/v*.full
+Vziehen/v*.full heran/v*.full
+Vziehen/v*.full zurate/v*.full
+Vsuchen/v*.full auf/v*.full
+Vaufsuchen/v*.full
+Vheranziehen/v*.full
+Vziehen/v*.full zu/v*.full Rate/v*.full
+Vmit/v*.full zurate/v*.full gehen/v*.full
+Vzuziehen/v*.full
+Vum/v*.full Rat/v*.full fragen/v*.full
 tp341
-sS'reportedly/adv'
+sVreportedly/adv
 p342
-(S'wie/adv verlautet/adv'
+(Vwie/adv verlautet/adv
 tp343
-sS'culture/n'
+sVculture/n
 p344
-(S'Kultur/n'
-S'Aufzucht/n'
-S'Kulturbereich/n'
-S'Anbau/n'
+(VKultur/n
+VAufzucht/n
+VKulturbereich/n
+VAnbau/n
 tp345
-sS'the/adv'
+sVthe/adv
 p346
-(S'um/adv so/adv'
-S'umso/adv'
+(Vum/adv so/adv
+Vumso/adv
 tp347
-sS'they/pp'
+sVthey/pp
 p348
-(S'sie/pro'
+(Vsie/pro
 tp349
-sS'it/n'
+sVit/n
 p350
-(S'Klo/n'
+(VKlo/n
 tp351
-sS'I/pp'
+sVI/pp
 p352
-(S'ich/pro'
+(Vich/pro
 tp353
-sS'the/rb right/rb'
+sVthe/rb right/rb
 p354
-(S'rechts/adv'
+(Vrechts/adv
 tp355
-sS'supposedly/jj'
+sVsupposedly/jj
 p356
-(S'angebliche/adj'
+(Vangebliche/adj
 tp357
-sS'even/n'
+sVeven/n
 p358
-(S'Gerade/n'
+(VGerade/n
 tp359
-sS'gain/vv'
+sVgain/vv
 p360
-(S'lagern/v*.full an/v*.full'
-S'erlangen/v*.full'
-S'finden/v*.full'
-S'erwerben/v*.full'
-S'erringen/v*.full'
-S'nehmen/v*.full um/v*.full zu/v*.full'
-S'aufnehmen/v*.full'
-S'ziehen/v*.full an/v*.full'
-S'anlagern/v*.full'
-S'erwirtschaften/v*.full'
-S'nehmen/v*.full auf/v*.full'
-S'um/v*.full zunehmen/v*.full'
-S'erarbeiten/v*.full'
-S'anziehen/v*.full'
-S'gewinnen/v*.full'
-S'lukrieren/v*.full'
+(Vlagern/v*.full an/v*.full
+Verlangen/v*.full
+Vfinden/v*.full
+Verwerben/v*.full
+Verringen/v*.full
+Vnehmen/v*.full um/v*.full zu/v*.full
+Vaufnehmen/v*.full
+Vziehen/v*.full an/v*.full
+Vanlagern/v*.full
+Verwirtschaften/v*.full
+Vnehmen/v*.full auf/v*.full
+Vum/v*.full zunehmen/v*.full
+Verarbeiten/v*.full
+Vanziehen/v*.full
+Vgewinnen/v*.full
+Vlukrieren/v*.full
 tp361
-sS'rule/n'
+sVrule/n
 p362
-(S'Leitsatz/n'
+(VLeitsatz/n
 VMaßstab/n
-S'Regelung/n'
-S'Herrschaft/n Regierungszeit/n'
-S'Masstab/n'
-S'Regelfall/n'
+VRegelung/n
+VHerrschaft/n Regierungszeit/n
+VMasstab/n
+VRegelfall/n
 VPrüfmaßstab/n
-S'Bestimmung/n'
+VBestimmung/n
 VArbeitsmaßstab/n
-S'Spielregel/n'
-S'Norm/n'
-S'vorschrift/n'
-S'Zollstock/n'
-S'Vorschrift/n'
+VSpielregel/n
+VNorm/n
+Vvorschrift/n
+VZollstock/n
+VVorschrift/n
 VMachtausübung/n
 VGesetzmäßigkeit/n
-S'Gebot/n'
-S'Regel/n'
-S'Normvorgabe/n'
-S'Herrschaft/n'
+VGebot/n
+VRegel/n
+VNormvorgabe/n
+VHerrschaft/n
 tp363
-sS'turn/vv out/vv'
+sVturn/vv out/vv
 p364
-(S'gestalten/v*.full'
-S'stellen/v*.full sich/v*.full als/v*.full heraus/v*.full'
-S'werfen/v*.full hinaus/v*.full'
-S'sich/v*.full als/v*.full herausstellen/v*.full'
-S'stellen/v*.full sich/v*.full heraus/v*.full'
-S'werden/v*.full'
-S'raussetzen/v*.full'
-S'geraten/v*.full'
-S'hinauswerfen/v*.full'
-S'sich/v*.full zeigen/v*.full'
-S'an/v*.full die/v*.full Luft/v*.full setzen/v*.full'
-S'sich/v*.full herausstellen/v*.full'
-S'fallen/v*.full aus/v*.full'
-S'zeigen/v*.full'
-S'ausmachen/v*.full'
+(Vgestalten/v*.full
+Vstellen/v*.full sich/v*.full als/v*.full heraus/v*.full
+Vwerfen/v*.full hinaus/v*.full
+Vsich/v*.full als/v*.full herausstellen/v*.full
+Vstellen/v*.full sich/v*.full heraus/v*.full
+Vwerden/v*.full
+Vraussetzen/v*.full
+Vgeraten/v*.full
+Vhinauswerfen/v*.full
+Vsich/v*.full zeigen/v*.full
+Van/v*.full die/v*.full Luft/v*.full setzen/v*.full
+Vsich/v*.full herausstellen/v*.full
+Vfallen/v*.full aus/v*.full
+Vzeigen/v*.full
+Vausmachen/v*.full
 Vsetzen/v*.full den/v*.full Stuhl/v*.full vor/v*.full die/v*.full Tür/v*.full
 Vschmeißen/v*.full raus/v*.full
-S'ausfallen/v*.full'
-S'entlassen/v*.full'
+Vausfallen/v*.full
+Ventlassen/v*.full
 Vden/v*.full Stuhl/v*.full vor/v*.full die/v*.full Tür/v*.full setzen/v*.full
-S'stellen/v*.full her/v*.full'
-S'produzieren/v*.full'
-S'machen/v*.full aus/v*.full'
-S'zeigen/v*.full sich/v*.full'
-S'herstellen/v*.full'
+Vstellen/v*.full her/v*.full
+Vproduzieren/v*.full
+Vmachen/v*.full aus/v*.full
+Vzeigen/v*.full sich/v*.full
+Vherstellen/v*.full
 Vrausschmeißen/v*.full
-S'herausstellen/v*.full'
-S'setzen/v*.full an/v*.full die/v*.full Luft/v*.full'
-S'stellen/v*.full heraus/v*.full'
+Vherausstellen/v*.full
+Vsetzen/v*.full an/v*.full die/v*.full Luft/v*.full
+Vstellen/v*.full heraus/v*.full
 tp365
-sS'the/in'
+sVthe/in
 p366
-(S'je/conj.sub*'
-S'zum/appr'
+(Vje/conj.sub*
+Vzum/appr
 tp367
-sS'before/in the/in'
+sVbefore/in the/in
 p368
-(S'vors/appr'
-S'vorn/appr'
-S'vorm/appr'
+(Vvors/appr
+Vvorn/appr
+Vvorm/appr
 tp369
-sS'not/adv'
+sVnot/adv
 p370
-(S'nicht/adv'
+(Vnicht/adv
 tp371
-sS'lack/n'
+sVlack/n
 p372
-(S'Mangel/n'
-S'Fehlen/n'
-S'Lack/n'
+(VMangel/n
+VFehlen/n
+VLack/n
 tp373
-sS'promise/n'
+sVpromise/n
 p374
-(S'zusagen/n'
+(Vzusagen/n
 VVerheißung/n
-S'Zusage/n'
-S'Versprechung/n'
-S'Versprechen/n'
+VZusage/n
+VVersprechung/n
+VVersprechen/n
 tp375
-sS'as/in'
+sVas/in
 p376
-(S'wie/conj.comp'
-S'weil/conj.sub*'
-S'als/conj.sub*'
-S'obgleich/conj.sub*'
+(Vwie/conj.comp
+Vweil/conj.sub*
+Vals/conj.sub*
+Vobgleich/conj.sub*
 Vwährend/conj.sub*
-S'da/conj.sub*'
-S'indem/conj.sub*'
-S'als/conj.comp'
+Vda/conj.sub*
+Vindem/conj.sub*
+Vals/conj.comp
 tp377
-sS'anything/rb'
+sVanything/rb
 p378
-(S'etwas/adv'
-S'nichts/adv'
-S'irgendwie/adv'
+(Vetwas/adv
+Vnichts/adv
+Virgendwie/adv
 tp379
-sS'recognize/vv'
+sVrecognize/vv
 p380
-(S'begreifen/v*.full'
-S'wieder/v*.full kennen/v*.full'
+(Vbegreifen/v*.full
+Vwieder/v*.full kennen/v*.full
 Vwürdigen/v*.full
-S'kennen/v*.full wieder/v*.full'
-S'erkennen/v*.full an/v*.full'
-S'erkennen/v*.full wieder/v*.full'
-S'erkennen/v*.full'
-S'wieder/v*.full erkennen/v*.full'
-S'anerkennen/v*.full'
-S'wiedererkennen/v*.full'
-S'verstehen/v*.full'
+Vkennen/v*.full wieder/v*.full
+Verkennen/v*.full an/v*.full
+Verkennen/v*.full wieder/v*.full
+Verkennen/v*.full
+Vwieder/v*.full erkennen/v*.full
+Vanerkennen/v*.full
+Vwiedererkennen/v*.full
+Vverstehen/v*.full
 tp381
-sS'town/n'
+sVtown/n
 p382
-(S'Ortschaft/n'
-S'Stadtbewohner/n'
-S'Kleinstadt/n'
-S'Stadt/n'
+(VOrtschaft/n
+VStadtbewohner/n
+VKleinstadt/n
+VStadt/n
 tp383
-sS'both/adv'
+sVboth/adv
 p384
-(S'sowohl/conj.coord'
+(Vsowohl/conj.coord
 tp385
-sS'golf/n'
+sVgolf/n
 p386
-(S'golf/n'
-S'Golfsport/n'
-S'Golf/n'
-S'Golfspiel/n'
+(Vgolf/n
+VGolfsport/n
+VGolf/n
+VGolfspiel/n
 tp387
-sS'select/vv'
+sVselect/vv
 p388
-(S'aufrufen/v*.full'
+(Vaufrufen/v*.full
 Vwählen/v*.full
-S'greifen/v*.full ab/v*.full'
-S'lesen/v*.full aus/v*.full'
+Vgreifen/v*.full ab/v*.full
+Vlesen/v*.full aus/v*.full
 Vauserwählt/v*.full
 Vwählen/v*.full an/v*.full
-S'ausgesucht/v*.full'
-S'scheiden/v*.full'
-S'heraussuchen/v*.full'
-S'rufen/v*.full auf/v*.full'
-S'erlesen/v*.full aus/v*.full'
-S'sondern/v*.full aus/v*.full'
-S'aussondern/v*.full'
+Vausgesucht/v*.full
+Vscheiden/v*.full
+Vheraussuchen/v*.full
+Vrufen/v*.full auf/v*.full
+Verlesen/v*.full aus/v*.full
+Vsondern/v*.full aus/v*.full
+Vaussondern/v*.full
 Vküren/v*.full
-S'auslesen/v*.full'
-S'abgreifen/v*.full'
+Vauslesen/v*.full
+Vabgreifen/v*.full
 Vwählen/v*.full aus/v*.full
-S'auserlesen/v*.full'
-S'suchen/v*.full aus/v*.full'
-S'steuern/v*.full aus/v*.full'
-S'aussuchen/v*.full'
-S'klauben/v*.full'
+Vauserlesen/v*.full
+Vsuchen/v*.full aus/v*.full
+Vsteuern/v*.full aus/v*.full
+Vaussuchen/v*.full
+Vklauben/v*.full
 Vanwählen/v*.full
-S'mustern/v*.full aus/v*.full'
+Vmustern/v*.full aus/v*.full
 Vauswählen/v*.full
-S'aussteuern/v*.full'
-S'suchen/v*.full heraus/v*.full'
-S'steuern/v*.full an/v*.full'
-S'ersehen/v*.full aus/v*.full'
-S'ausmustern/v*.full'
-S'ausersehen/v*.full'
-S'ansteuern/v*.full'
-S'rangieren/v*.full aus/v*.full'
-S'selektieren/v*.full'
-S'ausrangieren/v*.full'
+Vaussteuern/v*.full
+Vsuchen/v*.full heraus/v*.full
+Vsteuern/v*.full an/v*.full
+Versehen/v*.full aus/v*.full
+Vausmustern/v*.full
+Vausersehen/v*.full
+Vansteuern/v*.full
+Vrangieren/v*.full aus/v*.full
+Vselektieren/v*.full
+Vausrangieren/v*.full
 tp389
-sS'rather/rb'
+sVrather/rb
 p390
-(S'ziemlich/adv'
+(Vziemlich/adv
 tp391
-sS'surprisingly/jj'
+sVsurprisingly/jj
 p392
 (Vüberraschenderweise/adj
 tp393
-sS'head/a'
+sVhead/a
 p394
 (Vführend/a
 tp395
-sS'straight/adv away/adv'
+sVstraight/adv away/adv
 p396
-(S'geradewegs/adv'
-S'ohne/adv jeden/adv Umschweif/adv'
-S'spornstreichs/adv'
+(Vgeradewegs/adv
+Vohne/adv jeden/adv Umschweif/adv
+Vspornstreichs/adv
 tp397
-sS'regard/n'
+sVregard/n
 p398
 (VRücksicht/n
-S'Hochachtung/n'
-S'Aufmerksamkeit/n'
-S'Faltenvergenz/n'
-S'Hinblick/n'
+VHochachtung/n
+VAufmerksamkeit/n
+VFaltenvergenz/n
+VHinblick/n
 VWertschätzung/n
-S'Hinsicht/n'
-S'Achtung/n'
-S'aufmerksam/n betrachten/n'
-S'Empfehlung/n'
+VHinsicht/n
+VAchtung/n
+Vaufmerksam/n betrachten/n
+VEmpfehlung/n
 tp399
-sS'old/n man/n'
+sVold/n man/n
 p400
-(S'alter/n Mann/n'
-S'Greis/n'
-S'Olle/n'
-S'Alte/n'
+(Valter/n Mann/n
+VGreis/n
+VOlle/n
+VAlte/n
 tp401
-sS'seem/n'
+sVseem/n
 p402
-(S'Anschein/n'
+(VAnschein/n
 tp403
-sS'add/vv'
+sVadd/vv
 p404
-(S'dazutun/v*.full'
-S'zugeben/v*.full'
+(Vdazutun/v*.full
+Vzugeben/v*.full
 Vzusammenzählen/v*.full
-S'addieren/v*.full auf/v*.full'
-S'nehmen/v*.full auf/v*.full'
-S'addieren/v*.full'
-S'mischen/v*.full bei/v*.full'
-S'nehmen/v*.full hinzu/v*.full'
-S'aufnehmen/v*.full'
+Vaddieren/v*.full auf/v*.full
+Vnehmen/v*.full auf/v*.full
+Vaddieren/v*.full
+Vmischen/v*.full bei/v*.full
+Vnehmen/v*.full hinzu/v*.full
+Vaufnehmen/v*.full
 Vbeifügen/v*.full
-S'mischen/v*.full zu/v*.full'
+Vmischen/v*.full zu/v*.full
 Vzuzählen/v*.full
-S'zulegen/v*.full'
-S'bringen/v*.full an/v*.full'
-S'rechnen/v*.full zu/v*.full'
-S'hinzunehmen/v*.full'
-S'hinzugeben/v*.full'
+Vzulegen/v*.full
+Vbringen/v*.full an/v*.full
+Vrechnen/v*.full zu/v*.full
+Vhinzunehmen/v*.full
+Vhinzugeben/v*.full
 Vergänzen/v*.full
 Vfügen/v*.full hinzu/v*.full
 Vzählen/v*.full zu/v*.full
-S'kommen/v*.full hinzu/v*.full'
-S'zumischen/v*.full'
-S'nachziehen/v*.full'
-S'stocken/v*.full auf/v*.full'
+Vkommen/v*.full hinzu/v*.full
+Vzumischen/v*.full
+Vnachziehen/v*.full
+Vstocken/v*.full auf/v*.full
 Vfügen/v*.full an/v*.full
-S'geben/v*.full bei/v*.full'
-S'versetzen/v*.full'
+Vgeben/v*.full bei/v*.full
+Vversetzen/v*.full
 Vfühlen/v*.full
-S'hinzukommen/v*.full'
-S'addieren/v*.full hinzu/v*.full'
-S'legen/v*.full zu/v*.full'
-S'geben/v*.full hinzu/v*.full'
+Vhinzukommen/v*.full
+Vaddieren/v*.full hinzu/v*.full
+Vlegen/v*.full zu/v*.full
+Vgeben/v*.full hinzu/v*.full
 Vhinzuzählen/v*.full
 Vdazufügen/v*.full
 Vschließen/v*.full an/v*.full
-S'beigeben/v*.full'
-S'tun/v*.full dazu/v*.full'
-S'reihen/v*.full an/v*.full'
+Vbeigeben/v*.full
+Vtun/v*.full dazu/v*.full
+Vreihen/v*.full an/v*.full
 Vanhängen/v*.full
-S'zurechnen/v*.full'
+Vzurechnen/v*.full
 Vfügen/v*.full bei/v*.full
-S'geben/v*.full zu/v*.full'
-S'beimischen/v*.full'
-S'aufaddieren/v*.full'
+Vgeben/v*.full zu/v*.full
+Vbeimischen/v*.full
+Vaufaddieren/v*.full
 Vanschließen/v*.full
 Vhängen/v*.full an/v*.full
-S'setzen/v*.full zu/v*.full'
-S'anreihen/v*.full'
-S'hinzuaddieren/v*.full'
+Vsetzen/v*.full zu/v*.full
+Vanreihen/v*.full
+Vhinzuaddieren/v*.full
 Vanfügen/v*.full
 Vvergrößern/v*.full
-S'anbringen/v*.full'
-S'zusetzen/v*.full'
+Vanbringen/v*.full
+Vzusetzen/v*.full
 Vzufügen/v*.full
 Vhinzufügen/v*.full
-S'aufstocken/v*.full'
+Vaufstocken/v*.full
 Vzählen/v*.full hinzu/v*.full
-S'ziehen/v*.full nach/v*.full'
+Vziehen/v*.full nach/v*.full
 Vzählen/v*.full zusammen/v*.full
 Vfügen/v*.full zu/v*.full
 tp405
-sS'language/n course/n'
+sVlanguage/n course/n
 p406
-(S'Sprachkurs/n'
+(VSprachkurs/n
 tp407
-sS'town/n hall/n'
+sVtown/n hall/n
 p408
-(S'Stadtsaal/n'
+(VStadtsaal/n
 VBürgermeisteramt/n
 VBürgermeisterei/n
-S'Rathaus/n'
+VRathaus/n
 tp409
-sS'about/jj'
+sVabout/jj
 p410
 (Vungefähr/adj
 tp411
-sS'fourth/jj'
+sVfourth/jj
 p412
-(S'viert/adj'
-S'vierter/adj'
-S'viertes/adj'
+(Vviert/adj
+Vvierter/adj
+Vviertes/adj
 tp413
-sS'not/rb'
+sVnot/rb
 p414
-(S'nicht/part.neg'
+(Vnicht/part.neg
 tp415
-sS'party/n'
+sVparty/n
 p416
-(S'Kreis/n'
-S'Partie/n'
-S'Teil/n'
-S'Vertragspartei/n'
-S'Gruppe/n'
-S'Beteiligte/n'
-S'Teilnehmer/n'
-S'Fest/n'
-S'Beteiligter/n'
-S'Party/n'
-S'Gesellschaft/n'
-S'Partei/n'
-S'Fete/n'
+(VKreis/n
+VPartie/n
+VTeil/n
+VVertragspartei/n
+VGruppe/n
+VBeteiligte/n
+VTeilnehmer/n
+VFest/n
+VBeteiligter/n
+VParty/n
+VGesellschaft/n
+VPartei/n
+VFete/n
 tp417
-sS'influential/jj'
+sVinfluential/jj
 p418
-(S'einflussreich/adj'
+(Veinflussreich/adj
 Veinflußreich/adj
 tp419
-sS'person/n'
+sVperson/n
 p420
-(S'Person/n'
-S'Mensch/n'
+(VPerson/n
+VMensch/n
 tp421
-sS'accord/adv'
+sVaccord/adv
 p422
-(S'bewilligend/adv'
+(Vbewilligend/adv
 Vgewährend/adv
 tp423
-sS'but/vv'
+sVbut/vv
 p424
-(S'sondern/v*.full'
-S'ausgenommen/v*.full'
+(Vsondern/v*.full
+Vausgenommen/v*.full
 tp425
-sS'interview/vv'
+sVinterview/vv
 p426
-(S'befragen/v*.full'
-S'interviewen/v*.full'
+(Vbefragen/v*.full
+Vinterviewen/v*.full
 tp427
-sS'old/adv'
+sVold/adv
 p428
-(S'oll/adv'
+(Voll/adv
 tp429
-sS'program/n'
+sVprogram/n
 p430
-(S'Fernsehsendung/n'
-S'Kostenprogramm/n'
-S'Programmkultur/n'
-S'Programm/n'
-S'Sendung/n'
-S'Angebotsprogramm/n'
-S'Programmwerk/n'
+(VFernsehsendung/n
+VKostenprogramm/n
+VProgrammkultur/n
+VProgramm/n
+VSendung/n
+VAngebotsprogramm/n
+VProgrammwerk/n
 tp431
-sS'see/vv'
+sVsee/vv
 p432
-(S'begreifen/v*.full'
-S'siehe/v*.full'
-S'weitersehen/v*.full'
-S'sehen/v*.full weiter/v*.full'
-S'besorgen/v*.full'
-S'verstehen/v*.full'
-S'suchen/v*.full auf/v*.full'
-S'sehen/v*.full'
-S'erblicken/v*.full'
-S'anschauen/v*.full'
-S'empfangen/v*.full'
-S'schauen/v*.full an/v*.full'
-S'einsehen/v*.full'
-S'sehen/v*.full zu#/v*.full'
-S'anzeigen/v*.full'
-S'aufsuchen/v*.full'
-S'zusehen/v*.full'
-S'sehen/v*.full ein/v*.full'
-S'zeigen/v*.full an/v*.full'
-S'ersehen/v*.full'
+(Vbegreifen/v*.full
+Vsiehe/v*.full
+Vweitersehen/v*.full
+Vsehen/v*.full weiter/v*.full
+Vbesorgen/v*.full
+Vverstehen/v*.full
+Vsuchen/v*.full auf/v*.full
+Vsehen/v*.full
+Verblicken/v*.full
+Vanschauen/v*.full
+Vempfangen/v*.full
+Vschauen/v*.full an/v*.full
+Veinsehen/v*.full
+Vsehen/v*.full zu#/v*.full
+Vanzeigen/v*.full
+Vaufsuchen/v*.full
+Vzusehen/v*.full
+Vsehen/v*.full ein/v*.full
+Vzeigen/v*.full an/v*.full
+Versehen/v*.full
 tp433
-sS'current/vv'
+sVcurrent/vv
 p434
-(S'angesagt/v*.full'
+(Vangesagt/v*.full
 tp435
-sS'at/rb all/rb'
+sVat/rb all/rb
 p436
 (Vüberhaupt/adv
 tp437
-sS'least/n'
+sVleast/n
 p438
-(S'Geringste/n'
-S'Kleinste/n'
+(VGeringste/n
+VKleinste/n
 tp439
-sS'so/uh'
+sVso/uh
 p440
-(S'also/itj'
+(Valso/itj
 tp441
-sS'meaning/n'
+sVmeaning/n
 p442
-(S'Sinngehalt/n'
-S'Bedeutung/n'
-S'Sinn/n'
-S'Bedeutungsinhalt/n'
-S'Aussagekraft/n'
-S'Begriffsbestimmung/n'
+(VSinngehalt/n
+VBedeutung/n
+VSinn/n
+VBedeutungsinhalt/n
+VAussagekraft/n
+VBegriffsbestimmung/n
 tp443
-sS'another/jj'
+sVanother/jj
 p444
-(S'andere/adj'
-S'weitere/adj'
+(Vandere/adj
+Vweitere/adj
 tp445
-sS'hole/vv'
+sVhole/vv
 p446
 (Vaushöhlen/v*.full
 Vhöhlen/v*.full aus/v*.full
-S'lochen/v*.full ein/v*.full'
-S'einlochen/v*.full'
+Vlochen/v*.full ein/v*.full
+Veinlochen/v*.full
 tp447
-sS'will/n'
+sVwill/n
 p448
-(S'Testament/n'
-S'Wille/n'
-S'Willen/n'
+(VTestament/n
+VWille/n
+VWillen/n
 tp449
-sS'such/dt'
+sVsuch/dt
 p450
-(S'solch/adv'
-S'solcher/pro.dem'
-S'solch/pro.dem'
-S'solche/pro.dem'
+(Vsolch/adv
+Vsolcher/pro.dem
+Vsolch/pro.dem
+Vsolche/pro.dem
 tp451
-sS'admit/vv'
+sVadmit/vv
 p452
-(S'einlassen/v*.full'
-S'zugeben/v*.full'
-S'erkennen/v*.full an/v*.full'
-S'nehmen/v*.full an/v*.full'
-S'liefern/v*.full ein/v*.full'
-S'einliefern/v*.full'
-S'aufnehmen/v*.full'
-S'zulassen/v*.full'
-S'annehmen/v*.full'
-S'setzen/v*.full zu/v*.full'
-S'lassen/v*.full zu/v*.full'
-S'nehmen/v*.full auf/v*.full'
-S'zusetzen/v*.full'
-S'bekennen/v*.full'
-S'anerkennen/v*.full'
-S'lassen/v*.full ein/v*.full'
-S'geben/v*.full zu/v*.full'
+(Veinlassen/v*.full
+Vzugeben/v*.full
+Verkennen/v*.full an/v*.full
+Vnehmen/v*.full an/v*.full
+Vliefern/v*.full ein/v*.full
+Veinliefern/v*.full
+Vaufnehmen/v*.full
+Vzulassen/v*.full
+Vannehmen/v*.full
+Vsetzen/v*.full zu/v*.full
+Vlassen/v*.full zu/v*.full
+Vnehmen/v*.full auf/v*.full
+Vzusetzen/v*.full
+Vbekennen/v*.full
+Vanerkennen/v*.full
+Vlassen/v*.full ein/v*.full
+Vgeben/v*.full zu/v*.full
 tp453
-sS'word/vv'
+sVword/vv
 p454
-(S'in/v*.full Worte/v*.full fassen/v*.full'
-S'formulieren/v*.full'
+(Vin/v*.full Worte/v*.full fassen/v*.full
+Vformulieren/v*.full
 Vausdrücken/v*.full
 Vdrücken/v*.full in/v*.full Worten/v*.full aus/v*.full
-S'fassen/v*.full ab/v*.full'
-S'abfassen/v*.full'
+Vfassen/v*.full ab/v*.full
+Vabfassen/v*.full
 Vdrücken/v*.full aus/v*.full
-S'fassen/v*.full in/v*.full Worte/v*.full'
+Vfassen/v*.full in/v*.full Worte/v*.full
 Vin/v*.full Worten/v*.full ausdrücken/v*.full
 tp455
-sS'familiar/adv'
+sVfamiliar/adv
 p456
 (Vfamiliär/adv
 Vgeläufig/adv
-S'Vertrauter/adv'
+VVertrauter/adv
 tp457
-sS'above/jj'
+sVabove/jj
 p458
-(S'obenaufsitzend/adj'
-S'oberhalb/adj'
+(Vobenaufsitzend/adj
+Voberhalb/adj
 Vobenerwähnt/adj
-S'vorstehend/adj'
-S'obige/adj'
+Vvorstehend/adj
+Vobige/adj
 tp459
-sS'myself/pp'
+sVmyself/pp
 p460
-(S'mich/pro'
-S'mir/pro'
+(Vmich/pro
+Vmir/pro
 tp461
-sS'to/to'
+sVto/to
 p462
-(S'zu/part.zu'
+(Vzu/part.zu
 tp463
-sS'meaning/jj'
+sVmeaning/jj
 p464
-(S'meinend/adj'
+(Vmeinend/adj
 tp465
-sS'member/n'
+sVmember/n
 p466
-(S'Penis/n'
-S'Teilnehmer/n'
+(VPenis/n
+VTeilnehmer/n
 VAngehörige/n
 VAngehöriger/n
-S'Glied/n'
-S'Bauteil/n'
+VGlied/n
+VBauteil/n
 VEingriffskörper/n
-S'Mitglied/n'
-S'Untersatz/n'
-S'Stab/n'
+VMitglied/n
+VUntersatz/n
+VStab/n
 tp467
-sS'great/n'
+sVgreat/n
 p468
-(S'Ur/n'
-S'klasse/n'
+(VUr/n
+Vklasse/n
 tp469
-sS'all/rb'
+sVall/rb
 p470
 (Vsämtlich/adv
 tp471
-sS'sail/n'
+sVsail/n
 p472
 (VWindmühlenflügel/n
-S'abfahren/n'
+Vabfahren/n
 VSegeltörn/n
-S'Segelschiff/n'
+VSegelschiff/n
 VTörn/n
-S'Segel/n'
+VSegel/n
 tp473
-sS'that/in,that'
+sVthen/adv
 p474
-(Vdaß/conj.sub*
-S'dass/conj.sub*'
+(Vdamals/adv
+Valsdann/adv
+Vdann/adv
+Vdamalig/adv
+Vda/adv
 tp475
-sS'then/adv'
+sVcode/n
 p476
-(S'damals/adv'
-S'alsdann/adv'
-S'dann/adv'
-S'damalig/adv'
-S'da/adv'
-tp477
-sS'code/n'
-p478
-(S'Kode/n'
-S'Vorwahl/n'
-S'Code/n'
-S'Gesetzbuch/n'
-S'Funksignal/n'
-S'Codierung/n'
-S'Kennzeichnung/n'
+(VKode/n
+VVorwahl/n
+VCode/n
+VGesetzbuch/n
+VFunksignal/n
+VCodierung/n
+VKennzeichnung/n
 VSchlüssel/n
-S'Kennzahl/n'
-S'Flaggensignal/n'
-S'Kontieren/n'
-S'Kennzeichen/n'
-S'Coding/n'
-S'Kennung/n'
-S'Kennzahlen/n'
-S'Signal/n'
-S'Kennbuchstabe/n'
-S'Eingeben/n'
-S'Chiffre/n'
-tp479
-sS'out/rb of/rb'
-p480
+VKennzahl/n
+VFlaggensignal/n
+VKontieren/n
+VKennzeichen/n
+VCoding/n
+VKennung/n
+VKennzahlen/n
+VSignal/n
+VKennbuchstabe/n
+VEingeben/n
+VChiffre/n
+tp477
+sVout/rb of/rb
+p478
 (Vaußerhalb/adv
+tp479
+sVsee/sym
+p480
+(Vsieh/sym
 tp481
-sS'see/sym'
+sVtalk/n
 p482
-(S'sieh/sym'
-tp483
-sS'talk/n'
-p484
-(S'Vortrag/n'
-S'Unterhaltung/n'
-S'Besprechung/n'
-S'Diskussion/n'
-S'Aussprache/n'
-S'Gerede/n'
+(VVortrag/n
+VUnterhaltung/n
+VBesprechung/n
+VDiskussion/n
+VAussprache/n
+VGerede/n
 VGespräch/n
+tp483
+sVin/adv the/adv town/adv
+p484
+(Vinnerorts/adv
 tp485
-sS'in/adv the/adv town/adv'
+sVthough/in
 p486
-(S'innerorts/adv'
+(Vobwohl/conj.sub*
+Vobgleich/conj.sub*
+Vwenngleich/conj.sub*
+Vobschon/conj.sub*
+Vwiewohl/conj.sub*
 tp487
-sS'though/in'
+sVabout/vv
 p488
-(S'obwohl/conj.sub*'
-S'obgleich/conj.sub*'
-S'wenngleich/conj.sub*'
-S'obschon/conj.sub*'
-S'wiewohl/conj.sub*'
+(Vgehen/v*.full um/v*.full
+Vum/v*.full gehen/v*.full
 tp489
-sS'about/vv'
+sVlast/n year/n
 p490
-(S'gehen/v*.full um/v*.full'
-S'um/v*.full gehen/v*.full'
+(Vvergangenes/n Jahr/n
+VVorjahr/n
 tp491
-sS'last/n year/n'
+sVout/n
 p492
-(S'vergangenes/n Jahr/n'
-S'Vorjahr/n'
+(VAusblasen/n
+VAus/n
 tp493
-sS'out/n'
+sVRoman/n
 p494
-(S'Ausblasen/n'
-S'Aus/n'
-tp495
-sS'Roman/n'
-p496
 (VRömer/n
 VRömerin/n
-S'Antiqua/n'
-tp497
-sS'by/in the/in'
-p498
+VAntiqua/n
+tp495
+sVby/in the/in
+p496
 (Vübern/appr
 Vüberm/appr
 Vübers/appr
-S'am/appr'
-S'durchs/appr'
-S'ans/appr'
-S'beim/appr'
-S'vom/appr'
-tp499
-sS'match/vv'
-p500
-(S'gleichkommen/v*.full'
-S'anpassen/v*.full'
+Vam/appr
+Vdurchs/appr
+Vans/appr
+Vbeim/appr
+Vvom/appr
+tp497
+sVmatch/vv
+p498
+(Vgleichkommen/v*.full
+Vanpassen/v*.full
 Vebenbürtig/v*.full sein/v*.full
 Vstellen/v*.full gegenüber/v*.full
-S'messen/v*.full sich/v*.full mit/v*.full'
+Vmessen/v*.full sich/v*.full mit/v*.full
 Vsein/v*.full ebenbürtig/v*.full
-S'ordnen/v*.full zu/v*.full'
-S'passen/v*.full an/v*.full'
-S'abstimmen/v*.full'
-S'passen/v*.full'
+Vordnen/v*.full zu/v*.full
+Vpassen/v*.full an/v*.full
+Vabstimmen/v*.full
+Vpassen/v*.full
 Vauf/v*.full Identität/v*.full prüfen/v*.full
-S'vergleichen/v*.full'
+Vvergleichen/v*.full
 Vstimmen/v*.full überein/v*.full
-S'kommen/v*.full gleich/v*.full'
+Vkommen/v*.full gleich/v*.full
 Vübereinstimmen/v*.full
 Vprüfen/v*.full auf/v*.full Identität/v*.full
-S'sich/v*.full mit/v*.full messen/v*.full'
-S'sich/v*.full messen/v*.full mit/v*.full'
-S'abgleichen/v*.full'
-S'gleichen/v*.full ab/v*.full'
-S'stimmen/v*.full ab/v*.full'
-S'zuordnen/v*.full'
-S'angleichen/v*.full'
+Vsich/v*.full mit/v*.full messen/v*.full
+Vsich/v*.full messen/v*.full mit/v*.full
+Vabgleichen/v*.full
+Vgleichen/v*.full ab/v*.full
+Vstimmen/v*.full ab/v*.full
+Vzuordnen/v*.full
+Vangleichen/v*.full
 Vgegenüberstellen/v*.full
-S'gleichen/v*.full an/v*.full'
+Vgleichen/v*.full an/v*.full
+tp499
+sVsuch/dt a/dt
+p500
+(Vso/art ein/art
 tp501
-sS'such/dt a/dt'
+sV-/:
 p502
-(S'so/art ein/art'
+(V-/sym.other
 tp503
-sS'-/:'
+sVat/adv least/adv
 p504
-(S'-/sym.other'
+(Vimmerhin/adv
+Vgut/adv und/adv gern/adv
+Vzumindest/adv
+Vjedenfalls/adv
 tp505
-sS'at/adv least/adv'
+sVthough/adv
 p506
-(S'immerhin/adv'
-S'gut/adv und/adv gern/adv'
-S'zumindest/adv'
-S'jedenfalls/adv'
+(Vallerdings/adv
+Vdoch/adv
+Vwiederum/adv
 tp507
-sS'though/adv'
+sVstraight/adv
 p508
-(S'allerdings/adv'
-S'doch/adv'
-S'wiederum/adv'
-tp509
-sS'straight/adv'
-p510
-(S'geradewegs/adv'
-S'rein/adv'
-S'offen/adv'
-S'heterosexuell/adv'
-S'glatt/adv'
+(Vgeradewegs/adv
+Vrein/adv
+Voffen/adv
+Vheterosexuell/adv
+Vglatt/adv
 Vbürgerlich/adv
-S'direkt/adv'
-S'pur/adv'
-S'konventionell/adv'
-S'unvermischt/adv'
-S'gerade/adv'
+Vdirekt/adv
+Vpur/adv
+Vkonventionell/adv
+Vunvermischt/adv
+Vgerade/adv
+tp509
+sVlanguage/n barrier/n
+p510
+(VSprachenschranke/n
+VSprachbarriere/n
+VSprachmauer/n
 tp511
-sS'language/n barrier/n'
+sVcall/adv
 p512
-(S'Sprachenschranke/n'
-S'Sprachbarriere/n'
-S'Sprachmauer/n'
+(Vtitulierend/adv
 tp513
-sS'call/adv'
+sVanother/cc
 p514
-(S'titulierend/adv'
+(Vnoch/conj.coord
 tp515
-sS'another/cc'
+sVconcern/n
 p516
-(S'noch/conj.coord'
-tp517
-sS'concern/n'
-p518
-(S'Besorgnis/n'
-S'Belang/n'
-S'Beziehung/n'
-S'Ding/n'
-S'Sorge/n'
-S'Firma/n'
-S'Anteil/n'
-S'Interesse/n'
-S'Wichtigkeit/n'
-S'Angelegenheit/n'
-S'Anliegen/n'
-S'Teilnahme/n'
-S'Unternehmen/n'
-S'angehen/n'
+(VBesorgnis/n
+VBelang/n
+VBeziehung/n
+VDing/n
+VSorge/n
+VFirma/n
+VAnteil/n
+VInteresse/n
+VWichtigkeit/n
+VAngelegenheit/n
+VAnliegen/n
+VTeilnahme/n
+VUnternehmen/n
+Vangehen/n
 VGeschäft/n
-S'Tragweite/n'
+VTragweite/n
 VRücksicht/n
-S'Betreff/n'
-S'Unruhe/n'
-S'anbelangen/n'
-S'Geschichte/n'
-S'Sache/n'
-S'Betroffenheit/n'
+VBetreff/n
+VUnruhe/n
+Vanbelangen/n
+VGeschichte/n
+VSache/n
+VBetroffenheit/n
+tp517
+sVown/n
+p518
+(Vzugeben/n
+VBesitz/n
+Vanerkennen/n
+Vzugestehen/n
 tp519
-sS'own/n'
+sVcoalition/n
 p520
-(S'zugeben/n'
-S'Besitz/n'
-S'anerkennen/n'
-S'zugestehen/n'
+(VKoalition/n
+VBlockpartei/n
+VVereinigung/n
 tp521
-sS'coalition/n'
+sVpublish/n
 p522
-(S'Koalition/n'
-S'Blockpartei/n'
-S'Vereinigung/n'
-tp523
-sS'publish/n'
-p524
-(S'Herausgeben/n'
-S'herausgeben/n'
+(VHerausgeben/n
+Vherausgeben/n
 Vübergeben/n
+tp523
+sVthe/rb
+p524
+(Vdesto/adv
 tp525
-sS'the/rb'
+sVmetal/vv
 p526
-(S'desto/adv'
+(Vasphaltieren/v*.full
 tp527
-sS'metal/vv'
+sVcapital/n
 p528
-(S'asphaltieren/v*.full'
-tp529
-sS'capital/n'
-p530
 (VKapitalvermögen/n
-S'Todes/n'
-S'Eigenmittel/n'
+VTodes/n
+VEigenmittel/n
 VGroßbuchstabe/n
-S'prima/n'
+Vprima/n
 VVermögen/n
-S'Kapital/n'
+VKapital/n
 VKapitäl/n
-S'klasse/n'
-S'Kapitell/n'
-S'Haupt/n'
-S'Kapitale/n'
-S'Hauptstadt/n'
-tp531
-sS'rather/jj'
-p532
+Vklasse/n
+VKapitell/n
+VHaupt/n
+VKapitale/n
+VHauptstadt/n
+tp529
+sVrather/jj
+p530
 (Veinigermaßen/adj
-S'eigentlich/adj'
+Veigentlich/adj
+tp531
+sVsome/dt
+p532
+(Vmanch/pro
+Veinige/pro
+Virgendein/art
 tp533
-sS'some/dt'
+sVeven/vv
 p534
-(S'manch/pro'
-S'einige/pro'
-S'irgendein/art'
-tp535
-sS'even/vv'
-p536
-(S'ausgeglichen/v*.full'
-S'ebnen/v*.full'
+(Vausgeglichen/v*.full
+Vebnen/v*.full
 Vglätten/v*.full
+tp535
+sVonly/adv
+p536
+(Vnur/adv
+Veinzig/adv
 tp537
-sS'only/adv'
+sVbetrayal/n
 p538
-(S'nur/adv'
-S'einzig/adv'
+(VVerrat/n
 tp539
-sS'betrayal/n'
+sVbear/vv
 p540
-(S'Verrat/n'
-tp541
-sS'bear/vv'
-p542
-(S'spekulieren/v*.full auf/v*.full Baisse/v*.full'
-S'leiden/v*.full'
-S'tragen/v*.full'
-S'ertragen/v*.full'
-S'auf/v*.full Baisse/v*.full spekulieren/v*.full'
-S'halten/v*.full'
-S'bringen/v*.full hervor/v*.full'
+(Vspekulieren/v*.full auf/v*.full Baisse/v*.full
+Vleiden/v*.full
+Vtragen/v*.full
+Vertragen/v*.full
+Vauf/v*.full Baisse/v*.full spekulieren/v*.full
+Vhalten/v*.full
+Vbringen/v*.full hervor/v*.full
 Vausüben/v*.full
-S'stehen/v*.full aus/v*.full'
-S'erdulden/v*.full'
+Vstehen/v*.full aus/v*.full
+Verdulden/v*.full
 Vüben/v*.full aus/v*.full
-S'fixen/v*.full'
-S'halten/v*.full aus/v*.full'
-S'ausstehen/v*.full'
-S'hervorbringen/v*.full'
-S'haben/v*.full'
-S'betreffen/v*.full'
-S'haben/v*.full inne/v*.full'
-S'innehaben/v*.full'
-S'lasten/v*.full'
+Vfixen/v*.full
+Vhalten/v*.full aus/v*.full
+Vausstehen/v*.full
+Vhervorbringen/v*.full
+Vhaben/v*.full
+Vbetreffen/v*.full
+Vhaben/v*.full inne/v*.full
+Vinnehaben/v*.full
+Vlasten/v*.full
 Vgebären/v*.full
-S'verkraften/v*.full'
-S'dulden/v*.full'
-S'bringen/v*.full zur/v*.full Welt/v*.full'
-S'zur/v*.full Welt/v*.full bringen/v*.full'
-S'aushalten/v*.full'
+Vverkraften/v*.full
+Vdulden/v*.full
+Vbringen/v*.full zur/v*.full Welt/v*.full
+Vzur/v*.full Welt/v*.full bringen/v*.full
+Vaushalten/v*.full
 Vbedrücken/v*.full
-tp543
-sS'hole/n'
-p544
-(S'Grube/n'
-S'Bau/n'
-S'Loch/n'
-S'Bohrloch/n'
+tp541
+sVhole/n
+p542
+(VGrube/n
+VBau/n
+VLoch/n
+VBohrloch/n
 VDurchlaß/n
-S'Hole/n'
-S'Markierung/n'
-S'Ausschnitt/n'
+VHole/n
+VMarkierung/n
+VAusschnitt/n
 Vöffnung/n
-S'Matrize/n'
-S'Lochpaar/n'
-S'Bohrung/n'
+VMatrize/n
+VLochpaar/n
+VBohrung/n
 VHöhle/n
-S'Gatt/n'
-S'Durchlass/n'
-S'Sonde/n'
-S'Fach/n'
-tp545
-sS'address/n'
-p546
-(S'Niederlassung/n'
-S'Rede/n'
-S'Ansprache/n'
-S'Adresse/n'
-S'Adressieren/n'
+VGatt/n
+VDurchlass/n
+VSonde/n
+VFach/n
+tp543
+sVaddress/n
+p544
+(VNiederlassung/n
+VRede/n
+VAnsprache/n
+VAdresse/n
+VAdressieren/n
 VNiederlaßung/n
-S'Gewandtheit/n'
-S'Anschrift/n'
-S'Anrede/n'
-tp547
-sS'work/n'
-p548
-(S'Werk/n'
+VGewandtheit/n
+VAnschrift/n
+VAnrede/n
+tp545
+sVwork/n
+p546
+(VWerk/n
 VWerkstück/n
-S'abbauen/n'
-S'Wirkungskreis/n'
-S'Oeuvre/n'
-S'Leistung/n'
-S'Arbeitsplan/n'
+Vabbauen/n
+VWirkungskreis/n
+VOeuvre/n
+VLeistung/n
+VArbeitsplan/n
 VTätigkeit/n
-S'Arbeitsleistung/n'
-S'Berufskleidung/n'
-S'Arbeit/n'
-S'Aufwand/n'
+VArbeitsleistung/n
+VBerufskleidung/n
+VArbeit/n
+VAufwand/n
 VArbeitstätigkeit/n
-S'Schaffen/n'
+VSchaffen/n
 VGeschäftsanfall/n
+tp547
+sVCouncil/n
+p548
+(VRat/n
 tp549
-sS'Council/n'
+sVfor/jj
 p550
-(S'Rat/n'
+(Vpassend/adj
 tp551
-sS'for/jj'
+sVslang/n
 p552
-(S'passend/adj'
+(Vsaloppe/n Umgangssprache/n
+VSlang/n
+VJargon/n
 tp553
-sS'slang/n'
+sVevaluate/vv
 p554
-(S'saloppe/n Umgangssprache/n'
-S'Slang/n'
-S'Jargon/n'
-tp555
-sS'evaluate/vv'
-p556
-(S'werten/v*.full'
-S'probieren/v*.full aus/v*.full'
+(Vwerten/v*.full
+Vprobieren/v*.full aus/v*.full
 Vschätzen/v*.full ein/v*.full
-S'evaluieren/v*.full'
-S'beurteilen/v*.full'
+Vevaluieren/v*.full
+Vbeurteilen/v*.full
 Vabschätzen/v*.full
-S'untersuchen/v*.full'
-S'auswerten/v*.full'
+Vuntersuchen/v*.full
+Vauswerten/v*.full
 Vabwägen/v*.full
-S'messen/v*.full aus/v*.full'
-S'werten/v*.full aus/v*.full'
+Vmessen/v*.full aus/v*.full
+Vwerten/v*.full aus/v*.full
 Vschätzen/v*.full
-S'ausmessen/v*.full'
-S'bewerten/v*.full'
-S'ausprobieren/v*.full'
+Vausmessen/v*.full
+Vbewerten/v*.full
+Vausprobieren/v*.full
 Vwägen/v*.full ab/v*.full
-S'begutachten/v*.full'
-S'valutieren/v*.full'
+Vbegutachten/v*.full
+Vvalutieren/v*.full
 Veinschätzen/v*.full
 Vschätzen/v*.full ab/v*.full
-tp557
-sS'even/adv'
-p558
+tp555
+sVeven/adv
+p556
 (Vüberhaupt/adv
-S'gleich/adv'
-S'punktgleich/adv'
+Vgleich/adv
+Vpunktgleich/adv
+tp557
+sVand/cc
+p558
+(Vund/conj.coord
+Vals/conj.coord auch/conj.coord
 tp559
-sS'and/cc'
+sVno/n
 p560
-(S'und/conj.coord'
-S'als/conj.coord auch/conj.coord'
+(VNo/n
+VNein/n
 tp561
-sS'no/n'
+sVoccasionally/jj
 p562
-(S'No/n'
-S'Nein/n'
+(Vgelegentlich/adj
+Vmehrmalig/adj
 tp563
-sS'occasionally/jj'
+sVseem/vv
 p564
-(S'gelegentlich/adj'
-S'mehrmalig/adj'
-tp565
-sS'seem/vv'
-p566
-(S'erscheinen/v*.full'
-S'vorkommen/v*.full'
-S'kommen/v*.full vor/v*.full'
+(Verscheinen/v*.full
+Vvorkommen/v*.full
+Vkommen/v*.full vor/v*.full
 Vdünken/v*.full
-S'scheinen/v*.full'
+Vscheinen/v*.full
+tp565
+sVor/cc
+p566
+(Vod./conj.coord
+Vbzw./conj.coord
+Vod.//conj.coord
+Voder/conj.coord
 tp567
-sS'or/cc'
+sVwin/vv
 p568
-(S'od./conj.coord'
-S'bzw./conj.coord'
-S'od.//conj.coord'
-S'oder/conj.coord'
-tp569
-sS'win/vv'
-p570
-(S'erlangen/v*.full'
-S'erringen/v*.full'
-S'siegen/v*.full'
-S'bekommen/v*.full'
+(Verlangen/v*.full
+Verringen/v*.full
+Vsiegen/v*.full
+Vbekommen/v*.full
 Vlösen/v*.full
-S'erwerben/v*.full'
-S'gewinnen/v*.full'
+Verwerben/v*.full
+Vgewinnen/v*.full
+tp569
+sVout/jj
+p570
+(Vheraus/itj
+Vausgeschaltet/adj
+Vabgeschaltet/adj
 tp571
-sS'out/jj'
+sVabbreviation/n
 p572
-(S'heraus/itj'
-S'ausgeschaltet/adj'
-S'abgeschaltet/adj'
-tp573
-sS'abbreviation/n'
-p574
 (VVerkürzung/n
-S'Kurzbezeichnung/n'
-S'Kurzwort/n'
-S'Kurzname/n'
-S'Abbreviation/n'
+VKurzbezeichnung/n
+VKurzwort/n
+VKurzname/n
+VAbbreviation/n
 VKürzung/n
 VAbkürzungszeichen/n
-S'Kurzzeichen/n'
+VKurzzeichen/n
 VAbkürzung/n
 VKürzel/n
+tp573
+sVabove/adv
+p574
+(Vobig/adv
+Voben/adv
+Voberhalb/adv
 tp575
-sS'above/adv'
+sVaway/adv
 p576
-(S'obig/adv'
-S'oben/adv'
-S'oberhalb/adv'
-tp577
-sS'away/adv'
-p578
-(S'abwesend/adv'
+(Vabwesend/adv
 Vauswärts/adv
+tp577
+sVpolitics/n
+p578
+(VStaatskunst/n
+VPolitikwissenschaft/n
+Vpolitisches/n Leben/n
+VPolitik/n
+VPolitologie/n
+VPolitwissenschaften/n
 tp579
-sS'politics/n'
+sVonly/rb
 p580
-(S'Staatskunst/n'
-S'Politikwissenschaft/n'
-S'politisches/n Leben/n'
-S'Politik/n'
-S'Politologie/n'
-S'Politwissenschaften/n'
+(Vnur/adv noch/adv
+Vnur/adv
 tp581
-sS'only/rb'
+sVwe/pp
 p582
-(S'nur/adv noch/adv'
-S'nur/adv'
+(Vunsereins/pro
+Vman/pro
+Vunsereiner/pro
+Vwir/pro
 tp583
-sS'we/pp'
+sVschool/vv
 p584
-(S'unsereins/pro'
-S'man/pro'
-S'unsereiner/pro'
-S'wir/pro'
-tp585
-sS'school/vv'
-p586
 (Vschwärmen/v*.full
-S'schulen/v*.full'
+Vschulen/v*.full
+tp585
+sVanswer/vv
+p586
+(Vfragen/v*.full ab/v*.full
+Vabfragen/v*.full
+VBescheid/v*.full geben/v*.full
+Vbeantworten/v*.full
+Vverantworten/v*.full
+Vgeben/v*.full Antwort/v*.full
+Ventgegnen/v*.full
+Vgeben/v*.full Bescheid/v*.full
+Vantworten/v*.full
+Verwidern/v*.full
+VAntwort/v*.full geben/v*.full
+Ventsprechen/v*.full
 tp587
-sS'answer/vv'
+sValready/rb
 p588
-(S'fragen/v*.full ab/v*.full'
-S'abfragen/v*.full'
-S'Bescheid/v*.full geben/v*.full'
-S'beantworten/v*.full'
-S'verantworten/v*.full'
-S'geben/v*.full Antwort/v*.full'
-S'entgegnen/v*.full'
-S'geben/v*.full Bescheid/v*.full'
-S'antworten/v*.full'
-S'erwidern/v*.full'
-S'Antwort/v*.full geben/v*.full'
-S'entsprechen/v*.full'
+(Vschon/adv
 tp589
-sS'already/rb'
+sVjust/in before/in
 p590
-(S'schon/adv'
+(Vgerade/conj.sub* ehe/conj.sub*
+Vkurz/appr vor/appr
 tp591
-sS'just/in before/in'
+sVplate/n
 p592
-(S'gerade/conj.sub* ehe/conj.sub*'
-S'kurz/appr vor/appr'
-tp593
-sS'plate/n'
-p594
-(S'Klischee/n'
-S'Blechteil/n'
-S'Rastplatte/n'
-S'Blech/n'
-S'Werkplatte/n'
-S'Lagerplatte/n'
-S'Bahn/n'
-S'Platte/n'
-S'Tafel/n'
-S'Platine/n'
-S'Abdeckblende/n'
-S'Anode/n'
-S'Teller/n'
+(VKlischee/n
+VBlechteil/n
+VRastplatte/n
+VBlech/n
+VWerkplatte/n
+VLagerplatte/n
+VBahn/n
+VPlatte/n
+VTafel/n
+VPlatine/n
+VAbdeckblende/n
+VAnode/n
+VTeller/n
 VPlättchen/n
-S'Austauschboden/n'
-S'Blende/n'
-S'Bordwand/n'
-S'Faltplatte/n'
-S'Kulissen/n'
-S'Belag/n'
-S'Leiste/n'
-S'Scheibe/n'
-S'Lochstein/n'
-S'Ablenkplatte/n'
-S'Schild/n'
-S'Akkumulatorplatte/n'
-S'Schuppe/n'
+VAustauschboden/n
+VBlende/n
+VBordwand/n
+VFaltplatte/n
+VKulissen/n
+VBelag/n
+VLeiste/n
+VScheibe/n
+VLochstein/n
+VAblenkplatte/n
+VSchild/n
+VAkkumulatorplatte/n
+VSchuppe/n
 VRähm/n
-S'Gleitplatte/n'
-S'Kontaktscheibe/n'
+VGleitplatte/n
+VKontaktscheibe/n
+tp593
+sVwhen/adv
+p594
+(Vwann/adv
 tp595
-sS'when/adv'
+sVtunnel/vv
 p596
-(S'wann/adv'
+(Vuntertunneln/v*.full
+Vtunneln/v*.full
 tp597
-sS'tunnel/vv'
+sVless/adv
 p598
-(S'untertunneln/v*.full'
-S'tunneln/v*.full'
-tp599
-sS'less/adv'
-p600
-(S'geringer/adv'
-S'minus/adv'
+(Vgeringer/adv
+Vminus/adv
 Vabzüglich/adv
-S'weniger/adv'
-S'kleiner/adv'
+Vweniger/adv
+Vkleiner/adv
+tp599
+sVfrom/in
+p600
+(Vvor/appr
+Vab/appr
+Vaus/appr
+Vvon/appr
 tp601
-sS'from/in'
+sVeven/in though/in
 p602
-(S'vor/appr'
-S'ab/appr'
-S'aus/appr'
-S'von/appr'
+(Vwenngleich/conj.sub*
+Vwenn/conj.sub* auch/conj.sub*
+Vobgleich/conj.sub*
+Vobwohl/conj.sub*
+Vwiewohl/conj.sub*
+Vobschon/conj.sub*
 tp603
-sS'even/in though/in'
+sVprevious/n
 p604
-(S'wenngleich/conj.sub*'
-S'wenn/conj.sub* auch/conj.sub*'
-S'obgleich/conj.sub*'
-S'obwohl/conj.sub*'
-S'wiewohl/conj.sub*'
-S'obschon/conj.sub*'
-tp605
-sS'previous/n'
-p606
 (VVorläuferversion/n
-tp607
-sS'for/in'
-p608
-(S'nach/appr'
-S'auf/appr'
+tp605
+sVfor/in
+p606
+(Vnach/appr
+Vauf/appr
 Vfür/appr
 Vwährend/conj.sub*
 Vüber/appr
-S'denn/conj.sub*'
-S'seit/appr'
-S'als/conj.comp'
+Vdenn/conj.sub*
+Vseit/appr
+Vals/conj.comp
+tp607
+sVif/in
+p608
+(Vfalls/conj.sub*
+Vob/appr
+Vwenn/conj.sub*
+Vsofern/conj.sub*
+Vob/conj.sub*
 tp609
-sS'if/in'
+sVout/vv of/vv
 p610
-(S'falls/conj.sub*'
-S'ob/appr'
-S'wenn/conj.sub*'
-S'sofern/conj.sub*'
-S'ob/conj.sub*'
+(Vvergriffen/v*.full
 tp611
-sS'out/vv of/vv'
+sVsponsorship/n
 p612
-(S'vergriffen/v*.full'
-tp613
-sS'sponsorship/n'
-p614
 (Vfinanzielle/n Unterstützung/n
-S'Schirmherrschaft/n'
+VSchirmherrschaft/n
 VUnterstützung/n
-S'Patenstelle/n'
+VPatenstelle/n
 VFörderung/n
-S'Sponsern/n'
+VSponsern/n
 VTrägerschaft/n
-S'Patenschaft/n'
-S'Sponsoring/n'
+VPatenschaft/n
+VSponsoring/n
 VFörderpatenschaft/n
-tp615
-sS'refuse/n'
-p616
+tp613
+sVrefuse/n
+p614
 (VMüllaufkommen/n
-S'ablehnen/n'
-S'Ablehnen/n'
-S'Berge/n'
-S'Ausschuss/n'
-S'abweisen/n'
+Vablehnen/n
+VAblehnen/n
+VBerge/n
+VAusschuss/n
+Vabweisen/n
 VAusschuß/n
-S'Abraum/n'
+VAbraum/n
 VMüll/n
-S'Kehricht/n'
+VKehricht/n
 VAbgänge/n
-S'abschlagen/n'
-S'Schutt/n'
-S'Abfall/n'
-tp617
-sS'fifth/n'
-p618
-(S'Quinte/n'
+Vabschlagen/n
+VSchutt/n
+VAbfall/n
+tp615
+sVfifth/n
+p616
+(VQuinte/n
 VFünftel/n
-tp619
-sS'agree/n'
-p620
-(S'zustimmen/n'
-S'einstimmen/n'
-S'Zustimmen/n'
+tp617
+sVagree/n
+p618
+(Vzustimmen/n
+Veinstimmen/n
+VZustimmen/n
 Vübereinstimmen/n
-S'Abmachung/n treffen/n'
-S'beipflichten/n'
-S'Abstimmen/n'
+VAbmachung/n treffen/n
+Vbeipflichten/n
+VAbstimmen/n
+tp619
+sVplate/vv
+p620
+(Vbringen/v*.full auf/v*.full
+Vaufbringen/v*.full
 tp621
-sS'plate/vv'
+sVto/rb the/rb
 p622
-(S'bringen/v*.full auf/v*.full'
-S'aufbringen/v*.full'
+(Vzum/adv
+Vzur/adv
 tp623
-sS'to/rb the/rb'
+sVsometimes/jj
 p624
-(S'zum/adv'
-S'zur/adv'
+(Vgelegentlich/adj
 tp625
-sS'sometimes/jj'
+sVsome/pp
 p626
-(S'gelegentlich/adj'
+(Virgendetwas/pro
 tp627
-sS'some/pp'
+sVone/pp
 p628
-(S'irgendetwas/pro'
+(Vman/pro
 tp629
-sS'one/pp'
+sVpartner/n
 p630
-(S'man/pro'
+(VTeilnehmer/n
+VLebenspartner/n
+VCompagnon/n /Co.//n
+VGesellschafter/n
+VPartnerunternehmen/n
+VTeilhaberin/n
+VPartner/n
+VMitinhaber/n
+VPartnerin/n
+VTeilhaber/n
 tp631
-sS'partner/n'
+sVrecognize/n
 p632
-(S'Teilnehmer/n'
-S'Lebenspartner/n'
-S'Compagnon/n /Co.//n'
-S'Gesellschafter/n'
-S'Partnerunternehmen/n'
-S'Teilhaberin/n'
-S'Partner/n'
-S'Mitinhaber/n'
-S'Partnerin/n'
-S'Teilhaber/n'
+(Veinsehen/n
+Vanerkennen/n
+Vwiedererkennen/n
 tp633
-sS'recognize/n'
+sVcolleague/n
 p634
-(S'einsehen/n'
-S'anerkennen/n'
-S'wiedererkennen/n'
+(VArbeitskollege/n
+VMitarbeiter/n
+VAmtsbruder/n
+VKollege/n
+VKollegin/n
 tp635
-sS'colleague/n'
+sVpay/n
 p636
-(S'Arbeitskollege/n'
-S'Mitarbeiter/n'
-S'Amtsbruder/n'
-S'Kollege/n'
-S'Kollegin/n'
-tp637
-sS'pay/n'
-p638
-(S'Arbeitsentgelt/n'
+(VArbeitsentgelt/n
 Vabbauwürdiger/n Boden/n
-S'Regulieren/n'
+VRegulieren/n
 VDienstbezüge/n
-S'Sold/n'
-S'Besoldung/n'
-S'Arbeitseinkommen/n'
-S'Lohn/n und/n Gehalt/n'
+VSold/n
+VBesoldung/n
+VArbeitseinkommen/n
+VLohn/n und/n Gehalt/n
 VVergüten/n
-S'Heuer/n'
-S'Lohnausgleich/n'
-S'Entlohnung/n'
-S'Lohn/n'
+VHeuer/n
+VLohnausgleich/n
+VEntlohnung/n
+VLohn/n
 Vabbauwürdiges/n Gelände/n
-S'Honorar/n'
+VHonorar/n
 VEinlösen/n
-S'Arbeitslohn/n'
+VArbeitslohn/n
+tp637
+sVfor/adv instance/adv
+p638
+(Vetwa/adv
+Vbeispielsweise/adv
+Vzum/adv Beispiel/adv
 tp639
-sS'for/adv instance/adv'
+sVat/rb least/rb
 p640
-(S'etwa/adv'
-S'beispielsweise/adv'
-S'zum/adv Beispiel/adv'
+(Vmindestens/adv
+Vwenigstens/adv
+Vzumindest/adv
+Vzumindestens/adv
 tp641
-sS'at/rb least/rb'
+sVstraight/rb
 p642
-(S'mindestens/adv'
-S'wenigstens/adv'
-S'zumindest/adv'
-S'zumindestens/adv'
+(Vgerade/adv
 tp643
-sS'straight/rb'
+sVme/pp
 p644
-(S'gerade/adv'
+(Vmich/pro
+Vmir/pro
 tp645
-sS'me/pp'
+sVcouncil/n
 p646
-(S'mich/pro'
-S'mir/pro'
+(VRatsversammlung/n
+VFachbeirat/n
+VKollegium/n
+VKonzil/n
+VRat/n
 tp647
-sS'council/n'
+sVbear/n
 p648
-(S'Ratsversammlung/n'
-S'Fachbeirat/n'
-S'Kollegium/n'
-S'Konzil/n'
-S'Rat/n'
-tp649
-sS'bear/n'
-p650
 (Vausüben/n
-S'aushalten/n'
+Vaushalten/n
 VBörsenspekulant/n
-S'Baissier/n'
+VBaissier/n
 VBär/n
-S'Aufweisen/n'
+VAufweisen/n
+tp649
+sVso/rb
+p650
+(Vdemnach/adv
+Vso/adv
+Valso/adv
 tp651
-sS'so/rb'
+sVagree/vv
 p652
-(S'demnach/adv'
-S'so/adv'
-S'also/adv'
-tp653
-sS'agree/vv'
-p654
-(S'stimmen/v*.full zu/v*.full'
-S'einwilligen/v*.full'
-S'einigen/v*.full sich/v*.full'
-S'eine/v*.full Abmachung/v*.full treffen/v*.full'
-S'willigen/v*.full ein/v*.full'
+(Vstimmen/v*.full zu/v*.full
+Veinwilligen/v*.full
+Veinigen/v*.full sich/v*.full
+Veine/v*.full Abmachung/v*.full treffen/v*.full
+Vwilligen/v*.full ein/v*.full
 Vübereinkommen/v*.full
-S'akzeptieren/v*.full'
-S'billigen/v*.full'
-S'bereitfinden/v*.full'
-S'sprechen/v*.full ab/v*.full'
-S'finden/v*.full bereit/v*.full'
-S'treffen/v*.full eine/v*.full Abmachung/v*.full'
-S'zustimmen/v*.full'
-S'absprechen/v*.full'
-S'abstimmen/v*.full'
-S'pflichten/v*.full bei/v*.full'
-S'einig/v*.full sein/v*.full'
+Vakzeptieren/v*.full
+Vbilligen/v*.full
+Vbereitfinden/v*.full
+Vsprechen/v*.full ab/v*.full
+Vfinden/v*.full bereit/v*.full
+Vtreffen/v*.full eine/v*.full Abmachung/v*.full
+Vzustimmen/v*.full
+Vabsprechen/v*.full
+Vabstimmen/v*.full
+Vpflichten/v*.full bei/v*.full
+Veinig/v*.full sein/v*.full
 Vkommen/v*.full überein/v*.full
 Vstimmen/v*.full überein/v*.full
-S'sich/v*.full einigen/v*.full'
-S'einverstanden/v*.full sein/v*.full'
+Vsich/v*.full einigen/v*.full
+Veinverstanden/v*.full sein/v*.full
 Vübereinstimmen/v*.full
-S'sein/v*.full einig/v*.full'
-S'sein/v*.full einverstanden/v*.full'
-S'stimmen/v*.full ab/v*.full'
-S'beipflichten/v*.full'
-S'vereinbaren/v*.full'
+Vsein/v*.full einig/v*.full
+Vsein/v*.full einverstanden/v*.full
+Vstimmen/v*.full ab/v*.full
+Vbeipflichten/v*.full
+Vvereinbaren/v*.full
+tp653
+sVfew/dt
+p654
+(Vwenig/pro
 tp655
-sS'few/dt'
+sVCongress/n
 p656
-(S'wenig/pro'
-tp657
-sS'Congress/n'
-p658
-(S'Kongress/n'
+(VKongress/n
 VKongreß/n
 VUS-Repräsentantenhaus/n
+tp657
+sVbut/rb
+p658
+(Vausser/adv
+Vnur/adv
+Vobendrein/adv
+Vjedoch/adv
+Vdennoch/adv
+Vallerdings/adv
+Vdoch/adv
+Vaber/adv
 tp659
-sS'but/rb'
+sVas/rb
 p660
-(S'ausser/adv'
-S'nur/adv'
-S'obendrein/adv'
-S'jedoch/adv'
-S'dennoch/adv'
-S'allerdings/adv'
-S'doch/adv'
-S'aber/adv'
+(Vso/adv
+Vebenso/adv
+Vdenn/adv
 tp661
-sS'as/rb'
+sVhis/pp
 p662
-(S'so/adv'
-S'ebenso/adv'
-S'denn/adv'
+(Vdessen/pro
 tp663
-sS'his/pp'
+sVparty/n member/n
 p664
-(S'dessen/pro'
+(VParteigenosse/n
+VParteimitglied/n
 tp665
-sS'party/n member/n'
+sVreally/adv
 p666
-(S'Parteigenosse/n'
-S'Parteimitglied/n'
-tp667
-sS'really/adv'
-p668
 (Vtatsächlich/adv
-S'direkt/adv'
-S'recht/adv'
-S'wirklich/adv'
-S'geradezu/adv'
-tp669
-sS'matador/n'
-p670
-(S'Matador/n'
+Vdirekt/adv
+Vrecht/adv
+Vwirklich/adv
+Vgeradezu/adv
+tp667
+sVmatador/n
+p668
+(VMatador/n
 VStierkämpfer/n
+tp669
+sVparty/vv
+p670
+(Vfeiern/v*.full
 tp671
-sS'party/vv'
+sVreally/rb
 p672
-(S'feiern/v*.full'
+(Vwirklich/adv
 tp673
-sS'really/rb'
+sVfrom/adv
 p674
-(S'wirklich/adv'
+(Vdavon/adv
 tp675
-sS'from/adv'
+sVabout/adv
 p676
-(S'davon/adv'
-tp677
-sS'about/adv'
-p678
-(S'etwa/adv'
+(Vetwa/adv
 Vungefähr/adv
 Vannähernd/adv
-S'rund/adv'
+Vrund/adv
+tp677
+sVno/uh
+p678
+(Vnein/itj
 tp679
-sS'no/uh'
+sVout/adv
 p680
-(S'nein/itj'
-tp681
-sS'out/adv'
-p682
-(S'hinaus/adv'
-S'raus/adv'
+(Vhinaus/adv
+Vraus/adv
 Vauswärts/adv
 Vaußerhalb/adv
 Vaußer/adv Betrieb/adv
 Vaußen/adv
 Vaußer/adv Haus/adv
 Vaußerhalb/adv des/adv Hauses/adv
-tp683
-sS'but/adv'
-p684
+tp681
+sVbut/adv
+p682
 (Vbloß/adv
-S'sondern/adv'
+Vsondern/adv
+tp683
+sVan/dt
+p684
+(Veine/art
+Vein/art
 tp685
-sS'an/dt'
+sVout/adv of/adv
 p686
-(S'eine/art'
-S'ein/art'
-tp687
-sS'out/adv of/adv'
-p688
 (Vaußerhalb/adv
-S'aus/adv hervor/adv'
+Vaus/adv hervor/adv
+tp687
+sVjust/jj
+p688
+(Vgerade/adj
+Vgerecht/adj
+Vangemessen/adj
+Vdirekt/adj
 tp689
-sS'just/jj'
+sVaccept/vv
 p690
-(S'gerade/adj'
-S'gerecht/adj'
-S'angemessen/adj'
-S'direkt/adj'
-tp691
-sS'accept/vv'
-p692
-(S'nehmen/v*.full in/v*.full Kauf/v*.full'
-S'hinnehmen/v*.full'
-S'nehmen/v*.full entgegen/v*.full'
-S'nehmen/v*.full ab/v*.full'
-S'abnehmen/v*.full'
-S'nehmen/v*.full hin/v*.full'
-S'nehmen/v*.full an/v*.full'
-S'entgegennehmen/v*.full'
-S'in/v*.full Kauf/v*.full nehmen/v*.full'
-S'aufnehmen/v*.full'
-S'zusagen/v*.full'
-S'annehmen/v*.full'
-S'nehmen/v*.full auf/v*.full sich/v*.full'
-S'einsehen/v*.full'
-S'nehmen/v*.full auf/v*.full'
+(Vnehmen/v*.full in/v*.full Kauf/v*.full
+Vhinnehmen/v*.full
+Vnehmen/v*.full entgegen/v*.full
+Vnehmen/v*.full ab/v*.full
+Vabnehmen/v*.full
+Vnehmen/v*.full hin/v*.full
+Vnehmen/v*.full an/v*.full
+Ventgegennehmen/v*.full
+Vin/v*.full Kauf/v*.full nehmen/v*.full
+Vaufnehmen/v*.full
+Vzusagen/v*.full
+Vannehmen/v*.full
+Vnehmen/v*.full auf/v*.full sich/v*.full
+Veinsehen/v*.full
+Vnehmen/v*.full auf/v*.full
 Vübernehmen/v*.full
-S'akzeptieren/v*.full'
-S'sehen/v*.full ein/v*.full'
-S'sagen/v*.full zu/v*.full'
-S'auf/v*.full sich/v*.full nehmen/v*.full'
-tp693
-sS'later/adv'
-p694
+Vakzeptieren/v*.full
+Vsehen/v*.full ein/v*.full
+Vsagen/v*.full zu/v*.full
+Vauf/v*.full sich/v*.full nehmen/v*.full
+tp691
+sVlater/adv
+p692
 (Vnachträglich/adv
 Vspäter/adv
-tp695
-sS'current/adv'
-p696
+tp693
+sVcurrent/adv
+p694
 (Vgegenwärtig/adv
-S'aktuell/adv'
+Vaktuell/adv
 Vgängig/adv
-S'momentan/adv'
-S'augenblicklich/adv'
-S'derzeitig/adv'
+Vmomentan/adv
+Vaugenblicklich/adv
+Vderzeitig/adv
+tp695
+sVfrom/in the/in
+p696
+(Vvorn/appr
+Vvors/appr
+Vvom/appr
+Vvorm/appr
 tp697
-sS'from/in the/in'
+sVspeech/n
 p698
-(S'vorn/appr'
-S'vors/appr'
-S'vom/appr'
-S'vorm/appr'
+(VRede/n
+VAnsprache/n
+VSprache/n
+VSprechen/n
 tp699
-sS'speech/n'
+sVconcept/n
 p700
-(S'Rede/n'
-S'Ansprache/n'
-S'Sprache/n'
-S'Sprechen/n'
+(VPlan/n
+VVorstellung/n
+VIdee/n
+VKonzeption/n
+VAuffassung/n
+VEntwurf/n
+VBegriff/n
+VBegrifflichkeit/n
+VKonzept/n
 tp701
-sS'concept/n'
+sVintra-party/jj
 p702
-(S'Plan/n'
-S'Vorstellung/n'
-S'Idee/n'
-S'Konzeption/n'
-S'Auffassung/n'
-S'Entwurf/n'
-S'Begriff/n'
-S'Begrifflichkeit/n'
-S'Konzept/n'
+(Vinnerparteilich/adj
+Vparteiintern/adj
 tp703
-sS'intra-party/jj'
+sVout/rp
 p704
-(S'innerparteilich/adj'
-S'parteiintern/adj'
-tp705
-sS'out/rp'
-p706
-(S'hinaus/part.verb'
-S'heraus/part.verb'
+(Vhinaus/part.verb
+Vheraus/part.verb
 Vvorüber/part.verb
+tp705
+sVto/adv
+p706
+(Vhin/adv
 tp707
-sS'to/adv'
+sVcandy/n bar/n
 p708
-(S'hin/adv'
+(VSchokoriegel/n
+VSchokoladenriegel/n
 tp709
-sS'candy/n bar/n'
+sVabove/rb
 p710
-(S'Schokoriegel/n'
-S'Schokoladenriegel/n'
-tp711
-sS'above/rb'
-p712
-(S'droben/adv'
+(Vdroben/adv
 Vdarüber/adv
-tp713
-sS'entrepreneur/n'
-p714
-(S'Unternehmerin/n'
-S'Arbeitgeber/n'
-S'Unternehmer/n'
+tp711
+sVentrepreneur/n
+p712
+(VUnternehmerin/n
+VArbeitgeber/n
+VUnternehmer/n
 VExistenzgründer/n
 VExistenzgründerin/n
+tp713
+sVsome/adv
+p714
+(Vetwa/adv
+Vteilweise/adv
 tp715
-sS'some/adv'
+sVrefuse/vv
 p716
-(S'etwa/adv'
-S'teilweise/adv'
-tp717
-sS'refuse/vv'
-p718
-(S'ablehnen/v*.full'
-S'verweigern/v*.full'
-S'weigern/v*.full sich/v*.full'
-S'verwehren/v*.full'
-S'abschlagen/v*.full'
-S'streiken/v*.full'
-S'weisen/v*.full ab/v*.full'
+(Vablehnen/v*.full
+Vverweigern/v*.full
+Vweigern/v*.full sich/v*.full
+Vverwehren/v*.full
+Vabschlagen/v*.full
+Vstreiken/v*.full
+Vweisen/v*.full ab/v*.full
 Vweisen/v*.full zurück/v*.full
 Vzurückweisen/v*.full
-S'lehnen/v*.full'
-S'sich/v*.full weigern/v*.full'
-S'abwehren/v*.full'
-S'schlagen/v*.full ab/v*.full'
-S'weigern/v*.full'
-S'schlagen/v*.full aus/v*.full'
-S'ausschlagen/v*.full'
-S'abweisen/v*.full'
-S'wehren/v*.full ab/v*.full'
-S'lehnen/v*.full ab/v*.full'
+Vlehnen/v*.full
+Vsich/v*.full weigern/v*.full
+Vabwehren/v*.full
+Vschlagen/v*.full ab/v*.full
+Vweigern/v*.full
+Vschlagen/v*.full aus/v*.full
+Vausschlagen/v*.full
+Vabweisen/v*.full
+Vwehren/v*.full ab/v*.full
+Vlehnen/v*.full ab/v*.full
+tp717
+sVfriend/jj
+p718
+(Vfreundlich/adj
 tp719
-sS'friend/jj'
+sVsome/n
 p720
-(S'freundlich/adj'
+(Vein/n paar/n
 tp721
-sS'some/n'
+sVat/in the/in
 p722
-(S'ein/n paar/n'
-tp723
-sS'at/in the/in'
-p724
-(S'ums/appr'
+(Vums/appr
 Vüberm/appr
-S'aufn/appr'
+Vaufn/appr
 Vübern/appr
-S'am/apzr'
-S'zum/appr'
-S'ans/apzr'
-S'am/appr'
-S'ans/appr'
-S'aufs/appr'
-S'im/appr'
-S'beim/appr'
-S'ins/appr'
-S'zur/appr'
-S'aufm/appr'
+Vam/apzr
+Vzum/appr
+Vans/apzr
+Vam/appr
+Vans/appr
+Vaufs/appr
+Vim/appr
+Vbeim/appr
+Vins/appr
+Vzur/appr
+Vaufm/appr
 Vübers/appr
+tp723
+sVhow/adv
+p724
+(Vwie/adv
+Vwobei/adv
+Vwodurch/adv
 tp725
-sS'how/adv'
+sVa/dt
 p726
-(S'wie/adv'
-S'wobei/adv'
-S'wodurch/adv'
+(Vein/art
 tp727
-sS'a/dt'
+sVthis/dt
 p728
-(S'ein/art'
+(Vvorliegend/pro.dem
+Vdieser/pro.dem
+Vdieses/pro.dem
+Vdies/pro.dem
+Vdiese/pro.dem
 tp729
-sS'this/dt'
+sVmainly/adv
 p730
-(S'vorliegend/pro.dem'
-S'dieser/pro.dem'
-S'dieses/pro.dem'
-S'dies/pro.dem'
-S'diese/pro.dem'
-tp731
-sS'mainly/adv'
-p732
-(S'vornehmlich/adv'
-S'vorwiegend/adv'
+(Vvornehmlich/adv
+Vvorwiegend/adv
 Vhauptsächlich/adv
-S'im/adv wesentlichen/adv'
-S'groesstenteils/adv'
+Vim/adv wesentlichen/adv
+Vgroesstenteils/adv
+tp731
+sVnote/jj
+p732
+(Vscheinbar/adj
 tp733
-sS'note/jj'
+sVless/in
 p734
-(S'scheinbar/adj'
-tp735
-sS'less/in'
-p736
 (Vabzüglich/appr
+tp735
+sVout/in
+p736
+(Vaus/appr
 tp737
-sS'out/in'
+sVcertain/n
 p738
-(S'aus/appr'
+(VSia/n
 tp739
-sS'certain/n'
+sVas/adv
 p740
-(S'Sia/n'
+(Vwie/adv
+Vso/adv
 tp741
-sS'as/adv'
+sVsome/vv
 p742
-(S'wie/adv'
-S'so/adv'
+(Veinige/v*.full
 tp743
-sS'some/vv'
+sVwhich/adv
 p744
-(S'einige/v*.full'
+(Vwozu/adv
 tp745
-sS'which/adv'
+sVanything/pp
 p746
-(S'wozu/adv'
+(Virgendetwas/pro
+Virgend/pro etwas/pro
 tp747
-sS'anything/pp'
+sVthat/in|that
 p748
-(S'irgendetwas/pro'
-S'irgend/pro etwas/pro'
+(Vdaß/conj.sub*
+Vdass/conj.sub*
 tp749
-sS'have/vv to/vv'
+sVhave/vv to/vv
 p750
 (Vmüssen/v*.mod
 Vtun/v*.full müssen/v*.full
 Vmüssen/v*.full tun/v*.full
 tp751
-sS'otherwise/rb'
+sVotherwise/rb
 p752
-(S'andernfalls/adv'
-S'ansonsten/adv'
-S'anderenfalls/adv'
+(Vandernfalls/adv
+Vansonsten/adv
+Vanderenfalls/adv
 tp753
-sS'man/n'
+sVman/n
 p754
-(S'Herr/n'
-S'Mensch/n'
-S'Mannsbild/n'
-S'Mann/n'
-S'Spielfigur/n'
+(VHerr/n
+VMensch/n
+VMannsbild/n
+VMann/n
+VSpielfigur/n
 tp755
-sS'vocabulary/n'
+sVvocabulary/n
 p756
-(S'Vokabelverzeichnis/n'
-S'Vokabular/n'
-S'Vokabel/n'
-S'Vokabeln/n'
-S'Wortschatz/n'
+(VVokabelverzeichnis/n
+VVokabular/n
+VVokabel/n
+VVokabeln/n
+VWortschatz/n
 VWörterverzeichnis/n
-S'Sprachschatz/n'
+VSprachschatz/n
 tp757
-sS'bear/sym'
+sVbear/sym
 p758
 (Vgebär/sym
-S'gebier/sym'
+Vgebier/sym
 tp759
-sS'it/pp'
+sVit/pp
 p760
-(S'es/pro'
+(Ves/pro
 tp761
-sS'mayor/n'
+sVmayor/n
 p762
-(S'Schulze/n'
+(VSchulze/n
 VSchultheiß/n
 VBürgermeister/n
 tp763
-sS'garble/vv'
+sVgarble/vv
 p764
 (Vverstümmeln/v*.full
-S'entstellen/v*.full'
+Ventstellen/v*.full
 tp765
-sS'councilor/n'
+sVcouncilor/n
 p766
-(S'Ratsmitglied/n'
+(VRatsmitglied/n
 tp767
-sS'at/rb'
+sVat/rb
 p768
-(S'zu/adv'
+(Vzu/adv
 tp769
-sS'that/jj'
+sVthat/jj
 p770
-(S'damalig/adj'
+(Vdamalig/adj
 tp771
-sS'way/adv'
+sVway/adv
 p772
-(S'weit/adv'
-S'polig/adv'
+(Vweit/adv
+Vpolig/adv
 tp773
-sS'thing/n'
+sVthing/n
 p774
-(S'Ding/n'
-S'Chose/n'
-S'Sache/n'
-S'Gebilde/n'
-S'Thing/n'
-S'Tatsache/n'
-S'Schose/n'
+(VDing/n
+VChose/n
+VSache/n
+VGebilde/n
+VThing/n
+VTatsache/n
+VSchose/n
 tp775
-sS'Peter/n'
+sVPeter/n
 p776
-(S'Petrus/n'
+(VPetrus/n
 tp777
-sS'first/adv'
+sVfirst/adv
 p778
 (Vzunächst/adv
 Vfrühest/adv
-S'zuerst/adv'
-S'als/adv erstes/adv'
-S'obenan/adv'
+Vzuerst/adv
+Vals/adv erstes/adv
+Vobenan/adv
 tp779
-sS'tunnel/n'
+sVtunnel/n
 p780
-(S'Tunnel/n'
-S'Stollen/n'
-S'Kabinengang/n'
-S'Tunnelbauwerk/n'
+(VTunnel/n
+VStollen/n
+VKabinengang/n
+VTunnelbauwerk/n
 tp781
-sS'word/n'
+sVword/n
 p782
-(S'Bescheid/n'
-S'Vokabel/n'
-S'Datenwort/n'
-S'Wort/n'
+(VBescheid/n
+VVokabel/n
+VDatenwort/n
+VWort/n
 tp783
-sS'instance/n'
+sVinstance/n
 p784
 (Vanführen/n
-S'Fall/n'
-S'Angelegenheit/n'
-S'Vorgang/n'
-S'Beispiel/n'
-S'Exemplar/n'
-S'Inkarnation/n'
-S'Instanz/n'
-S'Veranlassung/n'
-S'Gelegenheit/n'
+VFall/n
+VAngelegenheit/n
+VVorgang/n
+VBeispiel/n
+VExemplar/n
+VInkarnation/n
+VInstanz/n
+VVeranlassung/n
+VGelegenheit/n
 tp785
-sS'fifth/jj'
+sVfifth/jj
 p786
 (Vfünftes/adj
 Vfünft/adj
 Vfünfter/adj
 Vfünfte/adj
 tp787
-sS'address/vv'
+sVaddress/vv
 p788
-(S'das/v*.full Wort/v*.full anrichten/v*.full'
-S'ansprechen/v*.full'
-S'ansteuern/v*.full'
-S'sprechen/v*.full an/v*.full'
+(Vdas/v*.full Wort/v*.full anrichten/v*.full
+Vansprechen/v*.full
+Vansteuern/v*.full
+Vsprechen/v*.full an/v*.full
 Vanwählen/v*.full
-S'gehen/v*.full an/v*.full'
-S'fallen/v*.full'
-S'richten/v*.full das/v*.full Wort/v*.full an/v*.full'
-S'reden/v*.full'
-S'anreden/v*.full'
-S'angehen/v*.full'
-S'steuern/v*.full an/v*.full'
-S'adressieren/v*.full'
+Vgehen/v*.full an/v*.full
+Vfallen/v*.full
+Vrichten/v*.full das/v*.full Wort/v*.full an/v*.full
+Vreden/v*.full
+Vanreden/v*.full
+Vangehen/v*.full
+Vsteuern/v*.full an/v*.full
+Vadressieren/v*.full
 Vwählen/v*.full an/v*.full
-S'reden/v*.full an/v*.full'
+Vreden/v*.full an/v*.full
 tp789
-sS'know/sym'
+sVknow/sym
 p790
-(S'wisse/sym'
+(Vwisse/sym
 tp791
-sS'be/vb'
+sVbe/vb
 p792
 (Vfühlen/v*.full sich/v*.full
-S'sich/v*.full befinden/v*.full'
-S'bestehen/v*.full'
-S'lauten/v*.full'
-S'sei/v*.full'
-S'befinden/v*.full sich/v*.full'
-S'werden/v*.full'
+Vsich/v*.full befinden/v*.full
+Vbestehen/v*.full
+Vlauten/v*.full
+Vsei/v*.full
+Vbefinden/v*.full sich/v*.full
+Vwerden/v*.full
 Vsich/v*.full fühlen/v*.full
-S'sein/v*.sein'
-S'seid/v*.full'
-S'befinden/v*.full'
+Vsein/v*.sein
+Vseid/v*.full
+Vbefinden/v*.full
 tp793
-sS'the/n only/n one/n'
+sVthe/n only/n one/n
 p794
-(S'Einzige/n'
+(VEinzige/n
 tp795
-sS'close/vv'
+sVclose/vv
 p796
-(S'fallen/v*.full zu/v*.full'
-S'zufallen/v*.full'
+(Vfallen/v*.full zu/v*.full
+Vzufallen/v*.full
 Vschließen/v*.full
-S'gehen/v*.full zu/v*.full'
-S'drehen/v*.full zu/v*.full'
+Vgehen/v*.full zu/v*.full
+Vdrehen/v*.full zu/v*.full
 Vschließen/v*.full ab/v*.full
-S'machen/v*.full zu/v*.full'
+Vmachen/v*.full zu/v*.full
 Vabschließen/v*.full
-S'klappen/v*.full zu/v*.full'
-S'absperren/v*.full'
-S'sperren/v*.full'
-S'zugehen/v*.full'
-S'zudrehen/v*.full'
-S'zumachen/v*.full'
-S'erledigen/v*.full'
-S'nahe/v*.full'
+Vklappen/v*.full zu/v*.full
+Vabsperren/v*.full
+Vsperren/v*.full
+Vzugehen/v*.full
+Vzudrehen/v*.full
+Vzumachen/v*.full
+Verledigen/v*.full
+Vnahe/v*.full
 Vverschließen/v*.full
-S'sperren/v*.full ab/v*.full'
-S'zuklappen/v*.full'
+Vsperren/v*.full ab/v*.full
+Vzuklappen/v*.full
 tp797
-sS'certain/rp'
+sVcertain/rp
 p798
-(S'sicher/part.verb'
+(Vsicher/part.verb
 tp799
-sS'situation/n'
+sVsituation/n
 p800
-(S'Lage/n'
-S'Stellung/n Posten/n'
-S'Sachverhalt/n'
-S'Stelle/n'
-S'Zustand/n'
-S'Tatbestand/n'
-S'Sachlage/n'
-S'Lebenslage/n'
-S'Situation/n'
-S'Stellung/n'
-S'Gegebenheit/n'
+(VLage/n
+VStellung/n Posten/n
+VSachverhalt/n
+VStelle/n
+VZustand/n
+VTatbestand/n
+VSachlage/n
+VLebenslage/n
+VSituation/n
+VStellung/n
+VGegebenheit/n
 tp801
-sS'bull/vv'
+sVbull/vv
 p802
-(S'auf/v*.full Hausse/v*.full spekulieren/v*.full'
-S'spekulieren/v*.full auf/v*.full Hausse/v*.full'
+(Vauf/v*.full Hausse/v*.full spekulieren/v*.full
+Vspekulieren/v*.full auf/v*.full Hausse/v*.full
 tp803
-sS'our/pp'
+sVour/pp
 p804
-(S'unser/pro'
+(Vunser/pro
 tp805
-sS'familiar/n'
+sVfamiliar/n
 p806
-(S'Vertraute/n'
-S'Mitwisserin/n'
-S'Mitwisser/n'
-S'Mitwissende/n'
+(VVertraute/n
+VMitwisserin/n
+VMitwisser/n
+VMitwissende/n
 tp807
-sS'away/vv'
+sVaway/vv
 p808
-(S'entfernt/v*.full'
+(Ventfernt/v*.full
 tp809
-sS'probably/rb'
+sVprobably/rb
 p810
-(S'voraussichtlich/adv'
-S'wahrscheinlich/adv'
-S'vermutlich/adv'
+(Vvoraussichtlich/adv
+Vwahrscheinlich/adv
+Vvermutlich/adv
 tp811
-sS'respond/n'
+sVrespond/n
 p812
-(S'ansprechen/n'
+(Vansprechen/n
 tp813
-sS'chairman/n'
+sVchairman/n
 p814
-(S'Vorsitzender/n'
-S'Moderator/n'
+(VVorsitzender/n
+VModerator/n
 VSänftenträger/n
 VObmännin/n
-S'Vorsitzer/n'
-S'Obfrau/n'
+VVorsitzer/n
+VObfrau/n
 VFederführer/n
-S'Vorstandschef/n'
-S'Vorstandsvorsitzende/n'
-S'Vorsitz/n'
-S'Vorsitzende/n'
-S'Obmann/n'
-S'Vorstandsvorsitzender/n'
+VVorstandschef/n
+VVorstandsvorsitzende/n
+VVorsitz/n
+VVorsitzende/n
+VObmann/n
+VVorstandsvorsitzender/n
 tp815
-sS'concern/vv'
+sVconcern/vv
 p816
-(S'zustimmen/v*.full'
-S'stimmen/v*.full zu/v*.full'
-S'bewegen/v*.full'
-S'anbelangen/v*.full'
-S'anbetreffen/v*.full'
-S'anliegen/v*.full'
-S'langen/v*.full an/v*.full'
-S'betreffen/v*.full an/v*.full'
-S'liegen/v*.full an/v*.full'
-S'betreffen/v*.full'
-S'anlangen/v*.full'
-S'interessieren/v*.full'
-S'belangen/v*.full an/v*.full'
-S'angehen/v*.full'
-S'befassen/v*.full'
-S'beunruhigen/v*.full'
+(Vzustimmen/v*.full
+Vstimmen/v*.full zu/v*.full
+Vbewegen/v*.full
+Vanbelangen/v*.full
+Vanbetreffen/v*.full
+Vanliegen/v*.full
+Vlangen/v*.full an/v*.full
+Vbetreffen/v*.full an/v*.full
+Vliegen/v*.full an/v*.full
+Vbetreffen/v*.full
+Vanlangen/v*.full
+Vinteressieren/v*.full
+Vbelangen/v*.full an/v*.full
+Vangehen/v*.full
+Vbefassen/v*.full
+Vbeunruhigen/v*.full
 tp817
-sS'last/adv year/adv'
+sVlast/adv year/adv
 p818
-(S'letztes/adv Jahr/adv'
+(Vletztes/adv Jahr/adv
 tp819
-sS'during/in'
+sVduring/in
 p820
 (Vwährend/appr
 Vanläßlich/appr
-S'in/appr'
+Vin/appr
 tp821
-sS'rather/in than/in'
+sVrather/in than/in
 p822
-(S'anstatt/conj.sub*'
-S'statt/appr'
+(Vanstatt/conj.sub*
+Vstatt/appr
 tp823
-sS'before/adv'
+sVbefore/adv
 p824
-(S'vorher/adv'
-S'zuvor/adv'
+(Vvorher/adv
+Vzuvor/adv
 tp825
-sS'veteran/vv'
+sVveteran/vv
 p826
-(S'ausgedient/v*.full'
+(Vausgedient/v*.full
 tp827
-sS'phrase/vv'
+sVphrase/vv
 p828
 (Vausdrücken/v*.full
-S'phrasieren/v*.full'
-S'formulieren/v*.full'
+Vphrasieren/v*.full
+Vformulieren/v*.full
 Vdrücken/v*.full aus/v*.full
 tp829
-sS'rather/adv'
+sVrather/adv
 p830
-(S'eher/adv'
+(Veher/adv
 Vungefähr/adv
-S'lieber/adv'
-S'eigentlich/adv'
-S'ganz/adv und/adv gar/adv'
-S'vielmehr/adv'
-S'ziemlich/adv'
+Vlieber/adv
+Veigentlich/adv
+Vganz/adv und/adv gar/adv
+Vvielmehr/adv
+Vziemlich/adv
 tp831
-sS'pay/vv attention/vv'
+sVpay/vv attention/vv
 p832
-(S'passen/v*.full auf/v*.full'
-S'aufmerken/v*.full'
-S'merken/v*.full auf/v*.full'
-S'schenken/v*.full Beachtung/v*.full'
-S'Beachtung/v*.full schenken/v*.full'
-S'aufpassen/v*.full'
-S'beachten/v*.full'
-S'achten/v*.full'
+(Vpassen/v*.full auf/v*.full
+Vaufmerken/v*.full
+Vmerken/v*.full auf/v*.full
+Vschenken/v*.full Beachtung/v*.full
+VBeachtung/v*.full schenken/v*.full
+Vaufpassen/v*.full
+Vbeachten/v*.full
+Vachten/v*.full
 tp833
-sS'language/n'
+sVlanguage/n
 p834
-(S'Ausdrucksweise/n'
-S'Sprache/n'
-S'Language/n'
-S'Landessprache/n'
+(VAusdrucksweise/n
+VSprache/n
+VLanguage/n
+VLandessprache/n
 tp835
-sS'barrier/n'
+sVbarrier/n
 p836
-(S'Schranke/n'
-S'Schutzhaube/n'
-S'Schlagbaum/n'
-S'Sperre/n'
-S'Sperrwerk/n'
-S'Sperranlage/n'
-S'Hemmnis/n'
-S'Damm/n'
-S'Absperrung/n'
-S'Abdeckung/n'
-S'Grenzschicht/n'
+(VSchranke/n
+VSchutzhaube/n
+VSchlagbaum/n
+VSperre/n
+VSperrwerk/n
+VSperranlage/n
+VHemmnis/n
+VDamm/n
+VAbsperrung/n
+VAbdeckung/n
+VGrenzschicht/n
 VAbsperrgerät/n
-S'Schutzwall/n'
-S'Barriere/n'
-S'Hindernis/n'
-S'Absperrvorrichtung/n'
-S'Verhau/n'
+VSchutzwall/n
+VBarriere/n
+VHindernis/n
+VAbsperrvorrichtung/n
+VVerhau/n
 VDämmmaterial/n
-S'Schwelle/n'
-S'Schutzabdeckung/n'
+VSchwelle/n
+VSchutzabdeckung/n
 tp837
-sS'anything/n'
+sVanything/n
 p838
-(S'alles/n'
+(Valles/n
 tp839
-sS'right/adv'
+sVright/adv
 p840
-(S'richtig/adv'
-S'genau/adv'
-S'sehr/adv'
-S'rechts/adv'
-S'zutreffend/adv'
-S'gleich/adv'
+(Vrichtig/adv
+Vgenau/adv
+Vsehr/adv
+Vrechts/adv
+Vzutreffend/adv
+Vgleich/adv
 tp841
-sS'one/pp another/pp'
+sVone/pp another/pp
 p842
-(S'einander/pro'
+(Veinander/pro
 tp843
-sS'occasionally/rb'
+sVoccasionally/rb
 p844
-(S'zuweilen/adv'
-S'mitunter/adv'
-S'bisweilen/adv'
+(Vzuweilen/adv
+Vmitunter/adv
+Vbisweilen/adv
 tp845
-sS'another/cd'
+sVanother/cd
 p846
-(S'noch/card'
+(Vnoch/card
 tp847
-sS'when/in'
+sVwhen/in
 p848
-(S'sobald/conj.sub*'
-S'wann/adv'
-S'als/conj.sub*'
+(Vsobald/conj.sub*
+Vwann/adv
+Vals/conj.sub*
 Vwährend/conj.sub*
-S'da/conj.sub*'
-S'beim/appr'
-S'wenn/conj.sub*'
-S'bei/appr'
-S'als/conj.comp'
+Vda/conj.sub*
+Vbeim/appr
+Vwenn/conj.sub*
+Vbei/appr
+Vals/conj.comp
 tp849
-sS'bull/n'
+sVbull/n
 p850
-(S'Bulle/n'
-S'Haussespekulant/n'
-S'Rind/n'
-S'Stier/n'
+(VBulle/n
+VHaussespekulant/n
+VRind/n
+VStier/n
 tp851
-sS'away/n'
+sVaway/n
 p852
-(S'fort/n'
-S'weg/n'
+(Vfort/n
+Vweg/n
 tp853
-sS'work/vv'
+sVwork/vv
 p854
 (Vglücken/v*.full
-S'verarbeiten/v*.full'
-S'angehen/v*.full'
-S'werken/v*.full'
-S'gelingen/v*.full'
-S'zusammenarbeiten/v*.full'
+Vverarbeiten/v*.full
+Vangehen/v*.full
+Vwerken/v*.full
+Vgelingen/v*.full
+Vzusammenarbeiten/v*.full
 Vbetätigen/v*.full
-S'wirken/v*.full'
-S'arbeiten/v*.full'
-S'abbauen/v*.full'
-S'wirken/v*.full hin/v*.full'
-S'bewirken/v*.full'
-S'hinwirken/v*.full'
-S'bearbeiten/v*.full'
-S'gehen/v*.full her/v*.full'
-S'funktionieren/v*.full'
-S'rechnen/v*.full aus/v*.full'
-S'klappen/v*.full'
-S'betreiben/v*.full'
-S'bauen/v*.full ab/v*.full'
-S'leisten/v*.full'
-S'ausrechnen/v*.full'
-S'hergehen/v*.full'
+Vwirken/v*.full
+Varbeiten/v*.full
+Vabbauen/v*.full
+Vwirken/v*.full hin/v*.full
+Vbewirken/v*.full
+Vhinwirken/v*.full
+Vbearbeiten/v*.full
+Vgehen/v*.full her/v*.full
+Vfunktionieren/v*.full
+Vrechnen/v*.full aus/v*.full
+Vklappen/v*.full
+Vbetreiben/v*.full
+Vbauen/v*.full ab/v*.full
+Vleisten/v*.full
+Vausrechnen/v*.full
+Vhergehen/v*.full
 tp855
-sS'which/pp'
+sVwhich/pp
 p856
-(S'die/pro.rel'
-S'das/pro.rel'
-S'der/pro.rel'
-S'welch/pro.rel'
+(Vdie/pro.rel
+Vdas/pro.rel
+Vder/pro.rel
+Vwelch/pro.rel
 tp857
-sS'./sent'
+sV./sent
 p858
-(S'./sym.pun.sent'
+(V./sym.pun.sent
 tp859
-sS'such/rb'
+sVsuch/rb
 p860
-(S'solch/adv'
-S'so/adv'
-S'derlei/adv'
+(Vsolch/adv
+Vso/adv
+Vderlei/adv
 tp861
-sS'close/n'
+sVclose/n
 p862
 (VAbschließen/n
 VZugehörigkeit/n
-S'Handgemenge/n'
-S'Sackgasse/n'
-S'zumachen/n'
+VHandgemenge/n
+VSackgasse/n
+Vzumachen/n
 Vabschließen/n
-S'Ausklang/n'
-S'Close/n'
+VAusklang/n
+VClose/n
 VSchließen/n
 tp863
-sS'would/vv'
+sVwould/vv
 p864
-(S'werden/v*.full'
-S'wollte/v*.full'
+(Vwerden/v*.full
+Vwollte/v*.full
 Vwürde/v*.full
 tp865
-sS'just/uh'
+sVjust/uh
 p866
-(S'halt/itj'
+(Vhalt/itj
 tp867
-sS'close/adv'
+sVclose/adv
 p868
 (Vfamiliär/adv
-S'nah/adv'
-S'eng/adv'
-S'dicht/adv'
+Vnah/adv
+Veng/adv
+Vdicht/adv
 tp869
-sS'also/adv'
+sValso/adv
 p870
 (Vaußerdem/adv
-S'ebenfalls/adv'
-S'gleichfalls/adv'
+Vebenfalls/adv
+Vgleichfalls/adv
 tp871
-sS'establish/vv'
+sVestablish/vv
 p872
-(S'bilden/v*.full sich/v*.full'
-S'lassen/v*.full nieder/v*.full'
-S'setzen/v*.full sich/v*.full fest/v*.full'
-S'legen/v*.full fest/v*.full'
+(Vbilden/v*.full sich/v*.full
+Vlassen/v*.full nieder/v*.full
+Vsetzen/v*.full sich/v*.full fest/v*.full
+Vlegen/v*.full fest/v*.full
 Vklären/v*.full
-S'errichten/v*.full'
-S'einrichten/v*.full'
-S'niederlassen/v*.full'
+Verrichten/v*.full
+Veinrichten/v*.full
+Vniederlassen/v*.full
 Vbegründen/v*.full
 VFuß/v*.full fassen/v*.full
-S'etablieren/v*.full'
-S'weisen/v*.full nach/v*.full'
-S'nachweisen/v*.full'
-S'aufbauen/v*.full'
-S'setzen/v*.full fest/v*.full'
-S'bilden/v*.full sich/v*.full heraus/v*.full'
-S'erfolgen/v*.full'
-S'aufstellen/v*.full'
+Vetablieren/v*.full
+Vweisen/v*.full nach/v*.full
+Vnachweisen/v*.full
+Vaufbauen/v*.full
+Vsetzen/v*.full fest/v*.full
+Vbilden/v*.full sich/v*.full heraus/v*.full
+Verfolgen/v*.full
+Vaufstellen/v*.full
 Vfassen/v*.full Fuß/v*.full
-S'bauen/v*.full auf/v*.full'
-S'sich/v*.full herausbilden/v*.full'
-S'sich/v*.full bilden/v*.full'
+Vbauen/v*.full auf/v*.full
+Vsich/v*.full herausbilden/v*.full
+Vsich/v*.full bilden/v*.full
 Vgründen/v*.full
-S'schaffen/v*.full'
-S'beweisen/v*.full'
-S'festsetzen/v*.full'
-S'richten/v*.full ein/v*.full'
-S'sich/v*.full etablieren/v*.full'
-S'stellen/v*.full her/v*.full'
-S'festlegen/v*.full'
-S'bauen/v*.full sich/v*.full auf/v*.full'
-S'sich/v*.full festsetzen/v*.full'
-S'herstellen/v*.full'
-S'etablieren/v*.full sich/v*.full'
-S'sich/v*.full aufbauen/v*.full'
-S'stellen/v*.full auf/v*.full'
-S'ermitteln/v*.full'
+Vschaffen/v*.full
+Vbeweisen/v*.full
+Vfestsetzen/v*.full
+Vrichten/v*.full ein/v*.full
+Vsich/v*.full etablieren/v*.full
+Vstellen/v*.full her/v*.full
+Vfestlegen/v*.full
+Vbauen/v*.full sich/v*.full auf/v*.full
+Vsich/v*.full festsetzen/v*.full
+Vherstellen/v*.full
+Vetablieren/v*.full sich/v*.full
+Vsich/v*.full aufbauen/v*.full
+Vstellen/v*.full auf/v*.full
+Vermitteln/v*.full
 tp873
-sS'capital/jj'
+sVcapital/jj
 p874
-(S'einmalig/adj'
+(Veinmalig/adj
 Vhauptsächlich/adj
 Vgroß/adj
 Vverhängnisvoll/adj
-S'haupt-/adj'
+Vhaupt-/adj
 tp875
-sS'man/vv'
+sVman/vv
 p876
-(S'bemannen/v*.full'
+(Vbemannen/v*.full
 tp877
-sS'another/pp'
+sVanother/pp
 p878
-(S'einander/pro'
-S'einer/pro'
+(Veinander/pro
+Veiner/pro
 tp879
-sS'not/adv only/adv'
+sVnot/adv only/adv
 p880
-(S'nicht/adv nur/adv'
+(Vnicht/adv nur/adv
 tp881
-sS'newspaper/n'
+sVnewspaper/n
 p882
-(S'Zeitungsmedium/n'
-S'Zeitung/n'
-S'Zeitung/n /Ztg.//n'
-S'Zeitungsmedien/n'
+(VZeitungsmedium/n
+VZeitung/n
+VZeitung/n /Ztg.//n
+VZeitungsmedien/n
 tp883
-sS'the/n new/n'
+sVthe/n new/n
 p884
-(S'das/n Neue/n'
+(Vdas/n Neue/n
 tp885
-sS'groovy/jj'
+sVgroovy/jj
 p886
-(S'toll/adj'
+(Vtoll/adj
 Vhandwerksmäßig/adj
-S'klasse/adj'
+Vklasse/adj
 tp887
-sS'out/rb'
+sVout/rb
 p888
 (Vdraußen/adv
-S'vorbei/adv'
+Vvorbei/adv
 Vaußen/adv
 Vaußerhalb/adv
 Vauswärts/adv
 tp889
-sS'that/dt'
+sVthat/dt
 p890
-(S'derjenige/pro.dem'
-S'diejenige/pro.dem'
-S'd/art'
-S'jener/pro.dem'
-S'dasjenige/pro.dem'
-S'jenes/pro.dem'
-S'der/art'
-S'das/art'
-S'die/art'
+(Vderjenige/pro.dem
+Vdiejenige/pro.dem
+Vd/art
+Vjener/pro.dem
+Vdasjenige/pro.dem
+Vjenes/pro.dem
+Vder/art
+Vdas/art
+Vdie/art
 tp891
-sS'close/jj'
+sVclose/jj
 p892
-(S'hart/adj'
-S'freundschaftlich/adj'
-S'hautnah/adj'
-S'dicht/adj'
-S'nah/adj'
-S'nahe/adj'
-S'eng/adj'
-S'geschlossen/adj'
+(Vhart/adj
+Vfreundschaftlich/adj
+Vhautnah/adj
+Vdicht/adj
+Vnah/adj
+Vnahe/adj
+Veng/adj
+Vgeschlossen/adj
 tp893
-sS'even/jj'
+sVeven/jj
 p894
 (Vgleich/adj groß/adj
-S'gerade/adj'
-S'gar/adj'
-S'ruhig/adj'
+Vgerade/adj
+Vgar/adj
+Vruhig/adj
 Vebenmäßig/adj
-S'unentschieden/adj'
-S'glatt/adj'
-S'eben/adj'
+Vunentschieden/adj
+Vglatt/adj
+Veben/adj
 Vgleichmäßig/adj
 tp895
-sS'correctly/adv'
+sVcorrectly/adv
 p896
-(S'richtig/adv'
-S'genau/adv'
-S'korrekterweise/adv'
-S'einwandfrei/adv'
-S'korrekt/adv'
+(Vrichtig/adv
+Vgenau/adv
+Vkorrekterweise/adv
+Veinwandfrei/adv
+Vkorrekt/adv
 tp897
-sS'most/adv'
+sVmost/adv
 p898
-(S'd/art meist/adv'
+(Vd/art meist/adv
 Vhöchst/adv
-S'hoechstens/adv'
+Vhoechstens/adv
 Vgrößt/adv
-S'meist/adv'
+Vmeist/adv
 tp899
-sS'in/in connection/in with/in'
+sVin/in connection/in with/in
 p900
-(S'im/appr Zusammenhang/appr mit/appr'
-S'in/appr Verbindung/appr mit/appr'
+(Vim/appr Zusammenhang/appr mit/appr
+Vin/appr Verbindung/appr mit/appr
 tp901
-sS'surprisingly/adv'
+sVsurprisingly/adv
 p902
-(S'erstaunlicherweise/adv'
+(Verstaunlicherweise/adv
 Vüberraschenderweise/adv
 Vüberraschend/adv
 tp903
-sS'?/sent'
+sV?/sent
 p904
-(S'?/sym.pun.sent'
+(V?/sym.pun.sent
 tp905
-sS'like/vv'
+sVlike/vv
 p906
-(S'belieben/v*.full'
-S'gern/adv'
-S'lieben/v*.full'
-S'gernhaben/v*.full'
+(Vbelieben/v*.full
+Vgern/adv
+Vlieben/v*.full
+Vgernhaben/v*.full
 Vmögen/v*.full
 Vschätzen/v*.full
-S'haben/v*.full gern/v*.full'
-S'goutieren/v*.full'
-S'gefallen/v*.full'
+Vhaben/v*.full gern/v*.full
+Vgoutieren/v*.full
+Vgefallen/v*.full
 tp907
-sS'close/in to/in'
+sVclose/in to/in
 p908
-(S'nahe/appr an/appr'
+(Vnahe/appr an/appr
 tp909
-sS'lack/vv'
+sVlack/vv
 p910
-(S'ermangeln/v*.full'
-S'haben/v*.full Mangel/v*.full'
+(Vermangeln/v*.full
+Vhaben/v*.full Mangel/v*.full
 Vbenötigen/v*.full
-S'brauchen/v*.full'
-S'mangeln/v*.full'
-S'Mangel/v*.full haben/v*.full'
-S'hapern/v*.full'
-S'lassen/v*.full vermissen/v*.full'
-S'vermissen/v*.full lassen/v*.full'
-S'fehlen/v*.full'
+Vbrauchen/v*.full
+Vmangeln/v*.full
+VMangel/v*.full haben/v*.full
+Vhapern/v*.full
+Vlassen/v*.full vermissen/v*.full
+Vvermissen/v*.full lassen/v*.full
+Vfehlen/v*.full
 tp911
-sS'first/n'
+sVfirst/n
 p912
-(S'First/n'
+(VFirst/n
 tp913
-sS'that/rb'
+sVthat/rb
 p914
-(S'dazu/adv'
+(Vdazu/adv
 tp915
-sS'city/n'
+sVcity/n
 p916
-(S'Innenstadt/n'
+(VInnenstadt/n
 VGroßstadt/n
-S'Stadt/n'
-S'Wohnort/n'
+VStadt/n
+VWohnort/n
 tp917
-sS'do/n'
+sVdo/n
 p918
-(S'Sitte/n'
+(VSitte/n
 VDurchführen/n
 Vausführen/n
-S'vorgehen/n'
+Vvorgehen/n
 tp919
-sS'mention/vv'
+sVmention/vv
 p920
-(S'ansprechen/v*.full'
-S'andeuten/v*.full'
-S'vermerken/v*.full'
-S'deuten/v*.full an/v*.full'
-S'sprechen/v*.full an/v*.full'
+(Vansprechen/v*.full
+Vandeuten/v*.full
+Vvermerken/v*.full
+Vdeuten/v*.full an/v*.full
+Vsprechen/v*.full an/v*.full
 Vanführen/v*.full
-S'nennen/v*.full'
+Vnennen/v*.full
 Verwähnen/v*.full
 Vführen/v*.full an/v*.full
 tp921
-sS'who/dt'
+sVwho/dt
 p922
-(S'die/art'
-S'der/art'
-S'd/art'
+(Vdie/art
+Vder/art
+Vd/art
 tp923
-sS'also/jj'
+sValso/jj
 p924
-(S'gleichzeitig/adj'
+(Vgleichzeitig/adj
 tp925
-sS'at/dt all/dt'
+sVat/dt all/dt
 p926
-(S'irgend/adv'
+(Virgend/adv
 tp927
-sS'later/jj'
+sVlater/jj
 p928
 (Vspäter/adj
 Vnachträglich/adj
 tp929
-sS'like/rb that/rb'
+sVlike/rb that/rb
 p930
-(S'so/adv'
+(Vso/adv
 tp931
-sS'sail/vv'
+sVsail/vv
 p932
-(S'segeln/v*.full'
-S'schiffen/v*.full'
-S'auslaufen/v*.full'
-S'laufen/v*.full aus/v*.full'
+(Vsegeln/v*.full
+Vschiffen/v*.full
+Vauslaufen/v*.full
+Vlaufen/v*.full aus/v*.full
 tp933
-sS'probably/adv'
+sVprobably/adv
 p934
-(S'voraussichtlich/adv'
-S'wahrscheinlich/adv'
-S'vermutlich/adv'
+(Vvoraussichtlich/adv
+Vwahrscheinlich/adv
+Vvermutlich/adv
 tp935
-sS'neck/vv'
+sVneck/vv
 p936
-(S'knutschen/v*.full'
-S'aushalsen/v*.full'
+(Vknutschen/v*.full
+Vaushalsen/v*.full
 tp937
-sS'certain/jj'
+sVcertain/jj
 p938
-(S'sicher/adv'
+(Vsicher/adv
 Vgewiß/adj
-S'sicher/adj'
-S'gewiss/adj'
-S'bestimmt/adj'
-S'zukunftssicher/adj'
+Vsicher/adj
+Vgewiss/adj
+Vbestimmt/adj
+Vzukunftssicher/adj
 tp939
-sS'present/adv'
+sVpresent/adv
 p940
-(S'augenblicklich/adv'
-S'momentan/adv'
+(Vaugenblicklich/adv
+Vmomentan/adv
 Vgegenwärtig/adv
-S'laufend/adv'
-S'aktuell/adv'
+Vlaufend/adv
+Vaktuell/adv
 tp941
-sS'influential/n'
+sVinfluential/n
 p942
-(S'Einflussreich/n'
+(VEinflussreich/n
 VEinflußreich/n
 tp943
-sS'have/vv'
+sVhave/vv
 p944
-(S'haben/v*.full'
+(Vhaben/v*.full
 tp945
-sS'have/vh'
+sVhave/vh
 p946
-(S'nehmen/v*.full zu/v*.full sich/v*.full'
-S'worden/v*.full'
+(Vnehmen/v*.full zu/v*.full sich/v*.full
+Vworden/v*.full
 Vverfügen/v*.full
-S'tragen/v*.full'
-S'sein/v*.sein'
-S'besitzen/v*.full'
-S'zu/v*.full sich/v*.full nehmen/v*.full'
+Vtragen/v*.full
+Vsein/v*.sein
+Vbesitzen/v*.full
+Vzu/v*.full sich/v*.full nehmen/v*.full
 tp947
-sS'first/rb'
+sVfirst/rb
 p948
-(S'vornweg/adv'
-S'vorneweg/adv'
-S'erst/adv einmal/adv'
-S'erst/adv'
-S'erstens/adv'
+(Vvornweg/adv
+Vvorneweg/adv
+Verst/adv einmal/adv
+Verst/adv
+Verstens/adv
 tp949
-sS':/:'
+sV:/:
 p950
-(S':/sym'
+(V:/sym
 tp951
-sS'actually/rb'
+sVactually/rb
 p952
-(S'wirklich/adv'
+(Vwirklich/adv
 tp953
-sS'like/n'
+sVlike/n
 p954
-(S'Gleiche/n'
-S'zeitwertgerechte/n reparatur/n'
+(VGleiche/n
+Vzeitwertgerechte/n reparatur/n
 tp955
-sS'Democrat/n'
+sVDemocrat/n
 p956
-(S'Demokrat/n'
+(VDemokrat/n
 tp957
-sS'use/vv'
+sVuse/vv
 p958
 (Vnützen/v*.full aus/v*.full
 Vnützen/v*.full
-S'verwerten/v*.full'
+Vverwerten/v*.full
 Vausführen/v*.full
-S'gebrauchen/v*.full'
+Vgebrauchen/v*.full
 Vbenützen/v*.full
-S'nutzen/v*.full aus/v*.full'
-S'einsetzen/v*.full'
-S'wahrnehmen/v*.full'
-S'ausnutzen/v*.full'
-S'bedienen/v*.full sich/v*.full einer/v*.full Sache/v*.full'
-S'bedienen/v*.full sich/v*.full'
-S'brauchen/v*.full'
-S'nehmen/v*.full in/v*.full Anspruch/v*.full'
-S'verbrauchen/v*.full'
-S'sich/v*.full bedienen/v*.full'
-S'sich/v*.full einer/v*.full Sache/v*.full bedienen/v*.full'
-S'anwenden/v*.full'
-S'bedienen/v*.full'
-S'konsumieren/v*.full'
-S'belegen/v*.full'
-S'benutzen/v*.full'
+Vnutzen/v*.full aus/v*.full
+Veinsetzen/v*.full
+Vwahrnehmen/v*.full
+Vausnutzen/v*.full
+Vbedienen/v*.full sich/v*.full einer/v*.full Sache/v*.full
+Vbedienen/v*.full sich/v*.full
+Vbrauchen/v*.full
+Vnehmen/v*.full in/v*.full Anspruch/v*.full
+Vverbrauchen/v*.full
+Vsich/v*.full bedienen/v*.full
+Vsich/v*.full einer/v*.full Sache/v*.full bedienen/v*.full
+Vanwenden/v*.full
+Vbedienen/v*.full
+Vkonsumieren/v*.full
+Vbelegen/v*.full
+Vbenutzen/v*.full
 Vgewöhnen/v*.full
-S'wenden/v*.full an/v*.full'
-S'pflegen/v*.full'
+Vwenden/v*.full an/v*.full
+Vpflegen/v*.full
 Vführen/v*.full aus/v*.full
-S'verwenden/v*.full'
+Vverwenden/v*.full
 Vausnützen/v*.full
-S'setzen/v*.full ein/v*.full'
-S'nehmen/v*.full wahr/v*.full'
-S'nutzen/v*.full'
-S'in/v*.full Anspruch/v*.full nehmen/v*.full'
+Vsetzen/v*.full ein/v*.full
+Vnehmen/v*.full wahr/v*.full
+Vnutzen/v*.full
+Vin/v*.full Anspruch/v*.full nehmen/v*.full
 tp959
-sS'last/vv'
+sVlast/vv
 p960
-(S'anhalten/v*.full'
-S'reichen/v*.full aus/v*.full'
-S'ausreichen/v*.full'
-S'bleiben/v*.full bestehen/v*.full'
-S'dauern/v*.full aus/v*.full'
-S'bestehen/v*.full bleiben/v*.full'
-S'dauern/v*.full an/v*.full'
-S'halten/v*.full an/v*.full'
-S'andauern/v*.full'
+(Vanhalten/v*.full
+Vreichen/v*.full aus/v*.full
+Vausreichen/v*.full
+Vbleiben/v*.full bestehen/v*.full
+Vdauern/v*.full aus/v*.full
+Vbestehen/v*.full bleiben/v*.full
+Vdauern/v*.full an/v*.full
+Vhalten/v*.full an/v*.full
+Vandauern/v*.full
 Vwähren/v*.full
-S'dauern/v*.full'
-S'bleiben/v*.full'
-S'reichen/v*.full'
-S'bestehenbleiben/v*.full'
-S'ausdauern/v*.full'
+Vdauern/v*.full
+Vbleiben/v*.full
+Vreichen/v*.full
+Vbestehenbleiben/v*.full
+Vausdauern/v*.full
 tp961
-sS'present/jj'
+sVpresent/jj
 p962
-(S'derzeitig/adj'
-S'augenblicklich/adj'
-S'vorliegend/adj'
-S'befindlich/adj'
-S'heutige/adj'
-S'bisherige/adj'
+(Vderzeitig/adj
+Vaugenblicklich/adj
+Vvorliegend/adj
+Vbefindlich/adj
+Vheutige/adj
+Vbisherige/adj
 Vgegenwärtig/adj
-S'anwesend/adj'
-S'gegenwartsbezogen/adj'
-S'seitherige/adj'
-S'zugegen/adv'
-S'jetzige/adj'
-S'vorhanden/adj'
+Vanwesend/adj
+Vgegenwartsbezogen/adj
+Vseitherige/adj
+Vzugegen/adv
+Vjetzige/adj
+Vvorhanden/adj
 Vpräsent/adj
 tp963
-sS'recall/vv'
+sVrecall/vv
 p964
 (Vrufen/v*.full rück/v*.full
 Vzurückrufen/v*.full
 Vrückrufen/v*.full
-S'erinnern/v*.full'
-S'verweisen/v*.full'
+Verinnern/v*.full
+Vverweisen/v*.full
 Vrufen/v*.full zurück/v*.full
 Vzurückberufen/v*.full
 Vberufen/v*.full zurück/v*.full
-S'abrufen/v*.full'
-S'abberufen/v*.full'
-S'gedenken/v*.full'
-S'heimrufen/v*.full'
-S'berufen/v*.full ab/v*.full'
-S'rufen/v*.full ab/v*.full'
+Vabrufen/v*.full
+Vabberufen/v*.full
+Vgedenken/v*.full
+Vheimrufen/v*.full
+Vberufen/v*.full ab/v*.full
+Vrufen/v*.full ab/v*.full
 tp965
-sS'promise/vv'
+sVpromise/vv
 p966
-(S'sich/v*.full verpflichten/v*.full'
-S'angeloben/v*.full'
-S'versprechen/v*.full'
-S'sagen/v*.full zu/v*.full'
-S'zusagen/v*.full'
+(Vsich/v*.full verpflichten/v*.full
+Vangeloben/v*.full
+Vversprechen/v*.full
+Vsagen/v*.full zu/v*.full
+Vzusagen/v*.full
 Vverheißen/v*.full
-S'geloben/v*.full an/v*.full'
-S'verpflichten/v*.full sich/v*.full'
+Vgeloben/v*.full an/v*.full
+Vverpflichten/v*.full sich/v*.full
 tp967
-sS'school/jj'
+sVschool/jj
 p968
-(S'schulisch/adj'
+(Vschulisch/adj
 tp969
-sS'their/pp$'
+sVtheir/pp$
 p970
-(S'ihre/pro'
-S'deren/pro.rel'
-S'ihr/pro'
-S'deren/pro'
+(Vihre/pro
+Vderen/pro.rel
+Vihr/pro
+Vderen/pro
 tp971
-sS'away/in'
+sVaway/in
 p972
-(S'ab/appr'
+(Vab/appr
 tp973
-sS'but/cc'
+sVbut/cc
 p974
-(S'sondern/conj.coord'
-S'aber/conj.aber'
-S'doch/adv'
-S'aber/adv'
+(Vsondern/conj.coord
+Vaber/conj.aber
+Vdoch/adv
+Vaber/adv
 tp975
-sS'than/in'
+sVthan/in
 p976
-(S'anstatt/appr'
-S'als/conj.comp'
+(Vanstatt/appr
+Vals/conj.comp
 tp977
-sS'my/pp$'
+sVmy/pp$
 p978
-(S'mein/pro'
+(Vmein/pro
 tp979
-sS'there/vv be/vv'
+sVthere/vv be/vv
 p980
-(S'geben/v*.full es/v*.full'
-S'es/v*.full geben/v*.full'
+(Vgeben/v*.full es/v*.full
+Ves/v*.full geben/v*.full
 tp981
-sS'most/jj'
+sVmost/jj
 p982
 (Väußerst/adv
-S'allermeist/adj'
+Vallermeist/adj
 Vgrößtes/adj
-S'meiste/adj'
+Vmeiste/adj
 Vgrößter/adj
 Vgrößte/adj
 tp983
-sS'turn/uh out/uh'
+sVturn/uh out/uh
 p984
-(S'zeigen/itj wo/itj der/itj Zimmermann/itj das/itj Loch/itj gelassen/itj hat/itj'
+(Vzeigen/itj wo/itj der/itj Zimmermann/itj das/itj Loch/itj gelassen/itj hat/itj
 tp985
-sS'say/vv so/vv'
+sVsay/vv so/vv
 p986
-(S'sagen/v*.full das/v*.full'
-S'das/v*.full sagen/v*.full'
+(Vsagen/v*.full das/v*.full
+Vdas/v*.full sagen/v*.full
 tp987
-sS'Dr./n'
+sVDr./n
 p988
-(S'Dr./n'
+(VDr./n
 tp989
-sS'note/vv'
+sVnote/vv
 p990
-(S'merken/v*.full an/v*.full'
-S'angeben/v*.full'
-S'vormerken/v*.full'
-S'vermerken/v*.full'
-S'aufzeichnen/v*.full'
-S'schreiben/v*.full auf/v*.full'
-S'aufschreiben/v*.full'
-S'bemerken/v*.full'
-S'zeichnen/v*.full auf/v*.full'
-S'verzeichnen/v*.full'
+(Vmerken/v*.full an/v*.full
+Vangeben/v*.full
+Vvormerken/v*.full
+Vvermerken/v*.full
+Vaufzeichnen/v*.full
+Vschreiben/v*.full auf/v*.full
+Vaufschreiben/v*.full
+Vbemerken/v*.full
+Vzeichnen/v*.full auf/v*.full
+Vverzeichnen/v*.full
 Vanführen/v*.full
 Vführen/v*.full an/v*.full
-S'geben/v*.full an/v*.full'
-S'merken/v*.full vor/v*.full'
-S'achten/v*.full'
-S'notieren/v*.full'
-S'beachten/v*.full'
-S'anmerken/v*.full'
+Vgeben/v*.full an/v*.full
+Vmerken/v*.full vor/v*.full
+Vachten/v*.full
+Vnotieren/v*.full
+Vbeachten/v*.full
+Vanmerken/v*.full
 tp991
-sS'go/vv to/vv'
+sVgo/vv to/vv
 p992
-(S'besuchen/v*.full'
-S'verreisen/v*.full'
+(Vbesuchen/v*.full
+Vverreisen/v*.full
 tp993
-sS'municipal/adv'
+sVmunicipal/adv
 p994
 (Vstädtisch/adv
-S'kommunal/adv'
+Vkommunal/adv
 tp995
-sS'actually/jj'
+sVactually/jj
 p996
-(S'eigentlich/adj'
+(Veigentlich/adj
 Vtatsächlich/adj
 tp997
-sS'old/jj'
+sVold/jj
 p998
-(S'alt/adj'
-S'oller/adj'
+(Valt/adj
+Voller/adj
 tp999
-sS'also/rb'
+sValso/rb
 p1000
-(S'auch/adv'
-S'ferner/adv'
-S'ebenfalls/adv'
-S'ebenso/adv'
+(Vauch/adv
+Vferner/adv
+Vebenfalls/adv
+Vebenso/adv
 tp1001
-sS'right/rb'
+sVright/rb
 p1002
-(S'rechts/adv'
-S'gerade/adv'
+(Vrechts/adv
+Vgerade/adv
 tp1003
-sS'groovy/adv'
+sVgroovy/adv
 p1004
 (Vhandwerksmäßig/adv
 tp1005
-sS'such/adv'
+sVsuch/adv
 p1006
-(S'derartig/adv'
+(Vderartig/adv
 tp1007
-sS'some/jj'
+sVsome/jj
 p1008
-(S'einig/adj'
-S'manche/adj'
-S'etlich/adj'
+(Veinig/adj
+Vmanche/adj
+Vetlich/adj
 tp1009
-sS'before/rp'
+sVbefore/rp
 p1010
-(S'voran/part.verb'
+(Vvoran/part.verb
 tp1011
-sS'last/adv'
+sVlast/adv
 p1012
-(S'zuletzt/adv'
-S'endlich/adv'
+(Vzuletzt/adv
+Vendlich/adv
 tp1013
-sS'be/vv'
+sVbe/vv
 p1014
-(S'geben/v*.full'
+(Vgeben/v*.full
 tp1015
-sS'all/pdt'
+sVall/pdt
 p1016
-(S'all/pro'
-S'aller/pro'
-S'alles/pro'
-S'ganz/adj'
+(Vall/pro
+Valler/pro
+Valles/pro
+Vganz/adj
 Vsämtliche/adj
-S'alle/pro'
-S'jeder/pro'
+Valle/pro
+Vjeder/pro
 tp1017
-sS'some/rb'
+sVsome/rb
 p1018
-(S'etwas/adv'
+(Vetwas/adv
 tp1019
-sS'with/rb this/rb'
+sVwith/rb this/rb
 p1020
-(S'hiermit/adv'
+(Vhiermit/adv
 tp1021
-sS'attend/vv'
+sVattend/vv
 p1022
-(S'beiwohnen/v*.full'
-S'erscheinen/v*.full'
-S'behandeln/v*.full'
-S'aufmerken/v*.full'
-S'merken/v*.full auf/v*.full'
-S'anwesend/v*.full sein/v*.full'
-S'teilnehmen/v*.full'
-S'begleiten/v*.full'
-S'betreuen/v*.full'
-S'aufwarten/v*.full'
-S'nehmen/v*.full teil/v*.full'
-S'pflegen/v*.full'
-S'besuchen/v*.full'
-S'absolvieren/v*.full'
-S'erledigen/v*.full'
-S'sein/v*.full anwesend/v*.full'
-S'bedienen/v*.full'
-S'warten/v*.full auf/v*.full'
-S'wohnen/v*.full bei/v*.full'
-S'achten/v*.full'
+(Vbeiwohnen/v*.full
+Verscheinen/v*.full
+Vbehandeln/v*.full
+Vaufmerken/v*.full
+Vmerken/v*.full auf/v*.full
+Vanwesend/v*.full sein/v*.full
+Vteilnehmen/v*.full
+Vbegleiten/v*.full
+Vbetreuen/v*.full
+Vaufwarten/v*.full
+Vnehmen/v*.full teil/v*.full
+Vpflegen/v*.full
+Vbesuchen/v*.full
+Vabsolvieren/v*.full
+Verledigen/v*.full
+Vsein/v*.full anwesend/v*.full
+Vbedienen/v*.full
+Vwarten/v*.full auf/v*.full
+Vwohnen/v*.full bei/v*.full
+Vachten/v*.full
 tp1023
-sS'well-known/adv'
+sVwell-known/adv
 p1024
-(S'namhaft/adv'
+(Vnamhaft/adv
 tp1025
-sS'by/adv'
+sVby/adv
 p1026
-(S'mal/adv'
+(Vmal/adv
 tp1027
-sS'some/w'
+sVsome/w
 p1028
-(S'welche/pro.inter'
-S'welches/pro.inter'
-S'welcher/pro.inter'
+(Vwelche/pro.inter
+Vwelches/pro.inter
+Vwelcher/pro.inter
 tp1029
-sS'such/jj'
+sVsuch/jj
 p1030
-(S'derartig/adj'
-S'solches/adj'
+(Vderartig/adj
+Vsolches/adj
 tp1031
-sS'turn/vv'
+sVturn/vv
 p1032
-(S'umschlagen/v*.full'
-S'wenden/v*.full zu/v*.full'
-S'umklappen/v*.full'
-S'drehen/v*.full'
-S'werden/v*.full'
-S'annehmen/v*.full'
+(Vumschlagen/v*.full
+Vwenden/v*.full zu/v*.full
+Vumklappen/v*.full
+Vdrehen/v*.full
+Vwerden/v*.full
+Vannehmen/v*.full
 Vsich/v*.full verfärben/v*.full
-S'kehren/v*.full'
-S'umschwenken/v*.full'
+Vkehren/v*.full
+Vumschwenken/v*.full
 Vblättern/v*.full um/v*.full
 Vrümpfen/v*.full
-S'kehren/v*.full um/v*.full'
-S'umdrehen/v*.full'
+Vkehren/v*.full um/v*.full
+Vumdrehen/v*.full
 Vumblättern/v*.full
-S'wenden/v*.full um/v*.full'
-S'herausschrauben/v*.full'
-S'zuwenden/v*.full'
+Vwenden/v*.full um/v*.full
+Vherausschrauben/v*.full
+Vzuwenden/v*.full
 Vverfärben/v*.full sich/v*.full
-S'klappen/v*.full um/v*.full'
-S'abwenden/v*.full'
-S'schwenken/v*.full um/v*.full'
-S'nehmen/v*.full an/v*.full'
-S'umwenden/v*.full'
-S'biegen/v*.full ab/v*.full'
-S'wenden/v*.full'
-S'kippen/v*.full um/v*.full'
-S'drehen/v*.full sich/v*.full'
-S'biegen/v*.full ein/v*.full'
-S'abdrehen/v*.full'
-S'schrauben/v*.full heraus/v*.full'
-S'abbiegen/v*.full'
-S'umkehren/v*.full'
-S'drehen/v*.full ab/v*.full'
-S'turnen/v*.full'
-S'einbiegen/v*.full'
-S'klappen/v*.full'
-S'drechseln/v*.full'
-S'sich/v*.full drehen/v*.full'
+Vklappen/v*.full um/v*.full
+Vabwenden/v*.full
+Vschwenken/v*.full um/v*.full
+Vnehmen/v*.full an/v*.full
+Vumwenden/v*.full
+Vbiegen/v*.full ab/v*.full
+Vwenden/v*.full
+Vkippen/v*.full um/v*.full
+Vdrehen/v*.full sich/v*.full
+Vbiegen/v*.full ein/v*.full
+Vabdrehen/v*.full
+Vschrauben/v*.full heraus/v*.full
+Vabbiegen/v*.full
+Vumkehren/v*.full
+Vdrehen/v*.full ab/v*.full
+Vturnen/v*.full
+Veinbiegen/v*.full
+Vklappen/v*.full
+Vdrechseln/v*.full
+Vsich/v*.full drehen/v*.full
 Vblättern/v*.full
-S'umkippen/v*.full'
-S'verwandeln/v*.full'
-S'drehen/v*.full um/v*.full'
-S'rotieren/v*.full'
-S'wenden/v*.full ab/v*.full'
-S'schlagen/v*.full um/v*.full'
+Vumkippen/v*.full
+Vverwandeln/v*.full
+Vdrehen/v*.full um/v*.full
+Vrotieren/v*.full
+Vwenden/v*.full ab/v*.full
+Vschlagen/v*.full um/v*.full
 tp1033
-sS'stop/n'
+sVstop/n
 p1034
-(S'Festanschlag/n'
-S'Sperrvorrichtung/n'
-S'optische/n Blende/n'
-S'Reisestation/n'
-S'Halteplatz/n'
+(VFestanschlag/n
+VSperrvorrichtung/n
+Voptische/n Blende/n
+VReisestation/n
+VHalteplatz/n
 VVerschlußlaut/n
-S'Aufenthalt/n'
-S'Anfahrstelle/n'
-S'Stopp/n'
-S'haltmachen/n'
-S'Register/n'
+VAufenthalt/n
+VAnfahrstelle/n
+VStopp/n
+Vhaltmachen/n
+VRegister/n
 VReißverschlussendglied/n
-S'Anhalten/n'
-S'Pause/n'
-S'aufhalten/n'
-S'Sperre/n'
-S'Stop/n'
-S'Abstoppen/n'
-S'Station/n'
-S'absperren/n'
-S'Anschlagstelle/n'
-S'Plosiv/n'
-S'innehalten/n'
-S'Einhalt/n'
-S'Stillstand/n'
-S'Anschlag/n'
+VAnhalten/n
+VPause/n
+Vaufhalten/n
+VSperre/n
+VStop/n
+VAbstoppen/n
+VStation/n
+Vabsperren/n
+VAnschlagstelle/n
+VPlosiv/n
+Vinnehalten/n
+VEinhalt/n
+VStillstand/n
+VAnschlag/n
 VAnschlagstück/n
 Vzustöpseln/n
-S'Anlegestelle/n'
-S'Stoppen/n'
-S'Halt/n'
-S'Griff/n'
+VAnlegestelle/n
+VStoppen/n
+VHalt/n
+VGriff/n
 VReißverschlußendglied/n
-S'Abbruch/n'
-S'einkehren/n'
-S'Abstellung/n'
-S'anhalten/n'
-S'Haltestelle/n'
-S'Verschlusslaut/n'
-S'Reiter/n'
-S'Klinke/n'
-S'Arretierung/n'
-S'Endglied/n'
-S'Stimme/n'
+VAbbruch/n
+Veinkehren/n
+VAbstellung/n
+Vanhalten/n
+VHaltestelle/n
+VVerschlusslaut/n
+VReiter/n
+VKlinke/n
+VArretierung/n
+VEndglied/n
+VStimme/n
 tp1035
-sS'who/pp'
+sVwho/pp
 p1036
-(S'wer/pro'
-S'die/pro.rel'
-S'welch/pro.rel'
-S'das/pro.rel'
-S'der/pro.rel'
-S'derer/pro.rel'
+(Vwer/pro
+Vdie/pro.rel
+Vwelch/pro.rel
+Vdas/pro.rel
+Vder/pro.rel
+Vderer/pro.rel
 tp1037
-sS'not/vv understand/vv'
+sVnot/vv understand/vv
 p1038
-(S'auf/v*.full dem/v*.full Schlauch/v*.full stehen/v*.full'
-S'stehen/v*.full auf/v*.full dem/v*.full Schlauch/v*.full'
+(Vauf/v*.full dem/v*.full Schlauch/v*.full stehen/v*.full
+Vstehen/v*.full auf/v*.full dem/v*.full Schlauch/v*.full
 tp1039
-sS'glossary/n'
+sVglossary/n
 p1040
-(S'Glossarium/n'
+(VGlossarium/n
 VWörterverzeichnis/n
-S'Glossar/n'
+VGlossar/n
 VWörterbuch/n
 VWortliste/n mit/n Erläuterungen/n
 tp1041
-sS'era/n'
+sVera/n
 p1042
 (VÄra/n
-S'Epoche/n'
-S'Zeitalter/n'
+VEpoche/n
+VZeitalter/n
 Vära/n
 tp1043
-sS'away/jj'
+sVaway/jj
 p1044
-(S'von/adv dannen/adv'
-S'weg/adv'
-S'auf/appr und/appr davon/appr'
-S'abwesend/adj'
-S'weg/adj'
+(Vvon/adv dannen/adv
+Vweg/adv
+Vauf/appr und/appr davon/appr
+Vabwesend/adj
+Vweg/adj
 tp1045
-sS'office/n'
+sVoffice/n
 p1046
-(S'Amtssitz/n'
-S'Kontorhaus/n'
-S'Office/n'
-S'Amtszimmer/n'
-S'Amt/n'
-S'Gesch.-stelle/n'
-S'Dienstraum/n'
-S'Sekretariat/n'
-S'Ausgabe/n'
+(VAmtssitz/n
+VKontorhaus/n
+VOffice/n
+VAmtszimmer/n
+VAmt/n
+VGesch.-stelle/n
+VDienstraum/n
+VSekretariat/n
+VAusgabe/n
 VGeschäftszimmer/n
-S'Zentrale/n'
-S'Kontor/n'
-S'Firmensitz/n'
+VZentrale/n
+VKontor/n
+VFirmensitz/n
 VBüro/n
-S'Stelle/n'
+VStelle/n
 VGeschäftsraum/n
-S'Dienstsitz/n'
-S'Funktion/n'
-S'Praxis/n'
+VDienstsitz/n
+VFunktion/n
+VPraxis/n
 VBürobereich/n
-S'Dienst/n'
-S'Amtsraum/n'
+VDienst/n
+VAmtsraum/n
 VBetriebsbüro/n
-S'Handelskontor/n'
+VHandelskontor/n
 VGeschäftsstelle/n
-S'Amtsstube/n'
+VAmtsstube/n
 VBüroraum/n
 tp1047
-sS'pay/vv'
+sVpay/vv
 p1048
 (Vabführen/v*.full
-S'schenken/v*.full'
-S'rentieren/v*.full sich/v*.full'
-S'sich/v*.full lohnen/v*.full'
-S'besolden/v*.full'
-S'zahlen/v*.full ab/v*.full'
-S'abgelten/v*.full'
-S'entgelten/v*.full'
-S'werfen/v*.full Nutzen/v*.full ab/v*.full'
-S'entrichten/v*.full'
-S'Nutzen/v*.full abwerfen/v*.full'
-S'sich/v*.full rentieren/v*.full'
+Vschenken/v*.full
+Vrentieren/v*.full sich/v*.full
+Vsich/v*.full lohnen/v*.full
+Vbesolden/v*.full
+Vzahlen/v*.full ab/v*.full
+Vabgelten/v*.full
+Ventgelten/v*.full
+Vwerfen/v*.full Nutzen/v*.full ab/v*.full
+Ventrichten/v*.full
+VNutzen/v*.full abwerfen/v*.full
+Vsich/v*.full rentieren/v*.full
 Vführen/v*.full ab/v*.full
-S'entlohnen/v*.full'
-S'lohnen/v*.full sich/v*.full'
-S'zahlen/v*.full'
-S'bezahlen/v*.full'
-S'statten/v*.full ab/v*.full'
-S'begleichen/v*.full'
-S'rentieren/v*.full'
-S'gelten/v*.full ab/v*.full'
-S'abzahlen/v*.full'
-S'abstatten/v*.full'
+Ventlohnen/v*.full
+Vlohnen/v*.full sich/v*.full
+Vzahlen/v*.full
+Vbezahlen/v*.full
+Vstatten/v*.full ab/v*.full
+Vbegleichen/v*.full
+Vrentieren/v*.full
+Vgelten/v*.full ab/v*.full
+Vabzahlen/v*.full
+Vabstatten/v*.full
 tp1049
-sS'familiar/vv'
+sVfamiliar/vv
 p1050
-(S'vertraut/v*.full'
-S'Vertraute/v*.full'
-S'gewohnt/v*.full'
+(Vvertraut/v*.full
+VVertraute/v*.full
+Vgewohnt/v*.full
 tp1051
-sS'this/jj'
+sVthis/jj
 p1052
-(S'heutig/adj'
+(Vheutig/adj
 tp1053
-sS'environment/n'
+sVenvironment/n
 p1054
-(S'Raum/n'
-S'Stallklima/n'
-S'Bildungsmilieu/n'
-S'Umraum/n'
-S'Arbeitsumgebung/n'
-S'Lebensumstand/n'
-S'Umfeld/n'
-S'Lebenswelt/n'
-S'Arbeitsumwelt/n'
-S'Ausstattung/n'
-S'Umwelt/n'
-S'Lebensumwelt/n'
-S'Milieu/n'
-S'Beziehungsfeld/n'
-S'Umgebung/n'
-S'Einatmungsluft/n'
+(VRaum/n
+VStallklima/n
+VBildungsmilieu/n
+VUmraum/n
+VArbeitsumgebung/n
+VLebensumstand/n
+VUmfeld/n
+VLebenswelt/n
+VArbeitsumwelt/n
+VAusstattung/n
+VUmwelt/n
+VLebensumwelt/n
+VMilieu/n
+VBeziehungsfeld/n
+VUmgebung/n
+VEinatmungsluft/n
 tp1055
-sS'political/adv'
+sVpolitical/adv
 p1056
-(S'politisch/adv'
+(Vpolitisch/adv
 tp1057
-sS'even/rb'
+sVeven/rb
 p1058
-(S'auch/adv'
-S'selbst/adv'
-S'gerade/adv'
-S'eben/adv'
-S'sogar/adv'
+(Vauch/adv
+Vselbst/adv
+Vgerade/adv
+Veben/adv
+Vsogar/adv
 tp1059
-sS'present/n'
+sVpresent/n
 p1060
-(S'vorstellen/n'
+(Vvorstellen/n
 VPräsens/n
-S'jetzig/n'
-S'Geschenk/n'
+Vjetzig/n
+VGeschenk/n
 Vvorführen/n
-S'Unterbreiten/n'
-S'vorlegen/n'
-S'Gegenwart/n'
-S'heutige/n'
-S'Jetztzeit/n'
-S'aufweisen/n'
-S'Darstellen/n'
-S'Vorstellen/n'
+VUnterbreiten/n
+Vvorlegen/n
+VGegenwart/n
+Vheutige/n
+VJetztzeit/n
+Vaufweisen/n
+VDarstellen/n
+VVorstellen/n
 VPräsent/n
 tp1061
-sS'last/n'
+sVlast/n
 p1062
-(S'ausreichen/n'
-S'aushalten/n'
-S'Leisten/n'
-S'vorhalten/n'
-S'vorig/n'
-S'andauern/n'
-S'Schuhleisten/n'
-S'Leiste/n'
-S'anhalten/n'
-S'fortdauern/n'
+(Vausreichen/n
+Vaushalten/n
+VLeisten/n
+Vvorhalten/n
+Vvorig/n
+Vandauern/n
+VSchuhleisten/n
+VLeiste/n
+Vanhalten/n
+Vfortdauern/n
 tp1063
-sS'correctly/jj'
+sVcorrectly/jj
 p1064
-(S'richtig/adj'
+(Vrichtig/adj
 tp1065
-sS'as/cc'
+sVas/cc
 p1066
-(S'wie/conj.coord'
+(Vwie/conj.coord
 tp1067
-sS'own/jj'
+sVown/jj
 p1068
-(S'eigen/adj'
-S'eigener/adj'
-S'eigene/adj'
-S'eigenes/adj'
+(Veigen/adj
+Veigener/adj
+Veigene/adj
+Veigenes/adj
 tp1069
-sS'program/vv'
+sVprogram/vv
 p1070
-(S'programmieren/v*.full ein/v*.full'
-S'einprogrammieren/v*.full'
-S'programmieren/v*.full'
+(Vprogrammieren/v*.full ein/v*.full
+Veinprogrammieren/v*.full
+Vprogrammieren/v*.full
 tp1071
-sS'mean/vv'
+sVmean/vv
 p1072
-(S'beabsichtigen/v*.full'
-S'meinen/v*.full'
-S'wollen/v*.full sagen/v*.full'
-S'bestimmen/v*.full'
-S'vorhaben/v*.full'
-S'bezeichnen/v*.full'
-S'haben/v*.full vor/v*.full'
+(Vbeabsichtigen/v*.full
+Vmeinen/v*.full
+Vwollen/v*.full sagen/v*.full
+Vbestimmen/v*.full
+Vvorhaben/v*.full
+Vbezeichnen/v*.full
+Vhaben/v*.full vor/v*.full
 Vheißen/v*.full
-S'spitze/v*.full'
-S'bedeuten/v*.full'
-S'sagen/v*.full wollen/v*.full'
-S'besagen/v*.full'
-S'denken/v*.full sich/v*.full'
-S'sollen/v*.mod'
-S'sich/v*.full denken/v*.full'
+Vspitze/v*.full
+Vbedeuten/v*.full
+Vsagen/v*.full wollen/v*.full
+Vbesagen/v*.full
+Vdenken/v*.full sich/v*.full
+Vsollen/v*.mod
+Vsich/v*.full denken/v*.full
 tp1073
-sS'anything/pp like/pp that/pp'
+sVanything/pp like/pp that/pp
 p1074
-(S'so/pro etwas/pro'
+(Vso/pro etwas/pro
 tp1075
-sS'go/vv'
+sVgo/vv
 p1076
-(S'funktionieren/v*.full'
-S'fahren/v*.full ab/v*.full'
-S'verlaufen/v*.full'
-S'gehen/v*.full'
-S'abfahren/v*.full'
-S'lauten/v*.full'
-S'zum/v*.full Mitnehmen/v*.full'
-S'begeben/v*.full'
-S'sich/v*.full begeben/v*.full'
-S'werden/v*.full'
-S'hingehen/v*.full'
+(Vfunktionieren/v*.full
+Vfahren/v*.full ab/v*.full
+Vverlaufen/v*.full
+Vgehen/v*.full
+Vabfahren/v*.full
+Vlauten/v*.full
+Vzum/v*.full Mitnehmen/v*.full
+Vbegeben/v*.full
+Vsich/v*.full begeben/v*.full
+Vwerden/v*.full
+Vhingehen/v*.full
 Vführen/v*.full
-S'gehen/v*.full hin/v*.full'
-S'verzweigen/v*.full'
-S'fahren/v*.full'
-S'begeben/v*.full sich/v*.full'
+Vgehen/v*.full hin/v*.full
+Vverzweigen/v*.full
+Vfahren/v*.full
+Vbegeben/v*.full sich/v*.full
 tp1077
-sS'right/n'
+sVright/n
 p1078
-(S'Berechtigung/n'
-S'Befugnis/n'
-S'Anspruch/n'
-S'Anrecht/n'
-S'recht/n'
-S'Rechte/n'
-S'Recht/n'
+(VBerechtigung/n
+VBefugnis/n
+VAnspruch/n
+VAnrecht/n
+Vrecht/n
+VRechte/n
+VRecht/n
 tp1079
-sS'accept/n'
+sVaccept/n
 p1080
-(S'entgegennehmen/n'
-S'Akzeptieren/n'
-S'annehmen/n'
-S'einsehen/n'
-S'Aufnehmen/n'
+(Ventgegennehmen/n
+VAkzeptieren/n
+Vannehmen/n
+Veinsehen/n
+VAufnehmen/n
 VBestätigung/n
-S'zusagen/n'
-S'Abnehmen/n'
-S'hinnehmen/n'
+Vzusagen/n
+VAbnehmen/n
+Vhinnehmen/n
 tp1081
-sS'political/n elite/n'
+sVpolitical/n elite/n
 p1082
 (Vpolitische/n Führungsgruppe/n
 tp1083
-sS'at/adv school/adv'
+sVat/adv school/adv
 p1084
-(S'in/adv der/adv Schule/adv'
-S'schulisch/adv'
+(Vin/adv der/adv Schule/adv
+Vschulisch/adv
 tp1085
-sS'all/jj'
+sVall/jj
 p1086
-(S'all-/adj'
-S'alle/adj'
+(Vall-/adj
+Valle/adj
 Vsämtliche/adj
 Vvollständig/adj
 tp1087
-sS'guess/vv'
+sVguess/vv
 p1088
-(S'meinen/v*.full'
-S'glauben/v*.full'
-S'nehmen/v*.full an/v*.full'
-S'raten/v*.full'
-S'annehmen/v*.full'
-S'ahnen/v*.full'
+(Vmeinen/v*.full
+Vglauben/v*.full
+Vnehmen/v*.full an/v*.full
+Vraten/v*.full
+Vannehmen/v*.full
+Vahnen/v*.full
 Vschätzen/v*.full
-S'raten/v*.full herum/v*.full'
-S'vermuten/v*.full'
-S'herumraten/v*.full'
-S'erraten/v*.full'
+Vraten/v*.full herum/v*.full
+Vvermuten/v*.full
+Vherumraten/v*.full
+Verraten/v*.full
 tp1089
-sS'do/vv'
+sVdo/vv
 p1090
-(S'tun/v*.full an/v*.full'
-S'tun/v*.full'
-S'antun/v*.full'
-S'machen/v*.full'
+(Vtun/v*.full an/v*.full
+Vtun/v*.full
+Vantun/v*.full
+Vmachen/v*.full
 Vführen/v*.full durch/v*.full
-S'unternehmen/v*.full'
+Vunternehmen/v*.full
 Vausführen/v*.full
-S'erledigen/v*.full'
-S'nehmen/v*.full unter/v*.full'
+Verledigen/v*.full
+Vnehmen/v*.full unter/v*.full
 Vdurchführen/v*.full
 Vführen/v*.full aus/v*.full
 tp1091
-sS'mainly/rb'
+sVmainly/rb
 p1092
 (Vgrößtenteils/adv
 tp1093
-sS'less/n'
+sVless/n
 p1094
-(S'Minus/n'
+(VMinus/n
 tp1095
-sS'just/adv'
+sVjust/adv
 p1096
-(S'just/adv'
-S'ausgerechnet/adv'
-S'soeben/adv'
-S'eben/adv'
-S'genau/adv'
-S'nur/adv'
-S'einzig/adv'
-S'schwach/adv'
-S'einfach/adv'
-S'gerade/adv noch/adv'
-S'gerade/adv'
-S'halt/adv'
+(Vjust/adv
+Vausgerechnet/adv
+Vsoeben/adv
+Veben/adv
+Vgenau/adv
+Vnur/adv
+Veinzig/adv
+Vschwach/adv
+Veinfach/adv
+Vgerade/adv noch/adv
+Vgerade/adv
+Vhalt/adv
 tp1097
-sS'there/jj'
+sVthere/jj
 p1098
-(S'dortige/adj'
+(Vdortige/adj
 tp1099
-sS'consult/n'
+sVconsult/n
 p1100
-(S'Befragung/n'
+(VBefragung/n
 VRückfrage/n
-S'Abstimmen/n'
-S'Befragen/n'
+VAbstimmen/n
+VBefragen/n
 tp1101
-sS'candy/vv'
+sVcandy/vv
 p1102
-(S'kandieren/v*.full'
+(Vkandieren/v*.full
 tp1103
-sS'answer/n'
+sVanswer/n
 p1104
-(S'Erwiderung/n'
+(VErwiderung/n
 VRückantwort/n
 VLösung/n
-S'Beantwortung/n'
-S'Reaktion/n'
-S'entgegenhalten/n'
-S'Ergebnis/n'
-S'Antwort/n'
-S'Bescheid/n'
+VBeantwortung/n
+VReaktion/n
+Ventgegenhalten/n
+VErgebnis/n
+VAntwort/n
+VBescheid/n
 tp1105
-sS'otherwise/adv'
+sVotherwise/adv
 p1106
-(S'anderweitig/adv'
-S'andernfalls/adv'
-S'anders/adv'
-S'sonst/adv'
+(Vanderweitig/adv
+Vandernfalls/adv
+Vanders/adv
+Vsonst/adv
 Vim/adv übrigen/adv
 tp1107
-sS'will/md'
+sVwill/md
 p1108
-(S'wollen/v*.mod'
+(Vwollen/v*.mod
 tp1109
-sS'sometimes/rb'
+sVsometimes/rb
 p1110
-(S'manchmal/adv'
-S'mitunter/adv'
+(Vmanchmal/adv
+Vmitunter/adv
 tp1111
-sS'there/in'
+sVthere/in
 p1112
-(S'da/conj.sub*'
+(Vda/conj.sub*
 tp1113
-sS'pay/n attention/n'
+sVpay/n attention/n
 p1114
-(S'aufpassen/n'
+(Vaufpassen/n
 tp1115
-sS'himself/rb'
+sVhimself/rb
 p1116
-(S'selber/adv'
-S'selbst/adv'
+(Vselber/adv
+Vselbst/adv
 tp1117
-sS'friendly/adv'
+sVfriendly/adv
 p1118
-(S'freundlich/adv'
+(Vfreundlich/adv
 Vumgänglich/adv
 Vliebenswürdig/adv
-S'vertraulich/adv'
+Vvertraulich/adv
 tp1119
-sS'future/adv'
+sVfuture/adv
 p1120
 (Vzukünftig/adv
 Vkünftig/adv
-S'kommend/adv'
+Vkommend/adv
 tp1121
-sS'quip/n'
+sVquip/n
 p1122
-(S'Stichelei/n'
-S'Witz/n'
-S'Witzelei/n'
+(VStichelei/n
+VWitz/n
+VWitzelei/n
 tp1123
-sS'term/n'
+sVterm/n
 p1124
-(S'Term/n'
-S'Amtszeit/n'
-S'Vertragslaufzeit/n'
-S'Legislaturperiode/n'
-S'Semester/n'
-S'Trimester/n'
-S'Spielzeit/n'
-S'Terminus/n'
-S'Ausdruck/n'
-S'Bedingung/n'
-S'Kondition/n'
-S'Vokabel/n'
-S'Fachausdruck/n'
-S'Vierteljahr/n'
-S'arithmetischer/n Term/n'
-S'Saison/n'
-S'Begriff/n'
-S'Laufzeit/n'
-S'Fachbegriff/n'
+(VTerm/n
+VAmtszeit/n
+VVertragslaufzeit/n
+VLegislaturperiode/n
+VSemester/n
+VTrimester/n
+VSpielzeit/n
+VTerminus/n
+VAusdruck/n
+VBedingung/n
+VKondition/n
+VVokabel/n
+VFachausdruck/n
+VVierteljahr/n
+Varithmetischer/n Term/n
+VSaison/n
+VBegriff/n
+VLaufzeit/n
+VFachbegriff/n
 tp1125
-sS'to/in'
+sVto/in
 p1126
-(S'gen/appr'
-S'auf/appr'
-S'bis/conj.sub*'
-S'nach/appr'
-S'zu/appr'
+(Vgen/appr
+Vauf/appr
+Vbis/conj.sub*
+Vnach/appr
+Vzu/appr
 Vgegenüber/appr
-S'bis/appr'
-S'ans/appr'
-S'bis/appr auf/appr'
-S'an/appr'
-S'in/appr'
+Vbis/appr
+Vans/appr
+Vbis/appr auf/appr
+Van/appr
+Vin/appr
 tp1127
-sS'like/adv that/adv'
+sVlike/adv that/adv
 p1128
-(S'so/adv'
+(Vso/adv
 tp1129
-sS'only/jj'
+sVonly/jj
 p1130
-(S'einzigst/adj'
-S'lediglich/adj'
-S'einzig/adj'
-S'lediglich/adv'
-S'erst/adv'
-S'alleinig/adj'
+(Veinzigst/adj
+Vlediglich/adj
+Veinzig/adj
+Vlediglich/adv
+Verst/adv
+Valleinig/adj
 tp1131
-sS'candy/n'
+sVcandy/n
 p1132
-(S'Kandis/n'
-S'Schokoladentafel/n'
+(VKandis/n
+VSchokoladentafel/n
 VSüßigkeit/n
-S'Bonbon/n'
-S'Naschereien/n'
-S'Zuckerl/n'
-S'Zuckerchen/n'
+VBonbon/n
+VNaschereien/n
+VZuckerl/n
+VZuckerchen/n
 tp1133
-sS'future/jj'
+sVfuture/jj
 p1134
 (Vhinkünftig/adj
 Vkünftig/adj
-S'bevorstehend/adj'
-S'angehende/adj'
+Vbevorstehend/adj
+Vangehende/adj
 Vzukünftig/adj
 tp1135
-sS'in/in'
+sVin/in
 p1136
-(S'auf/appr'
-S'an/appr'
-S'indem/conj.sub*'
-S'um/conj.subinf.-2'
-S'im/appr'
-S'in/appr'
+(Vauf/appr
+Van/appr
+Vindem/conj.sub*
+Vum/conj.subinf.-2
+Vim/appr
+Vin/appr
 tp1137
-sS'both/jj'
+sVboth/jj
 p1138
-(S'beid-/adj'
-S'beiderlei/adj'
+(Vbeid-/adj
+Vbeiderlei/adj
 tp1139
-sS'a/n'
+sVa/n
 p1140
-(S'eine/n'
+(Veine/n
 tp1141
-sS'for/rb the/rb'
+sVfor/rb the/rb
 p1142
-(S'zum/adv'
-S'zur/adv'
+(Vzum/adv
+Vzur/adv
 tp1143
-sS'like/jj'
+sVlike/jj
 p1144
-(S'gleich/adj'
-S'gleichnamig/adj'
+(Vgleich/adj
+Vgleichnamig/adj
 Vähnlich/adj
 tp1145
-sS'it/adv'
+sVit/adv
 p1146
-(S'dazu/adv'
+(Vdazu/adv
 tp1147
-sS'own/vv'
+sVown/vv
 p1148
-(S'es/v*.full zeigen/v*.full'
-S'zugeben/v*.full'
-S'zeigen/v*.full es/v*.full'
-S'gestehen/v*.full ein/v*.full'
-S'eingestehen/v*.full'
-S'haben/v*.full'
-S'besitzen/v*.full'
-S'geben/v*.full zu/v*.full'
+(Ves/v*.full zeigen/v*.full
+Vzugeben/v*.full
+Vzeigen/v*.full es/v*.full
+Vgestehen/v*.full ein/v*.full
+Veingestehen/v*.full
+Vhaben/v*.full
+Vbesitzen/v*.full
+Vgeben/v*.full zu/v*.full
 tp1149
-sS'work/jj'
+sVwork/jj
 p1150
 (Vberufstätig/adj
-S'arbeits-/adj'
+Varbeits-/adj
 tp1151
-sS'company/n'
+sVcompany/n
 p1152
-(S'Werk/n'
-S'Truppe/n'
-S'Firma/n'
-S'Betrieb/n'
-S'Begleitung/n'
-S'Konzerngesellschaft/n'
-S'Unternehmen/n'
-S'Begleiten/n'
-S'Kompanie/n'
-S'Gesellschaft/n'
+(VWerk/n
+VTruppe/n
+VFirma/n
+VBetrieb/n
+VBegleitung/n
+VKonzerngesellschaft/n
+VUnternehmen/n
+VBegleiten/n
+VKompanie/n
+VGesellschaft/n
 VGeschäftshaus/n
-S'Hausintern/n'
-S'Company/n'
+VHausintern/n
+VCompany/n
 tp1153
-sS'their/pp'
+sVtheir/pp
 p1154
-(S'ihr/pro'
+(Vihr/pro
 tp1155
-sS'regard/vv'
+sVregard/vv
 p1156
-(S'gelten/v*.full'
-S'ansehen/v*.full'
-S'sehen/v*.full an/v*.full'
-S'anbelangen/v*.full'
-S'anschauen/v*.full'
-S'betreffen/v*.full'
-S'schauen/v*.full an/v*.full'
-S'belangen/v*.full an/v*.full'
+(Vgelten/v*.full
+Vansehen/v*.full
+Vsehen/v*.full an/v*.full
+Vanbelangen/v*.full
+Vanschauen/v*.full
+Vbetreffen/v*.full
+Vschauen/v*.full an/v*.full
+Vbelangen/v*.full an/v*.full
 Vschätzen/v*.full
-S'betrachten/v*.full'
+Vbetrachten/v*.full
 Vberücksichtigen/v*.full
-S'beachten/v*.full'
-S'achten/v*.full'
+Vbeachten/v*.full
+Vachten/v*.full
 tp1157
-sS'Roman/jj'
+sVRoman/jj
 p1158
 (Vrömisch/adj
 tp1159
-sS'character/jj'
+sVcharacter/jj
 p1160
-(S'charakterlich/adj'
+(Vcharakterlich/adj
 tp1161
-sS'right/uh'
+sVright/uh
 p1162
-(S'gelt?/itj'
-S'gell/itj'
+(Vgelt?/itj
+Vgell/itj
 tp1163
-sS'with/adv this/adv'
+sVwith/adv this/adv
 p1164
-(S'damit/adv'
-S'hiermit/adv'
+(Vdamit/adv
+Vhiermit/adv
 tp1165
-sS'do/vv not/vv like/vv'
+sVdo/vv not/vv like/vv
 p1166
 (Vmögen/v*.full nicht/v*.full
 Vnicht/v*.full mögen/v*.full
 tp1167
-sS'then/jj'
+sVthen/jj
 p1168
-(S'damalig/adj'
-S'derzeitig/adj'
-S'folglich/adj'
-S'seinerzeitig/adj'
+(Vdamalig/adj
+Vderzeitig/adj
+Vfolglich/adj
+Vseinerzeitig/adj
 tp1169
-sS'win/n'
+sVwin/n
 p1170
-(S'abbauen/n'
-S'Sieg/n'
+(Vabbauen/n
+VSieg/n
 Vaufschließen/n
 tp1171
-sS'mainly/jj'
+sVmainly/jj
 p1172
-(S'vorwiegend/adj'
+(Vvorwiegend/adj
 Vhauptsächlich/adj
 tp1173
-sS'just/rb'
+sVjust/rb
 p1174
-(S'nun/adv einmal/adv'
-S'nur/adv'
-S'eben/adv'
-S'glattweg/adv'
-S'schlichtweg/adv'
-S'gerade/adv'
+(Vnun/adv einmal/adv
+Vnur/adv
+Veben/adv
+Vglattweg/adv
+Vschlichtweg/adv
+Vgerade/adv
 tp1175
-sS'both/pdt'
+sVboth/pdt
 p1176
-(S'beiderlei/pro'
-S'beide/pro'
-S'beides/pro'
-S'beid/pro'
+(Vbeiderlei/pro
+Vbeide/pro
+Vbeides/pro
+Vbeid/pro
 tp1177
-sS'municipal/n council/n'
+sVmunicipal/n council/n
 p1178
-(S'Gemeinderat/n'
-S'Gemeindeparlament/n'
-S'Stadtrat/n'
+(VGemeinderat/n
+VGemeindeparlament/n
+VStadtrat/n
 tp1179
-sS'just/vv'
+sVjust/vv
 p1180
-(S'gerecht/v*.full'
+(Vgerecht/v*.full
 tp1181
-sS'election/n'
+sVelection/n
 p1182
-(S'Neuwahl/n'
-S'Wahl/n'
-S'Abstimmung/n'
-S'mehrheitswahl/n majority/n'
+(VNeuwahl/n
+VWahl/n
+VAbstimmung/n
+Vmehrheitswahl/n majority/n
 tp1183
-sS'actually/adv'
+sVactually/adv
 p1184
-(S'im/adv Grunde/adv'
-S'wirklich/adv'
-S'eigentlich/adv'
-S'im/adv Grunde/adv genommen/adv'
+(Vim/adv Grunde/adv
+Vwirklich/adv
+Veigentlich/adv
+Vim/adv Grunde/adv genommen/adv
 Vtatsächlich/adv
-S'sogar/adv'
+Vsogar/adv
 tp1185
-sS'one/n'
+sVone/n
 p1186
-(S'Eine/n'
-S'Eins/n'
+(VEine/n
+VEins/n
 tp1187
-sS'one/rb another/rb'
+sVone/rb another/rb
 p1188
-(S'zueinander/adv'
+(Vzueinander/adv
 tp1189
-sS'talk/vv'
+sVtalk/vv
 p1190
-(S'einreden/v*.full'
-S'aufschwatzen/v*.full'
-S'unterhalten/v*.full'
-S'bereden/v*.full'
-S'sich/v*.full unterhalten/v*.full'
-S'unterhalten/v*.full sich/v*.full'
-S'reden/v*.full ein/v*.full'
-S'reden/v*.full'
-S'sprechen/v*.full'
-S'schwatzen/v*.full auf/v*.full'
-S'halten/v*.full unter/v*.full'
+(Veinreden/v*.full
+Vaufschwatzen/v*.full
+Vunterhalten/v*.full
+Vbereden/v*.full
+Vsich/v*.full unterhalten/v*.full
+Vunterhalten/v*.full sich/v*.full
+Vreden/v*.full ein/v*.full
+Vreden/v*.full
+Vsprechen/v*.full
+Vschwatzen/v*.full auf/v*.full
+Vhalten/v*.full unter/v*.full
 tp1191
-sS'understand/n'
+sVunderstand/n
 p1192
-(S'einsehen/n'
+(Veinsehen/n
 tp1193
-sS'even/rb though/rb'
+sVeven/rb though/rb
 p1194
-(S'trotzdem/adv'
+(Vtrotzdem/adv
 tp1195
-sS'term/vv'
+sVterm/vv
 p1196
-(S'nennen/v*.full'
-S'benennen/v*.full'
-S'bezeichnen/v*.full'
+(Vnennen/v*.full
+Vbenennen/v*.full
+Vbezeichnen/v*.full
 tp1197
-sS'get/vv'
+sVget/vv
 p1198
-(S'mitbekommen/v*.full'
-S'erreichen/v*.full'
-S'verschaffen/v*.full sich/v*.full etwas/v*.full'
-S'bekommen/v*.full wieder/v*.full'
-S'ankommen/v*.full'
-S'besorgen/v*.full'
-S'klarstellen/v*.full'
-S'bekommen/v*.full'
-S'sich/v*.full etwas/v*.full verschaffen/v*.full'
-S'werden/v*.full'
-S'sich/v*.full verstricken/v*.full'
-S'beziehen/v*.full'
-S'erwischen/v*.full'
-S'wiederzuholen/v*.full'
-S'aufbringen/v*.full'
-S'verstricken/v*.full sich/v*.full'
-S'erwerben/v*.full'
-S'bringen/v*.full auf/v*.full'
-S'erhalten/v*.full'
-S'holen/v*.full hervor/v*.full'
-S'kommen/v*.full an/v*.full'
-S'holen/v*.full'
-S'bekommen/v*.full fertig/v*.full'
-S'stellen/v*.full klar/v*.full'
-S'geraten/v*.full'
-S'fertigbekommen/v*.full'
-S'bekommen/v*.full mit/v*.full'
-S'eignen/v*.full an/v*.full'
-S'erringen/v*.full'
-S'hervorholen/v*.full'
-S'aneignen/v*.full'
+(Vmitbekommen/v*.full
+Verreichen/v*.full
+Vverschaffen/v*.full sich/v*.full etwas/v*.full
+Vbekommen/v*.full wieder/v*.full
+Vankommen/v*.full
+Vbesorgen/v*.full
+Vklarstellen/v*.full
+Vbekommen/v*.full
+Vsich/v*.full etwas/v*.full verschaffen/v*.full
+Vwerden/v*.full
+Vsich/v*.full verstricken/v*.full
+Vbeziehen/v*.full
+Verwischen/v*.full
+Vwiederzuholen/v*.full
+Vaufbringen/v*.full
+Vverstricken/v*.full sich/v*.full
+Verwerben/v*.full
+Vbringen/v*.full auf/v*.full
+Verhalten/v*.full
+Vholen/v*.full hervor/v*.full
+Vkommen/v*.full an/v*.full
+Vholen/v*.full
+Vbekommen/v*.full fertig/v*.full
+Vstellen/v*.full klar/v*.full
+Vgeraten/v*.full
+Vfertigbekommen/v*.full
+Vbekommen/v*.full mit/v*.full
+Veignen/v*.full an/v*.full
+Verringen/v*.full
+Vhervorholen/v*.full
+Vaneignen/v*.full
 Vlösen/v*.full
-S'bezieht/v*.full'
-S'beikommen/v*.full'
-S'kapieren/v*.full'
-S'kriegen/v*.full'
-S'bekommt/v*.full'
-S'durchbekommen/v*.full'
-S'abkommen/v*.full'
-S'wiederbekommen/v*.full'
-S'abkriegen/v*.full'
-S'kommen/v*.full bei/v*.full'
-S'schaffen/v*.full'
-S'bauen/v*.full ab/v*.full'
-S'bekommen/v*.full durch/v*.full'
-S'abbauen/v*.full'
-S'bringen/v*.full'
-S'kommen/v*.full ab/v*.full'
-S'kriegen/v*.full ab/v*.full'
-S'verstehen/v*.full'
+Vbezieht/v*.full
+Vbeikommen/v*.full
+Vkapieren/v*.full
+Vkriegen/v*.full
+Vbekommt/v*.full
+Vdurchbekommen/v*.full
+Vabkommen/v*.full
+Vwiederbekommen/v*.full
+Vabkriegen/v*.full
+Vkommen/v*.full bei/v*.full
+Vschaffen/v*.full
+Vbauen/v*.full ab/v*.full
+Vbekommen/v*.full durch/v*.full
+Vabbauen/v*.full
+Vbringen/v*.full
+Vkommen/v*.full ab/v*.full
+Vkriegen/v*.full ab/v*.full
+Vverstehen/v*.full
 tp1199
-sS'who/w'
+sVwho/w
 p1200
-(S'wer/pro'
-S'welche/pro.inter'
-S'welcher/pro.inter'
-S'wer/pro.inter'
+(Vwer/pro
+Vwelche/pro.inter
+Vwelcher/pro.inter
+Vwer/pro.inter
 tp1201
-sS'course/vv'
+sVcourse/vv
 p1202
 (Vströmen/v*.full
-S'an/v*.full einer/v*.full Treibjagd/v*.full teilnehmen/v*.full'
-S'jagen/v*.full'
-S'hetzen/v*.full'
-S'mit/v*.full Hunden/v*.full hetzen/v*.full'
-S'hetzen/v*.full mit/v*.full Hunden/v*.full'
-S'rennen/v*.full'
+Van/v*.full einer/v*.full Treibjagd/v*.full teilnehmen/v*.full
+Vjagen/v*.full
+Vhetzen/v*.full
+Vmit/v*.full Hunden/v*.full hetzen/v*.full
+Vhetzen/v*.full mit/v*.full Hunden/v*.full
+Vrennen/v*.full
 Vfließen/v*.full
-S'eilen/v*.full'
-S'nehmen/v*.full an/v*.full einer/v*.full Treibjagd/v*.full teil/v*.full'
+Veilen/v*.full
+Vnehmen/v*.full an/v*.full einer/v*.full Treibjagd/v*.full teil/v*.full
 tp1203
-sS'before/in'
+sVbefore/in
 p1204
-(S'noch/conj.sub* ehe/conj.sub*'
-S'vor/appr'
-S'bevor/conj.sub*'
-S'ehe/conj.sub*'
-S'noch/conj.sub* bevor/conj.sub*'
+(Vnoch/conj.sub* ehe/conj.sub*
+Vvor/appr
+Vbevor/conj.sub*
+Vehe/conj.sub*
+Vnoch/conj.sub* bevor/conj.sub*
 tp1205
-sS'immediately/adv'
+sVimmediately/adv
 p1206
-(S'augenblicks/adv'
-S'sofort/adv'
-S'unmittelbar/adv'
-S'direkt/adv'
-S'auf/adv der/adv Stelle/adv'
+(Vaugenblicks/adv
+Vsofort/adv
+Vunmittelbar/adv
+Vdirekt/adv
+Vauf/adv der/adv Stelle/adv
 Vunverzüglich/adv
-S'augenblicklich/adv'
-S'alsbald/adv'
-S'gleich/adv'
+Vaugenblicklich/adv
+Valsbald/adv
+Vgleich/adv
 tp1207
-sS',/&cm'
+sV,/&cm
 p1208
-(S',/sym.pun.comma'
+(V,/sym.pun.comma
 tp1209
-sS'supposedly/adv'
+sVsupposedly/adv
 p1210
-(S'angeblich/adv'
-S'vermeintlich/adv'
+(Vangeblich/adv
+Vvermeintlich/adv
 tp1211
-sS'pay/vv attention/vv to/vv'
+sVpay/vv attention/vv to/vv
 p1212
-(S'schenken/v*.full beachtung/v*.full'
-S'beachtung/v*.full schenken/v*.full'
-S'auf/v*.full achten/v*.full'
-S'achten/v*.full auf/v*.full'
+(Vschenken/v*.full beachtung/v*.full
+Vbeachtung/v*.full schenken/v*.full
+Vauf/v*.full achten/v*.full
+Vachten/v*.full auf/v*.full
 tp1213
-sS'at/rb the/rb'
+sVat/rb the/rb
 p1214
-(S'zum/adv'
-S'zur/adv'
+(Vzum/adv
+Vzur/adv
 tp1215
-sS'elite/n'
+sVelite/n
 p1216
-(S'Spitze/n'
-S'Elite/n'
-S'Auslese/n'
+(VSpitze/n
+VElite/n
+VAuslese/n
 tp1217
-sS'in/adv the/adv future/adv'
+sVin/adv the/adv future/adv
 p1218
-(S'in/adv der/adv Zukunft/adv'
-S'in/adv Zukunft/adv'
+(Vin/adv der/adv Zukunft/adv
+Vin/adv Zukunft/adv
 Vkünftig/adv
 tp1219
-sS'attention/n'
+sVattention/n
 p1220
-(S'Aufsehen/n'
-S'ATN/n'
+(VAufsehen/n
+VATN/n
 VBerücksichtigung/n
-S'Beachtung/n'
-S'Sorgfalt/n'
-S'Augenmerk/n'
-S'Aufmerksamkeit/n'
-S'Abruf/n'
-S'Vorsicht/n'
-S'Service/n'
-S'Obacht/n'
-S'Wartung/n'
-S'Achtung/n'
-S'Arzt/n aufsuchen/n'
-S'Achten/n'
+VBeachtung/n
+VSorgfalt/n
+VAugenmerk/n
+VAufmerksamkeit/n
+VAbruf/n
+VVorsicht/n
+VService/n
+VObacht/n
+VWartung/n
+VAchtung/n
+VArzt/n aufsuchen/n
+VAchten/n
 tp1221
-sS'like/in'
+sVlike/in
 p1222
-(S'wie/conj.comp'
-S'als/conj.comp'
+(Vwie/conj.comp
+Vals/conj.comp
 tp1223
-sS'new/jj'
+sVnew/jj
 p1224
-(S'neuartig/adj'
-S'neuwertig/adj'
-S'fremdartig/adj'
-S'neu/adj'
+(Vneuartig/adj
+Vneuwertig/adj
+Vfremdartig/adj
+Vneu/adj
 tp1225
-sS'for/rb instance/rb'
+sVfor/rb instance/rb
 p1226
-(S'beispielsweise/adv'
+(Vbeispielsweise/adv
 tp1227
-sS'hall/n'
+sVhall/n
 p1228
-(S'Aula/n'
-S'Halle/n'
-S'Diele/n'
-S'Hallenbauwerk/n'
-S'Saal/n'
-S'Ratssaal/n'
-S'Hausflur/n'
-S'Flur/n'
+(VAula/n
+VHalle/n
+VDiele/n
+VHallenbauwerk/n
+VSaal/n
+VRatssaal/n
+VHausflur/n
+VFlur/n
 tp1229
-sS'just/n'
+sVjust/n
 p1230
-(S'Gerechter/n'
+(VGerechter/n
 tp1231
-sS'similarly/adv'
+sVsimilarly/adv
 p1232
 (Vähnlich/adv
 tp1233
-sS'school/n'
+sVschool/n
 p1234
-(S'Penne/n'
-S'Unterrichtsanstalt/n'
-S'Schul/n'
-S'Gruppe/n'
-S'Schwarm/n'
-S'Schule/n'
-S'Unterricht/n'
-S'Schulzeit/n'
-S'Schulhaus/n'
-S'Fachbereich/n'
-S'Lehranstalt/n'
+(VPenne/n
+VUnterrichtsanstalt/n
+VSchul/n
+VGruppe/n
+VSchwarm/n
+VSchule/n
+VUnterricht/n
+VSchulzeit/n
+VSchulhaus/n
+VFachbereich/n
+VLehranstalt/n
 VSchulgebäude/n
-S'Schulbetrieb/n'
+VSchulbetrieb/n
 tp1235
-sS'turn/n out/n'
+sVturn/n out/n
 p1236
-(S'auskramen/n'
-S'wegjagen/n'
-S'hinauswerfen/n'
-S'ausfallen/n'
+(Vauskramen/n
+Vwegjagen/n
+Vhinauswerfen/n
+Vausfallen/n
 tp1237
-sS'select/n'
+sVselect/n
 p1238
-(S'auserlesen/n'
-S'Vorgabe/n'
-S'aussondern/n'
+(Vauserlesen/n
+VVorgabe/n
+Vaussondern/n
 Vauswählen/n
-S'auslesen/n'
-S'Markieren/n'
+Vauslesen/n
+VMarkieren/n
 tp1239
-sS'current/n'
+sVcurrent/n
 p1240
-(S'Strom/n'
-S'elektrischer/n Strom/n'
-S'Motorstrom/n'
-S'jetzig/n'
+(VStrom/n
+Velektrischer/n Strom/n
+VMotorstrom/n
+Vjetzig/n
 VStromstärke/n
-S'Lauf/n'
+VLauf/n
 VStrömung/n
-S'hip/n'
-S'Kontokorrent/n'
+Vhip/n
+VKontokorrent/n
 VAnströmung/n
 VFüllstrom/n
 tp1241
-sS'himself/pp'
+sVhimself/pp
 p1242
-(S'selbst/pro.refl'
-S'sich/pro.refl selbst/pro.refl'
-S'sich/pro.refl'
+(Vselbst/pro.refl
+Vsich/pro.refl selbst/pro.refl
+Vsich/pro.refl
 tp1243
-sS'the/n'
+sVthe/n
 p1244
-(S'die/n'
-S'das/n'
-S'der/n'
+(Vdie/n
+Vdas/n
+Vder/n
 tp1245
-sS'get/n'
+sVget/n
 p1246
-(S'Holen/n'
-S'aneignen/n'
-S'Besorgen/n'
+(VHolen/n
+Vaneignen/n
+VBesorgen/n
 tp1247
-sS'see/n'
+sVsee/n
 p1248
 (VDiözese/n
-S'einsehen/n'
-S'Landeskirche/n'
-S'Bistum/n'
-S'Empfangen/n'
+Veinsehen/n
+VLandeskirche/n
+VBistum/n
+VEmpfangen/n
 tp1249
-sS'overcome/vv'
+sVovercome/vv
 p1250
 (Vüberwunden/v*.full
 Vüberstanden/v*.full
@@ -5022,1072 +5022,1072 @@ Vüberwältigen/v*.full
 Vkommen/v*.full herüber/v*.full
 Vbewältigt/v*.full
 tp1251
-sS'we/n'
+sVwe/n
 p1252
-(S'Vlie/n'
+(VVlie/n
 tp1253
-sS'great/adv'
+sVgreat/adv
 p1254
-(S'toll/adv'
+(Vtoll/adv
 Vgroßartig/adv
 Vgroß/adv
 tp1255
-sS'and/in'
+sVand/in
 p1256
-(S'sowie/conj.sub*'
+(Vsowie/conj.sub*
 tp1257
-sS'then/uh'
+sVthen/uh
 p1258
-(S'also/itj'
+(Valso/itj
 tp1259
-sS'use/n'
+sVuse/n
 p1260
-(S'aufbrauchen/n'
-S'Anwendungsgebiet/n'
-S'Betrieb/n'
+(Vaufbrauchen/n
+VAnwendungsgebiet/n
+VBetrieb/n
 VBenützung/n
-S'Bedienung/n'
-S'Gebrauch/n'
-S'Ausnutzung/n'
-S'Verwendung/n'
-S'Behandlung/n'
+VBedienung/n
+VGebrauch/n
+VAusnutzung/n
+VVerwendung/n
+VBehandlung/n
 VVerwendungsmöglichkeit/n
-S'anwenden/n'
-S'Anwendung/n'
-S'Mitbenutzung/n'
+Vanwenden/n
+VAnwendung/n
+VMitbenutzung/n
 VMitbenützung/n
-S'ausnutzen/n'
-S'Benutzung/n'
-S'Mitverwendung/n'
-S'Nutzungsrichtung/n'
-S'Nutzung/n'
-S'Nutzen/n'
-S'Fertigung/n'
-S'Verwenden/n'
-S'Nutzbarkeit/n'
-S'Inanspruchnahme/n'
-S'Verwendungszweck/n'
-S'Einsatz/n'
-S'Handhabung/n'
+Vausnutzen/n
+VBenutzung/n
+VMitverwendung/n
+VNutzungsrichtung/n
+VNutzung/n
+VNutzen/n
+VFertigung/n
+VVerwenden/n
+VNutzbarkeit/n
+VInanspruchnahme/n
+VVerwendungszweck/n
+VEinsatz/n
+VHandhabung/n
 tp1261
-sS'overcome/n'
+sVovercome/n
 p1262
-(S'Aufheben/n'
+(VAufheben/n
 tp1263
-sS'six/cd'
+sVsix/cd
 p1264
-(S'sechs/card'
+(Vsechs/card
 tp1265
-sS'friendly/vv'
+sVfriendly/vv
 p1266
-(S'befreundet/v*.full'
+(Vbefreundet/v*.full
 tp1267
-sS'test/vv'
+sVtest/vv
 p1268
-(S'erproben/v*.full'
-S'durchtesten/v*.full'
+(Verproben/v*.full
+Vdurchtesten/v*.full
 Vprüfen/v*.full
 Vüberprüfen/v*.full
-S'austesten/v*.full'
-S'fragen/v*.full'
-S'testen/v*.full aus/v*.full'
-S'abfragen/v*.full'
+Vaustesten/v*.full
+Vfragen/v*.full
+Vtesten/v*.full aus/v*.full
+Vabfragen/v*.full
 Vprüfen/v*.full stichprobenartig/v*.full
-S'testen/v*.full'
-S'probieren/v*.full'
-S'fragen/v*.full ab/v*.full'
+Vtesten/v*.full
+Vprobieren/v*.full
+Vfragen/v*.full ab/v*.full
 Vstichprobenartig/v*.full prüfen/v*.full
-S'untersuchen/v*.full'
-S'testen/v*.full durch/v*.full'
+Vuntersuchen/v*.full
+Vtesten/v*.full durch/v*.full
 tp1269
-sS'last/rb'
+sVlast/rb
 p1270
-(S'zuletzt/adv'
+(Vzuletzt/adv
 tp1271
-sS'his/pp$'
+sVhis/pp$
 p1272
-(S'seine/pro'
-S'sein/pro'
+(Vseine/pro
+Vsein/pro
 tp1273
-sS'quiz/n'
+sVquiz/n
 p1274
-(S'ausfragen/n'
-S'Quiz/n'
-S'Denksportaufgabe/n'
+(Vausfragen/n
+VQuiz/n
+VDenksportaufgabe/n
 tp1275
-sS'describe/n'
+sVdescribe/n
 p1276
-(S'darstellen/n'
+(Vdarstellen/n
 VErläutern/n
 VVorführung/n
-S'darlegen/n'
+Vdarlegen/n
 tp1277
-sS'connection/n'
+sVconnection/n
 p1278
-(S'Verbindung/n'
-S'Anschluss/n'
+(VVerbindung/n
+VAnschluss/n
 VAnschlussstück/n
-S'Beziehung/n'
+VBeziehung/n
 VZuganschluß/n
-S'Verbundenheit/n'
-S'Anfelderung/n'
+VVerbundenheit/n
+VAnfelderung/n
 VAnschlußleitung/n
 VHauptanschluß/n
-S'Drosselklappenstutzen/n'
-S'Zuganschluss/n'
-S'Weiterverbindung/n'
-S'Schaltung/n'
+VDrosselklappenstutzen/n
+VZuganschluss/n
+VWeiterverbindung/n
+VSchaltung/n
 VVerknüpfung/n
 Vüberleitung/n
-S'Anschlussstutz/n'
-S'Kommunikation/n'
-S'Verbindungsaufnahme/n'
+VAnschlussstutz/n
+VKommunikation/n
+VVerbindungsaufnahme/n
 VAnschluß/n
-S'Zusammenhang/n'
-S'Bindung/n'
-S'Hauptanschluss/n'
-S'Zuschaltung/n'
-S'Anbindung/n'
-S'Stutzen/n'
+VZusammenhang/n
+VBindung/n
+VHauptanschluss/n
+VZuschaltung/n
+VAnbindung/n
+VStutzen/n
 VTeilnehmeranschluß/n
-S'Anschlussstutzen/n'
-S'Einschaltung/n'
+VAnschlussstutzen/n
+VEinschaltung/n
 VAnschlußstutzen/n
-S'P-anschluss/n'
-S'Anschlussleitung/n'
-S'Belegung/n'
-S'Verbinden/n'
-S'Netzzusammenschluss/n'
+VP-anschluss/n
+VAnschlussleitung/n
+VBelegung/n
+VVerbinden/n
+VNetzzusammenschluss/n
 VNetzzusammenschluß/n
-S'Teilnehmeranschluss/n'
-S'Ankopplung/n'
-S'Telefonverbindung/n'
+VTeilnehmeranschluss/n
+VAnkopplung/n
+VTelefonverbindung/n
 VAnschlußstück/n
-S'Konstruktionsverbindung/n'
+VKonstruktionsverbindung/n
 VP-anschluß/n
 Vüberleitungsverbindung/n
-S'Gelenk/n'
-S'Kante/n'
+VGelenk/n
+VKante/n
 tp1279
-sS'example/n'
+sVexample/n
 p1280
-(S'Fallbeispiel/n'
-S'Exempel/n'
-S'Muster/n'
-S'Vorbild/n'
-S'Leitbild/n'
+(VFallbeispiel/n
+VExempel/n
+VMuster/n
+VVorbild/n
+VLeitbild/n
 Vmöglicher/n Fall/n
-S'Beispiel/n'
-S'Lehrbeispiel/n'
+VBeispiel/n
+VLehrbeispiel/n
 tp1281
-sS'the/dt'
+sVthe/dt
 p1282
-(S'die/art'
-S'der/art'
-S'das/art'
-S'd/art'
+(Vdie/art
+Vder/art
+Vdas/art
+Vd/art
 tp1283
-sS'head/n'
+sVhead/n
 p1284
-(S'Leiterin/n'
-S'Kuppe/n'
+(VLeiterin/n
+VKuppe/n
 VObmännin/n
-S'Kopf/n'
-S'Spitze/n'
-S'Leiter/n'
+VKopf/n
+VSpitze/n
+VLeiter/n
 VKopfstück/n
-S'Kap/n'
+VKap/n
 VFuß/n
-S'Ausblickkopf/n'
+VAusblickkopf/n
 VMündung/n
 VÄhre/n
 VStück/n
-S'Boss/n'
+VBoss/n
 VSteighöhe/n
-S'Trichter/n'
-S'Anzahl/n'
-S'Chefarzt/n'
-S'Kopfteil/n'
+VTrichter/n
+VAnzahl/n
+VChefarzt/n
+VKopfteil/n
 VFührung/n
-S'Haupt/n'
-S'Stirn/n'
-S'Aufsatz/n'
-S'Abbaustrecke/n'
+VHaupt/n
+VStirn/n
+VAufsatz/n
+VAbbaustrecke/n
 VSchneidhülsenwulst/n
 VBoß/n
-S'Oberhaupt/n'
-S'Kopfform/n'
+VOberhaupt/n
+VKopfform/n
 VFallhöhe/n
 VDruckhöhe/n
 Vanführen/n
-S'Baumwipfel/n'
-S'Landspitze/n'
-S'Kesselboden/n'
-S'Schachtkopf/n'
-S'vorstehen/n'
+VBaumwipfel/n
+VLandspitze/n
+VKesselboden/n
+VSchachtkopf/n
+Vvorstehen/n
 VDrückerkopf/n
 VDrogensüchtiger/n
-S'Gipfel/n'
-S'Spitzen/n'
-S'Chef/n'
-S'Haufwerk/n'
-S'Leitung/n'
-S'Obmann/n'
-S'Obfrau/n'
-S'Trommelfell/n'
-S'Wipfel/n'
+VGipfel/n
+VSpitzen/n
+VChef/n
+VHaufwerk/n
+VLeitung/n
+VObmann/n
+VObfrau/n
+VTrommelfell/n
+VWipfel/n
 tp1285
-sS'right/jj'
+sVright/jj
 p1286
-(S'recht/adj'
-S'rechter/adj'
-S'rechtes/adj'
-S'richtig/adj'
+(Vrecht/adj
+Vrechter/adj
+Vrechtes/adj
+Vrichtig/adj
 tp1287
-sS'familiar/jj'
+sVfamiliar/jj
 p1288
-(S'allgemein/adj bekannt/adj'
-S'Mitwissende/adj'
-S'traulich/adj'
+(Vallgemein/adj bekannt/adj
+VMitwissende/adj
+Vtraulich/adj
 Vgeläufig/adj
-S'altvertraut/adj'
-S'vertraulich/adj'
-S'vertraut/adj'
-S'Mitwissender/adj'
+Valtvertraut/adj
+Vvertraulich/adj
+Vvertraut/adj
+VMitwissender/adj
 tp1289
-sS'June/n'
+sVJune/n
 p1290
-(S'Brachet/n'
-S'Brachmonat/n'
-S'Juni/n'
+(VBrachet/n
+VBrachmonat/n
+VJuni/n
 tp1291
-sS'in/jj'
+sVin/jj
 p1292
-(S'einher/itj'
+(Veinher/itj
 tp1293
-sS'by/in'
+sVby/in
 p1294
-(S'nach/appr'
-S'an/appr'
-S'bis/conj.sub*'
-S'durch/appr'
+(Vnach/appr
+Van/appr
+Vbis/conj.sub*
+Vdurch/appr
 Vüber/appr
-S'anhand/appr'
-S'kraft/appr'
-S'von/appr'
-S'entsprechend/appr'
-S'indem/conj.sub*'
-S'per/appr'
-S'neben/appr'
-S'je/adv'
-S'seitens/appr'
-S'bei/appr'
+Vanhand/appr
+Vkraft/appr
+Vvon/appr
+Ventsprechend/appr
+Vindem/conj.sub*
+Vper/appr
+Vneben/appr
+Vje/adv
+Vseitens/appr
+Vbei/appr
 tp1295
-sS'bar/jj'
+sVbar/jj
 p1296
-(S'bar/adj'
+(Vbar/adj
 tp1297
-sS'own/adv'
+sVown/adv
 p1298
-(S'eigen/adv'
+(Veigen/adv
 tp1299
-sS'to/in the/in'
+sVto/in the/in
 p1300
-(S'aufn/appr'
-S'zum/appr'
-S'am/appr'
-S'ans/appr'
-S'aufs/appr'
-S'im/appr'
-S'ins/appr'
-S'zur/appr'
-S'aufm/appr'
+(Vaufn/appr
+Vzum/appr
+Vam/appr
+Vans/appr
+Vaufs/appr
+Vim/appr
+Vins/appr
+Vzur/appr
+Vaufm/appr
 tp1301
-sS'well-known/jj'
+sVwell-known/jj
 p1302
-(S'bekannt/adj'
-S'wohlbekannt/adj'
-S'renommiert/adj'
-S'altbekannt/adj'
+(Vbekannt/adj
+Vwohlbekannt/adj
+Vrenommiert/adj
+Valtbekannt/adj
 tp1303
-sS'future/rb'
+sVfuture/rb
 p1304
 (Vspäter/adv
 tp1305
-sS'previous/adv'
+sVprevious/adv
 p1306
-(S'vorher/adv'
-S'vorherig/adv'
-S'vorhergehend/adv'
+(Vvorher/adv
+Vvorherig/adv
+Vvorhergehend/adv
 tp1307
-sS'capital/adv'
+sVcapital/adv
 p1308
-(S'toll/adv'
+(Vtoll/adv
 Vgroßartig/adv
 tp1309
-sS'company/jj'
+sVcompany/jj
 p1310
-(S'hausintern/adj'
-S'firmeneigen/adj'
-S'betrieblich/adj'
+(Vhausintern/adj
+Vfirmeneigen/adj
+Vbetrieblich/adj
 tp1311
-sS'out/in of/in'
+sVout/in of/in
 p1312
 (Vaußer/appr
-S'aus/appr'
+Vaus/appr
 tp1313
-sS'straight/n'
+sVstraight/n
 p1314
-(S'Gerade/n'
+(VGerade/n
 VStraße/n
 tp1315
-sS'with/in the/in'
+sVwith/in the/in
 p1316
-(S'beim/appr'
-S'zum/appr'
-S'zur/appr'
+(Vbeim/appr
+Vzum/appr
+Vzur/appr
 tp1317
-sS'so/adv'
+sVso/adv
 p1318
-(S'daher/adv'
-S'dermassen/adv'
-S'derart/adv'
-S'doch/adv'
+(Vdaher/adv
+Vdermassen/adv
+Vderart/adv
+Vdoch/adv
 tp1319
-sS'Bratislava/n'
+sVBratislava/n
 p1320
-(S'Bratislava/n'
+(VBratislava/n
 tp1321
-sS'way/n'
+sVway/n
 p1322
-(S'Anmarschweg/n'
-S'Weise/n'
-S'Manie/n'
-S'Strecke/n'
-S'Bahn/n'
-S'Art/n'
-S'Wegstrecke/n'
+(VAnmarschweg/n
+VWeise/n
+VManie/n
+VStrecke/n
+VBahn/n
+VArt/n
+VWegstrecke/n
 VMöglichkeit/n
-S'Weg/n'
-S'Beziehung/n'
+VWeg/n
+VBeziehung/n
 VFührungsbahn/n
-S'Gelegenheit/n'
-S'Fahrt/n'
+VGelegenheit/n
+VFahrt/n
 VStraße/n
-S'Hinsicht/n'
-S'Gang/n'
-S'Art/n und/n Weise/n'
+VHinsicht/n
+VGang/n
+VArt/n und/n Weise/n
 tp1323
-sS'myself/rb'
+sVmyself/rb
 p1324
-(S'selbst/adv'
+(Vselbst/adv
 tp1325
-sS'less/jj'
+sVless/jj
 p1326
-(S'wenig/adj'
+(Vwenig/adj
 tp1327
-sS'veteran/n'
+sVveteran/n
 p1328
-(S'Haudegen/n'
-S'Veteran/n'
+(VHaudegen/n
+VVeteran/n
 tp1329
-sS'mean/adv'
+sVmean/adv
 p1330
 (Vhinterhältig/adv
 Vniederträchtig/adv
-S'gemein/adv'
+Vgemein/adv
 tp1331
-sS'neck/n'
+sVneck/n
 p1332
-(S'Einleitungsrohr/n'
+(VEinleitungsrohr/n
 VSchliffmeßzylinder/n
-S'Kamm/n'
-S'Ansatz/n'
-S'Genick/n'
-S'Zapfen/n'
-S'Schliffmesszylinder/n'
-S'Ausguss/n'
+VKamm/n
+VAnsatz/n
+VGenick/n
+VZapfen/n
+VSchliffmesszylinder/n
+VAusguss/n
 VBördelrand/n
-S'Nacken/n'
-S'Halspartie/n'
+VNacken/n
+VHalspartie/n
 VAusguß/n
-S'Ausschnitt/n'
+VAusschnitt/n
 VSpieß/n
-S'Hals/n'
+VHals/n
 tp1333
-sS'immediately/jj'
+sVimmediately/jj
 p1334
-(S'unmittelbar/adj'
+(Vunmittelbar/adj
 tp1335
-sS'straight/rp'
+sVstraight/rp
 p1336
-(S'klar/part.verb'
+(Vklar/part.verb
 tp1337
-sS'but/in'
+sVbut/in
 p1338
 (Vaußer/appr
 tp1339
-sS'say/n'
+sVsay/n
 p1340
-(S'Mitspracherecht/n'
-S'Aussage/n'
-S'Mitsprache/n'
+(VMitspracherecht/n
+VAussage/n
+VMitsprache/n
 tp1341
-sS'least/adv'
+sVleast/adv
 p1342
-(S'geringst/adv'
-S'kleinst/adv'
-S'am/adv wenigsten/adv'
-S'zumindest/adv'
+(Vgeringst/adv
+Vkleinst/adv
+Vam/adv wenigsten/adv
+Vzumindest/adv
 tp1343
-sS'respond/vv'
+sVrespond/vv
 p1344
-(S'ansprechen/v*.full'
-S'reagieren/v*.full'
-S'beantworten/v*.full'
-S'ausfallen/v*.full'
-S'ziehen/v*.full an/v*.full'
-S'sprechen/v*.full an/v*.full'
-S'antworten/v*.full'
-S'anziehen/v*.full'
-S'fallen/v*.full aus/v*.full'
+(Vansprechen/v*.full
+Vreagieren/v*.full
+Vbeantworten/v*.full
+Vausfallen/v*.full
+Vziehen/v*.full an/v*.full
+Vsprechen/v*.full an/v*.full
+Vantworten/v*.full
+Vanziehen/v*.full
+Vfallen/v*.full aus/v*.full
 tp1345
-sS'turn/n'
+sVturn/n
 p1346
-(S'umdrehen/n'
-S'Turn/n'
-S'Spaziergang/n'
-S'Tendenz/n'
-S'Hinwendung/n'
-S'Windung/n'
-S'Spazierfahrt/n'
-S'Hang/n'
-S'Wende/n'
-S'Ausschlag/n'
-S'Wendekurve/n'
-S'Handelsgewinn/n'
-S'Neigung/n'
-S'Wendung/n'
-S'Drehung/n'
-S'umbiegen/n'
-S'Turnus/n'
-S'Kurve/n'
-S'Umdrehung/n'
-S'Arbeitsschicht/n'
-S'Annehmen/n'
-S'Reihenfolge/n'
-S'Drehbewegung/n'
+(Vumdrehen/n
+VTurn/n
+VSpaziergang/n
+VTendenz/n
+VHinwendung/n
+VWindung/n
+VSpazierfahrt/n
+VHang/n
+VWende/n
+VAusschlag/n
+VWendekurve/n
+VHandelsgewinn/n
+VNeigung/n
+VWendung/n
+VDrehung/n
+Vumbiegen/n
+VTurnus/n
+VKurve/n
+VUmdrehung/n
+VArbeitsschicht/n
+VAnnehmen/n
+VReihenfolge/n
+VDrehbewegung/n
 tp1347
-sS'know/vv'
+sVknow/vv
 p1348
-(S'sein/v*.full bekannt/v*.full'
-S'wissen/v*.full'
-S'haben/v*.full Ahnung/v*.full'
+(Vsein/v*.full bekannt/v*.full
+Vwissen/v*.full
+Vhaben/v*.full Ahnung/v*.full
 Vkönnen/v*.mod
-S'ahnen/v*.full'
-S'kennen/v*.full'
-S'Ahnung/v*.full haben/v*.full'
-S'bekannt/v*.full sein/v*.full'
+Vahnen/v*.full
+Vkennen/v*.full
+VAhnung/v*.full haben/v*.full
+Vbekannt/v*.full sein/v*.full
 tp1349
-sS'quiz/vv'
+sVquiz/vv
 p1350
-(S'fragen/v*.full ab/v*.full'
-S'abfragen/v*.full'
+(Vfragen/v*.full ab/v*.full
+Vabfragen/v*.full
 tp1351
-sS'great/jj'
+sVgreat/jj
 p1352
-(S'prima/adj'
-S'bedeutend/adj'
+(Vprima/adj
+Vbedeutend/adj
 Vgroßartig/adj
 Vgroß/adj
-S'toll/adj'
+Vtoll/adj
 tp1353
-sS'describe/vv'
+sVdescribe/vv
 p1354
-(S'schildern/v*.full'
-S'beschreiben/v*.full'
-S'zeichnen/v*.full nach/v*.full'
-S'nachzeichnen/v*.full'
-S'aufzeigen/v*.full'
-S'zeigen/v*.full auf/v*.full'
-S'bezeichnen/v*.full'
-S'umschreiben/v*.full'
-S'schreiben/v*.full um/v*.full'
+(Vschildern/v*.full
+Vbeschreiben/v*.full
+Vzeichnen/v*.full nach/v*.full
+Vnachzeichnen/v*.full
+Vaufzeigen/v*.full
+Vzeigen/v*.full auf/v*.full
+Vbezeichnen/v*.full
+Vumschreiben/v*.full
+Vschreiben/v*.full um/v*.full
 Verläutern/v*.full
 tp1355
-sS'the/adv right/adv'
+sVthe/adv right/adv
 p1356
-(S'rechtsherum/adv'
-S'rechtsstetig/adv'
+(Vrechtsherum/adv
+Vrechtsstetig/adv
 tp1357
-sS'one/dt'
+sVone/dt
 p1358
-(S'ein/art'
+(Vein/art
 tp1359
-sS'first/in'
+sVfirst/in
 p1360
-(S'voran/appr'
+(Vvoran/appr
 tp1361
-sS'friendly/jj'
+sVfriendly/jj
 p1362
-(S'befreundet/adj'
-S'sympathisch/adj'
-S'freundlich/adj'
+(Vbefreundet/adj
+Vsympathisch/adj
+Vfreundlich/adj
 Vgemütlich/adj
-S'freundschaftlich/adj'
+Vfreundschaftlich/adj
 tp1363
-sS'generally/n'
+sVgenerally/n
 p1364
-(S'Regelfall/n'
+(VRegelfall/n
 tp1365
-sS'friendly/n'
+sVfriendly/n
 p1366
-(S'Freundschaftsspiel/n'
+(VFreundschaftsspiel/n
 tp1367
-sS'editor/n'
+sVeditor/n
 p1368
-(S'Bearbeiter/n'
-S'Cutterin/n'
-S'Redakteurin/n'
-S'Editor/n'
-S'Cutter/n'
-S'Eingaberoutine/n'
-S'Redakteur/n'
-S'Lektor/n'
-S'Redaktor/n'
-S'Herausgeber/n'
+(VBearbeiter/n
+VCutterin/n
+VRedakteurin/n
+VEditor/n
+VCutter/n
+VEingaberoutine/n
+VRedakteur/n
+VLektor/n
+VRedaktor/n
+VHerausgeber/n
 tp1369
-sS'previous/in'
+sVprevious/in
 p1370
-(S'vor/appr'
+(Vvor/appr
 tp1371
-sS'explain/vv'
+sVexplain/vv
 p1372
-(S'setzen/v*.full auseinander/v*.full'
-S'auseinander/v*.full setzen/v*.full'
-S'darlegen/v*.full'
+(Vsetzen/v*.full auseinander/v*.full
+Vauseinander/v*.full setzen/v*.full
+Vdarlegen/v*.full
 Vbegründen/v*.full
 Vausführen/v*.full
-S'auseinandersetzen/v*.full'
-S'verdeutlichen/v*.full'
+Vauseinandersetzen/v*.full
+Vverdeutlichen/v*.full
 Vführen/v*.full aus/v*.full
 Verklären/v*.full
-S'legen/v*.full dar/v*.full'
+Vlegen/v*.full dar/v*.full
 Verläutern/v*.full
-S'fertigen/v*.full'
+Vfertigen/v*.full
 tp1373
-sS'in/jj the/jj future/jj'
+sVin/jj the/jj future/jj
 p1374
 (Vkünftig/adj
 tp1375
-sS'address/jj'
+sVaddress/jj
 p1376
-(S'adressbezogen/adj'
+(Vadressbezogen/adj
 Vadreßbezogen/adj
 tp1377
-sS'for/rb'
+sVfor/rb
 p1378
-(S'zu/adv'
-S'denn/adv'
+(Vzu/adv
+Vdenn/adv
 tp1379
-sS'evaluate/n'
+sVevaluate/n
 p1380
-(S'Auswerten/n'
+(VAuswerten/n
 Veinschätzen/n
-S'Ausmessen/n'
-S'Vermessen/n'
-S'valvieren/n'
+VAusmessen/n
+VVermessen/n
+Vvalvieren/n
 Vabschätzen/n
-S'festsetzen/n'
+Vfestsetzen/n
 tp1381
-sS'add/n'
+sVadd/n
 p1382
-(S'beitragen/n'
+(Vbeitragen/n
 Vanfügen/n
-S'beimischen/n'
+Vbeimischen/n
 Vbeifügen/n
 Vzufügen/n
 Vhinzufügen/n
-S'anbringen/n'
-S'Zugabe/n'
-S'anbauen/n'
-S'Aufstocken/n'
-S'Beimischen/n'
-S'Aufnehmen/n'
+Vanbringen/n
+VZugabe/n
+Vanbauen/n
+VAufstocken/n
+VBeimischen/n
+VAufnehmen/n
 VAnhängen/n
-S'nachtragen/n'
-S'Zuwiegen/n'
+Vnachtragen/n
+VZuwiegen/n
 VZufügen/n
 tp1383
-sS'attend/n'
+sVattend/n
 p1384
-(S'beiwohnen/n'
-S'teilnehmen/n'
+(Vbeiwohnen/n
+Vteilnehmen/n
 tp1385
-sS'head/vv'
+sVhead/vv
 p1386
-(S'steuern/v*.full'
-S'fahren/v*.full auf/v*.full'
+(Vsteuern/v*.full
+Vfahren/v*.full auf/v*.full
 Vköpfen/v*.full
-S'an/v*.full der/v*.full Spitze/v*.full stehen/v*.full'
-S'stanzen/v*.full'
-S'stehen/v*.full an/v*.full der/v*.full Spitze/v*.full'
-S'bewegen/v*.full sich/v*.full'
-S'auffahren/v*.full'
-S'leiten/v*.full'
+Van/v*.full der/v*.full Spitze/v*.full stehen/v*.full
+Vstanzen/v*.full
+Vstehen/v*.full an/v*.full der/v*.full Spitze/v*.full
+Vbewegen/v*.full sich/v*.full
+Vauffahren/v*.full
+Vleiten/v*.full
 Vanführen/v*.full
-S'sich/v*.full bewegen/v*.full'
-S'lenken/v*.full'
-S'fahren/v*.full'
+Vsich/v*.full bewegen/v*.full
+Vlenken/v*.full
+Vfahren/v*.full
 Vführen/v*.full an/v*.full
 tp1387
-sS'when/w'
+sVwhen/w
 p1388
-(S'wobei/pro.inter'
-S'wo/pro.inter'
+(Vwobei/pro.inter
+Vwo/pro.inter
 tp1389
-sS'admit/n'
+sVadmit/n
 p1390
-(S'zulassen/n'
-S'Einliefern/n'
+(Vzulassen/n
+VEinliefern/n
 tp1391
-sS'decipher/vv'
+sVdecipher/vv
 p1392
 (Ventschlüsseln/v*.full
 Venträtseln/v*.full
-S'entziffern/v*.full'
-S'dechiffrieren/v*.full'
+Ventziffern/v*.full
+Vdechiffrieren/v*.full
 tp1393
-sS'accord/vv'
+sVaccord/vv
 p1394
-(S'erteilen/v*.full'
+(Verteilen/v*.full
 Vübereinstimmen/v*.full
-S'bewilligen/v*.full'
+Vbewilligen/v*.full
 Vgewähren/v*.full
-S'zollen/v*.full'
+Vzollen/v*.full
 Vstimmen/v*.full überein/v*.full
 tp1395
-sS'bar/vv'
+sVbar/vv
 p1396
-(S'untersagen/v*.full'
-S'sperren/v*.full'
-S'absperren/v*.full'
-S'sperren/v*.full ab/v*.full'
-S'riegeln/v*.full ab/v*.full'
-S'blockieren/v*.full'
-S'verbieten/v*.full'
-S'abriegeln/v*.full'
-S'versperren/v*.full'
-S'sperren/v*.full aus/v*.full'
-S'aussperren/v*.full'
+(Vuntersagen/v*.full
+Vsperren/v*.full
+Vabsperren/v*.full
+Vsperren/v*.full ab/v*.full
+Vriegeln/v*.full ab/v*.full
+Vblockieren/v*.full
+Vverbieten/v*.full
+Vabriegeln/v*.full
+Vversperren/v*.full
+Vsperren/v*.full aus/v*.full
+Vaussperren/v*.full
 tp1397
-sS'guess/n'
+sVguess/n
 p1398
-(S'Vermutung/n'
-S'Annahme/n'
+(VVermutung/n
+VAnnahme/n
 VSchätzung/n
 VMutmaßung/n
 tp1399
-sS'say/jj'
+sVsay/jj
 p1400
-(S'Gesagte/adj'
-S'Gesagtes/adj'
+(VGesagte/adj
+VGesagtes/adj
 tp1401
-sS'in/in the/in'
+sVin/in the/in
 p1402
-(S'aufn/appr'
-S'am/appr'
-S'ans/appr'
-S'aufs/appr'
-S'im/appr'
-S'ins/appr'
-S'aufm/appr'
+(Vaufn/appr
+Vam/appr
+Vans/appr
+Vaufs/appr
+Vim/appr
+Vins/appr
+Vaufm/appr
 tp1403
-sS'present/vv'
+sVpresent/vv
 p1404
-(S'stellen/v*.full dar/v*.full'
-S'auflegen/v*.full'
-S'schenken/v*.full'
-S'beschenken/v*.full'
+(Vstellen/v*.full dar/v*.full
+Vauflegen/v*.full
+Vschenken/v*.full
+Vbeschenken/v*.full
 Vüberreichen/v*.full
 Vführen/v*.full auf/v*.full
-S'reichen/v*.full dar/v*.full'
-S'tragen/v*.full vor/v*.full'
-S'vortragen/v*.full'
-S'legen/v*.full auf/v*.full'
-S'darreichen/v*.full'
-S'vorstellen/v*.full'
-S'zeigen/v*.full vor/v*.full'
-S'aufweisen/v*.full'
-S'bieten/v*.full dar/v*.full'
-S'darbieten/v*.full'
-S'offenbaren/v*.full'
+Vreichen/v*.full dar/v*.full
+Vtragen/v*.full vor/v*.full
+Vvortragen/v*.full
+Vlegen/v*.full auf/v*.full
+Vdarreichen/v*.full
+Vvorstellen/v*.full
+Vzeigen/v*.full vor/v*.full
+Vaufweisen/v*.full
+Vbieten/v*.full dar/v*.full
+Vdarbieten/v*.full
+Voffenbaren/v*.full
 Vvorführen/v*.full
 Vübergeben/v*.full
 Vaufführen/v*.full
-S'vorzeigen/v*.full'
+Vvorzeigen/v*.full
 Vführen/v*.full vor/v*.full
-S'unterbreiten/v*.full'
-S'stellen/v*.full vor/v*.full'
-S'einreichen/v*.full'
-S'reichen/v*.full ein/v*.full'
-S'moderieren/v*.full'
-S'ausstellen/v*.full'
-S'darstellen/v*.full'
-S'weisen/v*.full auf/v*.full'
-S'stellen/v*.full aus/v*.full'
-S'vorlegen/v*.full'
+Vunterbreiten/v*.full
+Vstellen/v*.full vor/v*.full
+Veinreichen/v*.full
+Vreichen/v*.full ein/v*.full
+Vmoderieren/v*.full
+Vausstellen/v*.full
+Vdarstellen/v*.full
+Vweisen/v*.full auf/v*.full
+Vstellen/v*.full aus/v*.full
+Vvorlegen/v*.full
 Vpräsentieren/v*.full
-S'legen/v*.full vor/v*.full'
+Vlegen/v*.full vor/v*.full
 tp1405
-sS'of/in the/in'
+sVof/in the/in
 p1406
 (Vübern/appr
 Vüberm/appr
-S'aufn/appr'
-S'aufm/appr'
+Vaufn/appr
+Vaufm/appr
 Vübers/appr
-S'vorn/appr'
-S'vorm/appr'
-S'aufs/appr'
-S'vors/appr'
-S'vom/appr'
+Vvorn/appr
+Vvorm/appr
+Vaufs/appr
+Vvors/appr
+Vvom/appr
 tp1407
-sS'sometimes/adv'
+sVsometimes/adv
 p1408
-(S'manchesmal/adv'
-S'manchmal/adv'
-S'zuweilen/adv'
-S'bisweilen/adv'
+(Vmanchesmal/adv
+Vmanchmal/adv
+Vzuweilen/adv
+Vbisweilen/adv
 tp1409
-sS'current/jj'
+sVcurrent/jj
 p1410
-(S'derzeitig/adj'
-S'jetzige/adj'
+(Vderzeitig/adj
+Vjetzige/adj
 Vgängig/adj
-S'jeweilig/adj'
-S'bestehend/adj'
+Vjeweilig/adj
+Vbestehend/adj
 Vgegenwärtig/adj
-S'gegenwartsbezogen/adj'
-S'aktuell/adj'
-S'laufend/adj'
+Vgegenwartsbezogen/adj
+Vaktuell/adj
+Vlaufend/adj
 Vgeläufig/adj
 Vzeitgemäß/adj
 Vgebräuchlich/adj
-S'momentan/adj'
-S'geltend/adj'
+Vmomentan/adj
+Vgeltend/adj
 tp1411
-sS'name/n'
+sVname/n
 p1412
-(S'Eigenname/n'
-S'Titulierung/n'
-S'Firmenschriftzug/n'
-S'Bezeichnung/n'
-S'Name/n'
-S'Benennung/n'
-S'Namen/n'
-S'Dateiname/n'
-S'Schriftzug/n'
+(VEigenname/n
+VTitulierung/n
+VFirmenschriftzug/n
+VBezeichnung/n
+VName/n
+VBenennung/n
+VNamen/n
+VDateiname/n
+VSchriftzug/n
 tp1413
-sS'well-established/jj'
+sVwell-established/jj
 p1414
 (Vbewährt/adj
-S'bestens/adj bekannt/adj'
+Vbestens/adj bekannt/adj
 tp1415
-sS'to/rb'
+sVto/rb
 p1416
-(S'zu/adv'
+(Vzu/adv
 tp1417
-sS'knowledge/n'
+sVknowledge/n
 p1418
-(S'Wissensbestand/n'
-S'Kenntnis/n'
-S'Kenntnisse/n'
-S'Einsicht/n'
-S'Erkenntnis/n'
-S'Wissen/n'
+(VWissensbestand/n
+VKenntnis/n
+VKenntnisse/n
+VEinsicht/n
+VErkenntnis/n
+VWissen/n
 tp1419
-sS'with/in'
+sVwith/in
 p1420
-(S'mit/appr'
-S'zu/appr'
+(Vmit/appr
+Vzu/appr
 Vwährend/conj.sub*
-S'bei/appr'
+Vbei/appr
 Vgegenüber/appr
 tp1421
-sS'friend/n'
+sVfriend/n
 p1422
-(S'Bekannter/n'
-S'Freundin/n'
-S'Haberer/n'
-S'Bekannte/n'
-S'Freund/n'
+(VBekannter/n
+VFreundin/n
+VHaberer/n
+VBekannte/n
+VFreund/n
 tp1423
-sS'I/uh really/uh do/uh not/uh know/uh'
+sVI/uh really/uh do/uh not/uh know/uh
 p1424
 (Vich/itj weiß/itj es/itj wirklich/itj nicht/itj
 tp1425
-sS'novice/n'
+sVnovice/n
 p1426
 (VAnfänger/n
-S'Novize/n'
-S'Neuling/n'
+VNovize/n
+VNeuling/n
 tp1427
-sS'last/jj'
+sVlast/jj
 p1428
 (Vjüngste/adj
-S'vorige/adj'
-S'vergangen/adj'
+Vvorige/adj
+Vvergangen/adj
 Vjüngstes/adj
-S'neuestes/adj'
-S'neuester/adj'
+Vneuestes/adj
+Vneuester/adj
 Vjüngster/adj
-S'vorig/adj'
+Vvorig/adj
 Väußerste/adj
-S'letztes/adj'
-S'letzter/adj'
-S'letzte/adj'
-S'neueste/adj'
-S'letzt/adj'
+Vletztes/adj
+Vletzter/adj
+Vletzte/adj
+Vneueste/adj
+Vletzt/adj
 tp1429
-sS'phrase/n'
+sVphrase/n
 p1430
 (Vausdrücken/n
-S'Sprechtakt/n'
-S'Satz/n'
-S'Wendung/n'
-S'Schlagwort/n'
-S'Redewendung/n'
-S'Satzglied/n'
-S'Wortverbindung/n'
-S'Redensart/n'
-S'Ausdruck/n'
-S'Phrase/n'
-S'Angabe/n'
-S'Formulierung/n'
-S'kurzer/n Satz/n'
+VSprechtakt/n
+VSatz/n
+VWendung/n
+VSchlagwort/n
+VRedewendung/n
+VSatzglied/n
+VWortverbindung/n
+VRedensart/n
+VAusdruck/n
+VPhrase/n
+VAngabe/n
+VFormulierung/n
+Vkurzer/n Satz/n
 tp1431
-sS'at/in'
+sVat/in
 p1432
-(S'auf/appr'
-S'zu/appr'
+(Vauf/appr
+Vzu/appr
 Vüber/appr
-S'an/apzr'
-S'bei/appr'
-S'an/appr'
-S'im/appr'
-S'um/appr'
-S'in/appr'
+Van/apzr
+Vbei/appr
+Van/appr
+Vim/appr
+Vum/appr
+Vin/appr
 tp1433
-sS'first/jj'
+sVfirst/jj
 p1434
-(S'erstes/adj'
-S'erster/adj'
-S'erstbest/adj'
-S'erst/adj'
-S'erste/adj'
-S'vorderst/adj'
-S'vorder/adj'
-S'erstmalig/adj'
+(Verstes/adj
+Verster/adj
+Verstbest/adj
+Verst/adj
+Verste/adj
+Vvorderst/adj
+Vvorder/adj
+Verstmalig/adj
 tp1435
-sS'call/vv'
+sVcall/vv
 p1436
-(S'aufrufen/v*.full'
-S'anfordern/v*.full'
-S'bezeichnen/v*.full'
-S'abholen/v*.full'
-S'nennen/v*.full'
-S'aufsuchen/v*.full'
-S'schimpfen/v*.full aus/v*.full'
-S'rufen/v*.full auf/v*.full'
-S'rufen/v*.full durch/v*.full'
-S'rufen/v*.full ab/v*.full'
-S'anrufen/v*.full'
-S'holen/v*.full'
-S'schalten/v*.full'
-S'telefonieren/v*.full'
-S'rufen/v*.full'
-S'holen/v*.full ab/v*.full'
-S'ausschimpfen/v*.full'
-S'betiteln/v*.full'
-S'fordern/v*.full an/v*.full'
-S'antelefonieren/v*.full'
-S'suchen/v*.full auf/v*.full'
-S'abrufen/v*.full'
-S'titulieren/v*.full'
-S'rufen/v*.full an/v*.full'
-S'durchrufen/v*.full'
+(Vaufrufen/v*.full
+Vanfordern/v*.full
+Vbezeichnen/v*.full
+Vabholen/v*.full
+Vnennen/v*.full
+Vaufsuchen/v*.full
+Vschimpfen/v*.full aus/v*.full
+Vrufen/v*.full auf/v*.full
+Vrufen/v*.full durch/v*.full
+Vrufen/v*.full ab/v*.full
+Vanrufen/v*.full
+Vholen/v*.full
+Vschalten/v*.full
+Vtelefonieren/v*.full
+Vrufen/v*.full
+Vholen/v*.full ab/v*.full
+Vausschimpfen/v*.full
+Vbetiteln/v*.full
+Vfordern/v*.full an/v*.full
+Vantelefonieren/v*.full
+Vsuchen/v*.full auf/v*.full
+Vabrufen/v*.full
+Vtitulieren/v*.full
+Vrufen/v*.full an/v*.full
+Vdurchrufen/v*.full
 tp1437
-sS'gain/n'
+sVgain/n
 p1438
-(S'Ausbeute/n'
-S'Zuwachsmenge/n'
-S'Anstieg/n'
+(VAusbeute/n
+VZuwachsmenge/n
+VAnstieg/n
 VVerstärkung/n
-S'Verdienst/n'
-S'Gewinn/n'
-S'Ansteigen/n'
-S'Zunahme/n'
-S'Bereicherung/n'
-S'hinzugewinnen/n'
-S'Nutzen/n'
-S'Ertrag/n'
+VVerdienst/n
+VGewinn/n
+VAnsteigen/n
+VZunahme/n
+VBereicherung/n
+Vhinzugewinnen/n
+VNutzen/n
+VErtrag/n
 VMehrerlös/n
-S'Gain/n'
-S'Zugewinn/n'
+VGain/n
+VZugewinn/n
 tp1439
-sS'rule/vv'
+sVrule/vv
 p1440
-(S'entscheiden/v*.full'
-S'beherrschen/v*.full'
-S'regieren/v*.full'
-S'ordnen/v*.full an/v*.full'
-S'linieren/v*.full'
-S'herrschen/v*.full'
-S'liniieren/v*.full'
-S'regeln/v*.full'
-S'anordnen/v*.full'
+(Ventscheiden/v*.full
+Vbeherrschen/v*.full
+Vregieren/v*.full
+Vordnen/v*.full an/v*.full
+Vlinieren/v*.full
+Vherrschen/v*.full
+Vliniieren/v*.full
+Vregeln/v*.full
+Vanordnen/v*.full
 tp1441
-sS'publish/vv'
+sVpublish/vv
 p1442
 (Vveröffentlichen/v*.full
-S'publizieren/v*.full'
-S'drucken/v*.full ab/v*.full'
-S'abdrucken/v*.full'
-S'verlegen/v*.full'
-S'machen/v*.full bekannt/v*.full'
-S'geben/v*.full heraus/v*.full'
-S'herausgeben/v*.full'
-S'bekanntmachen/v*.full'
+Vpublizieren/v*.full
+Vdrucken/v*.full ab/v*.full
+Vabdrucken/v*.full
+Vverlegen/v*.full
+Vmachen/v*.full bekannt/v*.full
+Vgeben/v*.full heraus/v*.full
+Vherausgeben/v*.full
+Vbekanntmachen/v*.full
 tp1443
-sS'he/pp'
+sVhe/pp
 p1444
-(S'er/pro'
+(Ver/pro
 tp1445
-sS'occasionally/adv'
+sVoccasionally/adv
 p1446
-(S'zeitweise/adv'
-S'schon/adv mal/adv'
-S'zwischendurch/adv'
-S'verschiedentlich/adv'
-S'gelegentlich/adv'
-S'dann/adv und/adv wann/adv'
-S'nicht/adv sehr/adv oft/adv'
+(Vzeitweise/adv
+Vschon/adv mal/adv
+Vzwischendurch/adv
+Vverschiedentlich/adv
+Vgelegentlich/adv
+Vdann/adv und/adv wann/adv
+Vnicht/adv sehr/adv oft/adv
 tp1447
-sS'Prague/n'
+sVPrague/n
 p1448
-(S'Prag/n'
-S'Praha/n'
+(VPrag/n
+VPraha/n
 tp1449
-sS'previous/jj'
+sVprevious/jj
 p1450
-(S'vorherig/adj'
+(Vvorherig/adj
 Vfrüher/adj
-S'bisherig/adj'
+Vbisherig/adj
 Vursprünglich/adj
-S'bisherige/adj'
-S'vorhergehend/adj'
-S'seitherige/adj'
-S'vorige/adj'
+Vbisherige/adj
+Vvorhergehend/adj
+Vseitherige/adj
+Vvorige/adj
 tp1451
-sS'right/vv'
+sVright/vv
 p1452
-(S'richten/v*.full auf/v*.full'
-S'aufrichten/v*.full'
-S'rechte/v*.full'
-S'gelle/v*.full'
-S'berichtigen/v*.full'
+(Vrichten/v*.full auf/v*.full
+Vaufrichten/v*.full
+Vrechte/v*.full
+Vgelle/v*.full
+Vberichtigen/v*.full
 tp1453
-sS'head/in'
+sVhead/in
 p1454
-(S'Ober/appr'
+(VOber/appr
 tp1455
-sS'be/vv about/vv'
+sVbe/vv about/vv
 p1456
-(S'sein/v*.full dabei/v*.full'
-S'im/v*.full Begriffe/v*.full sein/v*.full'
-S'im/v*.full Begriff/v*.full sein/v*.full'
-S'zugegen/v*.full sein/v*.full'
-S'sein/v*.full im/v*.full Begriff/v*.full'
-S'dabei/v*.full sein/v*.full'
-S'sein/v*.full im/v*.full Begriffe/v*.full'
-S'sein/v*.full zugegen/v*.full'
+(Vsein/v*.full dabei/v*.full
+Vim/v*.full Begriffe/v*.full sein/v*.full
+Vim/v*.full Begriff/v*.full sein/v*.full
+Vzugegen/v*.full sein/v*.full
+Vsein/v*.full im/v*.full Begriff/v*.full
+Vdabei/v*.full sein/v*.full
+Vsein/v*.full im/v*.full Begriffe/v*.full
+Vsein/v*.full zugegen/v*.full
 tp1457
-sS'how/w'
+sVhow/w
 p1458
-(S'wie/adv'
-S'wobei/pro.inter'
-S'inwiefern/pro.inter'
+(Vwie/adv
+Vwobei/pro.inter
+Vinwiefern/pro.inter
 tp1459
-sS'metal/n'
+sVmetal/n
 p1460
-(S'Metall/n'
-S'Metalle/n'
+(VMetall/n
+VMetalle/n
 tp1461
-sS'in/rp'
+sVin/rp
 p1462
-(S'hinein/part.verb'
+(Vhinein/part.verb
 tp1463
-sS'famous/jj'
+sVfamous/jj
 p1464
 (Vberühmt/adj
 tp1465
-sS'fourth/n'
+sVfourth/n
 p1466
-(S'Viertel/n'
-S'Quarte/n'
+(VViertel/n
+VQuarte/n
 tp1467
-sS'less/dt'
+sVless/dt
 p1468
-(S'wenig/pro'
+(Vwenig/pro
 tp1469
-sS'accord/n'
+sVaccord/n
 p1470
-(S'Abkommen/n'
-S'Zusammenklang/n'
+(VAbkommen/n
+VZusammenklang/n
 VÜbereinstimmung/n
-S'Einigkeit/n'
+VEinigkeit/n
 tp1471
-sS'call/n'
+sVcall/n
 p1472
 (Vanläuten/n
-S'anbimmeln/n'
-S'Telefonat/n'
-S'Telefonanruf/n'
+Vanbimmeln/n
+VTelefonat/n
+VTelefonanruf/n
 VTelefongespräch/n
-S'Telefonverbindung/n'
-S'anklingeln/n'
-S'Aufruf/n'
-S'Ruf/n'
-S'Anfordern/n'
-S'Abruf/n'
-S'Schrei/n'
-S'Durchruf/n'
-S'Call/n'
-S'anrufen/n'
-S'Aufforderung/n'
-S'Anruf/n'
+VTelefonverbindung/n
+Vanklingeln/n
+VAufruf/n
+VRuf/n
+VAnfordern/n
+VAbruf/n
+VSchrei/n
+VDurchruf/n
+VCall/n
+Vanrufen/n
+VAufforderung/n
+VAnruf/n
 VGespräch/n
-S'Ausruf/n'
-S'Aufrufen/n'
+VAusruf/n
+VAufrufen/n
 tp1473
 ssS'_lemma_dict'
 p1474
 (dp1475
-S'sponsorship'
+Vsponsorship
 p1476
-(g614
+(g612
 tp1477
-sS'with'
+sVwith
 p1478
 (g1420
 tp1479
-sS'get'
+sVget
 p1480
 (g1246
 g1198
 tp1481
-sS'like'
+sVlike
 p1482
 (g1144
 g252
@@ -6095,521 +6095,521 @@ g954
 g1222
 g906
 tp1483
-sS'election'
+sVelection
 p1484
 (g1182
 tp1485
-sS'company'
+sVcompany
 p1486
 (g1310
 g1152
 tp1487
-sS'attention'
+sVattention
 p1488
 (g1220
 tp1489
-sS'meaning'
+sVmeaning
 p1490
 (g310
 g464
 g442
 tp1491
-sS'an'
+sVan
 p1492
-(g686
+(g684
 tp1493
-sS'as'
+sVas
 p1494
-(g742
-g662
+(g740
+g660
 g1066
 g376
 tp1495
-sS'slang'
+sVslang
 p1496
-(g554
+(g552
 tp1497
-sS'see'
+sVsee
 p1498
-(g482
+(g480
 g432
 g1248
 tp1499
-sS'instance'
+sVinstance
 p1500
 (g784
 g228
 tp1501
-sS'turn'
+sVturn
 p1502
 (g1346
 g1032
 tp1503
-sS'if'
+sVif
 p1504
-(g610
+(g608
 tp1505
-sS'but'
+sVbut
 p1506
 (g234
 g974
-g660
+g658
 g1338
-g684
+g682
 g424
 tp1507
-sS'already'
+sValready
 p1508
 (g302
-g590
+g588
 tp1509
-sS'era'
+sVera
 p1510
 (g1042
 tp1511
-sS'Council'
+sVCouncil
 p1512
-(g550
+(g548
 tp1513
-sS'mean'
+sVmean
 p1514
 (g1330
 g178
 g298
 g1072
 tp1515
-sS'thing'
+sVthing
 p1516
 (g774
 tp1517
-sS'environment'
+sVenvironment
 p1518
 (g1054
 tp1519
-sS'note'
+sVnote
 p1520
 (g182
 g990
-g734
+g732
 tp1521
-sS':'
+sV:
 (g950
 tp1522
-sS'rule'
+sVrule
 p1523
 (g362
 g1440
 tp1524
-sS','
+sV,
 (g1208
 tp1525
-sS'phone'
+sVphone
 p1526
 (g218
 g188
 tp1527
-sS'new'
+sVnew
 p1528
 (g1224
 g286
 tp1529
-sS'lack'
+sVlack
 p1530
 (g910
 g372
 tp1531
-sS'use'
+sVuse
 p1532
 (g958
 g1260
 tp1533
-sS'council'
+sVcouncil
 p1534
-(g648
+(g646
 tp1535
-sS'also'
+sValso
 p1536
 (g924
 g1000
 g870
 tp1537
-sS'away'
+sVaway
 p1538
 (g1044
 g972
-g578
+g576
 g808
 g852
 tp1539
-sS'not'
+sVnot
 p1540
 (g414
 g370
 tp1541
-sS'friendly'
+sVfriendly
 p1542
 (g1118
 g1266
 g1366
 g1362
 tp1543
-sS'reportedly'
+sVreportedly
 p1544
 (g342
 tp1545
-sS'code'
+sVcode
 p1546
 (g232
-g478
+g476
 tp1547
-sS'surprisingly'
+sVsurprisingly
 p1548
 (g392
 g902
 tp1549
-sS'recognize'
+sVrecognize
 p1550
-(g634
+(g632
 g380
 tp1551
-sS'above'
+sVabove
 p1552
-(g576
-g712
+(g574
+g710
 g458
 g186
 tp1553
-sS'veteran'
+sVveteran
 p1554
 (g826
 g264
 g1328
 tp1555
-sS'describe'
+sVdescribe
 p1556
 (g1354
 g1276
 tp1557
-sS'during'
+sVduring
 p1558
 (g820
 tp1559
-sS'correctly'
+sVcorrectly
 p1560
 (g896
 g1064
 tp1561
-sS'he'
+sVhe
 p1562
 (g1444
 tp1563
-sS'-'
-(g504
+sV-
+(g502
 tp1564
-sS'few'
+sVfew
 p1565
-(g656
+(g654
 g224
 tp1566
-sS'city'
+sVcity
 p1567
 (g916
 tp1568
-sS'person'
+sVperson
 p1569
 (g420
 tp1570
-sS'publish'
+sVpublish
 p1571
 (g1442
-g524
+g522
 tp1572
-sS'quip'
+sVquip
 p1573
 (g1122
 g176
 tp1574
-sS'quiz'
+sVquiz
 p1575
 (g1274
 g1350
 tp1576
-sS'seem'
+sVseem
 p1577
-(g566
+(g564
 g402
 tp1578
-sS'at'
+sVat
 p1579
 (g768
 g260
 g1432
 tp1580
-sS'about'
+sVabout
 p1581
 (g410
 g256
-g678
-g490
+g676
+g488
 g288
 tp1582
-sS'June'
+sVJune
 p1583
 (g1290
 tp1584
-sS'political'
+sVpolitical
 p1585
 (g314
 g1056
 tp1586
-sS'immediately'
+sVimmediately
 p1587
 (g230
 g1334
 g1206
 tp1588
-sS'present'
+sVpresent
 p1589
 (g962
 g1060
 g940
 g1404
 tp1590
-sS'select'
+sVselect
 p1591
 (g1238
 g266
 g388
 tp1592
-sS'that'
+sVthat
 p1593
 (g250
 g890
-g474
+g748
 g770
 g914
 tp1594
-sS'Bratislava'
+sVBratislava
 p1595
 (g1320
 tp1596
-sS'some'
+sVsome
 p1597
 (g1008
 g1018
-g716
-g744
-g722
-g534
-g628
+g714
+g742
+g720
+g532
+g626
 g1028
 tp1598
-sS'overcome'
+sVovercome
 p1599
 (g1262
 g1250
 tp1600
-sS'sail'
+sVsail
 p1601
 (g932
 g472
 tp1602
-sS'will'
+sVwill
 p1603
 (g448
 g332
 g1108
 tp1604
-sS'actually'
+sVactually
 p1605
 (g1184
 g996
 g952
 tp1606
-sS'.'
+sV.
 (g858
 tp1607
-sS'municipal'
+sVmunicipal
 p1608
 (g994
 g212
 tp1609
-sS'nickname'
+sVnickname
 p1610
 (g268
 tp1611
-sS'barrier'
+sVbarrier
 p1612
 (g836
 tp1613
-sS'garble'
+sVgarble
 p1614
 (g764
 tp1615
-sS'year'
+sVyear
 p1616
 (g254
 tp1617
-sS'old'
+sVold
 p1618
 (g998
 g428
 tp1619
-sS'editor'
+sVeditor
 p1620
 (g1368
 tp1621
-sS'knowledge'
+sVknowledge
 p1622
 (g1418
 tp1623
-sS'candy'
+sVcandy
 p1624
 (g1102
 g1132
 tp1625
-sS'add'
+sVadd
 p1626
 (g404
 g1382
 tp1627
-sS'agree'
+sVagree
 p1628
-(g620
-g654
+(g618
+g652
 tp1629
-sS'accept'
+sVaccept
 p1630
 (g1080
-g692
+g690
 tp1631
-sS'it'
+sVit
 p1632
 (g1146
 g350
 g760
 tp1633
-sS'in'
+sVin
 p1634
 (g1136
 g1292
 g1462
 tp1635
-sS'go'
+sVgo
 p1636
 (g204
 g1076
 tp1637
-sS'establish'
+sVestablish
 p1638
 (g872
 g222
 tp1639
-sS'or'
+sVor
 p1640
-(g568
+(g566
 tp1641
-sS'program'
+sVprogram
 p1642
 (g1070
 g430
 tp1643
-sS'chairman'
+sVchairman
 p1644
 (g814
 tp1645
-sS'member'
+sVmember
 p1646
 (g466
 tp1647
-sS'previous'
+sVprevious
 p1648
 (g1370
 g1306
-g606
+g604
 g1450
 tp1649
-sS'guess'
+sVguess
 p1650
 (g1088
 g1398
 tp1651
-sS'say'
+sVsay
 p1652
 (g240
 g1400
 g1340
 tp1653
-sS'talk'
+sVtalk
 p1654
-(g484
+(g482
 g1190
 tp1655
-sS'well-established'
+sVwell-established
 p1656
 (g1414
 tp1657
-sS'name'
+sVname
 p1658
 (g1412
 g172
 tp1659
-sS'hole'
+sVhole
 p1660
 (g446
-g544
+g542
 tp1661
-sS'how'
+sVhow
 p1662
 (g1458
-g726
+g724
 tp1663
-sS'such'
+sVsuch
 p1664
 (g860
 g1030
 g1006
 g450
 tp1665
-sS'really'
+sVreally
 p1666
 (g208
-g668
-g674
+g666
+g672
 tp1667
-sS'work'
+sVwork
 p1668
 (g854
-g548
+g546
 g1150
 tp1669
-sS'office'
+sVoffice
 p1670
 (g1046
 tp1671
-sS'less'
+sVless
 p1672
-(g736
-g600
+(g734
+g598
 g1094
 g1326
 g1468
 tp1673
-sS'decipher'
+sVdecipher
 p1674
 (g1392
 tp1675
-sS'metal'
+sVmetal
 p1676
-(g528
+(g526
 g1460
 tp1677
-sS'situation'
+sVsituation
 p1678
 (g800
 g206
 tp1679
-sS'last'
+sVlast
 p1680
 (g960
 g1428
@@ -6617,263 +6617,263 @@ g1270
 g1062
 g1012
 tp1681
-sS'fraud'
+sVfraud
 p1682
 (g216
 tp1683
-sS'phrase'
+sVphrase
 p1684
 (g1430
 g828
 tp1685
-sS'culture'
+sVculture
 p1686
 (g344
 tp1687
-sS'close'
+sVclose
 p1688
 (g862
 g892
 g868
 g796
 tp1689
-sS'party'
+sVparty
 p1690
 (g416
-g672
+g670
 tp1691
-sS'would'
+sVwould
 p1692
 (g864
 tp1693
-sS'later'
+sVlater
 p1694
 (g928
-g694
+g692
 tp1695
-sS'attend'
+sVattend
 p1696
 (g1384
 g1022
 tp1697
-sS'promise'
+sVpromise
 p1698
 (g966
 g374
 tp1699
-sS'novice'
+sVnovice
 p1700
 (g1426
 tp1701
-sS'then'
+sVthen
 p1702
 (g1258
-g476
+g474
 g306
 g1168
 tp1703
-sS'rather'
+sVrather
 p1704
 (g390
-g532
+g530
 g830
 tp1705
-sS'concern'
+sVconcern
 p1706
-(g518
+(g516
 g816
 tp1707
-sS'"'
+sV"
 (g194
 tp1708
-sS'famous'
+sVfamous
 p1709
 (g1464
 tp1710
-sS'evaluate'
+sVevaluate
 p1711
 (g1380
-g556
+g554
 tp1712
-sS'our'
+sVour
 p1713
 (g326
 g804
 tp1714
-sS'Peter'
+sVPeter
 p1715
 (g776
 tp1716
-sS'no'
+sVno
 p1717
-(g680
-g562
+(g678
+g560
 g202
 g248
 tp1718
-sS'Prague'
+sVPrague
 p1719
 (g1448
 tp1720
-sS'respond'
+sVrespond
 p1721
 (g812
 g1344
 tp1722
-sS'?'
+sV?
 (g904
 tp1723
-sS'myself'
+sVmyself
 p1724
 (g460
 g1324
 tp1725
-sS'familiar'
+sVfamiliar
 p1726
 (g806
 g1050
 g1288
 g456
 tp1727
-sS'tunnel'
+sVtunnel
 p1728
 (g780
-g598
+g596
 tp1729
-sS'we'
+sVwe
 p1730
-(g584
+(g582
 g1252
 tp1731
-sS'colleague'
+sVcolleague
 p1732
-(g636
+(g634
 tp1733
-sS'concept'
+sVconcept
 p1734
-(g702
+(g700
 tp1735
-sS'Roman'
+sVRoman
 p1736
 (g1158
-g496
+g494
 tp1737
-sS'gain'
+sVgain
 p1738
 (g1438
 g360
 tp1739
-sS'himself'
+sVhimself
 p1740
 (g1116
 g1242
 tp1741
-sS'who'
+sVwho
 p1742
 (g922
 g1200
 g1036
 tp1743
-sS'current'
+sVcurrent
 p1744
 (g1240
 g434
 g1410
-g696
+g694
 tp1745
-sS'vocabulary'
+sVvocabulary
 p1746
 (g756
 tp1747
-sS'consult'
+sVconsult
 p1748
 (g1100
 g340
 tp1749
-sS'affair'
+sVaffair
 p1750
 (g294
 tp1751
-sS'me'
+sVme
 p1752
-(g646
+(g644
 tp1753
-sS'my'
+sVmy
 p1754
 (g978
 tp1755
-sS'politics'
+sVpolitics
 p1756
-(g580
+(g578
 tp1757
-sS'win'
+sVwin
 p1758
 (g1170
-g570
+g568
 tp1759
-sS'man'
+sVman
 p1760
 (g754
 g876
 tp1761
-sS'Dr.'
+sVDr.
 p1762
 (g988
 tp1763
-sS'bull'
+sVbull
 p1764
 (g850
 g802
 tp1765
-sS'all'
+sVall
 p1766
 (g1016
 g470
 g1086
 tp1767
-sS'six'
+sVsix
 p1768
 (g1264
 tp1769
-sS'they'
+sVthey
 p1770
 (g348
 tp1771
-sS'influential'
+sVinfluential
 p1772
 (g942
 g418
 tp1773
-sS'this'
+sVthis
 p1774
 (g1052
-g730
+g728
 tp1775
-sS'Election'
+sVElection
 p1776
 (g322
 tp1777
-sS'both'
+sVboth
 p1778
 (g1176
 g1138
 g384
 tp1779
-sS'even'
+sVeven
 p1780
-(g536
+(g534
 g358
 g894
 g1058
-g558
+g556
 tp1781
-sS'call'
+sVcall
 p1782
 (g1436
 g1472
-g514
+g512
 tp1783
-sS'first'
+sVfirst
 p1784
 (g1360
 g778
@@ -6881,156 +6881,156 @@ g912
 g948
 g1434
 tp1785
-sS'bar'
+sVbar
 p1786
 (g1396
 g1296
 g282
 tp1787
-sS'education'
+sVeducation
 p1788
 (g174
 tp1789
-sS'recall'
+sVrecall
 p1790
 (g270
 g964
 tp1791
-sS'mainly'
+sVmainly
 p1792
 (g1092
 g1172
-g732
+g730
 tp1793
-sS'his'
+sVhis
 p1794
-(g664
+(g662
 g1272
 g274
 tp1795
-sS'sometimes'
+sVsometimes
 p1796
 (g1110
 g1408
-g626
+g624
 tp1797
-sS'have'
+sVhave
 p1798
 (g946
 g944
 g308
 tp1799
-sS'before'
+sVbefore
 p1800
 (g1204
 g1010
 g824
 tp1801
-sS'do'
+sVdo
 p1802
 (g918
 g1090
 tp1803
-sS'accord'
+sVaccord
 p1804
 (g422
 g1394
 g1470
 tp1805
-sS'generally'
+sVgenerally
 p1806
 (g296
 g1364
 g180
 tp1807
-sS'councilor'
+sVcouncilor
 p1808
 (g766
 tp1809
-sS'town'
+sVtown
 p1810
 (g382
 tp1811
-sS'from'
+sVfrom
 p1812
-(g602
-g676
+(g600
+g674
 tp1813
-sS'supposedly'
+sVsupposedly
 p1814
 (g1210
 g356
 tp1815
-sS'speech'
+sVspeech
 p1816
-(g700
+(g698
 tp1817
-sS'and'
+sVand
 p1818
 (g320
-g560
+g558
 g1256
 tp1819
-sS'example'
+sVexample
 p1820
 (g1280
 tp1821
-sS'only'
+sVonly
 p1822
 (g1130
-g538
-g582
+g536
+g580
 tp1823
-sS'to'
+sVto
 p1824
 (g462
 g1126
 g1416
-g708
+g706
 tp1825
-sS'probably'
+sVprobably
 p1826
 (g934
 g810
 tp1827
-sS'fifth'
+sVfifth
 p1828
 (g786
-g618
+g616
 tp1829
-sS'stop'
+sVstop
 p1830
 (g196
 g1034
 tp1831
-sS'though'
+sVthough
 p1832
-(g488
+(g486
 g330
-g508
+g506
 tp1833
-sS'term'
+sVterm
 p1834
 (g1196
 g1124
 tp1835
-sS'regard'
+sVregard
 p1836
 (g1156
 g398
 tp1837
-sS'well-known'
+sVwell-known
 p1838
 (g1302
 g1024
 tp1839
-sS'capital'
+sVcapital
 p1840
-(g530
+(g528
 g874
 g1308
 tp1841
-sS'right'
+sVright
 p1842
 (g1002
 g1162
@@ -7039,373 +7039,373 @@ g1286
 g1452
 g1078
 tp1843
-sS'course'
+sVcourse
 p1844
 (g300
 g1202
 tp1845
-sS'than'
+sVthan
 p1846
 (g976
 tp1847
-sS'pay'
+sVpay
 p1848
-(g638
+(g636
 g1048
 tp1849
-sS'plate'
+sVplate
 p1850
-(g594
-g622
+(g592
+g620
 tp1851
-sS'address'
+sVaddress
 p1852
-(g546
+(g544
 g1376
 g788
 tp1853
-sS'coalition'
+sVcoalition
 p1854
-(g522
+(g520
 tp1855
-sS'newspaper'
+sVnewspaper
 p1856
 (g882
 tp1857
-sS'another'
+sVanother
 p1858
 (g444
 g846
-g516
+g514
 g878
 tp1859
-sS'fourth'
+sVfourth
 p1860
 (g1466
 g412
 tp1861
-sS'occasionally'
+sVoccasionally
 p1862
 (g844
 g1446
 g276
-g564
+g562
 tp1863
-sS'Democrat'
+sVDemocrat
 p1864
 (g956
 tp1865
-sS'test'
+sVtest
 p1866
 (g336
 g1268
 tp1867
-sS'future'
+sVfuture
 p1868
 (g1120
 g1134
 g246
 g1304
 tp1869
-sS'anything'
+sVanything
 p1870
 (g210
 g838
-g748
+g746
 g378
 g170
 tp1871
-sS'hall'
+sVhall
 p1872
 (g1228
 tp1873
-sS'language'
+sVlanguage
 p1874
 (g834
 tp1875
-sS'own'
+sVown
 p1876
 (g1148
 g1298
-g520
+g518
 g1068
 tp1877
-sS'so'
+sVso
 p1878
-(g652
+(g650
 g1318
 g440
 tp1879
-sS'refuse'
+sVrefuse
 p1880
-(g718
-g616
+(g716
+g614
 tp1881
-sS'word'
+sVword
 p1882
 (g454
 g782
 tp1883
-sS'interview'
+sVinterview
 p1884
 (g338
 g426
 tp1885
-sS'mayor'
+sVmayor
 p1886
 (g762
 tp1887
-sS'head'
+sVhead
 p1888
 (g394
 g1386
 g1454
 g1284
 tp1889
-sS'betrayal'
+sVbetrayal
 p1890
-(g540
+(g538
 tp1891
-sS'certain'
+sVcertain
 p1892
-(g740
+(g738
 g328
 g798
 g938
 tp1893
-sS'of'
+sVof
 p1894
 (g272
 tp1895
-sS'a'
-(g728
+sVa
+(g726
 g1140
 tp1896
-sS'glossary'
+sVglossary
 p1897
 (g1040
 tp1898
-sS'originated'
+sVoriginated
 p1899
 (g192
 tp1900
-sS'mention'
+sVmention
 p1901
 (g238
 g920
 tp1902
-sS'bear'
+sVbear
 p1903
-(g650
+(g648
 g758
-g542
+g540
 tp1904
-sS'intra-party'
+sVintra-party
 p1905
-(g704
+(g702
 tp1906
-sS'one'
+sVone
 p1907
 (g1186
 g262
 g1358
-g630
+g628
 tp1908
-sS'connection'
+sVconnection
 p1909
 (g1278
 tp1910
-sS'Congress'
+sVCongress
 p1911
-(g658
+(g656
 tp1912
-sS'groovy'
+sVgroovy
 p1913
 (g886
 g1004
 tp1914
-sS'partner'
+sVpartner
 p1915
-(g632
+(g630
 tp1916
-sS'school'
+sVschool
 p1917
-(g586
+(g584
 g968
 g1234
 tp1918
-sS'when'
+sVwhen
 p1919
 (g1388
 g848
-g596
+g594
 tp1920
-sS'there'
+sVthere
 p1921
 (g1098
 g1112
 g278
 g242
 tp1922
-sS'out'
+sVout
 p1923
-(g738
+(g736
 g888
-g682
-g494
-g572
-g706
+g680
+g492
+g570
+g704
 tp1924
-sS'character'
+sVcharacter
 p1925
 (g1160
 g334
 tp1926
-sS'for'
+sVfor
 p1927
 (g1378
-g608
-g552
+g606
+g550
 tp1928
-sS'explain'
+sVexplain
 p1929
 (g1372
 g226
 tp1930
-sS'be'
+sVbe
 p1931
 (g792
 g1014
 tp1932
-sS'by'
+sVby
 p1933
 (g1026
 g1294
 tp1934
-sS'the'
+sVthe
 p1935
 (g346
 g1282
 g366
-g526
+g524
 g1244
 tp1936
-sS'similarly'
+sVsimilarly
 p1937
 (g290
 g1232
 tp1938
-sS'golf'
+sVgolf
 p1939
 (g386
 tp1940
-sS'straight'
+sVstraight
 p1941
 (g1336
 g190
-g510
-g644
+g508
+g642
 g1314
 tp1942
-sS'abbreviation'
+sVabbreviation
 p1943
-(g574
+(g572
 tp1944
-sS'way'
+sVway
 p1945
 (g1322
 g772
 tp1946
-sS'otherwise'
+sVotherwise
 p1947
 (g752
 g1106
 tp1948
-sS'great'
+sVgreat
 p1949
 (g1254
 g1352
 g468
 tp1950
-sS'admit'
+sVadmit
 p1951
 (g452
 g1390
 tp1952
-sS'neck'
+sVneck
 p1953
 (g1332
 g936
 tp1954
-sS'I'
+sVI
 (g352
 tp1955
-sS'least'
+sVleast
 p1956
 (g1342
 g292
 g438
 tp1957
-sS'most'
+sVmost
 p1958
 (g198
 g898
 g982
 tp1959
-sS'match'
+sVmatch
 p1960
-(g500
+(g498
 g304
 tp1961
-sS'friend'
+sVfriend
 p1962
 (g1422
-g720
+g718
 tp1963
-sS'their'
+sVtheir
 p1964
 (g1154
 g970
 tp1965
-sS'which'
+sVwhich
 p1966
-(g746
+(g744
 g214
 g856
 g312
 tp1967
-sS'elite'
+sVelite
 p1968
 (g1216
 tp1969
-sS'understand'
+sVunderstand
 p1970
 (g220
 g1192
 tp1971
-sS'answer'
+sVanswer
 p1972
 (g1104
-g588
+g586
 tp1973
-sS'just'
+sVjust
 p1974
 (g1096
 g866
 g1230
-g690
+g688
 g1180
 g1174
 tp1975
-sS'entrepreneur'
+sVentrepreneur
 p1976
-(g714
+(g712
 tp1977
-sS'matador'
+sVmatador
 p1978
-(g670
+(g668
 tp1979
-sS'know'
+sVknow
 p1980
 (g790
 g1348
