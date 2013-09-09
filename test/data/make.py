@@ -149,7 +149,7 @@ def make_classifiers():
     
 
 def make_all():
-    lemmatize_reference()    
+    #lemmatize_reference()    
     make_graphs()
     make_classifiers()
     
