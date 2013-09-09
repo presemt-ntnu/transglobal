@@ -99,12 +99,14 @@ class TestClassifierScore:
         cls.classifier = TranslationClassifier(models_hdf_fname)
         
     def test_classifier_score_full(self):
-        self._classifier_score("full")
+        self._classifier_score()
         
     def test_classifier_score_mft(self):
-        self._classifier_score("mft")
+        vectorizer = Vectorizer(self.classifier.vocab,
+                                score_attr="freq_score")
+        self._classifier_score(vectorizer)
     
-    def _classifier_score(self, vectorizer):
+    def _classifier_score(self, vectorizer=None):
         # make a scorer that uses this classifier
         class_score = ClassifierScore(self.classifier, vectorizer=vectorizer)
         
