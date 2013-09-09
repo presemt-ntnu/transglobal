@@ -137,7 +137,7 @@ class Vectorizer(object):
             for u, v, data in graph.trans_edges_iter(u):
                 # TODO: handle source/target hypernodes 
                 if ( graph.is_target_node(v) and
-                     data.get(self.score_attr) > self.min_score):
+                     data.get(self.score_attr) >= self.min_score):
                     target_lemma = graph.lemma(v)
                     try:
                         col_j = self.vocab[target_lemma]
