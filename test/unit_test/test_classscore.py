@@ -4,10 +4,35 @@ unit test for classscore
 
 import cPickle
 
+import h5py
+
 from tg.config import config
-from tg.classcore import ClassifierScore
+from tg.classcore import ClassifierScore, Vectorizer
 from tg.classify import TranslationClassifier
 from tg.format import TextFormat
+
+
+
+class TextVectorizer:
+    
+    @classmethod
+    def setup_class(cls):
+        # get vocab
+        samp_fname = config["test_data_dir"] + "/de-en_samples.hdf5_"
+        fh = h5py.File(samp_fname)
+        utf8_vocab = fh["vocab"][()] 
+        cls.vocab = dict((lemma.decode("utf-8"), i) 
+                         for i,lemma in enumerate(utf8_vocab))
+        
+    def test_full_vectors(self):
+        # get graph
+        graphs_fname = config["test_data_dir"] + "/graphs_sample_out_de-en.pkl"
+        graph = cPickle.load(open(graphs_fname))[0]
+        vectorizer = Vectorizer(self.vocab)
+        m = vectorizer(graph)
+        print 
+    
+    
 
 
 class TestClassifierScore:

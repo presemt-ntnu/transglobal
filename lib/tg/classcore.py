@@ -18,6 +18,138 @@ log = logging.getLogger(__name__)
 # log.setLevel(logging.DEBUG)
 
 
+
+class Vectorizer(object):
+    """
+    Create a sparse matrix consisting of a translation vectors. Each row is a
+    translation vector for a source node in the graph (traversed in order).
+    Each translation vector indicates the translation candidates (lemmas of
+    corresponding target nodes). Elements of the vectors (columns) correspond
+    to the vocabulary. Translations candidates may be restricted according to
+    the type of score (score_attr) and minimum score (score_threshold).
+    
+    Parameters
+    ----------
+    vocab: dict
+        Dictionary mapping target lemmas to (column) indices.
+    score_attr: str or None
+        Score attribute used to indentify translation candidates.
+        If None, all translations candidates are used.
+    min_score: float or None
+        Threshold on score of translation candidates.
+        If None, only translation candidates with the maximum score are used.
+        Ignored if score_attr is None.
+    dtype: str or dtype
+        Data type of returned matrix.
+    """
+    
+    def __init__(self, vocab, score_attr=None, min_score=None,
+                 dtype="f8"):
+        self.vocab = vocab
+        self.dtype = dtype
+        
+        if score_attr:
+            self.score_attr = score_attr
+            if min_score:
+                self.min_score = min_score
+                self._make_source_node_vectors = self._make_min_score_vectors
+            else:
+                self._make_source_node_vectors = self._make_max_score_vectors
+        else:
+            self._make_source_node_vectors = self._make_full_vectors
+        
+    def __call__(self, graph):
+        """
+        Create a sparse matrix consisting of a vector for every source node.
+        
+        Parameters
+        ----------
+        graph: Graph instance
+            Graph to process
+            
+        Returns
+        -------
+        matrix: csr_matrix
+            sparse matrix of translation vectors
+        """
+        # no of source nodes is not known in advance, so allocate too many rows
+        dim = (len(graph), len(self.vocab))
+        # lil sparse format allows indexing 
+        mat = sp.lil_matrix(dim, dtype=self.dtype)
+        mat, n_rows = self._make_source_node_vectors(graph, mat)
+        mat = mat.tocsr()
+        # remove superfluous rows now that number of source nodes is known
+        return mat[:n_rows, :]
+
+    def _make_full_vectors(self, graph, mat):
+        """ 
+        For every source node, create a translation vector indicating all its
+        translation candidates (target lemmas) in the vocabulary.
+        """
+        for row_i, u in enumerate(graph.source_nodes_iter(ordered=True)):
+            for u, v, data in graph.trans_edges_iter(u):
+                # TODO: handle source/target hypernodes 
+                if graph.is_target_node(v):
+                    target_lemma = graph.lemma(v)
+                    try:
+                        col_j = self.vocab[target_lemma]
+                    except KeyError:
+                        # ignore target lemma that is out of vocabulary
+                        continue
+                    mat[row_i, col_j] += 1
+                    
+        n_rows = row_i + 1
+        return mat, n_rows
+        
+    def _make_max_score_vectors(self, graph, mat):
+        """ 
+        For every source node, create a vector indicating its translation
+        candidate (target lemmas) with the highest score for self.score_attr.
+        """
+        for row_i, u in enumerate(graph.source_nodes_iter(ordered=True)):
+            # TODO: handle source/target hypernodes             
+            score, v = graph.max_score(u, self.score_attr)
+            
+            # if v is None, then there are no translation with
+            # self.score_attr attribute (or no translation edges at all)
+            if v:
+                target_lemma = graph.lemma(v)
+                
+                try:
+                    col_j = self.vocab[target_lemma]
+                except KeyError:
+                    # ignore target lemma that is out of vocabulary
+                    # should never happen when score_attr is present
+                    continue
+                
+                mat[row_i, col_j] += 1
+                    
+        n_rows = row_i + 1
+        return mat, n_rows
+    
+    def _make_min_score_vectors(self, graph, mat):
+        """ 
+        For every source node, create a translation vector indicating all its
+        translation candidates (target lemmas) in the vocabulary with a
+        minimal score of min_score.
+        """
+        for row_i, u in enumerate(graph.source_nodes_iter(ordered=True)):
+            for u, v, data in graph.trans_edges_iter(u):
+                # TODO: handle source/target hypernodes 
+                if ( graph.is_target_node(v) and
+                     data.get(self.score_attr) > self.min_score):
+                    target_lemma = graph.lemma(v)
+                    try:
+                        col_j = self.vocab[target_lemma]
+                    except KeyError:
+                        # ignore target lemma that is out of vocabulary
+                        continue
+                    mat[row_i, col_j] += 1
+                    
+        n_rows = row_i + 1
+        return mat, n_rows
+
+
 class ClassifierScore(GraphProcess):
     """
     Add classifier scores to translation candidates.
