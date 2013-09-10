@@ -24,7 +24,7 @@ from tg.utils import set_default_log, makedirs
 from tg.classify import TranslationClassifier
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
-from tg.classcore import ClassifierScore, filter_functions
+from tg.classcore import ClassifierScore, filter_functions, Vectorizer
 from tg.exps.postproc import postprocess
 from tg.bestscore import BestScore
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
@@ -91,10 +91,11 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             model = TranslationClassifier(models_fname)
             score_attr="nb_score"
             source_lang = lang.split("-")[0]
+            # use max MFT score for building translation vectors 
+            vectorizer = Vectorizer(model.vocab, score_attr="freq_score")
             scorer = ClassifierScore(model,
-                                     score_attr=score_attr,
                                      filter=filter_functions(source_lang),
-                                     vectorizer="mft")
+                                     vectorizer=vectorizer)
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
             

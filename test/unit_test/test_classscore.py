@@ -4,10 +4,83 @@ unit test for classscore
 
 import cPickle
 
+import h5py
+
 from tg.config import config
-from tg.classcore import ClassifierScore
+from tg.classcore import ClassifierScore, Vectorizer
 from tg.classify import TranslationClassifier
 from tg.format import TextFormat
+
+
+
+class TextVectorizer:
+    
+    @classmethod
+    def setup_class(cls):
+        # get vocab
+        samp_fname = config["test_data_dir"] + "/de-en_samples.hdf5_"
+        fh = h5py.File(samp_fname)
+        utf8_vocab = fh["vocab"][()] 
+        cls.vocab = dict((lemma.decode("utf-8"), i) 
+                         for i,lemma in enumerate(utf8_vocab))
+        # get graph
+        graphs_fname = config["test_data_dir"] + "/graphs_sample_out_de-en.pkl"
+        cls.graph = cPickle.load(open(graphs_fname))[0]
+        
+    def test_full_vectors(self):
+        vectorizer = Vectorizer(self.vocab)
+        m = vectorizer(self.graph)
+        # 1: the --> who, the, which, that
+        # NB none of these translations are in the vocabulary
+        assert m[0].nnz == 0
+        # 2: europaische --> European, continental
+        assert m[1].nnz == 2
+        assert m[1, self.vocab["European"]] == 1.0
+        assert m[1, self.vocab["continental"]] == 1.0
+        # 3: Union --> union
+        assert m[2].nnz == 1
+        assert m[2, self.vocab["union"]] == 1.0
+        # 4: hat --> own, have, bear, entertain, experience, gotta
+        # NB "have" and "own" are not in vocab
+        assert m[3].nnz == 4
+        assert m[3, self.vocab["bear"]] == 1.0
+        assert m[3, self.vocab["entertain"]] == 1.0
+        assert m[3, self.vocab["experience"]] == 1.0
+        assert m[3, self.vocab["gotta"]] == 1.0
+        
+    def test_max_vectors(self):
+        vectorizer = Vectorizer(self.vocab, score_attr="freq_score")
+        m = vectorizer(self.graph)
+        # 1: the --> who, the, which, that
+        assert m[0].nnz == 0
+        # 2: europaische --> European, continental
+        assert m[1].nnz == 1
+        assert m[1, self.vocab["European"]] == 1.0
+        # 3: Union --> union
+        assert m[2].nnz == 1
+        assert m[2, self.vocab["union"]] == 1.0
+        # 4: hat --> own, have, bear, entertain, experience, gotta
+        # NB "have" has highest score but is not in vocab,
+        # so translations vector is empty...
+        assert m[3].nnz == 0
+        
+    def test_min_vectors(self):
+        vectorizer = Vectorizer(self.vocab, score_attr="freq_score", min_score=0.02)
+        m = vectorizer(self.graph)
+        # 1: the --> who, the, which, that
+        # NB none of these translations are in the vocabulary
+        assert m[0].nnz == 0
+        # 2: europaische --> European:0.95, continental:=.05
+        assert m[1].nnz == 2
+        assert m[1, self.vocab["European"]] == 1.0
+        assert m[1, self.vocab["continental"]] == 1.0
+        # 3: Union --> union:1.0
+        assert m[2].nnz == 1
+        assert m[2, self.vocab["union"]] == 1.0
+        # 4: hat --> own:0.06, have:0.89, bear:0.019..., entertain:0.0, 
+        #            experience:0.03, gotta:0.0
+        # NB "have" and "own" are not in vocab
+        assert m[3, self.vocab["experience"]] == 1.0
 
 
 class TestClassifierScore:
@@ -26,12 +99,14 @@ class TestClassifierScore:
         cls.classifier = TranslationClassifier(models_hdf_fname)
         
     def test_classifier_score_full(self):
-        self._classifier_score("full")
+        self._classifier_score()
         
     def test_classifier_score_mft(self):
-        self._classifier_score("mft")
+        vectorizer = Vectorizer(self.classifier.vocab,
+                                score_attr="freq_score")
+        self._classifier_score(vectorizer)
     
-    def _classifier_score(self, vectorizer):
+    def _classifier_score(self, vectorizer=None):
         # make a scorer that uses this classifier
         class_score = ClassifierScore(self.classifier, vectorizer=vectorizer)
         
