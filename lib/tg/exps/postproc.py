@@ -50,7 +50,8 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
     if text:
         text_format = TextFormat(score_attr=best_score_attr)
         text_format(graph_list)
-        text_format.write(os.path.join(out_dir, base_fname + ".txt"))
+        text_fname = os.path.join(out_dir, base_fname + "_text.txt")
+        text_format.write(text_fname)
     
     # write translation output in Mteval format
     trglang = lang_pair.split("-")[1]
@@ -64,7 +65,7 @@ def postprocess(exp_name, data_set, lang_pair, graph_list, best_score_attr,
     mte_format.write(tst_fname)
     
     # calculate BLEU and NIST scores using mteval script
-    scores_fname = os.path.join(out_dir, base_fname + "_score.txt")
+    scores_fname = os.path.join(out_dir, base_fname + "_mteval.txt")
     mteval(config["eval"][data_set][lang_pair]["lemma_ref_fname"],
            config["eval"][data_set][lang_pair]["src_fname"],
            tst_fname,
