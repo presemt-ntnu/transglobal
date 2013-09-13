@@ -86,3 +86,92 @@ def coo_matrix_from_hdf5(group, dtype=None):
     """
     return sp.coo_matrix((group["data"], group["ij"]), 
                          shape=group.attrs["shape"], dtype=dtype)
+
+
+
+class Namespace(object):
+    """
+    Simple namespace for passing around variables and functions
+    """
+    
+    def __init__(self, **kwargs):
+        # copy keyword args to object's dict so they becomes attributes
+        self.__dict__.update(**kwargs)
+        
+    def __repr__(self):
+        return (
+            self.__class__.__name__ +
+            "(" +
+            ", ".join("{}={}".format(k,v) 
+                      for k, v in self.__dict__.items()
+                      if not k.startswith("__")) + 
+            ")" )
+    
+    def __str__(self):
+        return (
+            self.__class__.__name__ +
+            "(\n" +
+            ",\n".join("  {:<16} = {}".format(k,v) 
+                      for k, v in sorted(self.__dict__.items())
+                      if not k.startswith("__")) + 
+            "\n)" )
+        
+    def import_module(self, mod_name, condition=callable):
+        """
+        Import names from a module
+        
+        Params
+        ------
+        mod_name: str
+            module name (not module object)
+        condition: function or None, optional
+            test for importing objects;
+            function is called with object and should return boolean;
+            default is to import functions only
+        """
+        module = __import__(mod_name)
+        # drill down to subpackage
+        for name in mod_name.split(".")[1:]:
+            module = getattr(module, name)
+        
+        for name in dir(module):
+            obj = getattr(module, name)
+            if condition is None or condition(obj):
+                setattr(self, name, obj)
+                
+    def import_locals(self, local_ns, kwargs="kwargs"):
+        """
+        Import names from local environment (=locals())
+        """
+        for name, obj in local_ns.items():
+            # prevent recursive import if this namespace is in local namespace
+            if not obj is self:
+                if name == kwargs:
+                    self.__dict__.update(**obj)
+                else:
+                    setattr(self, name, obj)
+                
+
+
+def grid_search(process, *args, **kwargs):
+    """
+    Explore parameter space
+    """
+    # check for grid parameters starting with an underscore
+    for keyword in kwargs:
+        if keyword.startswith("_"):
+            # obtain real parameter by stripping prefix
+            param = keyword.lstrip("_")
+            # remove grid param
+            for value in kwargs.pop(keyword):
+                # insert real param
+                kwargs[param] = value 
+                # recursively handle other grid params (if any)
+                for exp in grid_search(process, *args, **kwargs):
+                    yield exp
+            break
+    else:
+        # no more grid params in kwargs; 
+        # terminate recursion with single experiment
+        yield process(*args, **kwargs)        
+        

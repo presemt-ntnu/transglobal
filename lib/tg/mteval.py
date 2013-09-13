@@ -3,7 +3,7 @@ parse NIST and BLEU scores from output of mteval scoring script
 """
   
       
-from collections import OrderedDict, Counter
+from collections import OrderedDict, Counter, namedtuple
 import codecs
 import logging
 import re
@@ -17,6 +17,7 @@ from tg.config import config
 
 log = logging.getLogger(__name__)
 
+Scores = namedtuple("Scores", "system NIST BLEU")
   
     
 def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout,
@@ -224,8 +225,8 @@ def parse_total_scores(file):
         
     Returns
     -------
-    (system, NIST, BLEU): tuple
-        Tuple of system identifier and scores
+    scores: named tuple Scores(system, NIST, BLEU)
+        system identifier and scores
     """
     if isinstance(file, basestring):
         file = open(file)
@@ -239,7 +240,9 @@ def parse_total_scores(file):
         except AttributeError:
             pass
         else:
-            return system, float(nist), float(bleu)
+            scores = Scores(system, float(nist), float(bleu))
+            log.info(scores)            
+            return scores
         
         
 def parse_document_scores(file):

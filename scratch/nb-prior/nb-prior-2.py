@@ -130,7 +130,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             # apply classifier
             model = TranslationClassifier(models_fname)
             score_attr="nb_score"
-            vectorizer = Vectorizer(model.vocab, score_attr="freq_score")
+            vectorizer = Vectorizer(score_attr="freq_score")
             scorer = ClassifierScore(model,
                                      score_attr=score_attr,
                                      vectorizer=vectorizer,

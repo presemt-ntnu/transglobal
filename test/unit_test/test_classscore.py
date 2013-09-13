@@ -13,7 +13,7 @@ from tg.format import TextFormat
 
 
 
-class TextVectorizer:
+class TestVectorizer:
     
     @classmethod
     def setup_class(cls):
@@ -28,8 +28,8 @@ class TextVectorizer:
         cls.graph = cPickle.load(open(graphs_fname))[0]
         
     def test_full_vectors(self):
-        vectorizer = Vectorizer(self.vocab)
-        m = vectorizer(self.graph)
+        vectorizer = Vectorizer()
+        m = vectorizer(self.graph, self.vocab)
         # 1: the --> who, the, which, that
         # NB none of these translations are in the vocabulary
         assert m[0].nnz == 0
@@ -49,8 +49,8 @@ class TextVectorizer:
         assert m[3, self.vocab["gotta"]] == 1.0
         
     def test_max_vectors(self):
-        vectorizer = Vectorizer(self.vocab, score_attr="freq_score")
-        m = vectorizer(self.graph)
+        vectorizer = Vectorizer(score_attr="freq_score")
+        m = vectorizer(self.graph, self.vocab)
         # 1: the --> who, the, which, that
         assert m[0].nnz == 0
         # 2: europaische --> European, continental
@@ -65,8 +65,8 @@ class TextVectorizer:
         assert m[3].nnz == 0
         
     def test_min_vectors(self):
-        vectorizer = Vectorizer(self.vocab, score_attr="freq_score", min_score=0.02)
-        m = vectorizer(self.graph)
+        vectorizer = Vectorizer(score_attr="freq_score", min_score=0.02)
+        m = vectorizer(self.graph, self.vocab)
         # 1: the --> who, the, which, that
         # NB none of these translations are in the vocabulary
         assert m[0].nnz == 0
@@ -102,13 +102,13 @@ class TestClassifierScore:
         self._classifier_score()
         
     def test_classifier_score_mft(self):
-        vectorizer = Vectorizer(self.classifier.vocab,
-                                score_attr="freq_score")
+        vectorizer = Vectorizer(score_attr="freq_score")
         self._classifier_score(vectorizer)
     
     def _classifier_score(self, vectorizer=None):
         # make a scorer that uses this classifier
-        class_score = ClassifierScore(self.classifier, vectorizer=vectorizer)
+        class_score = ClassifierScore(self.classifier, 
+                                      vectorizer=vectorizer)
         
         graph = cPickle.load(
             open(config["test_data_dir"] + "/graphs_sample_out_de-en.pkl"))[1]

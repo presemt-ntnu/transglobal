@@ -92,7 +92,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             score_attr="nb_score"
             source_lang = lang.split("-")[0]
             # use max MFT score for building translation vectors 
-            vectorizer = Vectorizer(model.vocab, score_attr="freq_score")
+            vectorizer = Vectorizer(score_attr="freq_score")
             scorer = ClassifierScore(model,
                                      filter=filter_functions(source_lang),
                                      vectorizer=vectorizer)

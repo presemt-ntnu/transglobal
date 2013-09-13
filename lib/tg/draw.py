@@ -226,7 +226,7 @@ class Draw(GraphProcess):
     
     def _single_run(self, graph, out_fname=None, out_format="pdf",
                     best_score_attr="freq_score", base_score_attrs=[], 
-                    out_dir=""):
+                    out_dir="", fname_prefix=None):
         log.info("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
@@ -234,7 +234,8 @@ class Draw(GraphProcess):
                              base_score_attrs=base_score_attrs)
         
         if not out_fname:
-            out_fname = "graph-{:03d}.{}".format(
+            out_fname = "{}-{:03d}.{}".format(
+                fname_prefix or "graph",
                 graph.graph["n"],
                 out_format )
             

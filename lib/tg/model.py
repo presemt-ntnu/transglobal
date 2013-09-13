@@ -222,3 +222,13 @@ class PriorModelBuilder(ModelBuilder):
         #log.info(zip(data_set.target_lempos, class_prior))
         return class_prior
     
+    def _finish(self):
+        # remove injected class priors, in case classifier is reused
+        if isinstance(self.classifier, Pipeline):
+            clf = self.classifier.steps[-1][-1]
+        else:
+            clf = self.classifier
+            
+        clf.class_prior = None
+        ModelBuilder._finish(self)
+    

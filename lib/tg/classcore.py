@@ -21,17 +21,16 @@ log = logging.getLogger(__name__)
 
 class Vectorizer(object):
     """
-    Create a sparse matrix consisting of a translation vectors. Each row is a
-    translation vector for a source node in the graph (traversed in order).
-    Each translation vector indicates the translation candidates (lemmas of
-    corresponding target nodes). Elements of the vectors (columns) correspond
-    to the vocabulary. Translations candidates may be restricted according to
-    the type of score (score_attr) and minimum score (score_threshold).
+    Create a sparse matrix consisting of the translation vectors of a graph.
+    Each row is a translation vector for a source node in the graph
+    (traversed in order). A translation vector indicates the translation
+    candidates (lemmas of corresponding target nodes) of the source lemma.
+    Elements of the vectors (columns) correspond to the vocabulary.
+    Translations candidates may be restricted according to the type of score
+    (score_attr) and minimum score (score_threshold) on the translation edges.
     
     Parameters
     ----------
-    vocab: dict
-        Dictionary mapping target lemmas to (column) indices.
     score_attr: str or None, optional
         Score attribute used to indentify translation candidates.
         If None, all translations candidates are used.
@@ -43,11 +42,7 @@ class Vectorizer(object):
         Data type of returned matrix.
     """
     
-    def __init__(self, vocab, score_attr=None, min_score=None,
-                 dtype="f8"):
-        self.vocab = vocab
-        self.dtype = dtype
-        
+    def __init__(self, score_attr=None, min_score=None, dtype="f8"):
         if score_attr:
             self.score_attr = score_attr
             if min_score:
@@ -57,8 +52,10 @@ class Vectorizer(object):
                 self._make_source_node_vectors = self._make_max_score_vectors
         else:
             self._make_source_node_vectors = self._make_full_vectors
+            
+        self.dtype = dtype        
         
-    def __call__(self, graph):
+    def __call__(self, graph, vocab):
         """
         Create a sparse matrix consisting of a vector for every source node.
         
@@ -66,22 +63,30 @@ class Vectorizer(object):
         ----------
         graph: Graph instance
             Graph to process
+        vocab: dict
+            Full vocabulary (not masked) as a dictionary mapping target lemmas
+            to (column) indices.
             
         Returns
         -------
         matrix: csr_matrix
             sparse matrix of translation vectors
         """
+        # Note that vocab is the *full* vocabulary from the context samples,
+        # not a masked vocabulary. In the case of feature selection, the
+        # graph vector, i.e. the summed node vectors, is passed to the 
+        # pipeline, which then applies feature selection.
+        
         # no of source nodes is not known in advance, so allocate too many rows
-        dim = (len(graph), len(self.vocab))
+        dim = (len(graph), len(vocab))
         # lil sparse format allows indexing 
         mat = sp.lil_matrix(dim, dtype=self.dtype)
-        mat, n_rows = self._make_source_node_vectors(graph, mat)
+        mat, n_rows = self._make_source_node_vectors(graph, vocab, mat)
         mat = mat.tocsr()
         # remove superfluous rows now that number of source nodes is known
         return mat[:n_rows, :]
 
-    def _make_full_vectors(self, graph, mat):
+    def _make_full_vectors(self, graph, vocab, mat):
         """ 
         For every source node, create a translation vector indicating all its
         translation candidates (target lemmas) in the vocabulary.
@@ -92,7 +97,7 @@ class Vectorizer(object):
                 if graph.is_target_node(v):
                     target_lemma = graph.lemma(v)
                     try:
-                        col_j = self.vocab[target_lemma]
+                        col_j = vocab[target_lemma]
                     except KeyError:
                         # ignore target lemma that is out of vocabulary
                         continue
@@ -101,7 +106,7 @@ class Vectorizer(object):
         n_rows = row_i + 1
         return mat, n_rows
         
-    def _make_max_score_vectors(self, graph, mat):
+    def _make_max_score_vectors(self, graph, vocab, mat):
         """ 
         For every source node, create a vector indicating its translation
         candidate (target lemmas) with the highest score for self.score_attr.
@@ -116,7 +121,7 @@ class Vectorizer(object):
                 target_lemma = graph.lemma(v)
                 
                 try:
-                    col_j = self.vocab[target_lemma]
+                    col_j = vocab[target_lemma]
                 except KeyError:
                     # ignore target lemma that is out of vocabulary
                     # should never happen when score_attr is present
@@ -127,7 +132,7 @@ class Vectorizer(object):
         n_rows = row_i + 1
         return mat, n_rows
     
-    def _make_min_score_vectors(self, graph, mat):
+    def _make_min_score_vectors(self, graph, vocab, mat):
         """ 
         For every source node, create a translation vector indicating all its
         translation candidates (target lemmas) in the vocabulary with a
@@ -140,7 +145,7 @@ class Vectorizer(object):
                      data.get(self.score_attr) >= self.min_score):
                     target_lemma = graph.lemma(v)
                     try:
-                        col_j = self.vocab[target_lemma]
+                        col_j = vocab[target_lemma]
                     except KeyError:
                         # ignore target lemma that is out of vocabulary
                         continue
@@ -166,15 +171,17 @@ class ClassifierScore(GraphProcess):
         Trained classifier which takes a context vector and assigns a score to
         each translation candidate
     score_attr: str, optional
-        Attribute on translation edges which holds the classifier score
-    filter: function, optional
+        Attribute on translation edges which holds the classifier score.
+        Defaults to "class_score".
+    filter: function or None, optional
         A function to filter out certain source nodes. It must take two 
         arguments: a graph and a source node. If its return value is true,
         the source node will not be scored by the classifier.
-    vectorizer: Vectorizer instance, optional
+        If None, source nodes are not filtered.
+    vectorizer: Vectorizer instance or None, optional
         Custom vectorizer.
-        The default generic vectorizer uses all translation canidates to 
-        build translation vectors, regardless of their scores.
+        If None, the default generic vectorizer uses all translation canidates 
+        to build translation vectors, regardless of their scores.
         
     Notes
     -----
@@ -187,7 +194,7 @@ class ClassifierScore(GraphProcess):
         self.classifier = classifier
         self.score_attr = score_attr
         self.filter = filter or (lambda graph, node : False)
-        self.vectorizer = vectorizer or Vectorizer(classifier.vocab)            
+        self.vectorizer = vectorizer or Vectorizer()
         
         if log.isEnabledFor(logging.debug): self._construct_reverse_vocab()
         
@@ -200,7 +207,13 @@ class ClassifierScore(GraphProcess):
             self.__class__.__name__,
             graph.graph["id"]))
         
-        source_node_vectors = self.vectorizer(graph)
+        # Obtain a sparse matrix consisting of the translation vectors 
+        # for each source node in the graph.
+        # Note that vocab is the *full* vocabulary from the context samples,
+        # not a masked vocabulary. In the case of feature selection, the
+        # graph vector, i.e. the summed node vectors, is passed to the 
+        # pipeline, which then applies feature selection.        
+        source_node_vectors = self.vectorizer(graph, self.classifier.vocab)
         # The context vector for the whole source graph is obtained by
         # summing the vectors for the source nodes. As sum() returns a dense
         # vector, it needs to be converted to sparse format.
