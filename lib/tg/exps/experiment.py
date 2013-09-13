@@ -8,8 +8,8 @@ import os
 import shutil
 import tempfile
 
-from tg import utils
 from tg.config import config
+from tg.exps import support
 
 # Functions and classes below are imported in local namespace 
 # and will therefore become part of exp's namespace'
@@ -22,6 +22,7 @@ from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
 from tg.mteval import mteval, parse_total_scores
 from tg.transdiff import trans_diff
+
 
 log = logging.getLogger(__name__)
 
@@ -224,7 +225,7 @@ def single_exp(name,
     
     """
     # Create namespace instance holding all experimental parameters.
-    ns = utils.Namespace()
+    ns = support.Namespace()
     # import functions from experiments module 
     ns.import_module("tg.exps.experiment")
     # overide with values of function's parameters and keyword args
