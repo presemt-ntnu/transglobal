@@ -4,12 +4,21 @@ support for experiments
 
 import cPickle
 import logging
+import os
+import shutil
 
 import numpy as np
 
 import asciitable as at
 
 log = logging.getLogger(__name__)
+
+
+def remove_exp_dir(name):
+    exp_dir = "_" + name
+    if os.path.exists(exp_dir):
+        log.info("removing exp dir " + exp_dir)
+        shutil.rmtree(exp_dir)  
 
 
 class ResultsStore(object):
@@ -116,7 +125,7 @@ class Namespace(object):
                     setattr(self, name, obj)
 
 
-def grid_search(process, *args, **kwargs):
+def grid_search_func(process, *args, **kwargs):
     """
     Explore parameter space
     """
@@ -130,7 +139,7 @@ def grid_search(process, *args, **kwargs):
                 # insert real param
                 kwargs[param] = value 
                 # recursively handle other grid params (if any)
-                for exp in grid_search(process, *args, **kwargs):
+                for exp in grid_search_func(process, *args, **kwargs):
                     yield exp
             break
     else:
@@ -139,5 +148,11 @@ def grid_search(process, *args, **kwargs):
         yield process(*args, **kwargs)        
                 
 
-
+def grid_search(func):
+    """
+    decorator for grid_search_func
+    """
+    def wrapper(*args, **kwargs):
+        return grid_search_func(func, *args, **kwargs)
+    return wrapper
         

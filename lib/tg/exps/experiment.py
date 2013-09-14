@@ -5,7 +5,6 @@ generic framework for running translation experiments with classifiers
 import cPickle
 import logging
 import os
-import shutil
 import tempfile
 
 from tg.config import config
@@ -35,18 +34,11 @@ SKIP = lambda *args, **kwargs: None
 #-------------------------------------------------------------------------------
 
 def setup(ns):
-    ns.remove_exp_dir(ns)
     ns.make_exp_dir(ns)
     ns.create_filename_prefix(ns)
     ns.get_graphs(ns)
     ns.get_languages(ns)
     
-def remove_exp_dir(ns):
-    exp_dir = getattr(ns, "exp_dir", "_" + ns.name)
-    if os.path.exists(exp_dir):
-        log.info("removing exp dir " + exp_dir)
-        shutil.rmtree(exp_dir)  
-
 def make_exp_dir(ns):  
     ns.exp_dir = "_" + ns.name
     if not os.path.exists(ns.exp_dir):
@@ -197,6 +189,7 @@ def write_text(ns):
 # Single experiment
 #-------------------------------------------------------------------------------
 
+@support.grid_search    
 def single_exp(name, 
                classifier, 
                data, 

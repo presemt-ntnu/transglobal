@@ -11,6 +11,7 @@ from sklearn.naive_bayes import MultinomialNB
 from tg.config import config
 from tg.model import ModelBuilder, PriorModelBuilder
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
+from tg.exps.support import grid_search
 
 
 log = logging.getLogger(__name__)
@@ -38,7 +39,8 @@ def nb_build_models(ns):
     # clean up params
     delattr(ns, "ambig_map")
     
-    
+
+@grid_search    
 def nb_classifier(classifier=MultinomialNB,
                   min_count=5,
                   max_freq=0.1,
