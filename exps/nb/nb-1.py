@@ -3,6 +3,7 @@
 
 import logging
 
+from tg.config import config
 from tg.exps.support import ResultsStore, remove_exp_dir
 from tg.utils import set_default_log
 import tg.exps.experiment as ex
@@ -13,50 +14,47 @@ log = logging.getLogger(__name__)
 
 
 def nb_1():
+    ##name = "test"
     name = "nb-1"
     remove_exp_dir(name)
-    descriptor = [ ("prior", "b", "class_priors"),
-                   ("data", "S16"),
-                   ("lang", "S8"),
-                   ("min_count", "f", 
-                    "classifier.get_params().get('MCF__min_count')"),
-                   ("nist", "f", "scores.NIST"),
-                   ("bleu", "f", "scores.BLEU"),
-                   ("exp_name", "S128"),
-                   ("models_fname", "S256"),
-                    ] 
+    descriptor = [ 
+        ("data", "S16"),
+        ("source", "S8",  "source_lang"),
+        ("target", "S8", "target_lang"),
+        ("prior", "b", "class_priors"),
+        ("nist", "f", "scores.NIST"),
+        ("bleu", "f", "scores.BLEU"),        
+        ("exp_name", "S128"),        
+        ("models_fname", "S256"),
+    ] 
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
+    data_sets = "metis", "presemt-dev"
+    # tricky: 'classifiers' cannot be an iterator
+    # because it is called many times during grid_search
+    classifiers = list(nb_classifier())
     
-    classifiers = nb_classifier(
-        _min_count=(None, 5, 10))
-    
-    exps = ex.single_exp(
-        name=name,
-        _classifier=classifiers,
-        _data=("metis",
-               #"presemt-dev",
-               ),
-        _lang=("de-en",
-               #"en-de",
-               ),
-        write_text=ex.SKIP,
-        draw_graphs=ex.SKIP,
-        _class_priors=(True, False),
-        #save_graphs=True,
-        #save_models=True,
-        #text=True,
-        #write_diff=ex.write_diff,
-        draw=ex.SKIP,
-        n_graphs=2,
-        build_models=nb_build_models,
-    )
-    
-    for ns in exps: 
-        result_store.append(ns)
+    # 'data' cannot be expanded  implicitly through grid search
+    # because _lang expansion depends on its value :-(
+    for data in data_sets:
+        exps = ex.single_exp(
+            name=name,
+            _classifier=classifiers,
+            data=data,
+            _lang=config["eval"][data].keys(),
+            #_lang=("de-en",),
+            write_text=ex.SKIP,
+            draw_graphs=ex.SKIP,
+            _class_priors=(True, False),
+            build_models=nb_build_models,
+            thrash_models=ex.SKIP,
+            n_graphs=2,
+        )
+        
+        for ns in exps: 
+            result_store.append(ns)
                 
-
-                
+  
 if __name__ == "__main__":
     set_default_log()
     nb_1()

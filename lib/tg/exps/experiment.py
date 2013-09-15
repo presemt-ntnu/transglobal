@@ -36,8 +36,8 @@ SKIP = lambda *args, **kwargs: None
 def setup(ns):
     ns.make_exp_dir(ns)
     ns.create_filename_prefix(ns)
-    ns.get_graphs(ns)
     ns.get_languages(ns)
+    ns.get_graphs(ns)
     
 def make_exp_dir(ns):  
     ns.exp_dir = "_" + ns.name
@@ -160,6 +160,9 @@ def run_mteval(ns):
 def postprocess(ns):
     ns.thrash_models(ns)
     ns.draw_graphs(ns)
+    ns.write_diff(ns)
+    ns.write_text(ns)
+    ns.get_class_params(ns)
     
 def thrash_models(ns):    
     log.info("removing models file " + ns.models_fname)
@@ -183,6 +186,10 @@ def write_text(ns):
     ns.text_fname = ns.fname_prefix + "_text.txt"
     text_format.write(ns.text_fname)
     
+def get_class_params(ns):
+    # copy classifier parameters to namespace for more convenient access
+    ns.import_locals(ns.classifier.get_params())
+    
 
 
 #-------------------------------------------------------------------------------
@@ -193,7 +200,7 @@ def write_text(ns):
 def single_exp(name, 
                classifier, 
                data, 
-               lang, 
+               lang,
                vectorizer=Vectorizer(),
                n_graphs=None,
                score_attr=None,
