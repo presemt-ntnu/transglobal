@@ -48,8 +48,14 @@ class ResultsStore(object):
     def append(self, ns):
         # get field values by evaluating getter expression
         env = {"ns": ns}
-        self.results[self.count] = tuple(eval("ns." + expr, env) 
-                                         for expr in self.getters)
+        for i, expr in enumerate(self.getters):
+            try:
+                val = eval("ns." + expr, env) 
+            except Exception, exception:
+                log.warning("evaluating descriptor expression {!r} "
+                            "raises exception {!r}".format(expr, exception))
+                val = None
+            self.results[self.count][i] = val 
         self.count += 1
         # save each intermediary result
         log.info("saving numpy results to " + self.npz_fname)
@@ -132,20 +138,25 @@ def grid_search_func(process, *args, **kwargs):
     # check for grid parameters starting with an underscore
     for keyword in kwargs:
         if keyword.startswith("_"):
+            log.debug("expanding keyword " + keyword)
             # obtain real parameter by stripping prefix
             param = keyword.lstrip("_")
             # remove grid param
             for value in kwargs.pop(keyword):
                 # insert real param
                 kwargs[param] = value 
+                log.debug("{} = {}".format(param, value))
                 # recursively handle other grid params (if any)
-                for exp in grid_search_func(process, *args, **kwargs):
-                    yield exp
+                for output in grid_search_func(process, *args, **kwargs):
+                    yield output
             break
     else:
         # no more grid params in kwargs; 
         # terminate recursion with single experiment
-        yield process(*args, **kwargs)        
+        log.debug("terminating with args={} and kwargs={}".format(args, kwargs))
+        yield process(*args, **kwargs)
+
+        
                 
 
 def grid_search(func):
