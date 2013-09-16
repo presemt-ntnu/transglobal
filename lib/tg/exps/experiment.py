@@ -188,7 +188,8 @@ def write_text(ns):
     
 def get_class_params(ns):
     # copy classifier parameters to namespace for more convenient access
-    ns.import_locals(ns.classifier.get_params())
+    if ns.classifier:
+        ns.import_locals(ns.classifier.get_params())
     
 
 
@@ -204,6 +205,7 @@ def single_exp(name,
                vectorizer=Vectorizer(),
                n_graphs=None,
                score_attr=None,
+               thrash_models=SKIP,
                **kwargs):
     """
     Parameters
