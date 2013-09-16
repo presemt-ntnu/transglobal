@@ -43,10 +43,11 @@ class Vectorizer(object):
     """
     
     def __init__(self, score_attr=None, min_score=None, dtype="f8"):
+        self.score_attr = score_attr
+        self.min_score = min_score
+        
         if score_attr:
-            self.score_attr = score_attr
             if min_score:
-                self.min_score = min_score
                 self._make_source_node_vectors = self._make_min_score_vectors
             else:
                 self._make_source_node_vectors = self._make_max_score_vectors
