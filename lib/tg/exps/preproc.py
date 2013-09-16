@@ -13,6 +13,7 @@ from tg.annot import get_annotator
 from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.freqscore import FreqScore
+from tg.maxscore import MaxScore
 
 
 
@@ -36,6 +37,12 @@ def preprocess(data_set, lang_pair):
     # score most frequent translation
     freq_score = FreqScore(config["count"]["lemma"][target_lang]["pkl_fname"])
     freq_score(graph_list)
+    
+    # approximated max scores  
+    lemma_ref_fname = \
+        config["eval"][data_set][lang_pair]["lemma_ref_fname"]
+    maxscore = MaxScore(lemma_ref_fname)
+    maxscore(graph_list)
     
     # save graphs
     log.info("saving preprocessed graphs to " + graphs_fname)
