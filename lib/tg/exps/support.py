@@ -41,7 +41,7 @@ class ResultsStore(object):
                 self.getters.append(elem[2])
                 
         self.results = np.zeros(9999, dtype=dtype)
-        self.npz_fname = fname_prefix + ".npz"
+        self.npy_fname = fname_prefix + ".npy"
         self.txt_fname = fname_prefix + ".txt"
         self.count = 0
             
@@ -58,8 +58,8 @@ class ResultsStore(object):
             self.results[self.count][i] = val 
         self.count += 1
         # save each intermediary result
-        log.info("saving numpy results to " + self.npz_fname)
-        np.save(self.npz_fname, 
+        log.info("saving numpy results to " + self.npy_fname)
+        np.save(self.npy_fname, 
                 self.results[:self.count]) 
         log.info("saving text results to " + self.txt_fname)
         at.write(self.results[:self.count], 
