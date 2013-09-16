@@ -20,9 +20,9 @@ def bounds(data_sets=config["eval"]["data_sets"], lang_pairs=()):
     """
     Compute upper and lower bounds on scores. 
     
-    Lower bound is the Most Frequent Translation (MFT) score, which is
-    obtained by choosing the translation with te highest frequency in the
-    target language corpus.
+    The baseline that serves as the lower bound is the Most Frequent
+    Translation (MFT) score, which is obtained by choosing the translation
+    with te highest frequency in the target language corpus.
     
     Upper bound is the Approximated Maximum (AM) score, which is obtained by
     choosing the translation that occurs most often in the reference
