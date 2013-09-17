@@ -6,22 +6,34 @@ import codecs
 import cPickle
 import logging
 
-log = logging.getLogger(__name__)
-
 from tg.config import config
+
+log = logging.getLogger(__name__)
 
 
 
 class AmbiguityMap():
     """
     Holds lempos ambiguity information for the samples of a given language pair
+    
+    Parameters
+    ----------
+    ambig_fname: str, optional
+        Name of file containing ambiguity information
+    lang_pair: str, optional
+        Language pair used to retrieve ambig_fname from config
+    subset: set, optional
+        Restrict ambiguity map to given set of source lempos strings
+    graphs: str or list, optional
+        Name of file containing pickled graphs or list of TransGraph instances.
+        Restrict ambiguity map to source lempos in these graphs.
+        
+    Notes
+    -----
+    Either ambig_fname or lang_pair must be given.        
     """
 
-    def __init__(self, ambig_fname, lang_pair = None, subset = None, graphs_fname = None):
-        """
-        @param lang_pair: Read ambiguities from the file configured for the given language pair.
-        @param fn: Read ambiguities from the specified file.
-        """
+    def __init__(self, ambig_fname=None, lang_pair = None, subset = None, graphs = None):
         if ambig_fname:
             self.ambig_fname = ambig_fname
         elif lang_pair:
@@ -29,8 +41,8 @@ class AmbiguityMap():
         else:
             raise ValueError
         
-        if graphs_fname:
-            subset = self.extract_source_lempos_subset(graphs_fname)
+        if graphs:
+            subset = self.extract_source_lempos_subset(graphs)
 
         self.source_target_map = self.read_ambig_file(self.ambig_fname, subset = subset)
 
@@ -49,21 +61,38 @@ class AmbiguityMap():
                 if subset and source_lempos not in subset:
                     continue
     
-                source_target_map.setdefault(source_lempos,[]).append(target_lempos)
+                source_target_map.setdefault(source_lempos, []).append(target_lempos)
 
         return source_target_map
     
     @staticmethod
-    def extract_source_lempos_subset(graphs_fname):
+    def extract_source_lempos_subset(graphs):
         """
-        extract all required source lempos from pickled graphs,
-        where POS tag is the *lexicon* POS tag
-        """
-        log.info("extracting source lempos subset from file " + graphs_fname)
-        subset = set()
+        Extract all required source lempos pickled graphs.
         
-        for graph in cPickle.load(open(graphs_fname)):
-            for _,node_attr in graph.source_nodes_iter(data=True, 
+        Parameters
+        ----------
+        graphs: str or list, optional
+            Name of file containing pickled graphs or list of TransGraph instances
+            
+        Returns
+        -------
+        subset: set
+            Subset of all source lempos strings occuring in graphs
+            
+        Notes
+        -----
+        The relevant POS tag in the lempos is the *lexicon* POS tag
+        (lex_lempos attribute of nodes).
+        """        
+        if isinstance(graphs, basestring):
+            log.info("extracting source lempos subset from file " + graphs)
+            graphs = cPickle.load(open(graphs))
+
+        subset = set()            
+        
+        for graph in graphs:
+            for _, node_attr in graph.source_nodes_iter(data=True, 
                                                        ordered=True):
                 try:
                     subset.add(" ".join(node_attr["lex_lempos"]))
@@ -81,25 +110,25 @@ class AmbiguityMap():
     
     def __iter__(self):
         """
-        @return Iterator of all pairs of source lemmas and their corresponding list of target lemmas
+        Iterator of all pairs of source lemmas and their corresponding list of target lemmas
         """
         return self.source_target_map.iteritems()
 
     def source_target_pair_iter(self):
         """
-        @return Iterator of all pairs of source and lemmas
+        Iterator of all pairs of source and lemmas
         """
         return ((sl, tl) for sl, tl_list in self.source_target_map.iteritems() for tl in tl_list)
 
     def source_iter(self):
         """
-        @return Iterator of all source lemmas
+        Iterator of all source lemmas
         """
         return self.source_target_map.iterkeys()
     
     def target_iter(self):
         """
-        @return Iterator of all target lemmas
+        Iterator of all target lemmas
         """
         return (tl for tl_list in self.source_target_map.itervalues() for tl in tl_list)
     

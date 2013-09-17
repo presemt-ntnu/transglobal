@@ -71,7 +71,7 @@ class TextFormat(Format):
         self.out_str = ""
     
     def _single_run(self, graph):
-        log.info("applying {0} to graph {1}".format(
+        log.debug("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
         self.out_str += u"SOURCE {0}: {1}\nTARGET {2}: {3}\n\n".format(
@@ -136,22 +136,30 @@ class MtevalFormat(Format):
     def _batch_run(self, graph_list):
         # _single_run() does not make sense in this format
         graph_list = iter(graph_list)
+        elem = None
             
-        for event, elem in et.iterparse(self.src_fname):  
+        for _, elem in et.iterparse(self.src_fname):  
             if elem.tag == "srcset":
                 elem.tag = "tstset"
                 elem.set("trglang", self.trglang)
             elif elem.tag == "doc":
                 elem.set("sysid", self.sysid)
             elif elem.tag == "seg":
-                graph = graph_list.next()
-                log.info("applying {0} to graph {1}".format(
-                    self.__class__.__name__,
-                    graph.graph["id"]))                
-                elem.text = self._target_lemma_string(graph)
+                try:
+                    graph = graph_list.next()
+                except StopIteration:
+                    # Not raising an exception because a truncated graph list
+                    # can be used to make sure an experiment runs all the
+                    # way, before running it with all graphs. 
+                    log.error("not enough graphs to complete evaluation")
+                else:
+                    log.debug("applying {0} to graph {1}".format(
+                        self.__class__.__name__,
+                        graph.graph["id"]))                
+                    elem.text = self._target_lemma_string(graph)
 
-                
-        self.elem_tree = et.ElementTree(elem) 
+        if elem:        
+            self.elem_tree = et.ElementTree(elem) 
 
     def write(self, outf=sys.stdout, pprint=True):
         """

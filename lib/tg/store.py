@@ -60,9 +60,9 @@ class EstimatorStore(object):
         "TfidfTransformer": ("idf_",),
         }
     
-    def __init__(self, file, mode=None, compression="lzf"):
+    def __init__(self, file, mode="r", compression="lzf"):
         if not isinstance(file, h5py.File):  
-            log.info("opening store file " + file)
+            log.info("opening store file {} (mode={})".format(file, mode))
             self.file = h5py.File(file, mode)
         else:
             self.file = file

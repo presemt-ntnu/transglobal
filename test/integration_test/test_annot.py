@@ -12,6 +12,11 @@ from tg.annot import ( TreeTaggerEnglish,
                        ILSP_NLP_Greek,
                        OsloBergenTagger )
 
+# HACK: suds logging triggers an exception in suds.max.core
+import logging
+suds_log = logging.getLogger("suds")
+suds_log.setLevel(logging.ERROR)
+
 
 def check_graph_format(graph_list): 
     # all sentences?
