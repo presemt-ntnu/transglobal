@@ -61,6 +61,6 @@ def nc_1(data_sets=config["eval"]["data_sets"],
 if __name__ == "__main__":
     set_default_log(log_fname="_nc_1.log")
     nc_1(
-        #data_sets = ("metis"),
+        #data_sets = ("metis","presemt-dev"),
         #n_graphs=2,
     )
