@@ -19,7 +19,7 @@ class TestVectorizer:
     def setup_class(cls):
         # get vocab
         samp_fname = config["test_data_dir"] + "/de-en_samples.hdf5_"
-        fh = h5py.File(samp_fname)
+        fh = h5py.File(samp_fname, "r")
         utf8_vocab = fh["vocab"][()] 
         cls.vocab = dict((lemma.decode("utf-8"), i) 
                          for i,lemma in enumerate(utf8_vocab))

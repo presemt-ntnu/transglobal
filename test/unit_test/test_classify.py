@@ -30,7 +30,7 @@ class TestTranslationClassifier:
         
         # load a couple of vectors from the samples (i.e. the training
         # material) to test the translation classifier
-        f = h5py.File(config["test_data_dir"] + "/de-en_samples.hdf5_")
+        f = h5py.File(config["test_data_dir"] + "/de-en_samples.hdf5_", "r")
         source_lempos = "Teller/n"
         targets = "basket/n dial/n disc/n dish/n disk/n plate/n".split()
         
