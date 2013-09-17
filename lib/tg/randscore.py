@@ -22,7 +22,7 @@ class RandProb(graphproc.GraphProcess):
         self.score_attr = score_attr
                 
     def _single_run(self, graph):
-        log.info("applying {0} to graph {1}".format(
+        log.debug("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
         

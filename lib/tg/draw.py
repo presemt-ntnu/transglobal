@@ -227,7 +227,7 @@ class Draw(GraphProcess):
     def _single_run(self, graph, out_fname=None, out_format="pdf",
                     best_score_attr="freq_score", base_score_attrs=[], 
                     out_dir="", fname_prefix=None):
-        log.info("applying {0} to graph {1}".format(
+        log.debug("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
         drawer = self.drawer(graph, best_score_attr=best_score_attr, 

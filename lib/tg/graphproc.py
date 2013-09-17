@@ -3,6 +3,9 @@ graph process
 """
 
 import transgraph
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class GraphProcess(object):
@@ -18,7 +21,10 @@ class GraphProcess(object):
         """
         run process with either a single obj or a list of objects 
         """
-        if isinstance(obj, basestring) or isinstance(obj, transgraph.TransGraph):
+        log.info("applying graph process {0}".format(self.__class__.__name__))
+        
+        if ( isinstance(obj, basestring) or 
+             isinstance(obj, transgraph.TransGraph)):
             return self._single_run(obj, *args, **kwargs)
         else:
             return self._batch_run(obj, *args, **kwargs)

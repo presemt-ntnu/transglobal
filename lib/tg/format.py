@@ -71,7 +71,7 @@ class TextFormat(Format):
         self.out_str = ""
     
     def _single_run(self, graph):
-        log.info("applying {0} to graph {1}".format(
+        log.debug("applying {0} to graph {1}".format(
             self.__class__.__name__,
             graph.graph["id"]))
         self.out_str += u"SOURCE {0}: {1}\nTARGET {2}: {3}\n\n".format(
@@ -153,7 +153,7 @@ class MtevalFormat(Format):
                     # way, before running it with all graphs. 
                     log.error("not enough graphs to complete evaluation")
                 else:
-                    log.info("applying {0} to graph {1}".format(
+                    log.debug("applying {0} to graph {1}".format(
                         self.__class__.__name__,
                         graph.graph["id"]))                
                     elem.text = self._target_lemma_string(graph)
