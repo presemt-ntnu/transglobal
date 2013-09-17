@@ -9,8 +9,14 @@ import numpy as np
 import scipy.sparse as sp
 
 from sklearn.base import BaseEstimator
-from sklearn.feature_selection.from_model import _LearntSelectorMixin
 from sklearn.utils import atleast2d_or_csr
+
+try:
+    from sklearn.feature_selection.from_model import _LearntSelectorMixin
+except ImportError:
+    # sklearn<0.13
+    from sklearn.feature_selection.selector_mixin import SelectorMixin as\
+         _LearntSelectorMixin
 
 log = logging.getLogger(__name__)
 

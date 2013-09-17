@@ -17,10 +17,17 @@ try:
     from sklearn.feature_selection.univariate_selection import _BaseFilter
 except ImportError:
     # sklearn<0.13
-    from sklearn.feature_selection.univariate_selection import _AbstractUnivariateFilter as _Basefilter
+    from sklearn.feature_selection.univariate_selection import\
+         _AbstractUnivariateFilter as _Basefilter
+
+try:
+    from sklearn.feature_selection.from_model import _LearntSelectorMixin
+except ImportError:
+    # sklearn<0.13
+    from sklearn.feature_selection.selector_mixin import SelectorMixin as\
+         _LearntSelectorMixin
 
 from sklearn.feature_selection.rfe import RFE
-from sklearn.feature_selection.selector_mixin import SelectorMixin
 from sklearn.pipeline import Pipeline
 
 from tg.store import DisambiguatorStore
@@ -54,7 +61,7 @@ class ModelBuilder(object):
     """
     
     # feature selectors that reduce the vocabulary
-    FEATURE_SELECTORS = _BaseFilter, RFE, SelectorMixin
+    FEATURE_SELECTORS = _BaseFilter, RFE, _LearntSelectorMixin
     
     def __init__(self, ambig_map, samp_hdf_fname, models_hdf_fname,
                  classifier, with_vocab_mask=False, **kwargs):
