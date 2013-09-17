@@ -61,5 +61,5 @@ def nb_2():
                 
   
 if __name__ == "__main__":
-    set_default_log()
+    set_default_log(log_fname="_nb-2.log")
     nb_2()

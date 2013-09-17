@@ -19,19 +19,28 @@ def create_dirs(path):
         makedirs(path)
         
         
-def set_default_log(level=logging.INFO, encoding="utf-8", errors="strict"):
+def set_default_log(level=logging.INFO, encoding="utf-8", errors="strict",
+                    log_fname=None):
     """
     configure default "root" logger
     """ 
     # get root logger
     log = logging.getLogger()
+    log.setLevel(level)
+    log_format = logging.Formatter('| %(levelname)-8s | %(name)-24s | %(message)s')
+    
     # output to wrapped stderr
     stream = codecs.getwriter(encoding)(sys.stderr, errors=errors)
-    log_handler = logging.StreamHandler(stream)
-    log_format = logging.Formatter('| %(levelname)-8s | %(name)-24s | %(message)s')
-    log_handler.setFormatter(log_format)
-    log.addHandler(log_handler)
-    log.setLevel(level)
+    log_stream = logging.StreamHandler(stream)
+    log_stream.setFormatter(log_format)
+    log.addHandler(log_stream)
+    
+    # optional output to log file 
+    if log_fname:
+        log_file = logging.FileHandler(log_fname, mode="w", encoding=encoding)
+        log_file.setFormatter(log_format)
+        log.addHandler(log_file)    
+        
     return log
 
 

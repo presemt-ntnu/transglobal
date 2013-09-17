@@ -63,7 +63,7 @@ def bounds(data_sets=config["eval"]["data_sets"], lang_pairs=()):
                 
   
 if __name__ == "__main__":
-    set_default_log()
+    set_default_log(log_fname="_bounds.log")
     bounds()
 
     
