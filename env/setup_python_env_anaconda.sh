@@ -4,6 +4,9 @@
 #
 # To remove the virtual environment use something like: 
 # $rm -r ~/anaconda/envs/transglobal
+#
+# The easiest way to update the virtual environment is simply to delete the
+# old one and to create a new one (under the same name).
 
 # Create virtual environment with required packages
 ENV_NAME="transglobal"
