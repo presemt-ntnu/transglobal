@@ -241,6 +241,7 @@ class Draw(GraphProcess):
             
         if out_dir:
             if not os.path.exists(out_dir):
+                log.info("creating output dir " + out_dir)
                 os.makedirs(out_dir)   
             out_fname = os.path.join(out_dir, out_fname)
             
