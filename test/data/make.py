@@ -25,6 +25,7 @@ from tg.utils import set_default_log
 from tg.draw import Draw
 from tg.freqscore import FreqScore
 from tg.randscore import RandProb
+from tg.maxscore import MaxScore
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 
@@ -82,12 +83,17 @@ def lemmatize_reference():
     
 def make_graphs():
     """
-    Create annotated translations graphs with scores for rnadom translation
-    and most frequent translation. Also create minimal translation
-    dictionaries for these graphs and drawings.
+    Create annotated translations graphs with scores for random translation,
+    most frequent translation and approximated maximum. Also create minimal
+    translation dictionaries for these graphs and drawings.
     """
-    for lang_pair, src_fname in [ ("en-de", "sample_newstest2011-src.en.sgm"),
-                                  ("de-en", "sample_out_de-en.src") ]:
+    for lang_pair, src_fname, lemma_ref_fname in [ 
+        ("en-de", 
+         "sample_newstest2011-src.en.sgm", 
+         "lemma_sample_newstest2011-ref.de.sgm"),
+        ("de-en", 
+         "sample_out_de-en.src", 
+         "lemma_sample_out_de-en.ref") ]:
         source_lang, target_lang = lang_pair.split("-")
         root_fname = splitext(src_fname)[0]
         
@@ -116,10 +122,14 @@ def make_graphs():
         rand_score = RandProb()
         rand_score(graphs)
         
+        # score maximum 
+        maxscore = MaxScore(lemma_ref_fname)
+        maxscore(graphs)
+        
         # draw graphs
         draw = Draw()
         draw(graphs, out_format="pdf", 
-             base_score_attrs=["freq_score", "rand_score"], 
+             base_score_attrs=["max_score", "freq_score", "rand_score"], 
              out_dir="_draw_" + lang_pair)
         
         # save graphs
@@ -149,7 +159,7 @@ def make_classifiers():
     
 
 def make_all():
-    #lemmatize_reference()    
+    lemmatize_reference()    
     make_graphs()
     make_classifiers()
     
