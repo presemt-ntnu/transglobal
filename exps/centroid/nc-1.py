@@ -31,7 +31,8 @@ def nc_1(data_sets=config["eval"]["data_sets"],
         ("target", "S8", "target_lang"),
         ("nist", "f", "scores.NIST"),
         ("bleu", "f", "scores.BLEU"),        
-        ("exp_name", "S128"),        
+        ("exp_name", "S128"),       
+        ("models_fname", "S256"),      
     ] 
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
@@ -61,6 +62,6 @@ def nc_1(data_sets=config["eval"]["data_sets"],
 if __name__ == "__main__":
     set_default_log(log_fname="_nc_1.log")
     nc_1(
-        #data_sets = ("metis","presemt-dev"),
-        #n_graphs=2,
+        data_sets = ("metis","presemt-dev"),
+        ##n_graphs=2,
     )

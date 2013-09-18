@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-generate graphs combining nb-2 and bounds scores
+generate graphs combining nc-1 and bounds scores
 """
 
 
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 from tg.config import config
 
-nb = np.load("_nb-2.npy")
+nb = np.load("_nc-2.npy")
 bounds = np.load("../bounds/_bounds.npy")
 
 
@@ -33,8 +33,7 @@ for measure in "nist", "bleu":
             i += 1
             
             scores = subset[measure]
-            labels = ["prior={}_vect={}".format(r["prior"], 
-                                                r["vect_score_attr"]) 
+            labels = ["vect={}".format(r["vect_score_attr"]) 
                       for r in subset]
             
             subset = bounds[(bounds["data"] == data) & 
