@@ -35,7 +35,6 @@ class MaxScore(GraphProcess):
     - In case all candidates have zero conts, the choice is arbitary
       (does not matter for score anyway).
     - Multi-word units are not taken into account yet.
-    - Scores are not normalized between zero and one.
     """
     
     def __init__(self, ref_fname, score_attr="max_score"):
@@ -58,9 +57,22 @@ class MaxScore(GraphProcess):
         seg_counts = self.counts[self.seg_num]
         
         for u in graph.source_nodes_iter():
+            edge_data = []
+            counts = []
+            
             for u,v,data in graph.trans_edges_iter(u):
+                edge_data.append(data)
                 target_lemma = graph.lemma(v).lower()
-                count = seg_counts.get(target_lemma, 0)
-                data[self.score_attr] = count 
+                lemma_count = seg_counts.get(target_lemma, 0)
+                counts.append(lemma_count)
+                    
+            # normalize scores        
+            total = float(sum(counts))
+            
+            for data, count in zip(edge_data, counts):
+                try:
+                    data[self.score_attr] = count / total
+                except ZeroDivisionError:
+                    data[self.score_attr] = 0.0
                 
         self.seg_num += 1

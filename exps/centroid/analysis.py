@@ -48,8 +48,7 @@ for measure in "nist", "bleu":
             if measure == "bleu":
                 scores *= 100
             handles = plt.barh(y_pos, scores, align='center', height=0.5, 
-                     color=("black", "orange", "yellow", "blue",
-                            "purple", "brown", "green", "red"),
+                     color=("black", "blue", "yellow", "green", "red"),
                      alpha=0.4)
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)
