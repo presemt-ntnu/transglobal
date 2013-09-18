@@ -86,7 +86,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
 
             # train classifier
             model_builder = ModelBuilder( ambig_map, samples_fname,
-                                          models_fname, classifier, with_vocab_mask=True)
+                                          models_fname, classifier) #,with_vocab_mask=True)
             model_builder.run()
             
             # apply classifier
@@ -95,7 +95,8 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             source_lang = lang.split("-")[0]
             scorer = ClassifierScore(model,
                                      score_attr=score_attr,
-                                     filter=filter_functions(source_lang))
+                                     filter=filter_functions(source_lang),
+                                     vectorizer="mft")
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
             

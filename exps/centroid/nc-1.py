@@ -15,7 +15,7 @@ from tg.exps.support import ResultsStore, remove_exp_dir
 from tg.utils import set_default_log
 import tg.exps.experiment as ex
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
-from tg.skl.centroid import CosNearestCentroid
+from tg.skl.centroid import NearestCentroidProb
 
 
 log = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ def nc_1(data_sets=config["eval"]["data_sets"],
     classifier = Pipeline( [("MCF", MinCountFilter(5)),
                             ("MFF", MaxFreqFilter(0.1)),
                             ("CHI2", SelectFpr(chi2)),
-                            ("CNC", CosNearestCentroid())
+                            ("CNC", NearestCentroidProb(metric="cosine"))
                             ])
     
     # 'data' cannot be expanded  implicitly through grid search
