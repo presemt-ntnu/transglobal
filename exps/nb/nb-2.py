@@ -20,9 +20,7 @@ from nb import vectorizer
 log = logging.getLogger(__name__)
 
 
-def nb_2():
-    ##name = "test"
-    name = "nb-2"
+def nb_2(name = "nb-2", n_graphs=None):
     remove_exp_dir(name)
     descriptor = [ 
         ("data", "S16"),
@@ -37,7 +35,7 @@ def nb_2():
     ] 
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
-    vectorizers=list(vectorizer(_score_attr=(None, "freq_score")))
+    vectorizers=list(vectorizer(_score_attr=(None, "freq_score", "max_score")))
     nb_1_results = np.load("_nb-1.npy")
     
     for record in nb_1_results:
@@ -53,7 +51,7 @@ def nb_2():
                     trash_models=ex.SKIP,
                     models_fname=record["models_fname"],
                     _vectorizer=vectorizers,
-                    ##n_graphs=2,
+                    n_graphs=n_graphs,
                 )    
         
         for ns in exps: 
@@ -62,4 +60,6 @@ def nb_2():
   
 if __name__ == "__main__":
     set_default_log(log_fname="_nb-2.log")
-    nb_2()
+    nb_2(
+        ## n_graphs=2,
+    )

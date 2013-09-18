@@ -41,7 +41,7 @@ for measure in "nist", "bleu":
                             (bounds["source"] == source) & 
                             (bounds["target"] == target)]
             scores = np.hstack([scores, subset[measure]])
-            labels += [r["score"] for r in subset]                        
+            labels += [r["score_attr"] for r in subset]                        
             
             y_pos = np.arange(len(labels))
             ax = plt.subplot(3, 4, i)           
@@ -49,7 +49,8 @@ for measure in "nist", "bleu":
             if measure == "bleu":
                 scores *= 100
             handles = plt.barh(y_pos, scores, align='center', height=0.5, 
-                     color=("black", "orange", "yellow", "blue", "green", "red"),
+                     color=("black", "orange", "yellow", "blue",
+                            "purple", "brown", "green", "red"),
                      alpha=0.4)
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)
