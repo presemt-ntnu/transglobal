@@ -16,7 +16,7 @@ from tg.ambig import AmbiguityMap
 from tg.classify import TranslationClassifier
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, Vectorizer, filter_functions
-from tg.bestscore import BestScore
+from tg.bestscore import BestScorer
 from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
 from tg.mteval import mteval, parse_total_scores
@@ -116,8 +116,8 @@ def compute_classifier_score(ns):
 def compute_best_score(ns):
     ns.base_score_attrs = [ns.score_attr, "freq_score"]
     ns.best_score_attr = "best_core"
-    best_scorer = ns.BestScore(base_score_attrs=ns.base_score_attrs,
-                               score_attr=ns.best_score_attr)
+    best_scorer = ns.BestScorer(base_score_attrs=ns.base_score_attrs,
+                                score_attr=ns.best_score_attr)
     best_scorer(ns.graphs)    
     
 def save_scored_graphs(ns):

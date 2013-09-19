@@ -35,7 +35,8 @@ def nb_2(name = "nb-2", n_graphs=None):
     ] 
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
-    vectorizers=list(vectorizer(_score_attr=(None, "freq_score", "max_score")))
+    vectorizers=list(vectorizer(
+        _score_attr=(None, "freq_score", "dup_score")))
     nb_1_results = np.load("_nb-1.npy")
     
     for record in nb_1_results:

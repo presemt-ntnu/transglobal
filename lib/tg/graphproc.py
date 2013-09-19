@@ -21,7 +21,7 @@ class GraphProcess(object):
         """
         run process with either a single obj or a list of objects 
         """
-        log.info("applying graph process {0}".format(self.__class__.__name__))
+        log.info("applying graph process {}".format(self.__class__.__name__))
         
         if ( isinstance(obj, basestring) or 
              isinstance(obj, transgraph.TransGraph)):
@@ -29,9 +29,9 @@ class GraphProcess(object):
         else:
             return self._batch_run(obj, *args, **kwargs)
 
-
     def _single_run(self, obj, *args, **kwargs):
-        return NotImplemented
+        log.debug("applying graph process {} to {}".format(
+            self.__class__.__name__,  obj))
     
     def _batch_run(self, obj_list, *args, **kwargs):
         return [ self._single_run(obj, *args, **kwargs)

@@ -15,7 +15,7 @@ from tg.config import config
 from tg.annot import TreeTaggerEnglish, TreeTaggerGerman
 from tg.transdict import TransDict
 from tg.lookup import Lookup
-from tg.freqscore import FreqScore
+from tg.freqscore import FreqScorer
 from tg.draw import Draw, DrawGV
 from tg.arrange import Arrange
 from tg.format import TextFormat, MtevalFormat
@@ -55,7 +55,7 @@ def prepare(lang_pair):
     lookup(graph_list)
 
     # frequency scoring
-    freq_score = FreqScore(config["count"]["lemma"][target_lang]["pkl_fname"])
+    freq_score = FreqScorer(config["count"]["lemma"][target_lang]["pkl_fname"])
     freq_score(graph_list)
 
     # save

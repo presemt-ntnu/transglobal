@@ -4,7 +4,7 @@ test random scoring
 
 from cPickle import load
 
-from tg.randscore import RandProb
+from tg.randscore import RandScorer
 from tg.config import config
 
 
@@ -18,7 +18,7 @@ class TestRandProb:
         cls.graph_list = load(open(graphs_fname))
         
     def test_random(self):
-        rnd = RandProb()
+        rnd = RandScorer()
         rnd(self.graph_list)
         
         for graph in self.graph_list:

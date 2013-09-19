@@ -116,4 +116,5 @@ if __name__ == "__main__":
     #create_dict_pkl(lang_pairs=("no-en", "no-de"))
     #create_graphs(data=("presemt-dev",),
     #              lang_pairs=("no-en", "no-de"))
+    #create_graphs(data=("metis", "presemt-dev"))
 

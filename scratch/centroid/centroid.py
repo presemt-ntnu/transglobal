@@ -23,7 +23,7 @@ from tg.classify import TranslationClassifier
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, filter_functions
 from tg.exps.postproc import postprocess
-from tg.bestscore import BestScore
+from tg.bestscore import BestScorer
 from tg.skl.centroid import CosNearestCentroid, print_centroids, NearestCentroidProb
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 
@@ -104,7 +104,7 @@ def centroid_exp(data_sets=config["eval"]["data_sets"],
                     graph_list = cPickle.load(open(graphs_fname))
                     scorer(graph_list)
                     
-                    best_scorer = BestScore(["centroid_score", "freq_score"])
+                    best_scorer = BestScorer(["centroid_score", "freq_score"])
                     best_scorer(graph_list)
                     
                     scored_graphs_fname = exp_dir + "/" + name + "_graphs.pkl"

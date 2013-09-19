@@ -108,6 +108,9 @@ class AmbiguityMap():
     def __len__(self):
         return len(self.source_target_map)
     
+    def __contains__(self, item):
+        return item in self.source_target_map
+    
     def __iter__(self):
         """
         Iterator of all pairs of source lemmas and their corresponding list of target lemmas

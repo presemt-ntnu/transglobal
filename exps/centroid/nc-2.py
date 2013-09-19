@@ -34,7 +34,7 @@ def nc_2(name = "nc-2", n_graphs=None):
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
     vectorizers= [Vectorizer(score_attr=score_attr) 
-                  for score_attr in (None, "freq_score", "max_score")]
+                  for score_attr in (None, "freq_score", "dup_score")]
     nc_1_results = np.load("_nc-1.npy")
     
     for record in nc_1_results:

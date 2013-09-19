@@ -26,7 +26,7 @@ from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, Vectorizer, filter_functions
 from tg.exps.postproc import postprocess
-from tg.bestscore import BestScore
+from tg.bestscore import BestScorer
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 
 log = logging.getLogger(__name__)
@@ -145,7 +145,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             graph_list = cPickle.load(open(graphs_fname))
             scorer(graph_list)
             
-            best_scorer = BestScore(["nb_score", "freq_score"])
+            best_scorer = BestScorer(["nb_score", "freq_score"])
             best_scorer(graph_list)
             
             scored_graphs_fname = exp_dir + "/" + name + "_graphs.pkl"
