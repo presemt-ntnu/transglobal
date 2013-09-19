@@ -15,6 +15,7 @@ class TransGraph(nx.DiGraph):
     hyper_source_node_prefix = "hs"
     hyper_target_node_prefix = "ht"
     delimiter = u"/"
+    max_scores_cache = "_max_scores"
     
     def __init__(self, data=None, **attr):
         nx.DiGraph.__init__(self, data, **attr) 
@@ -260,14 +261,34 @@ class TransGraph(nx.DiGraph):
         -------
         t: tuple (score, node) or None
             A tuple t of a numerical score and target node identifier.
-            If the score attribute is not found on any of the 
-            translation edges, then score is None and a arbitrary target 
-            node is chosen. If the there are no translation edges, then
-            both score and node are None.
+            If the score attribute is not found on any of the translation edges, 
+            then both score and node are None.
+            If there are no translation edges, 
+            then both score and node are None.
+            If there are multiple nodes with the same maximum score,
+            one of them is chosen arbitrarily.
+            
+        Notes
+        -----
+        Max scores are cached with a dict on te source node, so make sure to 
+        clear these caches if you rerun a scorer. 
         """
-        scores = [ (d.get(score_attr), v) 
-                   for _, v, d in self.trans_edges_iter(u) ]
-        return max(scores + [(None, None)])
+        try:
+            return self.node[u][self.max_scores_cache][score_attr]
+        except KeyError:
+            pass
+        
+        max_score, max_node = None, None
+        
+        for _, v, d in self.trans_edges_iter(u):
+            score = d.get(score_attr)
+            if score > max_score:
+                max_score, max_node = score, v
+                max_node = v
+                
+        cache = self.node[u].setdefault(self.max_scores_cache, {})
+        cache[score_attr] = max_score, max_node
+        return max_score, max_node
 
         
         

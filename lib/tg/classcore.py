@@ -266,8 +266,6 @@ class ClassifierScore(GraphProcess):
         translation edges. Also store target node of the best translation to
         the best_nodes dict on the source node.
         """
-        best_score, best_node = None, None
-        
         for u, v, data in graph.trans_edges_iter(u):
             # TODO: handle source/target hypernodes 
             if graph.is_target_node(v):
@@ -279,16 +277,6 @@ class ClassifierScore(GraphProcess):
                     # model does not predict this target lemma,
                     # (which may be different from a 0.0 score)
                     continue
-                
-                if score > best_score:
-                    best_score, best_node = score, v
-
-        if "best_nodes" not in graph.node[u]:
-            graph.node[u]["best_nodes"] = {}
-        
-        graph.node[u]["best_nodes"][self.score_attr] = best_node
-           
-
     
     # tracing/debugging code
     
