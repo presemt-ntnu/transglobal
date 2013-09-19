@@ -7,6 +7,7 @@ import xml.etree.cElementTree as et
 from collections import Counter
 
 from tg.graphproc import GraphProcess
+from tg.scorer import Scorer
 from tg.mteval import read_ref_trans_counts
 
 log = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ log = logging.getLogger(__name__)
 # - store doc-id and seg-id during annotation?
 
 
-class DictUpperScore(GraphProcess):
+class DictUpperScorer(Scorer):
     """
     Approximation of the maximal scoring obtainable.
     
@@ -30,49 +31,42 @@ class DictUpperScore(GraphProcess):
     - This is an approximation. It may not work well for high frequency words 
       such as determiners or pronouns.
     - It is assumed that the order of documents (by docid) in the source
-      and reference is the same    
+      and reference is the same. Therefore calling it on a single graph 
+      will not work as expected.
     - In case of ties (candidates with equal counts), the choice is arbitrary.
-    - In case all candidates have zero conts, the choice is arbitary
+    - In case all candidates have zero counts, the choice is arbitary
       (does not matter for score anyway).
     - Multi-word units are not taken into account yet.
     """
     
     def __init__(self, ref_fname, score_attr="dup_score"):
-        GraphProcess.__init__(self)
-        self.score_attr = score_attr
+        Scorer.__init__(self, score_attr)
+        self.ref_fname = ref_fname
+        
+    def __call__(self, obj, *args, **kwargs):
         # It is assumed that the order of documents (by docid) in the source
         # and reference is the same
-        self.counts = read_ref_trans_counts(ref_fname, flatten=True)
-    
-    def _batch_run(self, obj_list, *args, **kwargs):
-        self.seg_num = 0
-        GraphProcess._batch_run(self, obj_list, *args, **kwargs)
-
+        self.counts = iter(read_ref_trans_counts(self.ref_fname, flatten=True))        
+        Scorer.__call__(self, obj, *args, **kwargs)
                 
     def _single_run(self, graph):
-        log.debug("applying {0} to graph {1}".format(
-            self.__class__.__name__,
-            graph.graph["id"]))
-        
-        seg_counts = self.counts[self.seg_num]
+        # called for optional debug logging
+        GraphProcess._single_run(self, graph)
+        seg_counts = self.counts.next()
         
         for u in graph.source_nodes_iter():
-            edge_data = []
-            counts = []
+            self._add_normalized_scores(
+                *self._score_translations(graph, u, seg_counts))
+        
+    def _score_translations(self, graph, u, seg_counts):
+        edge_data = []
+        counts = []
+        
+        for u, v, data in graph.trans_edges_iter(u):
+            edge_data.append(data)
+            target_lemma = graph.lemma(v).lower()
+            lemma_count = seg_counts.get(target_lemma, 0)
+            counts.append(lemma_count)
             
-            for u,v,data in graph.trans_edges_iter(u):
-                edge_data.append(data)
-                target_lemma = graph.lemma(v).lower()
-                lemma_count = seg_counts.get(target_lemma, 0)
-                counts.append(lemma_count)
-                    
-            # normalize scores        
-            total = float(sum(counts))
-            
-            for data, count in zip(edge_data, counts):
-                try:
-                    data[self.score_attr] = count / total
-                except ZeroDivisionError:
-                    data[self.score_attr] = 0.0
-                
-        self.seg_num += 1
+        return edge_data, counts
+        

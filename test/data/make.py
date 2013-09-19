@@ -23,9 +23,9 @@ from tg.lookup import Lookup
 from tg.transdict import TransDict
 from tg.utils import set_default_log
 from tg.draw import Draw
-from tg.freqscore import FreqScore
-from tg.randscore import RandProb
-from tg.upperscore import DictUpperScore
+from tg.freqscore import FreqScorer
+from tg.randscore import RandScorer
+from tg.upperscore import DictUpperScorer
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 
@@ -114,16 +114,16 @@ def make_graphs():
         
         # score most frequent translation
         counts_fname = config["count"]["lemma"][target_lang]["pkl_fname"]
-        freq_score = FreqScore(counts_fname)
+        freq_score = FreqScorer(counts_fname)
         freq_score(graphs)
         
         # score random translation
         counts_fname = config["count"]["lemma"][target_lang]["pkl_fname"]
-        rand_score = RandProb()
+        rand_score = RandScorer()
         rand_score(graphs)
         
         # score maximum 
-        maxscore = DictUpperScore(lemma_ref_fname)
+        maxscore = DictUpperScorer(lemma_ref_fname)
         maxscore(graphs)
         
         # draw graphs

@@ -16,7 +16,7 @@ from tg.ambig import AmbiguityMap
 from tg.classify import TranslationClassifier
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, Vectorizer, filter_functions
-from tg.bestscore import BestScore
+from tg.bestscore import BestScorer
 from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
 from tg.mteval import mteval, parse_total_scores

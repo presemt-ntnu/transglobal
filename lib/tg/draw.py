@@ -8,6 +8,8 @@ drawing of translation graphs using Graphviz
 
 import logging
 import os
+import subprocess
+import tempfile
 
 import pydot
 
@@ -246,3 +248,16 @@ class Draw(GraphProcess):
             out_fname = os.path.join(out_dir, out_fname)
             
         drawer.write(out_fname, out_format)
+        
+        
+        
+def draw(graph, base_score_attrs=[]):
+    """
+    debug function to draw graphs on Mac OS
+    """
+    drawer = Draw()
+    out_fname=tempfile.NamedTemporaryFile(suffix=".pdf").name
+    drawer(graph, out_fname, base_score_attrs=base_score_attrs)
+    subprocess.call(["open", "-a", "Preview", out_fname])
+    
+    

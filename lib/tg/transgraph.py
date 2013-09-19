@@ -24,7 +24,15 @@ class TransGraph(nx.DiGraph):
         self.hyper_source_node_count = 0   
         self.hyper_target_node_count = 0  
         self.source_start_node = None
-         
+        
+    def __repr__(self):
+        attrs = ", ".join("{}={!r}".format(k,v) 
+                          for k,v in self.graph.items())
+        return "{}({})".format(self.__class__.__name__, attrs)
+    
+    def __str__(self):
+        return self.__repr__()
+    
     #-------------------------------------------------------------------------
     # source nodes
     #-------------------------------------------------------------------------  
