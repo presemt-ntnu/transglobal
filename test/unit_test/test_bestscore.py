@@ -42,4 +42,8 @@ class TestBestScorer:
             for u, v, data in graph.trans_edges_iter():
                 # FIXME: hypernodes should be scored too
                 if not graph.is_hyper_source_node(u):
-                    assert data["best_score"] == data[other_attr]  
+                    try:
+                        assert data["best_score"] == data[other_attr]  
+                    except KeyError:
+                        # not all edges must have have other attr
+                        pass
