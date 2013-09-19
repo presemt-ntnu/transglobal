@@ -42,12 +42,17 @@ class BestScorer(Scorer):
                 data[self.score_attr] = data.get(base_score_attr, 0.0)
                 
     def _find_base_score_attr(self, graph, u):
+        has_trans_edge = False
+        
         for score_attr in self.base_score_attrs:
             for u, v, data in graph.trans_edges_iter(u):
+                has_trans_edge = True
                 if data.has_key(score_attr):
                     return score_attr
-                
-        log.warning("none of the translation edges of node {} in graph {} "
-                    "has any of the base score attributes {}".format(
-                        u, graph, self.base_score_attrs))
+        
+        # skip warning if source node has no translations, e.g. punctuation
+        if has_trans_edge:
+            log.warning("none of the translation edges of node {} in graph {} "
+                        "has any of the base score attributes {}".format(
+                            u, graph, self.base_score_attrs))
 

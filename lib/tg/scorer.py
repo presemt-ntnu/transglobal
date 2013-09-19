@@ -54,10 +54,12 @@ class Scorer(GraphProcess):
         scores: iterable
             scores
         """
-        total = float(sum(scores))
+        # scores can contain None
+        total = float(sum(s for s in scores if s is not None))
         
         for data, score in zip(edge_data, scores):
-            try:
-                data[self.score_attr] = score / total
-            except ZeroDivisionError:
-                data[self.score_attr] = 0.0
+            if score is not None:
+                try:
+                    data[self.score_attr] = score / total
+                except ZeroDivisionError:
+                    data[self.score_attr] = 0.0

@@ -45,6 +45,8 @@ class FreqScorer(Scorer):
         for u, v, data in graph.trans_edges_iter(u):
             edge_data.append(data)
             lemma = graph.lemma(v)
+            # if oov_count is not None, all translation edges will have a
+            # freq_score attrib
             count = self.counts_dict.get(lemma, self.oov_count)
             log.debug(u"lemma '{}' has count {}".format(lemma, count))
             counts.append(count)

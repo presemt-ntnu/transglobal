@@ -116,8 +116,8 @@ def compute_classifier_score(ns):
 def compute_best_score(ns):
     ns.base_score_attrs = [ns.score_attr, "freq_score"]
     ns.best_score_attr = "best_core"
-    best_scorer = ns.BestScore(base_score_attrs=ns.base_score_attrs,
-                               score_attr=ns.best_score_attr)
+    best_scorer = ns.BestScorer(base_score_attrs=ns.base_score_attrs,
+                                score_attr=ns.best_score_attr)
     best_scorer(ns.graphs)    
     
 def save_scored_graphs(ns):

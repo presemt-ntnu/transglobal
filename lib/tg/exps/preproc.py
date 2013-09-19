@@ -13,8 +13,8 @@ from tg.annot import get_annotator
 from tg.transdict import TransDict
 from tg.lookup import Lookup
 from tg.freqscore import FreqScorer
-from tg.upperscore import DictUpperScorer
-
+from tg.upperscore import DictUpperScorer, ModelUpperScorer
+from tg.classcore import filter_functions
 
 
 def preprocess(data_set, lang_pair):
@@ -38,11 +38,17 @@ def preprocess(data_set, lang_pair):
     freq_score = FreqScorer(config["count"]["lemma"][target_lang]["pkl_fname"])
     freq_score(graph_list)
     
-    # approximated max scores  
+    # dict upper scores  
     lemma_ref_fname = \
         config["eval"][data_set][lang_pair]["lemma_ref_fname"]
-    maxscore = DictUpperScorer(lemma_ref_fname)
-    maxscore(graph_list)
+    scorer = DictUpperScorer(lemma_ref_fname)
+    scorer(graph_list)
+    
+    # dict upper scores  
+    ambig_fname = config["sample"][lang_pair]["ambig_fname"]  
+    filter = filter_functions(source_lang)
+    scorer = ModelUpperScorer(lemma_ref_fname, ambig_fname, filter)
+    scorer(graph_list)
     
     # save graphs
     log.info("saving preprocessed graphs to " + graphs_fname)
