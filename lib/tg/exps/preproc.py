@@ -44,7 +44,7 @@ def preprocess(data_set, lang_pair):
     scorer = DictUpperScorer(lemma_ref_fname)
     scorer(graph_list)
     
-    # dict upper scores  
+    # model upper scores  
     ambig_fname = config["sample"][lang_pair]["ambig_fname"]  
     filter = filter_functions(source_lang)
     scorer = ModelUpperScorer(lemma_ref_fname, ambig_fname, filter)

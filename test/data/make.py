@@ -25,9 +25,10 @@ from tg.utils import set_default_log
 from tg.draw import Draw
 from tg.freqscore import FreqScorer
 from tg.randscore import RandScorer
-from tg.upperscore import DictUpperScorer
+from tg.upperscore import DictUpperScorer, ModelUpperScorer
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
+from tg.classcore import filter_functions
 
 log = logging.getLogger(__name__)   
 set_default_log(level=logging.INFO)
@@ -122,14 +123,21 @@ def make_graphs():
         rand_score = RandScorer()
         rand_score(graphs)
         
-        # score maximum 
+        # dict upper score
         maxscore = DictUpperScorer(lemma_ref_fname)
         maxscore(graphs)
+    
+        # model upper scores  
+        ambig_fname = config["sample"][lang_pair]["ambig_fname"]  
+        filter = filter_functions(source_lang)
+        scorer = ModelUpperScorer(lemma_ref_fname, ambig_fname, filter)
+        scorer(graphs)
         
         # draw graphs
         draw = Draw()
         draw(graphs, out_format="pdf", 
-             base_score_attrs=["dup_score", "freq_score", "rand_score"], 
+             base_score_attrs=["dup_score", "mup_score", "freq_score", 
+                               "rand_score"], 
              out_dir="_draw_" + lang_pair)
         
         # save graphs
