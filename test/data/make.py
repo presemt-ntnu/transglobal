@@ -25,7 +25,7 @@ from tg.utils import set_default_log
 from tg.draw import Draw
 from tg.freqscore import FreqScore
 from tg.randscore import RandProb
-from tg.maxscore import MaxScore
+from tg.upperscore import DictUpperScore
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
 
@@ -123,13 +123,13 @@ def make_graphs():
         rand_score(graphs)
         
         # score maximum 
-        maxscore = MaxScore(lemma_ref_fname)
+        maxscore = DictUpperScore(lemma_ref_fname)
         maxscore(graphs)
         
         # draw graphs
         draw = Draw()
         draw(graphs, out_format="pdf", 
-             base_score_attrs=["max_score", "freq_score", "rand_score"], 
+             base_score_attrs=["dup_score", "freq_score", "rand_score"], 
              out_dir="_draw_" + lang_pair)
         
         # save graphs

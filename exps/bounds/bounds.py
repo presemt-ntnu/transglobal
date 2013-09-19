@@ -51,7 +51,7 @@ def bounds(data_sets=config["eval"]["data_sets"], lang_pairs=()):
             classifier=None,
             data=data,
             _lang=lang_pairs or config["eval"][data].keys(),
-            _best_score_attr=("freq_score","max_score"),
+            _best_score_attr=("freq_score","dup_score"),
             build=ex.SKIP,
             score=ex.SKIP,
             write_text=ex.SKIP,

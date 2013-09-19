@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 # - store doc-id and seg-id during annotation?
 
 
-class MaxScore(GraphProcess):
+class DictUpperScore(GraphProcess):
     """
     Approximation of the maximal scoring obtainable.
     
@@ -37,7 +37,7 @@ class MaxScore(GraphProcess):
     - Multi-word units are not taken into account yet.
     """
     
-    def __init__(self, ref_fname, score_attr="max_score"):
+    def __init__(self, ref_fname, score_attr="dup_score"):
         GraphProcess.__init__(self)
         self.score_attr = score_attr
         # It is assumed that the order of documents (by docid) in the source
