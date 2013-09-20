@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 Accuracy = collections.namedtuple("Accuracy",
                                   "correct incorrect ignored score")
 
-def accuracy(graphs, ref_fname, score_attr):
+def accuracy_score(graphs, ref_fname, score_attr):
     """
     Compute approximate accuracy score
     
@@ -75,7 +75,9 @@ def accuracy(graphs, ref_fname, score_attr):
                 
                     
     score = correct / float(correct + incorrect)
-    return Accuracy(correct, incorrect, ignored, score)
+    result = Accuracy(correct, incorrect, ignored, score)
+    log.info(result)
+    return result
                 
 
 
