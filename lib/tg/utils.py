@@ -24,6 +24,10 @@ def set_default_log(level=logging.INFO, encoding="utf-8", errors="strict",
     """
     configure default "root" logger
     """ 
+    # if level is string, get corresponding numeric value 
+    if isinstance(level, basestring):
+        level = logging.getLevelName(level)
+        
     # get root logger
     log = logging.getLogger()
     log.setLevel(level)

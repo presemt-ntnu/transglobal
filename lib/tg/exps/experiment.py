@@ -21,6 +21,7 @@ from tg.draw import Draw
 from tg.format import TextFormat, MtevalFormat
 from tg.mteval import mteval, parse_total_scores
 from tg.transdiff import trans_diff
+from tg.accuracy import accuracy_score
 
 
 log = logging.getLogger(__name__)
@@ -132,6 +133,10 @@ def save_scored_graphs(ns):
 #-------------------------------------------------------------------------------
 
 def evaluate(ns):
+    ns.compute_nist_blue_scores(ns)
+    ns.compute_accuracy_score(ns)
+    
+def compute_nist_blue_scores(ns):    
     ns.write_mteval_format(ns)
     ns.run_mteval(ns)
     
@@ -152,6 +157,14 @@ def run_mteval(ns):
            ns.tst_fname,
            ns.scores_fname)
     ns.scores = ns.parse_total_scores(ns.scores_fname)  
+    
+def compute_accuracy_score(ns):
+    # do not compute accuracy on best score , but on model score
+    ns.accuracy = ns.accuracy_score(
+        ns.graphs,
+        config["eval"][ns.data][ns.lang]["lemma_ref_fname"], 
+        ns.score_attr)
+    
 
 #-------------------------------------------------------------------------------
 # Postprocess

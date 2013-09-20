@@ -17,7 +17,7 @@ from tg.config import config
 
 log = logging.getLogger(__name__)
 
-Scores = namedtuple("Scores", "system NIST BLEU")
+MTEval = namedtuple("MTEval", "system NIST BLEU")
   
     
 def mteval(ref_fname, src_fname, tst_fname, outf=sys.stdout,
@@ -240,7 +240,7 @@ def parse_total_scores(file):
         except AttributeError:
             pass
         else:
-            scores = Scores(system, float(nist), float(bleu))
+            scores = MTEval(system, float(nist), float(bleu))
             log.info(scores)            
             return scores
         
