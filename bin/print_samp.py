@@ -61,4 +61,11 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+# work around because it seems argparse does not convert strings to unicode
+if isinstance(args.lemma, basestring):
+    args.lemma = args.lemma.decode(sys.stdin.encoding)
+    
+if isinstance(args.pos, basestring):
+    args.pos = args.pos.decode(sys.stdin.encoding)
+
 print_samples(args.samp_fname, args.lemma, args.pos)
