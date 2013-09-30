@@ -29,7 +29,11 @@ def nb_2(name = "nb-2", n_graphs=None):
         ("prior", "b", "class_priors"),
         ("vect_score_attr", "S16", "vectorizer.score_attr"),
         ("nist", "f", "scores.NIST"),
-        ("bleu", "f", "scores.BLEU"),        
+        ("bleu", "f", "scores.BLEU"),  
+        ("correct", "i", "accuracy.correct"),
+        ("incorrect", "i", "accuracy.incorrect"),
+        ("ignored", "i", "accuracy.ignored"),
+        ("accuracy", "f", "accuracy.score"),
         ("exp_name", "S128"),        
         ("models_fname", "S256"),
     ] 
@@ -62,5 +66,6 @@ def nb_2(name = "nb-2", n_graphs=None):
 if __name__ == "__main__":
     set_default_log(log_fname="_nb-2.log")
     nb_2(
-        ## n_graphs=2,
+        #name="test",
+        #n_graphs=2,
     )
