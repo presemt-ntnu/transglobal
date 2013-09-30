@@ -73,8 +73,12 @@ def accuracy_score(graphs, ref_fname, score_attr):
                 log.debug("  none of its translation edges have score "
                           "attribute {!r}".format(score_attr))
                 
-                    
-    score = correct / float(correct + incorrect)
+    try:
+        score = correct / float(correct + incorrect)
+    except ZeroDivisionError:
+        log.warn("zero correct and zero incorrect; assuming zero acuracy")
+        score = 0.0
+        
     result = Accuracy(correct, incorrect, ignored, score)
     log.info(result)
     return result
