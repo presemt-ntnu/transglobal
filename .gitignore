@@ -12,5 +12,6 @@ _*
 *.hdf5
 *.tst
 exp_*
+.ipynb_*
 !__init__.py
 !test/data/*.pkl
