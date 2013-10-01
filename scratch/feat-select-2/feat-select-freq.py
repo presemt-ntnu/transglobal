@@ -5,6 +5,10 @@
 feature selection with different frequency cut-offs,
 with Naive Bayes models with class priors from corpus,
 with MFT vectors
+
+Note that for some combinations, no features at all are selected,
+so there is no model for the word. As a result the number of "ignored"
+in accuracy calculations may vary.
 """
 
 

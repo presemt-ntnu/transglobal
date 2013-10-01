@@ -32,6 +32,7 @@ descriptor = [
         ("incorrect", "i"),
         ("ignored", "i"),
         ("accuracy", "f"),
+        ("graphs", "i"),
         ("nist", "f"),
         ("bleu", "f"),
         ("exp_name", "S128"),   
@@ -44,6 +45,7 @@ for i, exp in enumerate(old_results):
     graphs_fname = "_{}/{}_graphs.pkl".format(name, exp["exp_name"])
     graphs = cPickle.load(open(graphs_fname))
     accuracy = accuracy_score(graphs, ref_fname, name + "_score")
+    new_results[i]["graphs"] = len(graphs)
     new_results[i]["data"] = exp["data"]
     new_results[i]["source"] = exp["source"]
     new_results[i]["target"] = exp["target"]

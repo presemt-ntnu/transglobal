@@ -4,7 +4,11 @@
 """
 CHI2 feature selection for range of alphas,
 with Naive Bayes models with class priors from corpus,
-with MFT vectors
+with MFT vectors.
+
+Note that for some combinations, no features at all are selected,
+so there is no model for the word. As a result the number of "ignored"
+in accuracy calculations may vary.
 """
 
 
