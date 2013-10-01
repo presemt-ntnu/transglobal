@@ -27,7 +27,11 @@ def nc_2(name = "nc-2", n_graphs=None):
         ("target", "S8", "target_lang"),
         ("vect_score_attr", "S16", "vectorizer.score_attr"),
         ("nist", "f", "scores.NIST"),
-        ("bleu", "f", "scores.BLEU"),        
+        ("bleu", "f", "scores.BLEU"), 
+        ("correct", "i", "accuracy.correct"),
+        ("incorrect", "i", "accuracy.incorrect"),
+        ("ignored", "i", "accuracy.ignored"),
+        ("accuracy", "f", "accuracy.score"),       
         ("exp_name", "S128"),        
         ("models_fname", "S256"),
     ] 

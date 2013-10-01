@@ -16,7 +16,7 @@ nb = np.load("_nc-2.npy")
 bounds = np.load("../bounds/_bounds.npy")
 
 
-for measure in "nist", "bleu":
+for measure in "accuracy", "nist", "bleu", :
     fig = plt.figure(figsize=(16,9))
     i = 0
     
@@ -36,25 +36,34 @@ for measure in "nist", "bleu":
             labels = ["vect={}".format(r["vect_score_attr"]) 
                       for r in subset]
             
-            subset = bounds[(bounds["data"] == data) & 
-                            (bounds["source"] == source) & 
-                            (bounds["target"] == target)]
-            scores = np.hstack([scores, subset[measure]])
-            labels += [r["score_attr"] for r in subset]                        
+            if measure != "accuracy":
+                # No bounds for accuracy, because that depends on classifier.
+                # Could be calculated for NC though, in principle.
+                subset = bounds[(bounds["data"] == data) & 
+                                (bounds["source"] == source) & 
+                                (bounds["target"] == target)]
+                scores = np.hstack([scores, subset[measure]])
+                labels += [r["score_attr"] for r in subset]                        
             
             y_pos = np.arange(len(labels))
             ax = plt.subplot(3, 4, i)           
 
             if measure == "bleu":
                 scores *= 100
+                plt.xlim(xmax=40.0)
+            elif measure == "nist":
+                plt.xlim(xmax=9.0)                
+            else:
+                scores *= 100
+                plt.xlim(xmax=60)                
+                
             handles = plt.barh(y_pos, scores, align='center', height=0.5, 
                      color=("black", "blue", "yellow", "green", "red", 
                             "orange"),
                      alpha=0.4)
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)
-            plt.xlabel(measure.upper())
-            plt.xlim(xmax=30.0 if measure == "bleu" else 9.0)
+            plt.xlabel(measure.capitalize())
             plt.grid(axis="x")
             plt.title("{} {}-{}".format(data.upper(), 
                                         source.capitalize(), 
