@@ -21,8 +21,3 @@ class TestResultStore:
         # results is filled - appening one more must grow results
         store.append(ns)
         assert store.results.shape[0] == 2 * buf_size
-        print
-        
-        
-        
-        
