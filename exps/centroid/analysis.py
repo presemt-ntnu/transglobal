@@ -33,7 +33,8 @@ for measure in "accuracy", "nist", "bleu", :
             i += 1
             
             scores = subset[measure]
-            labels = ["vect={}".format(r["vect_score_attr"]) 
+            labels = ["vect={} metric={}".format(r["vect_score_attr"],
+                                                 r["metric"]) 
                       for r in subset]
             
             if measure != "accuracy":
@@ -58,9 +59,14 @@ for measure in "accuracy", "nist", "bleu", :
                 plt.xlim(xmax=60)                
                 
             handles = plt.barh(y_pos, scores, align='center', height=0.5, 
-                     color=("black", "blue", "yellow", "green", "red", 
-                            "orange"),
-                     alpha=0.4)
+                     color=("gray", "blue", "yellow", "green", "red", 
+                            "orange", "purple", "white"),
+                     alpha=0.8)
+            
+            for label, bar in zip(labels, handles):
+                if "cosine" in label:
+                    bar.set_hatch("//")
+                
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)
             plt.xlabel(measure.capitalize())

@@ -25,6 +25,7 @@ def nc_2(name = "nc-2", n_graphs=None):
         ("data", "S16"),
         ("source", "S8",  "source_lang"),
         ("target", "S8", "target_lang"),
+        ("metric", "S16", "NCC__metric"),
         ("vect_score_attr", "S16", "vectorizer.score_attr"),
         ("nist", "f", "scores.NIST"),
         ("bleu", "f", "scores.BLEU"), 
@@ -54,9 +55,11 @@ def nc_2(name = "nc-2", n_graphs=None):
                     models_fname=record["models_fname"],
                     _vectorizer=vectorizers,
                     n_graphs=n_graphs,
-                )    
+                )  
         
         for ns in exps: 
+            # hack, because there is no classifier in exps
+            ns.NCC__metric = record["metric"]
             result_store.append(ns)
                 
   
