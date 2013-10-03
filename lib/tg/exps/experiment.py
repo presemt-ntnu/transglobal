@@ -7,12 +7,15 @@ import logging
 import os
 import tempfile
 
+import h5py
+
 from tg.config import config
 from tg.exps import support
 
 # Functions and classes below are imported in local namespace 
 # and will therefore become part of exp's namespace'
 from tg.ambig import AmbiguityMap
+from tg.sample import DataSetGenerator
 from tg.classify import TranslationClassifier
 from tg.model import ModelBuilder
 from tg.classcore import ClassifierScore, Vectorizer, filter_functions
@@ -64,15 +67,26 @@ def get_languages(ns):
 #-------------------------------------------------------------------------------
 # Build models
 #-------------------------------------------------------------------------------
-        
-def build(ns):
-    ns.get_ambiguity_map(ns)
-    ns.get_samples(ns)
-    ns.build_models(ns)
-        
+
+# This tries to avoid keeping resources in memory by not storing large
+# objects such as the AmbguityMap and HDF5 samples in the namespace
+
+def build_models(ns):
+    ns.models_fname = ns.fname_prefix + "_models.hdf5"   
+    model_builder = ns.ModelBuilder(ns.get_data_generator(ns), 
+                                    ns.models_fname,
+                                    ns.classifier)
+    model_builder.run()
+    
+def get_data_generator(ns):
+    return ns.DataSetGenerator(ns.get_ambiguity_map(ns), 
+                               ns.get_samples(ns),
+                               shuffle=getattr(ns, "shuffle", False),
+                               random_state=getattr(ns, "random_state", None))
+            
 def get_ambiguity_map(ns):
     ambig_fname = config["sample"][ns.lang]["ambig_fname"]            
-    ns.ambig_map = ns.AmbiguityMap(ambig_fname, graphs=ns.graphs)    
+    return ns.AmbiguityMap(ambig_fname, graphs=ns.graphs)    
     
 def get_samples(ns):
     try:
@@ -80,17 +94,10 @@ def get_samples(ns):
     except KeyError:
         ns.samples_fname = config["sample"][ns.lang]["samples_fname"]
         log.warn("Backing off to unfiltered samples from " + 
-                 ns.samples_fname)     
-    
-def build_models(ns):
-    ns.models_fname = ns.fname_prefix + "_models.hdf5"   
-    model_builder = ns.ModelBuilder(ns.ambig_map, 
-                                    ns.samples_fname, 
-                                    ns.models_fname,
-                                    ns.classifier)
-    model_builder.run()
-    # clean up params
-    delattr(ns, "ambig_map")      
+                 ns.samples_fname) 
+        
+    log.info("opening samples file " + ns.samples_fname)
+    return h5py.File(ns.samples_fname, "r")
     
     
 #-------------------------------------------------------------------------------
@@ -238,6 +245,8 @@ def single_exp(name,
     ModelBuilder
     TranslationClassifier
     
+    shuffle
+    
     """
     # Create namespace instance holding all experimental parameters.
     ns = support.Namespace()
@@ -247,7 +256,7 @@ def single_exp(name,
     ns.import_locals(locals())
     
     ns.setup(ns)
-    ns.build(ns)
+    ns.build_models(ns)
     ns.score(ns)
     ns.evaluate(ns)
     ns.postprocess(ns)

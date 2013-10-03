@@ -17,6 +17,8 @@ import h5py
 import numpy as np
 import scipy.sparse as sp
 
+from sklearn.utils import shuffle
+
 from tg.config import config
 from tg.transdict import TransDict
 from tg.utils import coo_matrix_from_hdf5, coo_matrix_to_hdf5
@@ -33,26 +35,25 @@ class DataSetGenerator(object):
     Generates labeled data from an ambiguity map and a samples file
     """
 
-    def __init__(self, ambig_map, samp_hdfile, dtype="f8"):
+    def __init__(self, ambig_map, samp_hdfile, dtype="f8", 
+                 shuffle=False, random_state=None):
         self.ambig_map = ambig_map
         self.samp_hdfile= samp_hdfile
         self.dtype = dtype
-        
+        self.shuffle = shuffle
+        self.random_state = random_state
+                    
     def __iter__(self):
         # generate a data set for every source lempos in the ambuity map
         for source_lempos, target_lempos_list in self.ambig_map:
             yield self._get_labeled_data(source_lempos, target_lempos_list)
-            
+                        
     def _get_sample_mat(self, lempos):
-        try:
-            group = self.samp_hdfile["samples"][lempos]
-        except KeyError:
-            # Should not happen.
-            # Leave handling of KeyError to caller.
-            log.warning("found no samples for " + lempos)
-            raise
+        # Raises KeyError if there are no samples for lempos.
+        # Leave handling of KeyError to caller.
+        group = self.samp_hdfile["samples"][lempos]
         
-        # read a sparse matric in COO format from a HDF5 group
+        # read a sparse matrix in COO format from a HDF5 group
         return sp.coo_matrix((group["data"], group["ij"]), 
                              shape=group.attrs["shape"], 
                              dtype=self.dtype)
@@ -67,7 +68,8 @@ class DataSetGenerator(object):
             try:
                 samp_mat = self._get_sample_mat(lempos)
             except KeyError:
-                # silently skip lempos if there are no samples
+                log.error("found no samples for " + lempos)                
+                # skip lempos if there are no samples
                 continue
             
             if not samples:
@@ -85,6 +87,10 @@ class DataSetGenerator(object):
             # hdf5 cannot store array of unicode strings, so use byte
             # strings for target names
             sampled_target_lempos.append(lempos.encode("utf-8"))
+            
+        if self.shuffle:
+            samples, targets = shuffle(samples, targets, 
+                                       random_state=self.random_state)
             
         return DataSet(source_lempos, 
                        sampled_target_lempos, 

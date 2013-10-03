@@ -45,8 +45,8 @@ class ModelBuilder(object):
     
     Parameters
     ----------
-    ambig_map: AmbiguityMap instance
-        Mapping from ambiguous source lempos to candidate target lempos
+    data_generator: DataSetGenerator instance
+        Labeled samples generator
     samp_hdf_fname: str
         Name of HDF5 file containing context samples
     models_hdf_fname: str
@@ -63,10 +63,9 @@ class ModelBuilder(object):
     # feature selectors that reduce the vocabulary
     FEATURE_SELECTORS = _BaseFilter, RFE, _LearntSelectorMixin
     
-    def __init__(self, ambig_map, samp_hdf_fname, models_hdf_fname,
+    def __init__(self, data_generator, models_hdf_fname,
                  classifier, with_vocab_mask=False, **kwargs):
-        self.ambig_map = ambig_map
-        self.samp_hdf_fname = samp_hdf_fname
+        self.data_generator = data_generator
         self.models_hdf_fname = models_hdf_fname
         self.classifier = classifier
         self.disambiguator_count = 0
@@ -84,32 +83,29 @@ class ModelBuilder(object):
     def _prepare(self):
         self.start_time = time.time() 
         
-        log.info("opening samples file " + self.samp_hdf_fname)
-        self.sample_hdfile = h5py.File(self.samp_hdf_fname, "r")
-        self.samples = self.sample_hdfile["samples"]
-        
         log.info("creating models file " + self.models_hdf_fname)
         self.models_hdfile = DisambiguatorStore(self.models_hdf_fname, "w")
         
         self.models_hdfile.save_estimator(self.classifier)
         
-        self.models_hdfile.copy_vocab(self.sample_hdfile)
+        # FIXME: hmm, a bit sneaky...
+        self.models_hdfile.copy_vocab(self.data_generator.samp_hdfile)
         
         if self.with_vocab_mask:
             log.info("storage with vocabulary masks")
             self.vocab = self.models_hdfile.load_vocab()
             
     def _build(self):
-        for data_set in DataSetGenerator(self.ambig_map,
-                                         self.sample_hdfile):
-            if data_set.samples:
+        for data_set in self.data_generator:
+            if data_set.target_lempos:
                 self._build_disambiguator(data_set)
             else:
-                log.error("No samples and thus no disambiguation models for " +
+                log.error("no samples and thus no disambiguation models for " +
                           data_set.source_lempos)
             
     def _build_disambiguator(self, data_set):
-        log.info("building disambiguator for " + data_set.source_lempos)
+        log.info(u"building disambiguator for {} with {} translations".format(
+            data_set.source_lempos, len(data_set.target_lempos)))
         # it seems scilearn classes want sparse matrices in csr format
         try:
             self.classifier.fit(data_set.samples.tocsr(), data_set.targets)  
@@ -148,8 +144,6 @@ class ModelBuilder(object):
         self.models_hdfile.save_vocab_mask(lempos, mask)
         
     def _finish(self):
-        log.info("closing samples file " + self.samp_hdf_fname)    
-        self.sample_hdfile.close()
         log.info("closing models file " + self.models_hdf_fname)    
         self.models_hdfile.close()
         
@@ -179,10 +173,8 @@ class PriorModelBuilder(ModelBuilder):
     
     Parameters
     ----------
-    ambig_map: AmbiguityMap instance
-        Mapping from ambiguous source lempos to candidate target lempos
-    samp_hdf_fname: str
-        Name of HDF5 file containing context samples
+    data_generator: DataSetGenerator instance
+        Labeled samples generator
     models_hdf_fname: str
         Name of HDF5 file for storing disambiguation models
     classifier: classifier instance
@@ -196,11 +188,10 @@ class PriorModelBuilder(ModelBuilder):
         to be pruned accordingly
     """
     
-    def __init__(self, ambig_map, samp_hdf_fname, models_hdf_fname,
-                 classifier, counts_fname, with_vocab_mask=False):
-        ModelBuilder.__init__(self, ambig_map, samp_hdf_fname,
-                              models_hdf_fname, classifier, 
-                              with_vocab_mask=with_vocab_mask)
+    def __init__(self, data_generator, models_hdf_fname, classifier,
+                 counts_fname, with_vocab_mask=False):
+        ModelBuilder.__init__(self, data_generator, models_hdf_fname,
+                              classifier, with_vocab_mask=with_vocab_mask)
         self.counts_fname = counts_fname
         
     def _prepare(self):
