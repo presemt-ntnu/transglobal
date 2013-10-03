@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+
 """
 cross-validated results on context samples with SGD
 """
 
 import codecs
 import sys
+import logging
 
 import numpy as np
 import pylab as pl
@@ -21,6 +24,8 @@ from tg.config import config
 from tg.ambig import AmbiguityMap
 from tg.sample import DataSetGenerator
 from tg.utils import set_default_log
+
+log = logging.getLogger(__name__)
 
 
 class Scorer:
@@ -106,14 +111,14 @@ def run_cv1(lang_pair, results_fname, subset=None):
                    ("f-score", "f"),
                    ("accuracy", "f")] 
     results = np.zeros(9999, dtype=descriptor)
-    
+
     i = 0
     
-    for data in data_gen:
+    for n, data in enumerate(data_gen):
         if not data.target_lempos:
-            print "*", data.source_lempos, "no samples"
+            log.error(data.source_lempos + u"no samples")
             continue
-        #print i+1, data.source_lempos
+        log.info(u"{}/{} {}".format(n+1, len(ambig_map), data.source_lempos))
         lemma, pos = data.source_lempos.rsplit("/", 1)
         n_cand = len(data.target_lempos)
         # *** shuffling is essential for SGD! *** 
