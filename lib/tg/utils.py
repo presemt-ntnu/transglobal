@@ -117,4 +117,3 @@ def text_table(table, outf=None, encoding="utf-8"):
 
     table = tabulate.tabulate(table, headers=table.dtype.names)
     outf.write(table)
-    outf.close()

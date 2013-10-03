@@ -7,7 +7,6 @@ import sys
 
 import numpy as np
 import pylab as pl
-import asciitable as at
 import h5py
 
 from sklearn.pipeline import Pipeline
@@ -20,7 +19,7 @@ from tg.exps.support import grid_search
 from tg.config import config
 from tg.ambig import AmbiguityMap
 from tg.sample import DataSetGenerator
-from tg.utils import set_default_log
+from tg.utils import set_default_log, text_table
 
 
 class Scorer:
@@ -94,8 +93,8 @@ def run_cv1(lang_pair, results_fname, subset=None):
         
     ))
     
-    descriptor = [ ("lemma", "S32"),
-                   ("pos", "S32"),
+    descriptor = [ ("lemma", "U32"),
+                   ("pos", "U32"),
                    ("#cand", "i"),
                    ("alpha", "f"),
                    ("loss", "S16"),
@@ -125,8 +124,8 @@ def run_cv1(lang_pair, results_fname, subset=None):
                             samples, 
                             targets,
                             scoring=scorer)  
-            params = (repr(lemma), # HACK: 
-                      pos,         # asciitable can't handle unicode 
+            params = (lemma,
+                      pos,  
                       n_cand,
                       classifier.alpha,
                       classifier.loss,
@@ -135,10 +134,8 @@ def run_cv1(lang_pair, results_fname, subset=None):
             results[i] =  params + tuple(scorer.mean_scores())
             i += 1
             np.save(results_fname, results[:i])
-            at.write(results[:i], 
-                     results_fname.replace(".npy", ".txt"),
-                     Writer=at.FixedWidthTwoLine, 
-                     delimiter_pad=" ")
+            text_table(results[:i], 
+                       results_fname.replace(".npy", ".txt"))
             
 
 
