@@ -14,7 +14,6 @@ from sklearn.naive_bayes import MultinomialNB
 
 from tg.config import config
 from tg.ambig import AmbiguityMap
-from tg.model import ModelBuilder
 from tg.classify import TranslationClassifier
 from tg.utils import coo_matrix_from_hdf5
 

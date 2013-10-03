@@ -37,9 +37,8 @@ def nb_build_model(ns):
     ns.models_fname = ns.fname_prefix + "_models.hdf5"           
     
     counts_fname = config["count"]["lemma"][ns.target_lang]["pkl_fname"]       
-    model_builder = PriorModelBuilder(ns.ambig_map, 
-                                      ns.samples_fname,
-                                      ns.models_fname, 
+    model_builder = PriorModelBuilder(ns.get_data_generator(ns), 
+                                      ns.models_fname,
                                       ns.classifier, 
                                       counts_fname=counts_fname)
     model_builder.run()

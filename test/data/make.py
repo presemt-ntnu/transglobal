@@ -13,6 +13,8 @@ from codecs import open
 from os.path import splitext
 import logging
 
+import h5py
+
 from sklearn.naive_bayes import MultinomialNB
 
 
@@ -28,6 +30,7 @@ from tg.randscore import RandScorer
 from tg.upperscore import DictUpperScorer, ModelUpperScorer
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
+from tg.sample import DataSetGenerator
 from tg.classcore import filter_functions
 
 log = logging.getLogger(__name__)   
@@ -153,13 +156,16 @@ def make_classifiers():
         
         samp_fname = "{}/{}_samples.hdf5_".format(
             config["test_data_dir"], lang_pair)
+        samp_hdfile = h5py.File(samp_fname, "r")        
+        
+        data_gen = DataSetGenerator(ambig_map, samp_hdfile)        
                 
         models_fname = "{}/{}_models.hdf5_".format(
-            config["test_data_dir"], lang_pair)        
+            config["test_data_dir"], lang_pair)  
+        
             
         builder = ModelBuilder(
-            ambig_map = ambig_map,
-            samp_hdf_fname = samp_fname,
+            data_generator = data_gen,
             models_hdf_fname = models_fname,
             classifier = MultinomialNB() )
                 

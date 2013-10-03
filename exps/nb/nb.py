@@ -26,16 +26,14 @@ def nb_build_models(ns):
     
     if getattr(ns, "class_priors"):
         counts_fname = config["count"]["lemma"][ns.target_lang]["pkl_fname"]       
-        model_builder = PriorModelBuilder(ns.ambig_map, 
-                                          ns.samples_fname,
+        model_builder = PriorModelBuilder(ns.get_data_generator(ns), 
                                           ns.models_fname, 
                                           ns.classifier, 
                                           counts_fname=counts_fname)
-    else:
-        model_builder = ModelBuilder(ns.ambig_map, 
-                                     ns.samples_fname, 
-                                     ns.models_fname,
-                                     ns.classifier)
+    else: 
+        model_builder = ns.ModelBuilder(ns.get_data_generator(ns), 
+                                        ns.models_fname,
+                                        ns.classifier)
     model_builder.run()
     # clean up params
     delattr(ns, "ambig_map")
