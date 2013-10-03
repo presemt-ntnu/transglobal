@@ -8,11 +8,10 @@ ad-hoc script to add accuracy
 import cPickle
 
 import numpy as np
-import asciitable as at
 
 from tg.config import config
 from tg.accuracy import accuracy_score
-from tg.utils import set_default_log
+from tg.utils import set_default_log, text_table
 
 set_default_log()
 
@@ -61,10 +60,7 @@ for i, exp in enumerate(old_results):
 
 np.save("_" + name + "-acc.npy", new_results)
 
-at.write(new_results, 
-         "_" + name + "-acc.txt", 
-         Writer=at.FixedWidthTwoLine, 
-         delimiter_pad=" ")
+text_table(new_results, "_" + name + "-acc.txt") 
 
     
     

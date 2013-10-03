@@ -2,6 +2,7 @@
 support for experiments
 """
 
+import codecs
 import cPickle
 import logging
 import os
@@ -9,7 +10,7 @@ import shutil
 
 import numpy as np
 
-import asciitable as at
+from tg.utils import text_table
 
 log = logging.getLogger(__name__)
 
@@ -25,7 +26,7 @@ class ResultsStore(object):
     
     default_dtype = "f"
     
-    def __init__(self, descriptor, fname_prefix):
+    def __init__(self, descriptor, fname_prefix, buf_size=1000):
         self.getters = []
         dtype = []
         
@@ -40,12 +41,17 @@ class ResultsStore(object):
                 dtype.append(elem[:2])
                 self.getters.append(elem[2])
                 
-        self.results = np.zeros(9999, dtype=dtype)
+        self.results = np.zeros(buf_size, dtype=dtype)
         self.npy_fname = fname_prefix + ".npy"
         self.txt_fname = fname_prefix + ".txt"
+        self.buf_size = buf_size
         self.count = 0
             
     def append(self, ns):
+        # grow results array?
+        if self.count == self.results.shape[0]:
+            new_size = self.results.shape[0] + self.buf_size,
+            self.results.resize(new_size, refcheck=False)
         # get field values by evaluating getter expression
         env = {"ns": ns}
         for i, expr in enumerate(self.getters):
@@ -62,10 +68,7 @@ class ResultsStore(object):
         np.save(self.npy_fname, 
                 self.results[:self.count]) 
         log.info("saving text results to " + self.txt_fname)
-        at.write(self.results[:self.count], 
-                 self.txt_fname, 
-                 Writer=at.FixedWidthTwoLine, 
-                 delimiter_pad=" ")
+        text_table(self.results[:self.count], self.txt_fname)
 
 
 class Namespace(object):
