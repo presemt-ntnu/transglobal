@@ -1,6 +1,5 @@
 # Configuration for Mac OS X, relying on Enthought Canopy distribution for most 
 # of the required packages
-asciitable
 configobj
 h5py
 networkx
@@ -10,6 +9,7 @@ pydot
 scikit-learn
 scipy
 suds
+tabulate
 
 
 
