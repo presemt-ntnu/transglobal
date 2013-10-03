@@ -8,6 +8,8 @@ from os.path import exists, dirname
 import numpy as np
 import scipy.sparse as sp
 
+import tabulate
+
 
 def create_dirs(path):
     """
@@ -102,4 +104,17 @@ def coo_matrix_from_hdf5(group, dtype=None):
 
 
 
-        
+# ascii tables
+
+def text_table(table, outf=None, encoding="utf-8"):
+    """
+    write numpy record array as text table
+    """
+    if outf is None:
+        outf = codecs.getwriter(encoding)(sys.stdout)
+    elif isinstance(outf, basestring):
+        outf = codecs.open(outf, "w", encoding=encoding)
+
+    table = tabulate.tabulate(table, headers=table.dtype.names)
+    outf.write(table)
+    outf.close()

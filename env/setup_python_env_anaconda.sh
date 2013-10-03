@@ -17,7 +17,7 @@ conda create -n "$ENV_NAME" $CONDA_PACKAGES
 source activate "$ENV_NAME"
 
 # Install additional packages through pip
-PIP_PACKAGES="asciitable configobj suds" 
+PIP_PACKAGES="configobj suds tabulate" 
 pip install $PIP_PACKAGES
 
 

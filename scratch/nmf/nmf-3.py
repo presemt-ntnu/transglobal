@@ -15,7 +15,6 @@ import logging
 import sys
 
 import numpy as np
-import asciitable as at
 
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import SelectFpr, chi2
@@ -23,7 +22,7 @@ from sklearn.decomposition import NMF
 from sklearn.naive_bayes import MultinomialNB
 
 from tg.config import config
-from tg.utils import set_default_log, makedirs
+from tg.utils import set_default_log, makedirs, text_table
 from tg.classify import TranslationClassifier
 from tg.ambig import AmbiguityMap
 from tg.model import ModelBuilder
@@ -135,8 +134,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
             sub_results = np.sort(sub_results, 
                                   axis=0, 
                                   order=("lang", "blue"))[::-1]
-            at.write(sub_results, results_outf, Writer=at.FixedWidthTwoLine, 
-                     delimiter_pad=" ")
+            text_table(sub_results, results_outf)
             results_outf.write("\n\n")
             
     results_outf.close()
@@ -144,9 +142,7 @@ def nb_exp(data_sets=config["eval"]["data_sets"],
     results_fname = "_" + script_fname + "_results.npy"    
     log.info("saving pickled results to " + results_fname)
     np.save(results_fname, results)
-    
-    at.write(results, sys.stdout, Writer=at.FixedWidthTwoLine,
-             delimiter_pad=" ")   
+    text_table(results)
     
     return results
         
