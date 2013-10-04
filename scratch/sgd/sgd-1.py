@@ -79,7 +79,7 @@ def sgd_1(name = "sgd-1",
 if __name__ == "__main__":
     set_default_log(log_fname="_sgd-1.log")
     sgd_1(
-        n_graphs=2,
+        #n_graphs=2,
         #lang=("de-en",),
-        #n_jobs=10
+        n_jobs=10
     )
