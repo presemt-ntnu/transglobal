@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from tg.config import config
 
 sgd = np.load("_sgd-2.npy")
-bounds = np.load("../../exps/bounds/_bounds.npy")
+bounds = np.load("../bounds/_bounds.npy")
 
 
 for measure in "nist", "bleu", "accuracy":
