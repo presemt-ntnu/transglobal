@@ -9,7 +9,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
 
 from tg.config import config
-from tg.model import ModelBuilder, PriorModelBuilder
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 from tg.classcore import Vectorizer
 from tg.exps.support import grid_search
@@ -17,27 +16,6 @@ from tg.exps.support import grid_search
 
 log = logging.getLogger(__name__)
 
-
-def nb_build_models(ns):
-    """
-    build either normal NB models or with class priors from corpus counts
-    """
-    ns.models_fname = ns.fname_prefix + "_models.hdf5"           
-    
-    if getattr(ns, "class_priors"):
-        counts_fname = config["count"]["lemma"][ns.target_lang]["pkl_fname"]       
-        model_builder = PriorModelBuilder(ns.get_data_generator(ns), 
-                                          ns.models_fname, 
-                                          ns.classifier, 
-                                          counts_fname=counts_fname)
-    else: 
-        model_builder = ns.ModelBuilder(ns.get_data_generator(ns), 
-                                        ns.models_fname,
-                                        ns.classifier)
-    model_builder.run()
-    # clean up params
-    delattr(ns, "ambig_map")
-    
 
 # grid_search returns an *iterator* over classifiers
 @grid_search    

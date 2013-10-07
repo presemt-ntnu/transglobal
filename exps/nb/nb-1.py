@@ -13,28 +13,31 @@ from tg.exps.support import ResultsStore, remove_exp_dir
 from tg.utils import set_default_log
 import tg.exps.experiment as ex
 
-from nb import nb_classifier, nb_build_models
-
+from nb import nb_classifier
 log = logging.getLogger(__name__)
 
 
-def nb_1():
-    ##name = "test"
-    name = "nb-1"
+def nb_1(name = "nb-1",
+         data_sets=("metis", "presemt-dev"),
+         lang_pairs=None,
+         n_graphs=None):
     remove_exp_dir(name)
     descriptor = [ 
         ("data", "S16"),
         ("source", "S8",  "source_lang"),
         ("target", "S8", "target_lang"),
-        ("prior", "b", "class_priors"),
+        ("class_weighting", "b"),
         ("nist", "f", "scores.NIST"),
-        ("bleu", "f", "scores.BLEU"),        
+        ("bleu", "f", "scores.BLEU"), 
+        ("correct", "i", "accuracy.correct"),
+        ("incorrect", "i", "accuracy.incorrect"),
+        ("ignored", "i", "accuracy.ignored"),
+        ("accuracy", "f", "accuracy.score"),       
         ("exp_name", "S128"),        
         ("models_fname", "S256"),
     ] 
     result_store = ResultsStore(descriptor, 
                                 fname_prefix = "_" + name)
-    data_sets = "metis", "presemt-dev"
     # tricky: 'classifiers' cannot be an iterator
     # because it is called many times during grid_search
     classifiers = list(nb_classifier())
@@ -46,13 +49,11 @@ def nb_1():
             name=name,
             _classifier=classifiers,
             data=data,
-            _lang=config["eval"][data].keys(),
-            #_lang=("de-en",),
+            _lang=lang_pairs or config["eval"][data].keys(),
             write_text=ex.SKIP,
             draw_graphs=ex.SKIP,
-            _class_priors=(True, False),
-            build_models=nb_build_models,
-            ##n_graphs=2,
+            _class_weighting=(True, False),
+            n_graphs=n_graphs,
         )
         
         for ns in exps: 
@@ -61,4 +62,7 @@ def nb_1():
   
 if __name__ == "__main__":
     set_default_log(log_fname="_nb-1.log")
-    nb_1()
+    nb_1(
+        #name="ff",
+        #n_graphs=2
+    )

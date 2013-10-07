@@ -33,8 +33,8 @@ for measure in "nist", "bleu", "accuracy":
             i += 1
             
             scores = subset[measure]
-            labels = ["prior={}_vect={}".format(r["prior"], 
-                                                r["vect_score_attr"]) 
+            labels = ["class_weigh={}_vect={}".format(r["class_weighting"], 
+                                                      r["vect_score_attr"]) 
                       for r in subset]
             
             if measure != "accuracy":
@@ -42,33 +42,36 @@ for measure in "nist", "bleu", "accuracy":
                                 (bounds["source"] == source) & 
                                 (bounds["target"] == target)]
                 scores = np.hstack([scores, subset[measure]])
-                labels += [r["score_attr"] for r in subset]                        
+                labels += [r["score_attr"] for r in subset]  
+                
+            ax = plt.subplot(3, 4, i)                       
             
-            y_pos = np.arange(len(labels))
-            ax = plt.subplot(3, 4, i)           
-
-            if measure == "bleu":
+            if measure == "nist":
+                plt.xlabel("NIST")
+                plt.xlim(xmax=9.0)
+            elif measure == "bleu":
                 scores *= 100
+                plt.xlabel("BLEU (%)")
+                plt.xlim(xmax=40.0)
+            elif measure == "accuracy":
+                scores *= 100
+                plt.xlabel("Accuracy (%)")   
+                plt.xlim(xmax=100.0)            
+            
+            y_pos = np.arange(len(labels))    
+
             handles = plt.barh(y_pos, scores, align='center', height=0.5, 
                      color=("black", "grey", "yellow", "blue",
                             "purple", "brown", "green", "red", "orange"),
                      alpha=0.4)
+            
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)
-            plt.xlabel(measure.upper())
             
-            if measure == "nist":
-                xmax=9.0
-            elif measure == "blue":
-                xmax == 30.0
-            elif measure == "accuracy":
-                xmax = 1.0
-                
-            plt.xlim(xmax=xmax)
-            plt.grid(axis="x")
+            plt.grid(axis="x")                
             plt.title("{} {}-{}".format(data.upper(), 
                                         source.capitalize(), 
-                                        target.capitalize()))
+                                        target.capitalize())) 
             
     plt.figlegend(reversed(handles), reversed(labels), "lower center")
     plt.tight_layout()

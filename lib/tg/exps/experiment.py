@@ -69,13 +69,17 @@ def get_languages(ns):
 #-------------------------------------------------------------------------------
 
 # This tries to avoid keeping resources in memory by not storing large
-# objects such as the AmbguityMap and HDF5 samples in the namespace
+# objects such as the AmbiguityMap and HDF5 samples in the namespace
 
 def build_models(ns):
     ns.models_fname = ns.fname_prefix + "_models.hdf5"   
-    model_builder = ns.ModelBuilder(ns.get_data_generator(ns), 
-                                    ns.models_fname,
-                                    ns.classifier)
+    if getattr(ns, "class_weighting", None):
+        ns.counts_fname = config["count"]["lemma"][ns.target_lang]["pkl_fname"]
+    model_builder = ns.ModelBuilder(
+        ns.get_data_generator(ns), 
+        ns.models_fname,
+        ns.classifier,
+        counts_fname=getattr(ns, "counts_fname", None))
     model_builder.run()
     
 def get_data_generator(ns):
@@ -246,6 +250,7 @@ def single_exp(name,
     TranslationClassifier
     
     shuffle
+    class_weighting
     
     """
     # Create namespace instance holding all experimental parameters.
