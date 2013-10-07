@@ -88,6 +88,9 @@ class DataSetGenerator(object):
             # strings for target names
             sampled_target_lempos.append(lempos.encode("utf-8"))
             
+        # it seems most sklearn classes want sparse matrices in CSR format
+        samples = samples.tocsr()
+            
         if self.shuffle:
             samples, targets = shuffle(samples, targets, 
                                        random_state=self.random_state)
