@@ -3,7 +3,7 @@
 
 """
 feature selection with different frequency cut-offs,
-with Naive Bayes models with class priors from corpus,
+with Naive Bayes models with class weighting
 with MFT vectors
 
 Note that for some combinations, no features at all are selected,
@@ -22,7 +22,7 @@ from tg.config import config
 from tg.exps.support import ResultsStore, remove_exp_dir
 from tg.utils import set_default_log
 import tg.exps.experiment as ex
-from tg.model import PriorModelBuilder
+from tg.model import ModelBuilder
 from tg.skl.selection import MinCountFilter, MaxFreqFilter
 from tg.classcore import Vectorizer
 from tg.exps.support import grid_search
@@ -32,15 +32,15 @@ log = logging.getLogger(__name__)
 
 def nb_build_model(ns):
     """
-    build NB models class priors from corpus counts
+    build NB models class weighting
     """
     ns.models_fname = ns.fname_prefix + "_models.hdf5"           
     
     counts_fname = config["count"]["lemma"][ns.target_lang]["pkl_fname"]       
-    model_builder = PriorModelBuilder(ns.get_data_generator(ns), 
-                                      ns.models_fname,
-                                      ns.classifier, 
-                                      counts_fname=counts_fname)
+    model_builder = ModelBuilder(ns.get_data_generator(ns), 
+                                 ns.models_fname,
+                                 ns.classifier, 
+                                 counts_fname=counts_fname)
     model_builder.run()
     # clean up params
     delattr(ns, "ambig_map")
