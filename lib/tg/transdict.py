@@ -5,11 +5,16 @@ read dicts
 
 import collections
 import cPickle
+import itertools
 import logging
 import sys
 from xml.etree import cElementTree as et
 
 import configobj
+import numpy as np
+
+from tg.config import config
+from tg.utils import text_table
 
 
 log = logging.getLogger(__name__)
@@ -77,8 +82,11 @@ class TransDict(object):
         return self._lempos_dict.iteritems()
     
     def lemma_iteritems(self):
-        return ( self.lookup_lemma[lempos]
-                 for lempos in self._lemma_dict.itervalues() )
+        for lemma, lempos_list in self._lemma_dict.iteritems():
+            translations = ()
+            for lempos in lempos_list:
+                translations += self._lempos_dict[lempos]
+            yield lemma, translations
 
     @staticmethod
     def load(pkl_fname):
@@ -264,66 +272,132 @@ class TransDictGreek(TransDict):
     
 
     
-def ambig_dist(trans_dict, with_lemma=True, with_lempos=True,
-               with_single_word=True, with_multi_word=True, max_trans=100,):
+def ambig_dist(trans_dict, entry="lempos",
+               with_single_word=True, with_multi_word=True, max_trans=1000):
     """
-    Takes a TransDict objcet and the distribution of the translation ambiguity. 
-    Returns a list where the first item represents the number of entries with
-    zero translations, the second entry the number of entries with one
-    translation, and so on until max_trans
+    Compute distribution of the translation ambiguity in dictionary
+    
+    Parameters
+    ----------
+    trans_dict: TransDict object 
+    entry: 'lempos' or 'lemma'
+        count lemma and POS tag combinations or lemmas only (sums ambiguity of 
+        lemmas with different POS tag) 
+    with_single_word: bool
+        count single words
+    with_multi_word: bool
+        count multi-word expressions
+    max_trans: int
+        maximum number of translations considered
+        
+    Returns
+    -------
+    dist: numpy array
+        record array with fields '#trans', 'count' and 'percent'
+        where the first row represents the number of entries with zero 
+        translations, the second row the number of entries with one 
+        translation, and so on until max_trans.
     """
     # TODO: filter on certain POS tags
-    dist = (max_trans + 1) * [0]
+    dist = np.zeros(max_trans + 1, 
+                    dtype=[("#trans", "i"),
+                           ("count", "i"), 
+                           ("percent", "f")])
+    dist["#trans"] = np.arange(max_trans + 1)
+    most_trans = 0
     
-    if with_lempos:
-        for entry, values in trans_dict.lempos_iteritems():
-            if " " in entry:
-                if not with_multi_word:
-                    continue
-            elif not with_single_word:
+    if entry == "lempos":
+        iterator = trans_dict.lempos_iteritems()
+    elif entry == "lemma":
+        iterator = trans_dict.lemma_iteritems()
+    else:
+        raise ValueError("entry must be 'lempos' or 'lemma', not " + 
+                         repr(entry))
+  
+    for entry, values in iterator:
+        if " " in entry:
+            if not with_multi_word:
                 continue
-                
-            dist[len(values)] += 1
-            
-    if with_lemma:
-        for entry, values in trans_dict.lemma_iteritems():
-            if " " in entry:
-                if not with_multi_word:
-                    continue
-            elif not with_single_word:
-                continue
-                
-            dist[len(values)] += 1
+        elif not with_single_word:
+            continue
         
-    return dist
+        n_trans = len(values)
+        
+        try:    
+            dist[n_trans]["count"] += 1
+        except IndexError:
+            log.error("entry has {} translations (max_trans={})".format(
+            n_trans, max_trans))
+            raise
+
+        most_trans = max(most_trans, n_trans)
+        
+        # Find ridiculously ambiguous lemmas
+        #if n_trans > 50:
+        #    log.info(u"{}: {} ==> {}".format(n_trans, entry, 
+        #                                     ", ".join(values)))
+        
+    dist["percent"] = (dist["count"] / float(dist["count"].sum())) * 100
+    return dist[:most_trans + 1]
 
 
-def ambig_dist_report(dist, outf=sys.stdout):
+def ambig_dist_report(lang_pairs=config["dict"].keys(), 
+                      entry="lempos",
+                      with_single_word=True, 
+                      with_multi_word=False,
+                      max_trans=1000,
+                      outf=sys.stdout):
     """
-    Report statistics on distribution of translation ambiguity,
-    where 'dist' results from calling function 'ambig_dist'
-    """
-    total = sum(dist)
-    outf.write("total number of entries: {0}\n".format(total))
-    total_ambig = sum(dist[2:])
-    outf.write("total number of ambiguous entries: {0} ({1:.2f}%)\n".format(
-        total_ambig,
-        total_ambig/float(total) * 100)) 
-    outf.write("total number of non-ambiguous entries: {0} ({1:.2f}%)\n".format(
-        total - total_ambig,
-        (total - total_ambig)/float(total) * 100))
+    Report statistics on translation ambiguity in dictionary
     
-    # first one we look at is n + 2 = 0 + 2 = 2
-    weighted_sum = sum([(n + 2) * c 
-                        for n, c in enumerate(dist[2:])])
-    av_ambig = weighted_sum / float(total_ambig)
-    outf.write("average ambiguity (over ambiguous entries only): "
-               "{0:.2f} translations )\n\n".format(av_ambig))
+    Parameters
+    ----------
+    trans_dict: TransDict object 
+    entry: 'lempos' or 'lemma'
+        count lemma and POS tag combinations or lemmas only (sums ambiguity of 
+        lemmas with different POS tag) 
+    with_single_word: bool
+        count single words
+    with_multi_word: bool
+        count multi-word expressions
+    max_trans: int
+        maximum number of translations considered
+    outf: file
+        output file (defaults to stdout)
+    """
+    for lang_pair in lang_pairs:
+        pkl_fname = config["dict"][lang_pair]["pkl_fname"]
+        outf.write("dictionary file: {}\n".format(pkl_fname))
+        outf.write("language pair: {}\n".format(lang_pair))
+        outf.write("entries: {}\n".format(entry))
+        outf.write("count single word entries: {}\n".format(with_single_word))
+        outf.write("count multi-word entries: {}\n".format(with_multi_word))
+        outf.write("maximum number of translations: {}\n".format(max_trans))
+        trans_dict = cPickle.load(open(pkl_fname)) 
+        
+        if entry == "lempos":
+            with_lemma, with_lempos = False, True
+        else:
+            with_lemma, with_lempos = True, False   
+            
+        dist = ambig_dist(trans_dict, entry=entry,
+                          with_single_word=with_single_word, 
+                          with_multi_word=with_multi_word,
+                          max_trans=max_trans)
+        
+        outf.write("total number of entries: {0}\n".format(dist["count"].sum()))
+        outf.write("total number of ambiguous entries: {0} ({1:.2f}%)\n".format(
+            dist[2:]["count"].sum(),
+            dist[2:]["percent"].sum()))
+        outf.write("total number of non-ambiguous entries: {0} ({1:.2f}%)\n".format(
+            dist[:2]["count"].sum(),
+            dist[:2]["percent"].sum()))
+          
+        av_ambig = ( (dist[2:]["count"] * dist[2:]["#trans"]).sum() / 
+                     dist[2:]["count"].sum().astype("float"))
+        outf.write("average ambiguity (over ambiguous entries only): "
+                   "{0:.2f} translations\n\n".format(av_ambig))
    
-    outf.write(" n:          count:        %:\n")    
-    for n, count in enumerate(dist):
-        outf.write("{0:3d}    {1:12d}    {2:6.2f}\n".format(
-            n,
-            count,
-            count/float(total) * 100))
-         
+        text_table(dist, outf)
+        outf.write("\n\n")
+        print "\n"
