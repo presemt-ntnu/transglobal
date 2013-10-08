@@ -34,6 +34,7 @@ def sgd_1(name = "sgd-1",
         ("data", "S16"),
         ("source", "S8",  "source_lang"),
         ("target", "S8", "target_lang"),
+        ("class_weighting", "b"),
         #("loss", "S16", "classifier.loss"),
         #("penalty", "S16", "classifier.penalty"),
         #("alpha", "f", "classifier.alpha"),
@@ -70,6 +71,8 @@ def sgd_1(name = "sgd-1",
             n_graphs=n_graphs,
             # *** input to SGDClassifier must be shuffled! ***
             shuffle=True,
+            #_class_weighting=(True, False),
+            class_weighting=True,
         )
         
         for ns in exps: 
@@ -77,8 +80,9 @@ def sgd_1(name = "sgd-1",
                 
   
 if __name__ == "__main__":
-    set_default_log(log_fname="_sgd-1.log")
+    set_default_log(log_fname="_sgd-1b.log")
     sgd_1(
+        name = "sgd-1b",
         #n_graphs=2,
         #lang=("de-en",),
         n_jobs=10
