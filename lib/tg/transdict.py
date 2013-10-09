@@ -374,11 +374,6 @@ def ambig_dist_report(lang_pairs=config["dict"].keys(),
         outf.write("count multi-word entries: {}\n".format(with_multi_word))
         outf.write("maximum number of translations: {}\n".format(max_trans))
         trans_dict = cPickle.load(open(pkl_fname)) 
-        
-        if entry == "lempos":
-            with_lemma, with_lempos = False, True
-        else:
-            with_lemma, with_lempos = True, False   
             
         dist = ambig_dist(trans_dict, entry=entry,
                           with_single_word=with_single_word, 
