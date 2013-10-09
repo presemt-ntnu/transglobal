@@ -34,6 +34,7 @@ def sgd_2(name = "sgd-2", n_graphs=None):
         ("data", "S16"),
         ("source", "S8",  "source_lang"),
         ("target", "S8", "target_lang"),
+        ("class_weighting", "b"),
         ("vect_score_attr", "S16", "vectorizer.score_attr"),
         ("nist", "f", "scores.NIST"),
         ("bleu", "f", "scores.BLEU"),  
@@ -61,6 +62,7 @@ def sgd_2(name = "sgd-2", n_graphs=None):
                     build_models=ex.SKIP,
                     trash_models=ex.SKIP,
                     models_fname=record["models_fname"],
+                    class_weighting=record["class_weighting"],
                     _vectorizer=vectorizers,
                     n_graphs=n_graphs,
                 )    

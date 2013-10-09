@@ -33,7 +33,8 @@ for measure in "nist", "bleu", "accuracy":
             i += 1
             
             scores = subset[measure]
-            labels = ["vect={}".format(r["vect_score_attr"]) 
+            labels = ["vect={} weighting={}".format(r["vect_score_attr"],
+                                                    r["class_weighting"]) 
                       for r in subset]
             
             if measure != "accuracy":
@@ -63,6 +64,10 @@ for measure in "nist", "bleu", "accuracy":
                      color=("black", "grey", "yellow", "blue",
                             "purple", "brown", "green", "red", "orange"),
                      alpha=0.4)
+            
+            for label, bar in zip(labels, handles):
+                if "weighting=1" in label:
+                    bar.set_hatch("//")
             
             scores = ["{:.2f}".format(s) for s in scores]
             plt.yticks(y_pos, scores)

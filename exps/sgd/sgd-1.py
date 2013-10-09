@@ -17,11 +17,7 @@ from tg.utils import set_default_log
 import tg.exps.experiment as ex
 from tg.exps.support import grid_search
 
-
-
 log = logging.getLogger(__name__)
-
-
     
 
 def sgd_1(name = "sgd-1", 
@@ -35,10 +31,6 @@ def sgd_1(name = "sgd-1",
         ("source", "S8",  "source_lang"),
         ("target", "S8", "target_lang"),
         ("class_weighting", "b"),
-        #("loss", "S16", "classifier.loss"),
-        #("penalty", "S16", "classifier.penalty"),
-        #("alpha", "f", "classifier.alpha"),
-        #("n_iter", "i", "classifier.n_iter"),
         ("nist", "f", "scores.NIST"),
         ("bleu", "f", "scores.BLEU"), 
         ("correct", "i", "accuracy.correct"),
@@ -71,8 +63,7 @@ def sgd_1(name = "sgd-1",
             n_graphs=n_graphs,
             # *** input to SGDClassifier must be shuffled! ***
             shuffle=True,
-            #_class_weighting=(True, False),
-            class_weighting=True,
+            _class_weighting=(True, False),
         )
         
         for ns in exps: 
@@ -80,9 +71,9 @@ def sgd_1(name = "sgd-1",
                 
   
 if __name__ == "__main__":
-    set_default_log(log_fname="_sgd-1b.log")
+    set_default_log(log_fname="_sgd-1.log")
     sgd_1(
-        name = "sgd-1b",
+        name = "sgd-1",
         #n_graphs=2,
         #lang=("de-en",),
         n_jobs=10

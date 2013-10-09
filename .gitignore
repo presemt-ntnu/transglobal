@@ -13,5 +13,9 @@ _*
 *.tst
 exp_*
 .ipynb_*
+*.gz
+*.bz2
+*.tgz
+*.tbz
 !__init__.py
 !test/data/*.pkl
